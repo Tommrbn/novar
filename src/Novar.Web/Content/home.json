@@ -1,0 +1,95 @@
+{
+  "highlights": [
+    {
+      "name": "AI·Lens",
+      "slug": "ai-lens",
+      "image": "2c335.png",
+      "description": "¿Alguna vez te preguntaste si tu presbicia podría ser solucionada con IA?",
+      "benefits": [
+        {
+          "label": "Visión de lejos",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visión intermedia",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visión de cerca",
+          "level": "Alta",
+          "percent": 100
+        }
+      ]
+    },
+    {
+      "name": "MyoFix",
+      "slug": "",
+      "image": "52af8.png",
+      "description": "¿Tu hijo sufre de miopía progresiva?",
+      "benefits": [
+        {
+          "label": "Visión de lejos",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visión intermedia",
+          "level": "Media",
+          "percent": 50
+        },
+        {
+          "label": "Visión de cerca",
+          "level": "Media",
+          "percent": 50
+        }
+      ]
+    },
+    {
+      "name": "MyoLens",
+      "slug": "myolens",
+      "image": "2eb1f.png",
+      "description": "¿Te recetaron anteojos de descanso?",
+      "benefits": [
+        {
+          "label": "Visión de lejos",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visión intermedia",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visión de cerca",
+          "level": "Media / Alta",
+          "percent": 70
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "question": "¿Por qué me cuesta ver de cerca con el paso del tiempo?",
+      "answer": "Con los años, enfocar de cerca puede volverse más difícil. Es un proceso natural llamado presbicia y existen lentes diseñados para recuperar comodidad y nitidez."
+    },
+    {
+      "question": "¿Por qué veo peor de noche o me molestan las luces?",
+      "answer": "Con poca luz, algunas dificultades visuales pueden hacerse más evidentes. Un lente adecuado puede ayudar a mejorar la claridad, el contraste y el confort visual."
+    },
+    {
+      "question": "¿Los lentes pueden hacer algo más que corregir la visión?",
+      "answer": "Sí. Hoy existen lentes diseñados para distintas necesidades: mejorar el confort, optimizar la visión a diferentes distancias o acompañar necesidades visuales específicas."
+    },
+    {
+      "question": "¿Qué pasa si uso lentes sin receta o mal graduados?",
+      "answer": "Una graduación incorrecta puede generar visión borrosa, cansancio o incomodidad. Por eso es importante contar con una receta actualizada y el asesoramiento de un profesional."
+    },
+    {
+      "question": "¿Es normal que los chicos necesiten lentes?",
+      "answer": "Sí. Algunas dificultades visuales pueden aparecer durante la infancia. Detectarlas a tiempo permite encontrar la solución adecuada y acompañar su desarrollo visual."
+    }
+  ]
+}

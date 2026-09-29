@@ -1,0 +1,10 @@
+# Local Pi runtime state
+.atl/
+**/bin/
+**/obj/
+.vs/
+artifacts/
+node_modules/
+TestResults/
+*.user
+*.suo

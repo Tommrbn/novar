@@ -1,0 +1,338 @@
+[
+  {
+    "name": "Kriptok Blended",
+    "slug": "kriptok-blended",
+    "sourceNode": "989:712",
+    "category": "Bifocales",
+    "wordmarkNode": "989:744",
+    "hero": "a2798.png",
+    "heroUnderlay": null,
+    "heroEyebrow": null,
+    "subtitle": "La funcionalidad bifocal con una estética más integrada.",
+    "description": "Diseño bifocal con segmento invisible, pensado para quienes buscan la precisión de una lente Freeform con una apariencia más estética.",
+    "tagline": "Bifocal más discreto",
+    "introHeading": "Dos zonas de visión, una apariencia más limpia.",
+    "introEyebrow": "BIFOCAL MÁS DISCRETO",
+    "intro": "Novar Kriptok Blended ofrece una solución bifocal para lejos y cerca, con un segmento integrado de forma más sutil.",
+    "scene": "94673.png",
+    "gallery": [
+      "6e749.png",
+      "ed808.png",
+      "0127c.png",
+      "1305e.png"
+    ],
+    "galleryName": "Kriptok Blended",
+    "details": "Una alternativa para usuarios que prefieren bifocales pero buscan una estética mejorada.",
+    "design": "Lente bifocal blended.",
+    "idealFor": "Usuarios que buscan bifocales con mejor estética.",
+    "detail": "2c53f.png",
+    "tag": "Funcionalidad bifocal con segmento menos visible",
+    "watermark": "kriprok\nblended",
+    "wordmark": "bop-kriptok-blended-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology ™",
+        "description": "Una tecnología exclusiva de Novar que combina óptica avanzada y neurociencia visual para crear lentes que se adaptan a cómo ves el mundo. El resultado: una visión más natural, cómoda y clara en cada mirada."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Así como una pantalla 8K construye una imagen con millones de píxeles para revelar cada detalle con mayor precisión, esta tecnología exclusiva de Novar optimiza el lente punto por punto. Cada microzona aporta información visual para formar una imagen más definida, uniforme y natural, logrando una experiencia de visión más nítida en todo el campo visual."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Segmento más discreto"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Visión lejos y cerca"
+      },
+      {
+        "file": "63457.svg",
+        "label": "Estética mejorada."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Lejos",
+        "level": "Alta"
+      },
+      {
+        "label": "Intermedio",
+        "level": "Baja"
+      },
+      {
+        "label": "Cerca",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "¿Qué es Novar Kriptok Blended?",
+        "answer": null
+      },
+      {
+        "question": "¿Para quién está recomendado Novar Kriptok Blended?",
+        "answer": null
+      },
+      {
+        "question": "¿Qué lo diferencia?",
+        "answer": "Su segmento invisible y su fabricación digital Freeform."
+      }
+    ]
+  },
+  {
+    "name": "Ultex Blended",
+    "slug": "ultex-blended",
+    "sourceNode": "992:2398",
+    "category": "Bifocales",
+    "wordmarkNode": "992:2430",
+    "hero": "46733.png",
+    "heroUnderlay": null,
+    "heroEyebrow": null,
+    "subtitle": "Bifocal redondo, más integrado y funcional.",
+    "description": "Lente bifocal fusionado con segmento redondo, diseñado para usuarios que necesitan una solución práctica para lejos y cerca.",
+    "tagline": "Bifocal clásico, estética mejorada",
+    "introHeading": "Una solución bifocal con transición más cuidada",
+    "introEyebrow": "BIFOCAL CLÁSICO",
+    "intro": "Novar Ultex Blended está pensado para quienes buscan bifocales fusionados con segmento redondo.",
+    "scene": "96f85.png",
+    "gallery": [
+      "b406e.png",
+      "26192.png",
+      "a3494.png",
+      "e41dc.png"
+    ],
+    "galleryName": "Ultex Blended",
+    "details": "Su diseño combina funcionalidad visual con una apariencia más integrada.",
+    "design": "Lente bifocal fusionado.",
+    "idealFor": "Usuarios que buscan bifocales con segmento redondo.",
+    "detail": "1fa8f.png",
+    "tag": "Funcionalidad bifocal con estética mejorada",
+    "watermark": "ultex\nblended",
+    "wordmark": "bop-ultex-blended-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology ™",
+        "description": "Una tecnología exclusiva de Novar que combina óptica avanzada y neurociencia visual para crear lentes que se adaptan a cómo ves el mundo. El resultado: una visión más natural, cómoda y clara en cada mirada."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Así como una pantalla 8K construye una imagen con millones de píxeles para revelar cada detalle con mayor precisión, esta tecnología exclusiva de Novar optimiza el lente punto por punto. Cada microzona aporta información visual para formar una imagen más definida, uniforme y natural, logrando una experiencia de visión más nítida en todo el campo visual."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Segmento redondo"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Visión práctica."
+      },
+      {
+        "file": "63457.svg",
+        "label": "Estética mejorada."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Lejos",
+        "level": "Alta"
+      },
+      {
+        "label": "Intermedio",
+        "level": "Baja"
+      },
+      {
+        "label": "Cerca",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "¿Qué es Novar Ultex Blended?",
+        "answer": null
+      },
+      {
+        "question": "¿Para quién está recomendado Novar Ultex Blended?",
+        "answer": null
+      },
+      {
+        "question": "¿Qué lo diferencia?",
+        "answer": "Su segmento redondo y su transición estética más integrada."
+      }
+    ]
+  },
+  {
+    "name": "Freeline",
+    "slug": "freeline",
+    "sourceNode": "992:2680",
+    "category": "Bifocales",
+    "wordmarkNode": "992:2712",
+    "hero": "55999.png",
+    "heroUnderlay": null,
+    "heroEyebrow": null,
+    "subtitle": "Bifocalidad con una apariencia más invisible",
+    "description": "Bifocal diseñado para mejorar la estética del segmento y ofrecer una solución visual funcional para lejos y cerca.",
+    "tagline": "Más estética, misma practicidad",
+    "introHeading": "Un bifocal pensado para verse mejor",
+    "introEyebrow": "MÁS ESTÉTICA",
+    "intro": "Novar Freeline utiliza áreas periféricas del meridiano inferior para mejorar la invisibilidad del segmento.",
+    "scene": "ac71d.png",
+    "gallery": [
+      "25532.png",
+      "8bc66.png",
+      "583b2.png",
+      "3f661.png"
+    ],
+    "galleryName": "Freeline",
+    "details": "Es una opción para quienes buscan la practicidad bifocal con una apariencia más discreta",
+    "design": "Lente bifocal estético.",
+    "idealFor": "Usuarios que buscan bifocales más discretos.",
+    "detail": "68fbb.png",
+    "tag": "Mayor invisibilidad del segmento",
+    "watermark": "freeline",
+    "wordmark": "bop-freeline-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology ™",
+        "description": "Una tecnología exclusiva de Novar que combina óptica avanzada y neurociencia visual para crear lentes que se adaptan a cómo ves el mundo. El resultado: una visión más natural, cómoda y clara en cada mirada."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Así como una pantalla 8K construye una imagen con millones de píxeles para revelar cada detalle con mayor precisión, esta tecnología exclusiva de Novar optimiza el lente punto por punto. Cada microzona aporta información visual para formar una imagen más definida, uniforme y natural, logrando una experiencia de visión más nítida en todo el campo visual."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Mayor invisibilidad"
+      },
+      {
+        "file": "63457.svg",
+        "label": "Estética mejorada."
+      },
+      {
+        "file": "472c2.svg",
+        "label": "Funcionalidad bifocal."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Lejos",
+        "level": "Alta"
+      },
+      {
+        "label": "Intermedio",
+        "level": "Baja"
+      },
+      {
+        "label": "Cerca",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "¿Qué es Novar Freeline?",
+        "answer": null
+      },
+      {
+        "question": "¿Para quién está recomendado Novar Freeline?",
+        "answer": null
+      },
+      {
+        "question": "¿Qué lo diferencia?",
+        "answer": "Su diseño orientado a reducir la visibilidad del segmento."
+      }
+    ]
+  },
+  {
+    "name": "Office",
+    "slug": "office",
+    "sourceNode": "992:2962",
+    "category": "Ocupacionales",
+    "wordmarkNode": "992:2994",
+    "hero": "773b8.png",
+    "heroUnderlay": "91467.png",
+    "heroEyebrow": "MONOFOCALES",
+    "subtitle": "Tu espacio de trabajo, más claro y cómodo.",
+    "description": "Una visión más amplia y cómoda para trabajar, leer y usar pantallas, con un enfoque intermedio que se ajusta a las distancias y actividades de cada persona para acompañarla con mayor naturalidad durante toda la jornada",
+    "tagline": "Comodidad para trabajar",
+    "introHeading": "Más amplitud visual en las distancias que más usás.",
+    "introEyebrow": "COMODIDAD PARA TRABAJAR",
+    "intro": "Novar Office acompaña el ritmo real de tu jornada: de la pantalla a un documento, del escritorio a una reunión, con una visión cercana e intermedia más amplia y fluida.",
+    "scene": "199dd.png",
+    "gallery": [
+      "fa988.png",
+      "fd75e.png",
+      "68e36.png",
+      "286a2.png"
+    ],
+    "galleryName": "Kriptok Blended",
+    "details": "Su diseño favorece una mejor ergonomía visual, ayudando a mantener posturas más naturales y a trabajar durante horas con mayor comodidad y libertad de movimiento.",
+    "design": "Lente ocupacional.",
+    "idealFor": "Personas que trabajan con pantallas, lectura y escritorio.",
+    "detail": "89fbb.png",
+    "tag": "Mayor comodidad en visión cercana e intermedia",
+    "watermark": "Office",
+    "wordmark": "bop-office-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology ™",
+        "description": "Una tecnología exclusiva de Novar que combina óptica avanzada y neurociencia visual para crear lentes que se adaptan a cómo ves el mundo. El resultado: una visión más natural, cómoda y clara en cada mirada."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Así como una pantalla 8K construye una imagen con millones de píxeles para revelar cada detalle con mayor precisión, esta tecnología exclusiva de Novar optimiza el lente punto por punto. Cada microzona aporta información visual para formar una imagen más definida, uniforme y natural, logrando una experiencia de visión más nítida en todo el campo visual."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Segmento más discreto"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Visión lejos y cerca"
+      },
+      {
+        "file": "63457.svg",
+        "label": "Estética mejorada."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Lejos",
+        "level": "Baja / Media"
+      },
+      {
+        "label": "Intermedio",
+        "level": "Alta"
+      },
+      {
+        "label": "Cerca",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "¿Qué es Novar Office?",
+        "answer": null
+      },
+      {
+        "question": "¿Para quién está recomendado Novar Office?",
+        "answer": null
+      },
+      {
+        "question": "¿Qué lo diferencia?",
+        "answer": " Su comodidad en distancias de trabajo y su adaptación a distintas necesidades de oficina"
+      }
+    ]
+  }
+]

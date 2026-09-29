@@ -1,0 +1,50 @@
+@model AboutContent
+@{
+    ViewData["Title"] = "Sobre nosotros";
+    ViewData["AboutPage"] = true;
+}
+<div class="about-content" data-figma-node="@Model.SourceNode" data-about-revision="about-v1">
+    <section class="about-intro" aria-labelledby="about-title">
+        <div class="about-globe" aria-hidden="true">
+            <img src="~/media/figma/c9741.png" alt="" width="1672" height="941" />
+        </div>
+        <div class="about-heading">
+            <p class="about-eyebrow">@Model.Eyebrow</p>
+            <h1 id="about-title"><strong>@Model.TitleLead</strong> @Model.TitleRest</h1>
+        </div>
+        <div class="about-story">
+            <div class="about-label">
+                <h2 id="about-story-title">@Model.SectionTitle</h2>
+                <p>@Model.Tagline</p>
+            </div>
+            <div class="about-story-copy" aria-labelledby="about-story-title">
+                <img class="about-divider" src="~/media/figma/65002.svg" alt="" width="276" height="5" />
+                <p class="about-statement"><strong>@Model.IntroLead</strong> @Model.IntroRest</p>
+                <div class="about-history">
+                    @foreach (var paragraph in Model.Paragraphs)
+                    {
+                        <p>@paragraph</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <ul class="about-pillars" aria-label="Pilares de Novar">
+            @foreach (var pillar in Model.Pillars)
+            {
+                <li><h3>@pillar.Title</h3><p>@pillar.Description</p></li>
+            }
+        </ul>
+    </section>
+    <section class="about-values" aria-labelledby="about-values-title">
+        <div class="about-values-inner">
+            <p class="about-values-eyebrow">@Model.ValuesEyebrow</p>
+            <h2 id="about-values-title">@Model.ValuesTitle</h2>
+            <div class="about-values-grid">
+                @foreach (var value in Model.Values)
+                {
+                    <article class="about-value-card"><h3>@value.Title</h3><p>@value.Description</p></article>
+                }
+            </div>
+        </div>
+    </section>
+</div>

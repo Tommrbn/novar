@@ -1,0 +1,17 @@
+@model MonofocalText
+@{
+    var result = new Microsoft.AspNetCore.Html.HtmlContentBuilder();
+    var remaining = Model.Text;
+    foreach (var emphasis in Model.Emphasis)
+    {
+        var index = remaining.IndexOf(emphasis, StringComparison.Ordinal);
+        if (index < 0) continue;
+        result.Append(remaining[..index]);
+        var strong = new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder("strong");
+        strong.InnerHtml.Append(emphasis);
+        result.AppendHtml(strong);
+        remaining = remaining[(index + emphasis.Length)..];
+    }
+    result.Append(remaining);
+}
+@result

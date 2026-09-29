@@ -1,0 +1,47 @@
+/* Verified First-only geometry. Later user-supplied FAQ copy is tracked separately. */
+.progressive-product--first .prg-hero { height: 761px; }
+.progressive-product--first .prg-hero-art > img { width: 1500px; height: 826px; left: calc(50% - 780px); top: -65px; object-fit: fill; }
+.progressive-product--first .prg-hero-copy { left: calc(50% + 35px); top: 235px; width: 524px; gap: 16px; }
+.prg-first-logotype { display: block; position: relative; width: 224.287px; height: 100.517px; }
+.prg-first-logotype img { position: absolute; display: block; max-width: none; }
+.prg-first-brand { left: 0; top: 0; }
+.prg-first-name { left: 1.36815px; top: 31.97446px; }
+.prg-first-registered { left: 192.05696px; top: 32.02472px; }
+.progressive-product--first .prg-hero-copy h2 { line-height: 1.32; letter-spacing: normal; }
+.progressive-product--first .prg-hero-copy > p { line-height: 1.4; letter-spacing: normal; }
+.progressive-product--first .prg-category { font-size: 15.017px; line-height: 18.772px; text-transform: uppercase; }
+.progressive-product--first .prg-intro { padding-top: 58.55px; min-height: 579.62px; }
+.progressive-product--first .prg-intro-panel { padding-top: 43.37px; }
+.progressive-product--first .prg-scene img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.progressive-product--first .prg-intro-copy { padding-top: 54.71px; }
+.progressive-product--first .prg-intro-copy h2 { margin-top: 12.36px; max-width: 434.25px; }
+.progressive-product--first .prg-intro-panel { padding-right: 40px; }
+.progressive-product--first .prg-intro-description { max-width: 329.672px; line-height: 24px; margin-top: 20px !important; }
+.progressive-product--first .prg-icons { margin-top: 28px; }
+.progressive-product--first .prg-icons li { line-height: 10.502px; }
+.progressive-product--first .prg-icons li > span { margin-bottom: 6px; }
+.progressive-product--first .prg-gallery { height: 697.38px; }
+.progressive-product--first .prg-gallery-images > [data-gallery-image="1319b.png"] img { position: absolute; width: 169.37%; height: 100%; left: -5.35%; top: 0; }
+.progressive-product--first .prg-gallery-images > [data-gallery-image="2131c.png"] img { position: absolute; width: 100%; height: 132.7%; left: -.24%; top: -30.04%; }
+.progressive-product--first .prg-treatments { min-height: 377.82px; }
+.progressive-product--first .prg-details { min-height: 630px; }
+.progressive-product--first .prg-detail-photo img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.progressive-product--first .prg-technologies { min-height: 407.75px; padding-top: 115px; padding-bottom: 74px; }
+.progressive-product--first .prg-faq { min-height: 590px; }
+@media (max-width: 1199px) {
+    .progressive-product--first .prg-hero-copy { left: 53%; width: 43%; }
+    .progressive-product--first .prg-intro-copy { padding-top: 10px; }
+}
+@media (max-width: 767px) {
+    .progressive-product--first .prg-hero { height: auto; }
+    .progressive-product--first .prg-hero-art > img { width: auto; height: 480px; left: calc(50% - 245px); top: -40px; }
+    .progressive-product--first .prg-hero-copy { position: relative; left: auto; top: auto; width: auto; }
+    .progressive-product--first .prg-hero-copy h1 { height: 100.517px; }
+    .progressive-product--first .prg-intro { min-height: auto; padding: 40px 20px; }
+    .progressive-product--first .prg-intro-panel { padding: 24px; }
+    .progressive-product--first .prg-gallery { height: auto; }
+    .progressive-product--first .prg-details, .progressive-product--first .prg-technologies, .progressive-product--first .prg-faq { min-height: auto; }
+}
+
+
+.progressive-product--first .prg-faq .accordion-body { font-size: 14px; line-height: 24px; }

@@ -1,0 +1,16 @@
+@model TreatmentDetail
+<section id="@Model.Id" class="treatment-detail treatment-detail-blue-tech" aria-labelledby="treatment-blue-tech-title" data-treatment-detail="blue-tech" data-figma-node="961:9082">
+    <div class="treatment-blue-tech-summary" data-figma-node="@Model.SourceNode">
+        <div><p class="treatment-blue-tech-eyebrow">TRATAMIENTO</p><h2 id="treatment-blue-tech-title">@Model.Name</h2></div>
+        <p class="treatment-blue-tech-description">@Model.Description</p>
+    </div>
+    <div class="treatment-blue-tech-photo" data-figma-node="961:9084">
+        <img class="treatment-blue-tech-image" src="~/media/figma/@Model.Image" alt="Hombre con lentes frente a luz azul" width="1448" height="1086" />
+    </div>
+    <ul class="treatment-blue-tech-benefits" aria-label="Características de Blue Tech" data-figma-node="961:9216">
+        @foreach (var benefit in Model.Benefits)
+        {
+            <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>
+        }
+    </ul>
+</section>

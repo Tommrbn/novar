@@ -1,0 +1,7 @@
+@model int
+@{ ViewData["Title"] = Model == 404 ? "Página no encontrada" : "No pudimos completar la solicitud"; }
+<section class="pending-page container-novar">
+    <p class="eyebrow">@Model</p><h1>@ViewData["Title"]</h1>
+    <p>@(Model == 404 ? "La página que buscás no existe en esta muestra." : "Volvé al inicio para seguir recorriendo la muestra.")</p>
+    <a class="btn btn-novar" href="/">Volver a Home</a>
+</section>

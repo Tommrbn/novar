@@ -1,0 +1,18 @@
+@model TreatmentDetail
+<section id="@Model.Id" class="treatment-detail treatment-detail-antirraya" aria-labelledby="treatment-antirraya-title" data-treatment-detail="antirraya" data-figma-node="961:9368">
+    <div class="treatment-antirraya-summary" data-figma-node="@Model.SourceNode">
+        <div><p class="treatment-antirraya-eyebrow">TRATAMIENTO</p><h2 id="treatment-antirraya-title">@Model.Name</h2></div>
+        <p class="treatment-antirraya-description">@Model.Description</p>
+    </div>
+    <div class="treatment-antirraya-photo" data-figma-node="961:9917">
+        <div class="treatment-antirraya-image-plane">
+            <img class="treatment-antirraya-image" src="~/media/figma/@Model.Image" alt="Mujer con gafas transparentes: la lente de la izquierda presenta rayas y la de la derecha se ve clara" width="2752" height="1536" />
+        </div>
+    </div>
+    <ul class="treatment-antirraya-benefits" aria-label="Características de Antirraya" data-figma-node="961:9502">
+        @foreach (var benefit in Model.Benefits)
+        {
+            <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>
+        }
+    </ul>
+</section>

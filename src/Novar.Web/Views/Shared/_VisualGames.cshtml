@@ -1,0 +1,54 @@
+@model GamesContent
+<section class="games-arena games-visual-panel" id="intruso-preview" tabindex="-1" aria-labelledby="intruso-title" aria-describedby="intruso-instruction intruso-disclaimer" data-figma-node="961:7548" data-visual-game-panel="intruso">
+    <div class="games-arena-backdrop" aria-hidden="true"><img src="~/media/figma/6231f.svg" alt="" /></div>
+    <div class="games-arena-content">
+            <header class="games-arena-heading"><span aria-hidden="true">01</span><h2 id="intruso-title" tabindex="-1">@Model.PreviewTitle</h2></header>
+        <div class="games-preview-meta"><p data-visual-round>Ronda 1 de 5</p><p data-visual-score>Puntaje: 0</p></div>
+        <div data-visual-play>
+            <p id="intruso-instruction" class="games-preview-instruction">Elegí el color que es diferente entre los nueve círculos.</p>
+            <div class="games-preview-grid" role="group" aria-label="Nueve colores. Elegí uno por ronda." data-intruso-grid>
+                @for (var index = 0; index < 9; index++)
+                {
+                    <button type="button" class="games-color" data-intruso-choice aria-label="Opción @(index + 1)" disabled></button>
+                }
+            </div>
+            <p class="visual-game-feedback" data-visual-feedback role="status" aria-live="polite" aria-atomic="true"></p>
+            <button type="button" class="btn btn-novar visual-game-next" data-visual-next hidden disabled>Siguiente</button>
+        </div>
+        <div class="visual-game-result" data-visual-result hidden>
+            <h3 tabindex="-1" data-visual-result-title></h3>
+            <p>Este puntaje corresponde solo a este juego recreativo; no evalúa tu visión.</p>
+            <button type="button" class="btn btn-novar" data-visual-retry disabled>Volver a jugar</button>
+        </div>
+    </div>
+    <p id="intruso-disclaimer" class="games-demo-notice">Desafío recreativo. El puntaje no evalúa tu visión.</p>
+</section>
+
+<section class="games-arena games-visual-panel games-codigo" id="codigo-panel" tabindex="-1" aria-labelledby="codigo-title" aria-describedby="codigo-instruction codigo-disclaimer" data-visual-game-panel="codigo" hidden>
+    <div class="games-arena-content">
+        <header class="games-arena-heading"><span aria-hidden="true">02</span><h2 id="codigo-title" tabindex="-1">Código Visual</h2></header>
+        <div class="games-preview-meta"><p data-visual-round>Ronda 1 de 5</p><p data-visual-score>Puntaje: 0</p></div>
+        <div data-visual-play>
+            <p id="codigo-instruction" class="games-preview-instruction">¿Qué número forman estos puntos?</p>
+            <div class="codigo-dot-matrix" role="img" aria-label="Una cifra formada por puntos" data-codigo-matrix>
+                @for (var index = 0; index < 42; index++)
+                {
+                    <span class="codigo-dot" data-codigo-dot aria-hidden="true"></span>
+                }
+            </div>
+            <label class="codigo-answer-label" for="codigo-answer">¿Qué número ves?</label>
+            <input class="codigo-answer" id="codigo-answer" type="text" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-describedby="codigo-instruction codigo-feedback" disabled />
+            <p class="visual-game-feedback" id="codigo-feedback" data-visual-feedback role="status" aria-live="polite" aria-atomic="true"></p>
+            <div class="visual-game-actions">
+                <button type="button" class="btn btn-novar" data-codigo-check disabled>Comprobar</button>
+                <button type="button" class="btn btn-novar visual-game-next" data-visual-next hidden disabled>Siguiente</button>
+            </div>
+        </div>
+        <div class="visual-game-result" data-visual-result hidden>
+            <h3 tabindex="-1" data-visual-result-title></h3>
+            <p>Este puntaje corresponde solo a este juego recreativo; no evalúa tu visión.</p>
+            <button type="button" class="btn btn-novar" data-visual-retry disabled>Volver a jugar</button>
+        </div>
+    </div>
+    <p id="codigo-disclaimer" class="games-demo-notice">Desafío recreativo. El puntaje no evalúa tu visión.</p>
+</section>

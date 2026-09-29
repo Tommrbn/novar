@@ -1,0 +1,120 @@
+@model BifocalOccupationalProduct
+@{
+    ViewData["Title"] = $"Novar {Model.Name}";
+    ViewData["BifocalOccupationalPage"] = true;
+    ViewData["BifocalOccupationalVariant"] = Model.Slug;
+    var office = Model.Slug == "office";
+}
+<article class="bop-product bop-product--@Model.Slug" data-figma-node="@Model.SourceNode" data-bifocal-occupational-revision="bifocal-occupational-v1" data-product-category="@Model.Category">
+    <section class="bop-hero" aria-labelledby="bop-title">
+        <div class="bop-hero-art">
+            @if (Model.HeroUnderlay is not null)
+            {
+                <img class="bop-hero-underlay" src="~/media/figma/@Model.HeroUnderlay" alt="" aria-hidden="true" />
+            }
+            <img src="~/media/figma/@Model.Hero" alt="Persona con anteojos Novar @Model.Name" fetchpriority="high" />
+        </div>
+        <p class="bop-category">@Model.Category.ToUpperInvariant()</p>
+        <div class="bop-hero-copy">
+            @if (Model.HeroEyebrow is not null)
+            {
+                <p class="bop-hero-eyebrow">@Model.HeroEyebrow</p>
+            }
+            <h1 id="bop-title"><span class="visually-hidden">Novar @Model.Name</span><img class="bop-wordmark" src="~/media/figma/@Model.Wordmark" alt="" data-figma-node="@Model.WordmarkNode" /></h1>
+            <h2>@Model.Subtitle</h2>
+            <p class="bop-hero-description">@Model.Description</p>
+            <button class="btn btn-novar bop-button" type="button" data-pending="Personalización de Novar @Model.Name">Personalizá tu lente</button>
+        </div>
+    </section>
+    <div class="bop-tagline" tabindex="0" role="group" aria-label="@Model.Tagline. Visión sin esfuerzo" data-hover-source="443:1240">
+        <div class="bop-tagline-art" aria-hidden="true"><img src="~/media/figma/33850.png" alt="" /></div>
+        <img class="bop-tagline-orb" src="~/media/figma/5cebf.svg" alt="" />
+        <p class="bop-tagline-initial" aria-hidden="true">@Model.Tagline</p>
+        <div class="bop-tagline-hover" aria-hidden="true"><img src="~/media/figma/d68bc.svg" alt="" /><span>Visión sin esfuerzo</span></div>
+    </div>
+    <section class="bop-intro" aria-labelledby="bop-intro-title">
+        <div class="bop-intro-panel">
+            <div class="bop-scene"><img src="~/media/figma/@Model.Scene" alt="Escena cotidiana con Novar @Model.Name" loading="lazy" /></div>
+            <div class="bop-intro-copy">
+                <p class="bop-intro-eyebrow">@Model.IntroEyebrow</p>
+                <h2 id="bop-intro-title">@Model.IntroHeading</h2>
+                <p class="bop-intro-description">@Model.Intro</p>
+                <ul class="bop-icons">
+                    @foreach (var icon in Model.Icons)
+                    {
+                        <li><span><img src="~/media/figma/@icon.File" alt="" loading="lazy" /></span>@icon.Label</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="bop-gallery" aria-labelledby="bop-gallery-title">
+        <h2 id="bop-gallery-title"><span>@Model.GalleryName<img src="~/media/figma/26db8.svg" alt="®" /></span> es <strong>para vos</strong></h2>
+        <div class="bop-gallery-images">
+            @foreach (var file in Model.Gallery)
+            {
+                <div><img src="~/media/figma/@file" alt="Persona con anteojos, @Model.Name" loading="lazy" /></div>
+            }
+        </div>
+    </section>
+    <section class="bop-treatments" aria-labelledby="bop-treatments-title">
+        <h2 id="bop-treatments-title">Mejorá tu visión con tratamientos</h2>
+        <p>Los tratamientos son tecnologías avanzadas que se aplican a las superficies de las lentes para mejorar su funcionalidad, durabilidad y comodidad visual</p>
+        <a class="btn btn-novar bop-button" href="/tratamientos">Conocelos <img src="~/media/figma/baa56.svg" alt="" /></a>
+    </section>
+    <section class="bop-details" aria-labelledby="bop-details-title">
+        <div class="bop-details-layout">
+            <div class="bop-details-copy">
+                <p class="bop-eyebrow">DETALLES DEL PRODUCTO</p>
+                <h2 id="bop-details-title">Empezar a ver de otra manera puede sentirse natural.</h2>
+                <p>@Model.Details</p>
+                <dl class="bop-specs">
+                    <div><img src="~/media/figma/747a9.svg" alt="" /><dt>Diseño:</dt><dd>@Model.Design</dd></div>
+                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>Ideal para:</dt><dd>@Model.IdealFor</dd></div>
+                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>Tecnología:</dt><dd>@Model.TechnologySpec</dd></div>
+                </dl>
+                <p class="bop-tag">@Model.Tag</p>
+            </div>
+            <figure><div class="bop-detail-photo"><img src="~/media/figma/@Model.Detail" alt="Escena de uso de Novar @Model.Name" loading="lazy" /></div><figcaption>SUPERFICIE DIGITAL PERSONALIZADA</figcaption></figure>
+        </div>
+    </section>
+    <section class="bop-technologies" aria-label="Tecnologías de Novar @Model.Name">
+        <span class="bop-watermark" aria-hidden="true">@Model.Watermark</span>
+        <div class="bop-technology-scroll" tabindex="0" role="region" aria-label="Tecnologías; desplazá para ver las tarjetas">
+            @foreach (var technology in Model.Technologies)
+            {
+                <div class="bop-technology-card"><h2>@technology.Name</h2><p>@technology.Description</p></div>
+            }
+        </div>
+    </section>
+    <section class="bop-benefits" aria-labelledby="bop-benefits-title">
+        <div class="bop-container">
+            <p class="bop-eyebrow">BENEFICIOS</p><h2 id="bop-benefits-title">Claridad donde la necesitás</h2>
+            <p>Una lectura simple del rendimiento visual esperado en cada distancia.</p>
+            <dl>@foreach (var benefit in Model.Benefits) { <div><dt>@benefit.Label</dt><dd><span aria-hidden="true">◉</span> @benefit.Level</dd></div> }</dl>
+        </div>
+    </section>
+    <section class="bop-faq" aria-labelledby="bop-faq-title">
+        <div><p class="bop-eyebrow">FAQ</p><h2 id="bop-faq-title">Preguntas<br /> frecuentes</h2><p>Todo lo que necesitás saber antes de elegir tu próxima lente.</p><a href="/#contacto">¿Tenés otra duda? Contactanos →</a></div>
+        <partial name="_Faq" model='new FaqSection($"bop-{Model.Slug}-faq", Model.Questions, 2)' />
+    </section>
+    <section class="bop-contact">
+        <div><h2>Tu próxima forma de ver empieza acá.</h2><p>Consultá con una óptica especializada y encontrá la configuración ideal para vos.</p></div>
+        <a class="btn btn-novar bop-button" href="/#contacto">CONTACTANOS →</a>
+    </section>
+    <section class="bop-related @(office ? "bop-related--office" : "")" aria-labelledby="bop-related-title">
+        <h2 id="bop-related-title">@(office ? "Otros lentes progresivos" : "Otros lentes bifocales")</h2>
+        <div class="bop-related-images">
+            @foreach (var file in office ? new[] { "ca299.png", "1f46b.png", "ef547.png", "43874.png" } : new[] { "961e1.png", "2c53f.png", "28518.png" })
+            {
+                <a href="/lentes" aria-label="Explorar otros lentes en el catálogo">
+                    @if (office)
+                    {
+                        <img class="bop-related-underlay" src="~/media/figma/f9381.png" alt="" aria-hidden="true" loading="lazy" />
+                    }
+                    <img src="~/media/figma/@file" alt="Persona con anteojos Novar" loading="lazy" />
+                </a>
+            }
+        </div>
+    </section>
+</article>

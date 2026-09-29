@@ -1,0 +1,18 @@
+@model TreatmentDetail
+<section id="@Model.Id" class="treatment-detail treatment-detail-hidrofobico" aria-labelledby="treatment-hidrofobico-title" data-treatment-detail="hidrofobico" data-figma-node="961:8795">
+    <div class="treatment-hidrofobico-summary" data-figma-node="@Model.SourceNode">
+        <div><p class="treatment-hidrofobico-eyebrow">TRATAMIENTO</p><h2 id="treatment-hidrofobico-title">@Model.Name</h2></div>
+        <p class="treatment-hidrofobico-description">@Model.Description</p>
+    </div>
+    <div class="treatment-hidrofobico-photo" data-figma-node="961:8797">
+        <div class="treatment-hidrofobico-image-plane" data-figma-node="I961:8797;1:2038">
+            <img class="treatment-hidrofobico-image" src="~/media/figma/@Model.Image" alt="Mujer con gafas mojadas: la lente de la izquierda tiene gotas de agua y la de la derecha se ve clara" width="2752" height="1536" />
+        </div>
+    </div>
+    <ul class="treatment-hidrofobico-benefits" aria-label="Características de Hidrofóbico" data-figma-node="961:8929">
+        @foreach (var benefit in Model.Benefits)
+        {
+            <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>
+        }
+    </ul>
+</section>

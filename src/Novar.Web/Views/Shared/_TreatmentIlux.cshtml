@@ -1,0 +1,19 @@
+@model TreatmentDetail
+@{ var titleParts = Model.Name.Split(' ', 2); }
+<section id="@Model.Id" class="treatment-detail treatment-detail-ilux" aria-labelledby="treatment-ilux-title" data-treatment-detail="ilux" data-figma-node="961:8330">
+    <div class="treatment-ilux-summary" data-figma-node="@Model.SourceNode">
+        <div><p class="treatment-ilux-eyebrow">TRATAMIENTO</p><h2 id="treatment-ilux-title">@titleParts[0] <strong>@titleParts[1]</strong></h2></div>
+        <p class="treatment-ilux-description">@Model.Description</p>
+    </div>
+    <div class="treatment-ilux-photo" data-figma-node="961:8419">
+        <div class="treatment-ilux-image-plane" data-figma-node="I961:8419;1:2038">
+            <img class="treatment-ilux-image" src="~/media/figma/@Model.Image" alt="Hombre con gafas: la lente de la izquierda muestra reflejos y la de la derecha se ve clara" width="2752" height="1536" />
+        </div>
+    </div>
+    <ul class="treatment-ilux-benefits" aria-label="Características de Antirreflejo iLUX" data-figma-node="961:8495">
+        @foreach (var benefit in Model.Benefits)
+        {
+            <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>
+        }
+    </ul>
+</section>

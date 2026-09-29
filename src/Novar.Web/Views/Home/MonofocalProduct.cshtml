@@ -1,0 +1,108 @@
+@model MonofocalProduct
+@{
+    ViewData["Title"] = $"Novar {Model.Name}";
+    ViewData["MonofocalPage"] = true;
+    ViewData["MonofocalVariant"] = Model.Slug;
+}
+<article class="monofocal-product monofocal-product--@Model.Slug" data-figma-node="@Model.SourceNode" data-monofocales-revision="monofocales-v1">
+    <section class="mono-hero" aria-labelledby="mono-title">
+        <div class="mono-hero-art">
+            @if (Model.HeroUnderlay is not null)
+            {
+                <img class="mono-hero-underlay" src="~/media/figma/@Model.HeroUnderlay" alt="" aria-hidden="true" />
+            }
+            <img src="~/media/figma/@Model.Hero" alt="Persona con anteojos Novar @Model.Name" fetchpriority="high" />
+        </div>
+        <p class="mono-category">MONOFOCALES</p>
+        <div class="mono-hero-copy">
+            <h1 id="mono-title"><span class="visually-hidden">Novar @Model.Name</span><img class="mono-wordmark" src="~/media/figma/@Model.Wordmark" alt="" data-figma-node="@Model.WordmarkNode" /></h1>
+            <h2>@Model.Subtitle</h2>
+            <p>@Model.Description</p>
+            <button class="btn btn-novar mono-button" type="button" data-pending="Personalización de Novar @Model.Name">Personalizá tu lente</button>
+        </div>
+    </section>
+    <div class="mono-tagline">
+        <div class="mono-tagline-art" aria-hidden="true"><img src="~/media/figma/33850.png" alt="" /></div>
+        <img class="mono-tagline-orb" src="~/media/figma/5cebf.svg" alt="" />
+        <p>@Model.Tagline</p>
+    </div>
+    <section class="mono-intro" aria-labelledby="mono-intro-title">
+        <div class="mono-intro-panel">
+            <div class="mono-scene"><img src="~/media/figma/@Model.Scene" alt="Escena cotidiana con Novar @Model.Name" loading="lazy" /></div>
+            <div class="mono-intro-copy">
+                <p class="mono-intro-eyebrow">@Model.IntroEyebrow</p>
+                <h2 id="mono-intro-title">@Model.IntroHeading</h2>
+                <p class="mono-intro-description"><partial name="_MonofocalText" model="new MonofocalText(Model.Intro, Model.IntroEmphasis)" /></p>
+                <ul class="mono-icons">
+                    @foreach (var icon in Model.Icons)
+                    {
+                        <li><span><img src="~/media/figma/@icon.File" alt="" loading="lazy" /></span>@icon.Label</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="mono-gallery" aria-labelledby="mono-gallery-title">
+        <h2 id="mono-gallery-title">@Model.Name<img src="~/media/figma/@Model.GalleryRegistered" alt="®" /> es <strong>para vos</strong></h2>
+        <div class="mono-gallery-images">
+            @for (var i = 0; i < Model.Gallery.Length; i++)
+            {
+                <div><img src="~/media/figma/@Model.Gallery[i]" alt="Persona con anteojos, @Model.Name" loading="lazy" /></div>
+            }
+        </div>
+    </section>
+    <section class="mono-treatments" aria-labelledby="mono-treatments-title">
+        <h2 id="mono-treatments-title">Mejorá tu visión con tratamientos</h2>
+        <p>Los tratamientos son tecnologías avanzadas que se aplican a las superficies de las lentes para mejorar su funcionalidad, durabilidad y comodidad visual</p>
+        <a class="btn btn-novar mono-button" href="/tratamientos">Conocelos <img src="~/media/figma/baa56.svg" alt="" /></a>
+    </section>
+    <section class="mono-details" aria-labelledby="mono-details-title">
+        <div class="mono-details-layout">
+            <div class="mono-details-copy">
+                <p class="mono-eyebrow">DETALLES DEL PRODUCTO</p>
+                <h2 id="mono-details-title">@Model.DetailHeading</h2>
+                <p><partial name="_MonofocalText" model="new MonofocalText(Model.Details, Model.DetailEmphasis)" /></p>
+                <dl class="mono-specs">
+                    <div><img src="~/media/figma/747a9.svg" alt="" /><dt>Diseño:</dt><dd>@Model.Design</dd></div>
+                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>Ideal para:</dt><dd>@Model.IdealFor</dd></div>
+                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>Tecnología:</dt><dd>@Model.TechnologySpec</dd></div>
+                </dl>
+                <ul class="mono-tags">@foreach (var tag in Model.Tags) { <li>@tag</li> }</ul>
+            </div>
+            <figure><div class="mono-detail-photo"><img src="~/media/figma/@Model.Detail" alt="Escena de uso de Novar @Model.Name" loading="lazy" /></div><figcaption>SUPERFICIE DIGITAL PERSONALIZADA</figcaption></figure>
+        </div>
+    </section>
+    <section class="mono-technologies" aria-label="Tecnologías de Novar @Model.Name">
+        <span class="mono-watermark" aria-hidden="true">@Model.Name.ToLowerInvariant().Replace(" ", "\n")</span>
+        <div class="mono-technology-scroll" tabindex="0" role="region" aria-label="Tecnologías; desplazá para ver las tarjetas">
+            @foreach (var technology in Model.Technologies)
+            {
+                <div class="mono-technology-card"><h2>@technology.Name</h2><p>@technology.Description</p></div>
+            }
+        </div>
+    </section>
+    <section class="mono-benefits" aria-labelledby="mono-benefits-title">
+        <div class="mono-container">
+            <p class="mono-eyebrow">BENEFICIOS</p><h2 id="mono-benefits-title">Claridad donde la necesitás</h2>
+            <p>Una lectura simple del rendimiento visual esperado en cada distancia.</p>
+            <dl>@foreach (var benefit in Model.Benefits) { <div><dt>@benefit.Label</dt><dd><span aria-hidden="true">◉</span> @benefit.Level</dd></div> }</dl>
+        </div>
+    </section>
+    <section class="mono-faq" aria-labelledby="mono-faq-title">
+        <div><p class="mono-eyebrow">FAQ</p><h2 id="mono-faq-title">Preguntas<br /> frecuentes</h2><p>Todo lo que necesitás saber antes de elegir tu próxima lente.</p><a href="/#contacto">¿Tenés otra duda? Contactanos →</a></div>
+        <partial name="_Faq" model='new FaqSection($"mono-{Model.Slug}-faq", Model.Questions, 2)' />
+    </section>
+    <section class="mono-contact">
+        <div><h2>Tu próxima forma de ver empieza acá.</h2><p>Consultá con una óptica especializada y encontrá la configuración ideal para vos.</p></div>
+        <a class="btn btn-novar mono-button" href="/#contacto">CONTACTANOS →</a>
+    </section>
+    <section class="mono-related" aria-labelledby="mono-related-title">
+        <h2 id="mono-related-title">Otros lentes monofocales</h2>
+        <div class="mono-related-images">
+            <a href="/lentes/outdoor" aria-label="Ver Novar Outdoor"><img src="~/media/figma/07444.png" alt="Ciclista con anteojos deportivos" loading="lazy" /></a>
+            <a href="/lentes/single-vision" aria-label="Ver Novar Single Vision"><img src="~/media/figma/0b636.png" alt="Mujer con anteojos" loading="lazy" /></a>
+            <a href="/lentes/slim" aria-label="Ver Novar Slim"><img src="~/media/figma/a62fc.png" alt="Mujer con anteojos, Novar Slim" loading="lazy" /></a>
+            <a href="/lentes/geo" aria-label="Ver Novar Geo"><img src="~/media/figma/590b1.png" alt="Hombre con anteojos, Novar Geo" loading="lazy" /></a>
+        </div>
+    </section>
+</article>

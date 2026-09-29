@@ -1,0 +1,15 @@
+@model FaqSection
+<div class="accordion novar-faq" id="@Model.Id">
+    @for (var i = 0; i < Model.Questions.Length; i++)
+    {
+        var question = Model.Questions[i];
+        var expanded = Model.OpenIndex == i;
+        var panelId = $"{Model.Id}-{i}";
+        <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button @(expanded ? "" : "collapsed")" type="button" data-bs-toggle="collapse" data-bs-target="#@panelId" aria-expanded="@(expanded ? "true" : "false")" aria-controls="@panelId">@question.Question <span aria-hidden="true">+</span></button></h3>
+            <div id="@panelId" class="accordion-collapse collapse @(expanded ? "show" : "")" data-bs-parent="#@Model.Id">
+                <div class="accordion-body">@(question.Answer ?? "Respuesta pendiente de revisión editorial. Podés consultar con tu profesional óptico.")</div>
+            </div>
+        </div>
+    }
+</div>

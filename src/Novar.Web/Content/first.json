@@ -1,0 +1,51 @@
+{
+  "name": "First",
+  "slug": "first",
+  "sourceNode": "689:4828",
+  "subtitle": "Tu primera experiencia progresiva, más simple y natural.",
+  "description": "Lente progresivo ideal para quienes comienzan a usar multifocales. Diseñado para una adaptación cómoda, con visión clara y natural a todas las distancias.",
+  "intro": "Novar First está diseñado para que el paso a los lentes progresivos sea más simple, cómodo y natural.",
+  "details": "Su diseño prioriza la visión lejana y facilita una transición suave hacia la visión intermedia y cercana.",
+  "idealFor": "Personas de entre 40 y 45 años que comienzan con la presbicia",
+  "benefits": [
+    {
+      "label": "Lejos",
+      "level": "Alta",
+      "percent": 100
+    },
+    {
+      "label": "Intermedia",
+      "level": "Media",
+      "percent": 50
+    },
+    {
+      "label": "Cerca",
+      "level": "Media",
+      "percent": 50
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Psicoptix Technology ™",
+      "description": "Una tecnología exclusiva de Novar que combina óptica avanzada y neurociencia visual para crear lentes que se adaptan a cómo ves el mundo. El resultado: una visión más natural, cómoda y clara en cada mirada."
+    },
+    {
+      "name": "CDT Technology™",
+      "description": "Continuum Design Technology ayuda a optimizar la superficie del lente para mejorar la definición óptica y los campos visuales, elevando la calidad de la experiencia progresiva."
+    }
+  ],
+  "questions": [
+    {
+      "question": "¿Qué es Novar First?",
+      "answer": "Es un lente progresivo pensado para personas que comienzan a usar multifocales y buscan una adaptación cómoda."
+    },
+    {
+      "question": "¿Para quién está recomendado?",
+      "answer": "Para usuarios que empiezan a notar dificultad para ver de cerca y necesitan una solución progresiva para todas las distancias."
+    },
+    {
+      "question": "¿Qué lo diferencia?",
+      "answer": "Su diseño prioriza una experiencia simple, natural y fácil de incorporar al uso diario."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "notice": "Orientación basada en las características de nuestros productos. La elección del lente requiere evaluación profesional.",
+  "needs": [
+    { "id": "progressive", "label": "Quiero explorar progresivos" },
+    { "id": "monofocal", "label": "Quiero explorar monofocales" },
+    { "id": "occupational", "label": "Quiero explorar ocupacionales" },
+    { "id": "bifocal", "label": "Quiero explorar bifocales" },
+    { "id": "unsure", "label": "No sé: quiero conocer las opciones" }
+  ],
+  "preferences": [
+    { "id": "first-experience", "need": "progressive", "label": "Primera experiencia con progresivos", "slugs": ["first"] },
+    { "id": "balanced", "need": "progressive", "label": "Equilibrio para el uso diario", "slugs": ["precisa"] },
+    { "id": "amplitude", "need": "progressive", "label": "Amplitud visual", "slugs": ["evolution"] },
+    { "id": "digital", "need": "progressive", "label": "Rutina digital y tareas de cerca", "slugs": ["elife"] },
+    { "id": "progressive-ai", "need": "progressive", "label": "Diseño con inteligencia artificial", "slugs": ["ai-lens"] },
+    { "id": "one-distance", "need": "monofocal", "label": "Uso general en una sola distancia", "slugs": ["single-vision"] },
+    { "id": "personalization", "need": "monofocal", "label": "Diseño monofocal personalizado", "slugs": ["geo"] },
+    { "id": "myopia-comfort", "need": "monofocal", "label": "Conocer opciones de confort para miopía", "slugs": ["myolens"] },
+    { "id": "sport", "need": "monofocal", "label": "Deporte y gafas envolventes", "slugs": ["outdoor"] },
+    { "id": "near-support", "need": "monofocal", "label": "Estudio y pantallas: conocer el apoyo para cerca", "slugs": ["indoor"] },
+    { "id": "thickness", "need": "monofocal", "label": "Graduación alta ya conocida y menor espesor", "slugs": ["slim", "geo"] },
+    { "id": "desk", "need": "occupational", "label": "Escritorio, lectura y pantallas", "slugs": ["office"] },
+    { "id": "work-ai", "need": "occupational", "label": "Personalización del trabajo con inteligencia artificial", "slugs": ["aiwork"] },
+    { "id": "round", "need": "bifocal", "label": "Segmento redondo", "slugs": ["ultex-blended"] },
+    { "id": "freeform", "need": "bifocal", "label": "Fabricación digital Freeform", "slugs": ["kriptok-blended"] },
+    { "id": "discreet", "need": "bifocal", "label": "Segmento más discreto", "slugs": ["kriptok-blended", "freeline"] }
+  ],
+  "compact": {
+    "label": "Prefiero un armazón pequeño",
+    "replacements": [
+      { "from": "precisa", "to": "precisa-short" },
+      { "from": "evolution", "to": "evolution-short" }
+    ]
+  },
+  "products": [
+    { "slug": "first", "need": "progressive", "reason": "Su descripción se centra en la primera experiencia con progresivos y una adaptación cómoda." },
+    { "slug": "precisa", "need": "progressive", "reason": "Su descripción propone una distribución equilibrada entre lejos, intermedio y cerca para el uso diario." },
+    { "slug": "precisa-short", "need": "progressive", "reason": "Presenta el equilibrio progresivo de Precisa adaptado a armazones pequeños." },
+    { "slug": "evolution", "need": "progressive", "reason": "Su descripción destaca la amplitud visual y una experiencia progresiva avanzada." },
+    { "slug": "evolution-short", "need": "progressive", "reason": "Describe una experiencia progresiva avanzada para monturas compactas." },
+    { "slug": "elife", "need": "progressive", "reason": "Su descripción prioriza las pantallas, la lectura y las distancias intermedias y cercanas." },
+    { "slug": "ai-lens", "need": "progressive", "reason": "Es un progresivo cuyo diseño incorpora inteligencia artificial para distintas distancias." },
+    { "slug": "single-vision", "need": "monofocal", "reason": "Su descripción presenta una solución monofocal de fabricación digital para una sola distancia." },
+    { "slug": "geo", "need": "monofocal", "reason": "Describe un monofocal personalizado que trabaja sobre la calidad visual, las distorsiones y el espesor." },
+    { "slug": "myolens", "need": "monofocal", "reason": "Su descripción trata el confort visual en pacientes miopes. MyoLens no es MyoFix ni se presenta aquí como control de miopía infantil." },
+    { "slug": "outdoor", "need": "monofocal", "reason": "Su descripción se enfoca en el deporte y la geometría de gafas envolventes." },
+    { "slug": "indoor", "need": "monofocal", "reason": "Describe un monofocal con apoyo para tareas de cerca, estudio y uso de pantallas." },
+    { "slug": "slim", "need": "monofocal", "reason": "Su descripción destaca la optimización del espesor para graduaciones altas ya conocidas." },
+    { "slug": "office", "need": "occupational", "reason": "Describe un ocupacional para lectura, escritorio y pantallas, con atención a las distancias cercana e intermedia." },
+    { "slug": "aiwork", "need": "occupational", "reason": "Su descripción destaca la personalización por distancias de trabajo mediante inteligencia artificial." },
+    { "slug": "kriptok-blended", "need": "bifocal", "reason": "Su descripción combina funcionalidad bifocal, un segmento más discreto y fabricación digital Freeform." },
+    { "slug": "ultex-blended", "need": "bifocal", "reason": "Describe un bifocal fusionado con segmento redondo para lejos y cerca." },
+    { "slug": "freeline", "need": "bifocal", "reason": "Su descripción se centra en reducir la visibilidad del segmento bifocal." }
+  ]
+}

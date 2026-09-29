@@ -1,0 +1,76 @@
+@model LensFinderPage
+@{
+    ViewData["Title"] = "Encontrá tu lente";
+    ViewData["LensFinderPage"] = true;
+}
+<section class="lens-finder-base container-novar" aria-labelledby="lens-finder-title" data-figma-node="889:1406" data-lens-finder-revision="lens-finder-routing-v1">
+    <div class="lens-finder-column">
+        <h1 id="lens-finder-title" data-figma-node="889:1409">Encontrá <span>tu lente ideal</span></h1>
+        <p class="lens-finder-description">Utilizá los filtros para elegir según tu <strong>edad</strong>, tus <strong>necesidades visuales</strong> o tus <strong>actividades diarias</strong>.</p>
+        <div class="lens-finder-filters" data-figma-node="889:1410">
+            <details>
+                <summary class="lens-finder-filter"><span>Por edad</span><img src="~/media/figma/f3d35.svg" alt="" width="14" height="14" /></summary>
+                <div class="lens-finder-panel">
+                    <label for="lens-finder-age">Tu edad (opcional)</label>
+                    <input id="lens-finder-age" type="number" min="0" step="1" inputmode="numeric" autocomplete="off" aria-describedby="lens-finder-age-help" disabled />
+                    <p id="lens-finder-age-help">Es solo un dato de contexto: no define qué lente necesitás ni cambia el orden de las opciones. No se envía ni se guarda.</p>
+                </div>
+            </details>
+            <details id="lens-finder-need-panel">
+                <summary class="lens-finder-filter"><span>Por necesidad</span><img src="~/media/figma/f3d35.svg" alt="" width="14" height="14" /></summary>
+                <fieldset id="lens-finder-needs" class="lens-finder-panel" disabled>
+                    <legend>¿Qué tipo de lente querés explorar? (obligatorio)</legend>
+                    @foreach (var need in Model.Needs)
+                    {
+                        <label class="lens-finder-option"><input type="radio" name="lens-need" value="@need.Id" data-need required /><span>@need.Label</span></label>
+                    }
+                </fieldset>
+            </details>
+            <details>
+                <summary class="lens-finder-filter"><span>Por actividades y preferencias</span><img src="~/media/figma/f3d35.svg" alt="" width="14" height="14" /></summary>
+                <div class="lens-finder-panel">
+                    <p id="lens-finder-preference-help">Primero elegí qué tipo de lente querés explorar.</p>
+                    @foreach (var need in Model.Needs.Where(n => n.Id != "unsure"))
+                    {
+                        <fieldset data-preference-group="@need.Id" disabled hidden>
+                            <legend>@need.Label</legend>
+                            @foreach (var preference in Model.Preferences.Where(p => p.Need == need.Id))
+                            {
+                                <label class="lens-finder-option"><input type="checkbox" value="@preference.Id" data-preference="@need.Id" /><span>@preference.Label</span></label>
+                            }
+                        </fieldset>
+                    }
+                    <label id="lens-finder-compact-option" class="lens-finder-option" hidden><input id="lens-finder-compact" type="checkbox" disabled /><span>@Model.Compact.Label</span></label>
+                </div>
+            </details>
+        </div>
+        <div class="lens-finder-actions">
+            <button id="lens-finder-reset" class="lens-finder-reset" type="button" disabled>Limpiar filtros</button>
+        </div>
+        <p id="lens-finder-status" class="lens-finder-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div id="lens-finder-results" class="lens-finder-results" hidden>
+            <h2>Opciones para explorar</h2>
+            <p>Orden de catálogo, sin puntuación ni prioridad de recomendación.</p>
+            <ul id="lens-finder-result-list" class="lens-finder-result-list"></ul>
+        </div>
+        <a class="btn btn-novar lens-finder-cta" href="#lens-finder-all">
+            <span>Explorá todos los lentes</span>
+            <img src="~/media/figma/e3b22.svg" alt="" width="15" height="15" />
+        </a>
+        <div id="lens-finder-all" class="lens-finder-catalog" tabindex="-1">
+            <h2>Todos nuestros lentes</h2>
+            <p>Podés visitar las @Model.Products.Length fichas sin completar los filtros. Si el selector no está disponible, estos enlaces siguen funcionando.</p>
+            <ul>
+                @foreach (var product in Model.Products)
+                {
+                    <li><a href="@product.Href">@product.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <script id="lens-finder-data" type="application/json">@Json.Serialize(Model)</script>
+</section>
+@section Scripts {
+    <script src="~/js/lens-finder-rules.js" asp-append-version="true" defer></script>
+    <script src="~/js/lens-finder.js" asp-append-version="true" defer></script>
+}

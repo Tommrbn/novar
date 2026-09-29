@@ -1,0 +1,169 @@
+@{ var aboutPage = ViewData["AboutPage"] is true; var gamesPage = ViewData["GamesPage"] is true; var treatmentsPage = ViewData["TreatmentsPage"] is true; var lensFinderPage = ViewData["LensFinderPage"] is true; var premiumPage = ViewData["PremiumPage"] is true; var progressivePage = ViewData["ProgressivePage"] is true; var monofocalPage = ViewData["MonofocalPage"] is true; var bifocalOccupationalPage = ViewData["BifocalOccupationalPage"] is true; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Tecnología óptica de precisión para una visión más natural, clara y confortable." />
+    <title>@ViewData["Title"] · Novar</title>
+    <link rel="icon" href="~/media/figma/e7f22.svg" type="image/svg+xml" />
+    <link rel="preload" href="~/fonts/poppins/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="~/vendor/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @if (aboutPage)
+    {
+        <link rel="stylesheet" href="~/css/about.css" asp-append-version="true" />
+    }
+    @if (gamesPage)
+    {
+        <link rel="stylesheet" href="~/css/games.css" asp-append-version="true" />
+    }
+    @if (treatmentsPage)
+    {
+        <link rel="stylesheet" href="~/css/treatments.css" asp-append-version="true" />
+    }
+    @if (lensFinderPage)
+    {
+        <link rel="stylesheet" href="~/css/lens-finder.css" asp-append-version="true" />
+    }
+    @if (premiumPage)
+    {
+        <link rel="stylesheet" href="~/css/premium.css" asp-append-version="true" />
+    }
+    @if (bifocalOccupationalPage)
+    {
+        <link rel="stylesheet" href="~/css/bifocal-occupational-products.css" asp-append-version="true" />
+    }
+    @if (monofocalPage)
+    {
+        <link rel="stylesheet" href="~/css/monofocal-products.css" asp-append-version="true" />
+    }
+    @if (progressivePage)
+    {
+        <link rel="stylesheet" href="~/css/progressive-products.css" asp-append-version="true" />
+        @if (ViewData["FirstProgressivePage"] is true)
+        {
+            <link rel="stylesheet" href="~/css/progressive-first.css" asp-append-version="true" />
+        }
+    }
+</head>
+<body class="@(aboutPage ? "about-page" : gamesPage ? "games-page" : treatmentsPage ? "treatments-page" : lensFinderPage ? "lens-finder-page" : premiumPage ? $"premium-page premium-page--{ViewData["PremiumVariant"]}" : progressivePage ? "progresivos-page" : monofocalPage ? "monofocales-page" : bifocalOccupationalPage ? "bifocal-occupational-page" : null)">
+    <a href="#main" class="skip-link">Saltar al contenido</a>
+    <header class="site-header">
+        <nav class="navbar @(aboutPage || gamesPage || treatmentsPage || premiumPage || progressivePage || monofocalPage || bifocalOccupationalPage ? "navbar-expand-xl" : "navbar-expand-lg")" aria-label="Navegación principal">
+            <a class="navbar-brand" href="/" aria-label="Novar, inicio">
+                @if (gamesPage || treatmentsPage || premiumPage)
+                {
+                    <img src="~/media/figma/4d514.svg" alt="Novar" />
+                    @if (treatmentsPage)
+                    {
+                        <img class="treatments-header-logo-polarizado" src="~/media/figma/843a7.svg" alt="Novar" />
+                    }
+                }
+                else if (bifocalOccupationalPage)
+                {
+                    <img src="~/media/figma/@(ViewData["BifocalOccupationalVariant"] as string == "kriptok-blended" ? "aab12.svg" : "86d3e.svg")" alt="Novar" />
+                }
+                else if (monofocalPage)
+                {
+                    <img src="~/media/figma/@(ViewData["MonofocalVariant"] as string == "geo" ? "aab12.svg" : "86d3e.svg")" alt="Novar" />
+                }
+                else if (progressivePage)
+                {
+                    <img src="~/media/figma/@(ViewData["ProgressiveVariant"] as string == "first" ? "cdbab.svg" : ViewData["ProgressiveVariant"] as string == "evolution-short" ? "86d3e.svg" : "aab12.svg")" alt="Novar" />
+                }
+                else if (aboutPage)
+                {
+                    <img src="~/media/figma/1bce4.svg" alt="Novar" />
+                }
+                else
+                {
+                    <img src="~/media/figma/e7f22.svg" alt="Novar" width="96" height="28" />
+                }
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sobre-nosotros" aria-current="@(aboutPage ? "page" : null)">Sobre nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/lentes" aria-current="@(lensFinderPage || premiumPage || progressivePage || monofocalPage || bifocalOccupationalPage ? "page" : null)">Encontrá tu lente</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tratamientos" aria-current="@(treatmentsPage ? "page" : null)">Tratamientos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/juegos" aria-current="@(gamesPage ? "page" : null)">Juegos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#warranty-title">Garantía</a></li>
+                </ul>
+                <span class="language">
+                    @if (gamesPage || treatmentsPage || premiumPage)
+                    {
+                        <img src="~/media/figma/ba1ea.svg" alt="" />
+                    }
+                    else if (bifocalOccupationalPage)
+                    {
+                        <img src="~/media/figma/5497d.svg" alt="" />
+                    }
+                    else if (monofocalPage)
+                    {
+                        <img src="~/media/figma/5497d.svg" alt="" />
+                    }
+                    else if (progressivePage)
+                    {
+                        <img src="~/media/figma/5497d.svg" alt="" />
+                    }
+                    else if (aboutPage)
+                    {
+                        <img src="~/media/figma/5497d.svg" alt="" />
+                    }
+                    else
+                    {
+                        <img src="~/media/figma/ba1ea.svg" width="14" height="14" alt="" />
+                    }
+                    <span lang="es" aria-label="Idioma: español">ES</span>
+                </span>
+            </div>
+        </nav>
+    </header>
+    <main id="main" tabindex="-1">@RenderBody()</main>
+    @if (treatmentsPage)
+    {
+        <partial name="_TreatmentsFooter" />
+    }
+    else if (gamesPage)
+    {
+        <partial name="_GamesFooter" />
+    }
+    else if (aboutPage)
+    {
+        <partial name="_AboutFooter" />
+    }
+    else if (premiumPage)
+    {
+        <partial name="_PremiumFooter" />
+    }
+    else if (bifocalOccupationalPage)
+    {
+        <partial name="_BifocalOccupationalFooter" />
+    }
+    else if (monofocalPage)
+    {
+        <partial name="_MonofocalFooter" />
+    }
+    else if (progressivePage)
+    {
+        <partial name="_ProgressiveFooter" />
+    }
+    else
+    {
+        <partial name="_Footer" />
+    }
+    <div class="modal fade" id="pending-modal" tabindex="-1" aria-labelledby="pending-title" aria-describedby="pending-description" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title fs-5" id="pending-title">Función pendiente de integración</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+            <div class="modal-body"><p class="eyebrow" id="pending-feature"></p><p id="pending-description">Esta es una muestra de diseño. Esta función está pendiente de integración: no se envían ni almacenan datos y no se generan resultados.</p></div>
+            <div class="modal-footer"><button type="button" class="btn btn-novar" data-bs-dismiss="modal">Entendido</button></div>
+        </div></div>
+    </div>
+    <noscript><p class="no-script">Esta muestra no envía ni almacena datos. Activá JavaScript para usar el menú desplegable y los avisos de funciones pendientes.</p></noscript>
+    <script src="~/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

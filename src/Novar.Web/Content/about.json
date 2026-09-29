@@ -1,0 +1,48 @@
+{
+  "sourceNode": "961:6952",
+  "eyebrow": "Conocenos",
+  "titleLead": "Novar",
+  "titleRest": "en el mundo",
+  "sectionTitle": "Sobre Nosotros",
+  "tagline": "Tecnología óptica pensada para transformar la manera de ver.",
+  "introLead": "Creamos la tecnología",
+  "introRest": "para que puedas ver el mundo con más claridad, belleza y confianza.",
+  "paragraphs": [
+    "Novar comenzó con un objetivo claro: entender cómo realmente vemos para diseñar lentes que se adapten a nuestra forma natural de percibir el mundo.",
+    "Años de investigación y desarrollo dieron lugar a tecnologías exclusivas como Psicoptix Technology™ y CDT Technology™, que hoy definen una nueva manera de experimentar la óptica."
+  ],
+  "pillars": [
+    {
+      "title": "Precisión",
+      "description": "Tecnología que optimiza cada etapa para lograr resultados más exactos, consistentes y confiables."
+    },
+    {
+      "title": "Eficiencia",
+      "description": "Soluciones conectadas que simplifican procesos, reducen tareas manuales y mejoran la productividad."
+    },
+    {
+      "title": "Crecimiento",
+      "description": "Herramientas flexibles y escalables que acompañan a cada laboratorio en su evolución y expansión."
+    }
+  ],
+  "valuesEyebrow": "Nuestros valores",
+  "valuesTitle": "Lo que nos define",
+  "values": [
+    {
+      "title": "Innovación",
+      "description": "Desarrollamos tecnologías exclusivas que ningún otro fabricante ofrece."
+    },
+    {
+      "title": "Precisión",
+      "description": "Cada lente se diseña y fabrica con los más altos estándares de calidad óptica."
+    },
+    {
+      "title": "Experiencia",
+      "description": "Más de dos décadas perfeccionando la ciencia y el arte de los lentes oftálmicos."
+    },
+    {
+      "title": "Diseño",
+      "description": "Creemos que la tecnología y la estética pueden coexistir en perfecta armonía."
+    }
+  ]
+}

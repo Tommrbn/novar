@@ -1,0 +1,14 @@
+@model ProgressiveText
+@{
+    var remaining = Model.Text;
+}
+@foreach (var emphasis in Model.Emphasis)
+{
+    var index = remaining.IndexOf(emphasis, StringComparison.Ordinal);
+    if (index >= 0)
+    {
+        @remaining[..index]<strong>@emphasis</strong>
+        remaining = remaining[(index + emphasis.Length)..];
+    }
+}
+@remaining

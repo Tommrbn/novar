@@ -1,0 +1,100 @@
+{
+  "sourceNode": "961:9641",
+  "titleLead": "¿Sabías que podés",
+  "titleStrong": "potenciar tus lentes?",
+  "intro": [
+    { "text": "Los " },
+    { "text": "tratamientos", "emphasis": true },
+    { "text": " para lentes oftálmicos son " },
+    { "text": "tecnologías avanzadas", "emphasis": true },
+    { "text": " que se aplican a las superficies de las lentes para mejorar su " },
+    { "text": "funcionalidad", "emphasis": true },
+    { "text": ", " },
+    { "text": "durabilidad", "emphasis": true },
+    { "text": " y " },
+    { "text": "comodidad", "emphasis": true },
+    { "text": " visual" }
+  ],
+  "heroImage": "74f40.png",
+  "tabs": [
+    { "id": "uv", "label": "Protección UV", "available": true },
+    { "id": "blue-tech", "label": "Blue Tech", "available": true },
+    { "id": "antirraya", "label": "Antirraya", "available": true },
+    { "id": "polarizado", "label": "Polarizado", "available": true },
+    { "id": "hidrofobico", "label": "Hidrofóbico", "available": true },
+    { "id": "fotosensible", "label": "Fotosensible", "available": true },
+    { "id": "ilux", "label": "Antirreflejo", "available": true }
+  ],
+  "details": [
+    {
+      "id": "uv",
+      "sourceNode": "961:9647",
+      "name": "Protección UV",
+      "description": "Los lentes NOVAR ayudan a reducir la exposición de los ojos a los rayos ultravioleta, brindando mayor cuidado y confort visual en actividades al aire libre y durante la exposición al sol.",
+      "image": "16fed.png",
+      "benefits": ["Transparente al usarlo", "100% de bloqueo UV", "Protección invisible"]
+    },
+    {
+      "id": "blue-tech",
+      "sourceNode": "961:9088",
+      "name": "Blue Tech",
+      "description": "NOVAR BLUE TECH combina en una misma lente la tecnología de protección por reflexión y a su vez la tecnología de protección por absorción en masa para mejorar las prestaciones del lente e inhibir la nociva luz azul-violeta que puede provocar DME y daño prolongado a\nla retina.",
+      "image": "f0cf4.png",
+      "benefits": ["Mejor descanso", "Menos fatiga visual", "Ideal para pantallas"]
+    },
+    {
+      "id": "antirraya",
+      "sourceNode": "961:9374",
+      "name": "Antirraya",
+      "description": "Es una nueva y exclusiva tecnología nanocapa de última generación para proteger la superficie de lentes oftálmicas ante rayas, abrasiones y exposición a productos químicos domésticos e industriales comunes como alcohol, solventes, etc que pueden degradar seriamente las superficies de las lentes en sus gafas.",
+      "image": "3dd09.png",
+      "benefits": ["Mayor durabilidad", "Superficie más resistente", "Mantiene la claridad"]
+    },
+    {
+      "id": "polarizado",
+      "sourceNode": "967:9925",
+      "name": "Polarizado",
+      "description": "ADVENTRA es una tecnología anti deslumbrante que atenúa los reflejos originados en las superficies. Ideal para mejorar el contraste y evitar el deslumbramiento en actividades al aire libre.",
+      "image": "8af8d.png",
+      "benefits": ["Máxima claridad", "Filtra la luz reflejada", "Visión más cómoda en exteriores"]
+    },
+    {
+      "id": "hidrofobico",
+      "sourceNode": "961:8801",
+      "name": "Hidrofóbico",
+      "description": "El tratamiento hidrofóbico es una tecnología avanzada que se aplica a las lentes para repeler el agua y evitar que se adhiera a la superficie. Este tratamiento crea una capa protectora que reduce la acumulación de gotas de agua, facilitando una visión clara incluso en condiciones de lluvia o humedad. Además, ayuda a mantener las lentes limpias por más tiempo al evitar que el polvo y la suciedad se adhieran fácilmente.",
+      "image": "dd2a0.png",
+      "benefits": ["Siempre limpio", "El agua no de adhiere", "Mantiene la claridad"]
+    },
+    {
+      "id": "fotosensible",
+      "sourceNode": "967:10198",
+      "name": "Fotosensible",
+      "description": "Tecnología adicional para que sus lentes se adapten instantáneamente a los distintos ambientes por cambios de luz. Claras y transparentes para ambientes internos y oscuras ante la exposición al sol.",
+      "image": "23aae.png",
+      "benefits": ["Siempre limpio", "El agua no de adhiere", "Mantiene la claridad"]
+    },
+    {
+      "id": "ilux",
+      "sourceNode": "961:8420",
+      "name": "Antirreflejo iLUX",
+      "description": "El tratamiento antirreflejo elimina los reflejos molestos que se producen en la superficie de las lentes, mejorando la claridad visual y la estética. Este tratamiento es ideal para quienes trabajan frente a pantallas, conducen de noche o desean una visión más nítida en cualquier condición de iluminación. Además, reduce el deslumbramiento y mejora la transmisión de luz, lo que resulta en una experiencia visual más cómoda y relajada.",
+      "image": "b6e78.png",
+      "benefits": ["Mayor durabilidad", "Superficie más resistente", "Mantiene la claridad"]
+    }
+  ],
+  "comparisonLabel": "Comparativa",
+  "comparisonTitle": "¿Qué trata cada uno?",
+  "comparison": [
+    { "number": "01", "name": "Protección UV", "description": "Bloqueá los rayos ultravioleta del sol.", "benefits": ["100% de bloqueo UV", "Transparente al usarlo"] },
+    { "number": "02", "name": "Blue Tech", "description": "Reducí la fatiga por luz azul de pantallas.", "benefits": ["Menos cansancio visual", "Ideal para pantallas"] },
+    { "number": "03", "name": "Antirraya", "description": "Protegé la superficie de tu lente.", "benefits": ["Mayor durabilidad", "Superficie más resistente"] },
+    { "number": "04", "name": "Polarizado", "description": "Reduce el deslumbramiento.", "benefits": ["Transición automática", "Protección UV incluida"] },
+    { "number": "05", "name": "Hidrofóbico", "description": "Repele el agua.", "benefits": ["Fácil limpieza", "Menos marcas"] },
+    { "number": "06", "name": "Fotosensible", "description": "Se adapta a la luz.", "benefits": ["Oscurece afuera", "Aclara adentro"] },
+    { "number": "07", "name": "Antirreflejo", "description": "Eliminá los reflejos molestos.", "benefits": ["Más claridad", "12 capas"] }
+  ],
+  "sophiaTitle": "¿No sabés cuál elegir?",
+  "sophiaDescription": "Hablá con Sophia, ella te ayuda a combinar los tratamientos ideales para tu rutina.",
+  "sophiaAction": "Hablar con Sophia"
+}

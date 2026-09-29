@@ -1,0 +1,89 @@
+@model PremiumProduct
+@{
+    ViewData["Title"] = $"Novar {Model.Name}";
+    ViewData["PremiumPage"] = true;
+    ViewData["PremiumVariant"] = Model.Slug;
+    var faqId = $"premium-{Model.Slug}-faq";
+}
+<article class="premium-product premium-product--@Model.Slug" data-figma-node="@Model.SourceNode" data-premium-revision="premium-v1">
+    <section class="premium-hero" aria-labelledby="premium-title">
+        <img class="premium-hero-image" src="~/media/figma/@Model.Hero.File" alt="@Model.Hero.Alt" width="@Model.Hero.Width" height="@Model.Hero.Height" data-figma-node="@Model.Hero.SourceNode" fetchpriority="high" />
+        <h1 id="premium-title" class="premium-brand-pill">
+            <span class="visually-hidden">Novar @Model.Name</span>
+            @if (Model.Slug == "ai-lens")
+            {
+                <span class="premium-brand premium-brand--ai-lens" aria-hidden="true" data-figma-node="894:332">
+                    <img class="premium-brand-ai-a" src="~/media/figma/b3e5b.svg" alt="" width="19.3751" height="18.9986" />
+                    <img class="premium-brand-ai-i" src="~/media/figma/da3e9.svg" alt="" width="3.83465" height="18.9985" />
+                    <img class="premium-brand-ai-lens" src="~/media/figma/eb2eb.svg" alt="" width="61.0208" height="19.2612" />
+                    <img class="premium-brand-ai-glow" src="~/media/figma/6a724.png" alt="" width="263" height="263" />
+                    <img class="premium-brand-ai-glow-core" src="~/media/figma/4a1dc.png" alt="" width="123" height="122" />
+                    <img class="premium-brand-ai-light" src="~/media/figma/1b8c9.svg" alt="" width="4.29309" height="4.28442" />
+                    <img class="premium-brand-ai-registered" src="~/media/figma/ad6f0.svg" alt="" width="6.34111" height="6.33712" />
+                </span>
+            }
+            else if (Model.Slug == "myolens")
+            {
+                <span class="premium-brand premium-brand--myolens" aria-hidden="true" data-figma-node="977:11249">
+                    <img class="premium-brand-myo-name" src="~/media/figma/0a8a2.svg" alt="" width="98.9981" height="21.0002" />
+                    <img class="premium-brand-myo-caption" src="~/media/figma/ce2fb.svg" alt="" width="29.8037" height="4.22676" />
+                </span>
+            }
+            else
+            {
+                <img class="premium-brand-work" src="~/media/figma/91079.png" alt="" width="146" height="53" aria-hidden="true" data-figma-node="988:11649" />
+            }
+        </h1>
+        <p class="premium-hero-copy">@Model.HeroCopy</p>
+    </section>
+
+    <section class="premium-technology" aria-labelledby="premium-technology-title">
+        <div class="premium-technology-inner">
+            <p class="premium-technology-eyebrow">TECNOLOGÍA</p>
+            <div class="premium-technology-copy">
+                <h2 id="premium-technology-title">@Model.TechnologyTitle</h2>
+                <p class="premium-technology-description">@Model.TechnologyDescription</p>
+                <ul class="premium-benefits">
+                    @foreach (var benefit in Model.Benefits)
+                    {
+                        <li>
+                            <span class="premium-benefit-icon"><img src="~/media/figma/@benefit.Icon" alt="" data-figma-node="@benefit.SourceNode" /></span>
+                            <span>@benefit.Label</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="premium-feature" aria-label="Características de @Model.Name">
+        <img class="premium-feature-image" src="~/media/figma/@Model.Feature.File" alt="@Model.Feature.Alt" width="@Model.Feature.Width" height="@Model.Feature.Height" data-figma-node="@Model.Feature.SourceNode" loading="lazy" />
+        <div class="premium-callouts">
+            @foreach (var callout in Model.Callouts)
+            {
+                <p class="premium-callout premium-callout--@callout.Slot" data-figma-node="@callout.SourceNode">@callout.Text@if (callout.SecondaryText is not null){<span>@callout.SecondaryText</span>}</p>
+            }
+        </div>
+    </section>
+
+    <section class="premium-explanation" aria-labelledby="premium-explanation-title">
+        <h2 id="premium-explanation-title">@Model.TechnologyName</h2>
+        <p>@Model.TechnologySummary</p>
+    </section>
+
+    <figure class="premium-gallery">
+        <img class="premium-gallery-image" src="~/media/figma/@Model.Gallery.File" alt="@Model.Gallery.Alt" width="@Model.Gallery.Width" height="@Model.Gallery.Height" data-figma-node="@Model.Gallery.SourceNode" loading="lazy" />
+        <span class="premium-watermark" aria-hidden="true">@Model.Watermark</span>
+        <figcaption>@Model.GalleryCaption</figcaption>
+    </figure>
+
+    <section class="premium-faq" aria-labelledby="premium-faq-title">
+        <div class="premium-faq-intro">
+            <p class="premium-faq-eyebrow">FAQ</p>
+            <h2 id="premium-faq-title">Preguntas<br /> frecuentes</h2>
+            <p class="premium-faq-description">Todo lo que necesitás saber antes de elegir tu próxima lente.</p>
+            <a href="/#contacto">¿Tenés otra duda? Contactanos →</a>
+        </div>
+        <partial name="_Faq" model="new FaqSection(faqId, Model.Questions, Model.OpenQuestion)" />
+    </section>
+</article>

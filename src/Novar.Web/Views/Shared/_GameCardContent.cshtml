@@ -1,0 +1,23 @@
+@model GameCard
+@{ var blueDots = new HashSet<int> { 8, 9, 10, 11, 17, 18, 24, 30, 36 }; }
+<span class="game-card-badge">@Model.Badge</span>
+<span class="game-art game-art-@Model.Id" aria-hidden="true">
+    <span class="game-dot-grid">
+        @for (var dot = 0; dot < 42; dot++)
+        {
+            if (Model.Id == "trivia" && dot == 14)
+            {
+                <span class="game-star"><img src="~/media/figma/c5011.svg" alt="" /></span>
+            }
+            else
+            {
+                <span class="game-dot @(Model.Id == "codigo" && blueDots.Contains(dot) ? "game-dot-blue" : null) @(Model.Featured && dot == 10 ? "game-dot-intruder" : null)"></span>
+            }
+        }
+    </span>
+</span>
+<span class="game-card-copy">
+    <span class="game-card-number">@Model.Number</span>
+    <span class="game-card-title">@Model.Title</span>
+    <span class="game-card-description">@Model.Description</span>
+</span>

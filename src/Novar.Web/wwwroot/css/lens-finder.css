@@ -1,0 +1,153 @@
+/* Scoped /lentes navigation; shared shell and product pages are unchanged. */
+.lens-finder-page {
+    background: var(--paper);
+}
+
+.lens-finder-page .nav-link[aria-current="page"] {
+    font-weight: 600;
+}
+
+.lens-finder-base {
+    min-height: 70vh;
+    padding-block: 190px 100px;
+}
+
+.lens-finder-column {
+    width: 560px;
+    max-width: 100%;
+}
+
+.lens-finder-column h1 {
+    margin: 0;
+    color: #090e17;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 48px;
+    letter-spacing: 0;
+}
+
+.lens-finder-column h1 span {
+    display: block;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+.lens-finder-description {
+    margin: 8px 0 0;
+    color: #6b5a8a;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+}
+
+.lens-finder-description strong {
+    color: var(--body);
+    font-weight: 500;
+}
+
+.lens-finder-filters {
+    margin-block: 24px;
+    border-top: 1px solid rgba(123, 94, 167, .12);
+}
+
+.lens-finder-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 53px;
+    padding: 16px 0;
+    border: 0;
+    border-bottom: 1px solid rgba(123, 94, 167, .12);
+    background: transparent;
+    color: var(--body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+    list-style: none;
+}
+
+.lens-finder-filter::-webkit-details-marker { display: none; }
+.lens-finder-filters details[open] > summary img { transform: rotate(180deg); }
+.lens-finder-base [hidden] { display: none !important; }
+
+.lens-finder-panel {
+    margin: 0;
+    padding: 18px 0;
+    border: 0;
+    color: var(--body);
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.lens-finder-panel fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.lens-finder-panel legend { float: none; width: auto; margin: 0 0 12px; font-size: 14px; font-weight: 500; }
+.lens-finder-panel p { margin: 12px 0; color: #6b5a8a; }
+.lens-finder-panel > label { display: block; }
+.lens-finder-panel input[type="number"] {
+    display: block;
+    width: 160px;
+    max-width: 100%;
+    margin-top: 8px;
+    padding: 10px 12px;
+    border: 1px solid #897b9a;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+}
+
+.lens-finder-option {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.lens-finder-option input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--ink); }
+.lens-finder-option span { min-width: 0; overflow-wrap: anywhere; }
+.lens-finder-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-block: 20px; }
+.lens-finder-actions button { min-height: 48px; }
+.lens-finder-reset { border: 0; padding: 10px 14px; border-radius: 24px; background: transparent; color: var(--ink); text-decoration: underline; }
+.lens-finder-actions button:disabled { opacity: .55; cursor: not-allowed; }
+.lens-finder-status { color: var(--ink); font-size: 14px; line-height: 22px; }
+.lens-finder-results { margin-block: 24px; }
+.lens-finder-base h2 { font-size: 23px; font-weight: 500; line-height: 31px; }
+.lens-finder-results > p, .lens-finder-catalog > p { color: #6b5a8a; font-size: 13px; line-height: 21px; }
+.lens-finder-result-list { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.lens-finder-result-list li { padding: 20px; border: 1px solid #d8d0e2; border-radius: 16px; background: #fff; overflow-wrap: anywhere; }
+.lens-finder-result-list h3 { font-size: 20px; font-weight: 500; }
+.lens-finder-result-list p { font-size: 14px; line-height: 22px; }
+.lens-finder-result-list a, .lens-finder-catalog a { color: var(--ink); text-underline-offset: 3px; }
+.lens-finder-catalog { margin-top: 36px; scroll-margin-top: 120px; }
+.lens-finder-catalog ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; padding-left: 20px; }
+.lens-finder-catalog a { display: inline-block; padding-block: 10px; overflow-wrap: anywhere; }
+.lens-finder-base :is(summary, input, button, a):focus-visible { outline: 3px solid #7b5ea7; outline-offset: 4px; }
+.lens-finder-base [aria-invalid="true"] { outline: 2px solid #992c45; outline-offset: 2px; }
+
+.lens-finder-filter img,
+.lens-finder-cta img {
+    display: block;
+    flex-shrink: 0;
+    max-width: none;
+}
+
+.lens-finder-cta {
+    gap: 12px;
+    max-width: 100%;
+    min-height: 48px;
+    padding: 14px 28px;
+    border: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+@media (max-width: 767px) {
+    .lens-finder-base {
+        padding-block: 150px 70px;
+    }
+}

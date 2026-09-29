@@ -1,0 +1,102 @@
+[
+  {
+    "name": "AI Lens",
+    "slug": "ai-lens",
+    "sourceNode": "894:233",
+    "heroCopy": "Innovación real. Más allá de lo conocido.\nVisión hacia el futuro.",
+    "hero": { "file": "40da9.png", "sourceNode": "977:10921", "alt": "Mujer con anteojos mirando por la ventana de un automóvil", "width": 2528, "height": 1896 },
+    "feature": { "file": "68e81.png", "sourceNode": "894:241", "alt": "Mujer con lentes AI Lens entre personas desenfocadas", "width": 2752, "height": 1536 },
+    "gallery": { "file": "fcfe9.png", "sourceNode": "894:329", "alt": "Mujer con un vestido verde caminando al aire libre", "width": 1549, "height": 1015 },
+    "technologyTitle": "Comodidad y visión natural, desde el primer uso.\nEl primer lente progresivo diseñado con inteligencia artificial.",
+    "technologyDescription": "Novar AiLens© es el resultado de la última y más reciente innovación tecnológica global para lograr resultados más allá de lo conocido hasta el momento, optimizando el lente para que pueda ver el mundo sin límites periféricos.  La revolucionaria tecnología AI-GET de inteligencia artificial, exclusiva de Novar©, permite diseñar sus lentes progresivos para obtener calidades ópticas que superan cualquier otra desarrolladas por humanos.",
+    "benefits": [
+      { "label": "Visión cómoda\ny natural", "icon": "8c8de.svg", "sourceNode": "977:11322" },
+      { "label": "Zona de lectura\nmás confortable", "icon": "71321.svg", "sourceNode": "977:11326" },
+      { "label": "Sin swimming effect", "icon": "60515.svg", "sourceNode": "977:11328" },
+      { "label": "Sin fatiga visual", "icon": "757b0.svg", "sourceNode": "977:11338" }
+    ],
+    "callouts": [
+      { "slot": "top-left", "text": "Diseñados para ofrecer una visión fluida en todas las distancias.", "sourceNode": "894:284" },
+      { "slot": "top-right", "text": "Primer lente diseñada con", "secondaryText": "Inteligencia Artificial", "sourceNode": "894:285" },
+      { "slot": "bottom-left", "text": "Gracias a su tecnología avanzada, eliminan el efecto de balanceo.", "sourceNode": "894:283" },
+      { "slot": "bottom-right", "text": "Ideales para aquellos que pasan mucho tiempo frente a pantallas.", "sourceNode": "894:282" }
+    ],
+    "technologyName": "Psicoptix Technology ™",
+    "technologySummary": "Una tecnología exclusiva de Novar que combina óptica avanzada y neurociencia visual para crear lentes que se adaptan a cómo ves el mundo. El resultado: una visión más natural, cómoda y clara en cada mirada.",
+    "galleryCaption": "Disfrutá el mundo\ncon una claridad tan natural,\ncomo si no llevaras lentes.",
+    "watermark": "AI LENS",
+    "questions": [
+      { "question": "¿Qué es Novar AI·Lens?", "answer": null },
+      { "question": "¿Para quién está recomendado?", "answer": null },
+      { "question": "¿Qué lo diferencia?", "answer": "La combinación de Psicoptix y AI-GET, que permite optimizar el diseño y mejorar la experiencia visual en todas las distancias." }
+    ],
+    "openQuestion": 2
+  },
+  {
+    "name": "MyoLens",
+    "slug": "myolens",
+    "sourceNode": "977:11066",
+    "heroCopy": "Una nueva generación\nde lentes para miopes.",
+    "hero": { "file": "c2edd.png", "sourceNode": "977:11243", "alt": "Dos jóvenes con anteojos transparentes en exteriores", "width": 2752, "height": 1536 },
+    "feature": { "file": "c69be.png", "sourceNode": "977:11072", "alt": "Primer plano de un joven con lentes MyoLens", "width": 3277, "height": 4096 },
+    "gallery": { "file": "459f9.png", "sourceNode": "977:11097", "alt": "Mujer con anteojos de marco transparente", "width": 2752, "height": 1536 },
+    "technologyTitle": "Lente monofocal desarrollado con inteligencia artificial para optimizar la corrección de la miopía en el campo visual central.",
+    "technologyDescription": "Novar MyoLens está diseñado para pacientes miopes que buscan una visión central clara y una experiencia más confortable. Combina Psicoptix y AI-GET para compensar la sobrecorrección periférica y mejorar la percepción visual.",
+    "benefits": [
+      { "label": "Corrección central optimizada.", "icon": "8c8de.svg", "sourceNode": "984:11372" },
+      { "label": "Mayor confort periférico.", "icon": "71321.svg", "sourceNode": "984:11376" },
+      { "label": "Diseño con inteligencia artificial.", "icon": "60515.svg", "sourceNode": "984:11378" },
+      { "label": "Experiencia visual más estable.", "icon": "757b0.svg", "sourceNode": "984:11388" }
+    ],
+    "callouts": [
+      { "slot": "top-left", "text": "Lente monofocal para miopía confort.", "sourceNode": "977:11092" },
+      { "slot": "top-right", "text": "Más estabilidad visual para pacientes miopes", "sourceNode": "977:11093" },
+      { "slot": "bottom-right", "text": "Corrección central optimizada y confort periférico.", "sourceNode": "977:11090" }
+    ],
+    "technologyName": "Psicoptix Technology™ / AI-GET Technology™.",
+    "technologySummary": "AI-GET y Psicoptix trabajan sobre el diseño del lente para optimizar la visión central y compensar efectos periféricos, generando una experiencia más cómoda para pacientes miopes.",
+    "galleryCaption": "Claridad central con\ntecnología inteligente.",
+    "watermark": "MYOLENS",
+    "questions": [
+      { "question": "¿Qué es MyoLens?", "answer": null },
+      { "question": "¿Para quién está recomendado?", "answer": null },
+      { "question": "¿Qué lo diferencia?", "answer": null },
+      { "question": "¿Es igual a MyoFix?", "answer": "No. MyoFix está orientado al manejo de miopía progresiva en niños y adolescentes. MyoLens está pensado para brindar mayor confort visual en pacientes miopes." }
+    ],
+    "openQuestion": 3
+  },
+  {
+    "name": "AIWork",
+    "slug": "aiwork",
+    "sourceNode": "988:11447",
+    "heroCopy": "Visión inteligente para trabajar mejor.",
+    "hero": { "file": "66c80.png", "sourceNode": "988:11448", "alt": "Profesional con anteojos trabajando con una computadora portátil", "width": 2752, "height": 1536 },
+    "feature": { "file": "3f12a.png", "sourceNode": "988:11481", "alt": "Dos profesionales con anteojos trabajando en una oficina", "width": 2752, "height": 1536 },
+    "gallery": { "file": "b7de4.png", "sourceNode": "988:11496", "alt": "Profesional con anteojos frente a su computadora y pantallas", "width": 2752, "height": 1536 },
+    "technologyTitle": "Lente ocupacional diseñado con inteligencia artificial para profesionales que necesitan precisión visual en entornos multitarea y digitales",
+    "technologyDescription": "Lente diseñado para el trabajo moderno, combinando tecnología e inteligencia artificial para optimizar la experiencia frente a pantallas, documentos y tareas de precisión. Más que un lente ocupacional tradicional, AIWORK adapta la visión en distancias intermedias y cercanas para favorecer una mayor comodidad, concentración y rendimiento visual, acompañando las exigencias de profesionales que buscan mejorar su productividad y desempeño en entornos laborales digitales.",
+    "benefits": [
+      { "label": "Menor fatiga visual.", "icon": "8c8de.svg", "sourceNode": "988:11567" },
+      { "label": "Comodidad en pantallas.", "icon": "71321.svg", "sourceNode": "988:11571" },
+      { "label": "Diseño con inteligencia artificial.", "icon": "60515.svg", "sourceNode": "988:11573" },
+      { "label": "Precisión laboral.", "icon": "757b0.svg", "sourceNode": "988:11583" }
+    ],
+    "callouts": [
+      { "slot": "top-left", "text": "Sus algoritmos permiten adaptar el diseño a las distancias de trabajo y necesidades visuales de cada usuario, ayudando a reducir la fatiga ocular.", "sourceNode": "988:11650" },
+      { "slot": "top-right", "text": "Más comodidad en las distancias de tu jornada laboral.", "sourceNode": "988:11492" },
+      { "slot": "bottom-left", "text": "Diseñado para oficinas, estudios, pantallas, reuniones y rutinas multitarea.", "sourceNode": "988:11491" },
+      { "slot": "bottom-right", "text": "Rendimiento optimizado en visión cercana, intermedia y extendida.", "sourceNode": "988:11490" }
+    ],
+    "technologyName": "AI-GET Technology™.",
+    "technologySummary": "AI-GET permite optimizar el diseño según las necesidades visuales del usuario y sus distancias de trabajo, mejorando precisión, comodidad y fluidez.",
+    "galleryCaption": "Precisión visual en cerca,\nintermedio y distancia extendida.",
+    "watermark": "AIWORK",
+    "questions": [
+      { "question": "¿Qué es AiWork?", "answer": null },
+      { "question": "¿Para quién está recomendado?", "answer": null },
+      { "question": "¿Reemplaza a un progresivo tradicional?", "answer": null },
+      { "question": "¿Qué lo diferencia?", "answer": "Su personalización por distancias de trabajo y su optimización mediante inteligencia artificial." }
+    ],
+    "openQuestion": 3
+  }
+]

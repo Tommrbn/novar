@@ -1,0 +1,58 @@
+@model GamesContent
+@{
+    ViewData["Title"] = "Juegos";
+    ViewData["GamesPage"] = true;
+}
+<div class="games-content" data-games-revision="games-v1" data-visual-games-revision="visual-games-v1" data-figma-node="@Model.SourceNode">
+    <section class="games-intro" aria-labelledby="games-title">
+        <h1 id="games-title">@Model.TitleLead<span>@Model.TitleRest</span></h1>
+        <p>@Model.SubtitleLead<span>@Model.SubtitleRest</span></p>
+    </section>
+
+    <section class="games-cards" aria-label="Elegí un desafío visual">
+        @foreach (var card in Model.Cards)
+        {
+            <article class="game-card @(card.Featured ? "game-card-featured" : null)">
+                <h2 class="visually-hidden">@card.Title</h2>
+                @if (card.Id == "codigo")
+                {
+                    <button type="button" class="game-card-trigger" data-game-card="codigo" data-visual-game-start="codigo" aria-controls="codigo-panel" aria-label="CÓDIGO VISUAL: jugar cinco rondas" disabled>
+                        <partial name="_GameCardContent" model="card" />
+                    </button>
+                }
+                else if (card.Id == "intruso")
+                {
+                    <button type="button" class="game-card-trigger" data-game-card="intruso" data-visual-game-start="intruso" aria-controls="intruso-preview" aria-label="INTRUSO CROMÁTICO: jugar cinco rondas" disabled>
+                        <partial name="_GameCardContent" model="card" />
+                    </button>
+                }
+                else if (card.Id == "trivia")
+                {
+                    <button type="button" class="game-card-trigger" data-game-card="trivia" data-trivia-start aria-controls="trivia-panel" aria-label="TRIVIA: responder diez preguntas" disabled>
+                        <partial name="_GameCardContent" model="card" />
+                    </button>
+                }
+            </article>
+        }
+    </section>
+
+    <section class="games-how" aria-labelledby="games-how-title">
+        <p class="games-how-badge">@Model.HowEyebrow</p>
+        <h2 id="games-how-title">@Model.HowTitle</h2>
+        <ol class="games-steps">
+            @foreach (var step in Model.Steps)
+            {
+                <li><span class="game-step-number" aria-hidden="true">@step.Number</span><h3>@step.Title</h3><p>@step.Description</p></li>
+            }
+        </ol>
+    </section>
+
+    <partial name="_VisualGames" model="Model" />
+    <partial name="_Trivia" model="Model.Trivia" />
+    <noscript><p class="trivia-no-script">Activá JavaScript para responder la Trivia o jugar a los otros desafíos. No se envían ni guardan tus respuestas.</p></noscript>
+</div>
+@section Scripts {
+    <script src="~/js/trivia-state.js" asp-append-version="true" defer></script>
+    <script src="~/js/visual-games-state.js" asp-append-version="true" defer></script>
+    <script src="~/js/games.js" asp-append-version="true" defer></script>
+}

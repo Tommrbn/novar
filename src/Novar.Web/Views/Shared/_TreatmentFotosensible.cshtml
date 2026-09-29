@@ -1,0 +1,18 @@
+@model TreatmentDetail
+<section id="@Model.Id" class="treatment-detail treatment-detail-fotosensible" aria-labelledby="treatment-fotosensible-title" data-treatment-detail="fotosensible" data-figma-node="967:10192">
+    <div class="treatment-fotosensible-summary" data-figma-node="@Model.SourceNode">
+        <div><p class="treatment-fotosensible-eyebrow">TRATAMIENTO</p><h2 id="treatment-fotosensible-title">@Model.Name</h2></div>
+        <p class="treatment-fotosensible-description">@Model.Description</p>
+    </div>
+    <div class="treatment-fotosensible-photo" data-figma-node="967:10194">
+        <div class="treatment-fotosensible-image-plane" data-figma-node="I967:10194;1:2038">
+            <img class="treatment-fotosensible-image" src="~/media/figma/@Model.Image" alt="Mujer con gafas oscuras y los ojos cerrados al aire libre, con cielo azul de fondo" width="2752" height="1536" />
+        </div>
+    </div>
+    <ul class="treatment-fotosensible-benefits" aria-label="Características de Fotosensible" data-figma-node="967:10326">
+        @foreach (var benefit in Model.Benefits)
+        {
+            <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>
+        }
+    </ul>
+</section>
