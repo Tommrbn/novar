@@ -2,6 +2,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Novar.Web.Services;
@@ -11,6 +12,33 @@ namespace Novar.Web.Tests;
 public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient client = factory.CreateClient();
+
+    [Theory]
+    [InlineData("es", "La revolucionaria tecnología AI-GET")]
+    [InlineData("en", "Novar©’s exclusive, revolutionary AI-GET")]
+    [InlineData("pt-BR", "A tecnologia revolucionária de inteligência artificial AI-GET")]
+    public async Task AiLensTechnologyKeepsItsParagraphBreakInEveryLanguage(string culture, string secondParagraph)
+    {
+        using var localizedClient = factory.CreateClient();
+        localizedClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd(culture);
+        var html = WebUtility.HtmlDecode(await localizedClient.GetStringAsync("/lentes/ai-lens"));
+        var description = Regex.Match(html, "<p class=\"premium-technology-description\">([\\s\\S]*?)</p>").Groups[1].Value;
+        var paragraphs = description.Split("\n\n");
+        Assert.Equal(2, paragraphs.Length);
+        Assert.All(paragraphs, paragraph => Assert.False(string.IsNullOrWhiteSpace(paragraph)));
+        Assert.StartsWith(secondParagraph, paragraphs[1]);
+        var css = await localizedClient.GetStringAsync("/css/premium.css");
+        Assert.Contains(".premium-product--ai-lens .premium-technology-description { white-space: pre-line; }", css);
+        Assert.Contains(".premium-product--ai-lens .premium-benefits { position: static; margin-top: 24px; }", css);
+
+        foreach (var otherSlug in new[] { "myolens", "aiwork" })
+        {
+            var otherHtml = WebUtility.HtmlDecode(await localizedClient.GetStringAsync($"/lentes/{otherSlug}"));
+            var otherDescription = Regex.Match(otherHtml, "<p class=\"premium-technology-description\">([\\s\\S]*?)</p>").Groups[1].Value;
+            Assert.NotEmpty(otherDescription);
+            Assert.DoesNotContain("\n\n", otherDescription);
+        }
+    }
 
     [Theory]
     [InlineData("ai-lens", "894:233", "40da9.png", "68e81.png", "fcfe9.png", 3, 2)]
@@ -33,7 +61,9 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
         Assert.DoesNotContain("después de aprobar la muestra visual", html);
         Assert.DoesNotContain("react", html, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("tailwind", html, StringComparison.OrdinalIgnoreCase);
-        foreach (var asset in new[] { hero, feature, gallery })
+        Assert.Equal(hero, factory.Services.GetRequiredService<SiteContent>().PremiumProducts[slug].Hero.File);
+        Assert.Single(Regex.Matches(html, Regex.Escape($"src=\"/media/products/banners/{slug}-2x.webp\"")));
+        foreach (var asset in new[] { feature, gallery })
             Assert.Single(Regex.Matches(html, Regex.Escape($"src=\"/media/figma/{asset}\"")));
 
         var faq = Regex.Match(html, "<section class=\"premium-faq\"[\\s\\S]*?</section>").Value;
@@ -42,10 +72,10 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
         Assert.Single(Regex.Matches(faq, "aria-expanded=\"true\""));
         Assert.Contains($"data-bs-target=\"#premium-{slug}-faq-{openIndex}\" aria-expanded=\"true\"", faq);
         Assert.Contains($"id=\"premium-{slug}-faq-{openIndex}\" class=\"accordion-collapse collapse show\"", faq);
-        Assert.Equal(questionCount - 1, Regex.Matches(faq, "Respuesta pendiente de revisión editorial").Count);
+        Assert.Empty(Regex.Matches(faq, "Respuesta pendiente de revisión editorial"));
         Assert.Equal(questionCount, Regex.Matches(faq, "data-bs-parent=").Count);
         Assert.Contains("¿Tenés otra duda? Contactanos →", faq);
-        Assert.DoesNotContain("<form", html);
+        Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
         Assert.Contains("no se envían ni almacenan datos y no se generan resultados", html);
         Assert.Equal(HttpStatusCode.MethodNotAllowed,
             (await client.PostAsync($"/lentes/{slug}", new StringContent(""))).StatusCode);
@@ -61,7 +91,7 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
         Assert.All(content.PremiumProducts.Values, product =>
         {
             Assert.Equal(4, product.Benefits.Length);
-            Assert.Single(product.Questions, question => question.Answer is not null);
+            Assert.Equal(product.Slug == "ai-lens" ? 3 : 4, product.Questions.Count(question => question.Answer is not null));
             Assert.Equal(product.Questions.Length - 1, product.OpenQuestion);
             Assert.False(content.PlannedProducts.Contains(product.Slug));
         });
@@ -70,10 +100,130 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
         Assert.DoesNotContain(content.PremiumProducts["myolens"].Callouts, c => c.Slot == "bottom-left");
         Assert.Equal("No. MyoFix está orientado al manejo de miopía progresiva en niños y adolescentes. MyoLens está pensado para brindar mayor confort visual en pacientes miopes.",
             content.PremiumProducts["myolens"].Questions[3].Answer);
-        Assert.Equal("Su personalización por distancias de trabajo y su optimización mediante inteligencia artificial.",
+        Assert.Equal(new[]
+        {
+            "Es un lente monofocal diseñado para mejorar la experiencia visual de pacientes miopes.",
+            "Para usuarios con miopía que buscan corrección central y mayor confort visual.",
+            "Su desarrollo con inteligencia artificial y su enfoque en la compensación periférica.",
+            "No. MyoFix está orientado al manejo de miopía progresiva en niños y adolescentes. MyoLens está pensado para brindar mayor confort visual en pacientes miopes."
+        }, content.PremiumProducts["myolens"].Questions.Select(question => question.Answer).ToArray());
+        Assert.Equal("Su combinación de corrección central y desenfoque periférico controlado.",
             content.PremiumProducts["aiwork"].Questions[3].Answer);
+        Assert.Equal("AIWork", content.PremiumProducts["aiwork"].Name);
         Assert.Equal("La combinación de Psicoptix y AI-GET, que permite optimizar el diseño y mejorar la experiencia visual en todas las distancias.",
             content.PremiumProducts["ai-lens"].Questions[2].Answer);
+    }
+
+    [Fact]
+    public async Task PremiumAnnotationTypographyUsesScopedSourceWeightsAndAIWorkGeometry()
+    {
+        var css = await client.GetStringAsync("/css/premium.css");
+        Assert.Contains(".premium-technology-description { max-width: 895.5px; margin-top: 22.5px !important; font-size: 16.5px; font-weight: 400", css);
+        Assert.Contains(".premium-benefits li > span:last-child { display: block; width: 157px; max-width: 100%; margin: 16px 0 0 3px; opacity: .9; font-size: 15px; font-weight: 400", css);
+        Assert.Contains(".premium-product--aiwork .premium-benefits li > span:last-child { font-weight: 500; }", css);
+        Assert.Contains(".premium-callout { position: absolute; width: 194.25px; font-size: 15px; font-weight: 700", css);
+        Assert.Contains(".premium-product--ai-lens .premium-callout--top-left, .premium-product--ai-lens .premium-callout--bottom-left, .premium-product--ai-lens .premium-callout--bottom-right,\n.premium-product--myolens .premium-callout--top-left, .premium-product--myolens .premium-callout--bottom-right { font-weight: 500; }", css);
+        Assert.Contains(".premium-product--aiwork .premium-callout--top-left, .premium-product--aiwork .premium-callout--bottom-left, .premium-product--aiwork .premium-callout--bottom-right { font-weight: 500; }", css);
+        Assert.Contains(".premium-callout--top-right span { display: block; font-weight: 600; }", css);
+        Assert.DoesNotContain(".premium-product--aiwork .premium-callout--top-right { font-weight:", css);
+        Assert.Contains(".premium-product--aiwork .premium-callout--top-right { right: 2.9167%; top: 68.25px; width: 429px; }", css);
+        Assert.Contains(".premium-product--aiwork .premium-explanation p { font-size: 27px; font-weight: 500; line-height: 30px", css);
+        Assert.Contains(".premium-product--ai-lens .premium-explanation p, .premium-product--myolens .premium-explanation p { font-size: 27px; font-weight: 500; line-height: 30px", css);
+        Assert.Contains(".premium-explanation p { max-width: 810px; margin: 17.79px auto 0; font-size: 30px; font-weight: 700; line-height: 30px", css);
+        Assert.Contains(".premium-product--myolens .premium-explanation p { max-width: 882px; }", css);
+        Assert.Contains(".premium-product--ai-lens .premium-watermark { width: 317.25px; right: 7px; }", css);
+        Assert.Contains("font-size: 75px; font-weight: 900; line-height: 45px", Regex.Match(css, @"\.premium-watermark\s*\{[^}]+\}").Value);
+        Assert.Contains("text-shadow: 0 3px 3px rgb(0 0 0 / 25%)", css);
+        Assert.Contains("background: rgb(255 255 255 / 5%); background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-fill-color: transparent", Regex.Match(css, @"\.premium-watermark\s*\{[^}]+\}").Value);
+        var siteCss = await client.GetStringAsync("/css/site.css");
+        Assert.Contains("Poppins-Medium.ttf", siteCss);
+        Assert.Contains("font-weight: 500", Regex.Match(siteCss, @"@font-face[^}]*Poppins-Medium\.ttf[^}]*\}").Value);
+        Assert.Contains("@media (max-width: 1199.98px)", css);
+        Assert.Contains("@media (max-width: 767.98px)", css);
+        Assert.Contains("grid-template-columns: repeat(2, minmax(0, 1fr))", css);
+    }
+
+    [Fact]
+    public async Task AiLensAndAiWorkApprovedFaqsRenderExactlyInOrder()
+    {
+        var expected = new Dictionary<string, (string Question, string Answer)[]>
+        {
+            ["ai-lens"] =
+            [
+                ("¿Qué es Novar AI·Lens?", "Es un lente progresivo diseñado con inteligencia artificial para ofrecer una experiencia visual avanzada."),
+                ("¿Para quién está recomendado?", "Para usuarios que buscan un progresivo premium, cómodo, fluido y con alta capacidad de adaptación."),
+                ("¿Qué lo diferencia?", "La combinación de Psicoptix y AI-GET, que permite optimizar el diseño y mejorar la experiencia visual en todas las distancias.")
+            ],
+            ["aiwork"] =
+            [
+                ("¿Qué es MyoFix?", "Es un lente diseñado para acompañar el tratamiento de la miopía progresiva en niños y adolescentes."),
+                ("¿Para quién está recomendado?", "Para niños y adolescentes con miopía progresiva, siempre bajo indicación y seguimiento profesional."),
+                ("¿Reemplaza el seguimiento profesional?", "No. El seguimiento del profesional de la visión es fundamental para una correcta adaptación y control."),
+                ("¿Qué lo diferencia?", "Su combinación de corrección central y desenfoque periférico controlado.")
+            ]
+        };
+
+        foreach (var (slug, pairs) in expected)
+        {
+            var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{slug}"));
+            var faq = Regex.Match(html, "<section class=\"premium-faq\"[\\s\\S]*?</section>").Value;
+            Assert.Equal(pairs.Length, Regex.Matches(faq, "class=\"accordion-button ").Count);
+            var lastPosition = -1;
+            foreach (var (question, answer) in pairs)
+            {
+                var questionPosition = faq.IndexOf(question, StringComparison.Ordinal);
+                var answerPosition = faq.IndexOf(answer, StringComparison.Ordinal);
+                Assert.True(questionPosition > lastPosition, $"Question order mismatch on {slug}: {question}");
+                Assert.True(answerPosition > questionPosition, $"Answer missing or misplaced on {slug}: {question}");
+                lastPosition = answerPosition;
+            }
+            Assert.DoesNotContain("Respuesta pendiente de revisión editorial", faq);
+        }
+    }
+
+    [Fact]
+    public async Task SharedNonHomeFooterLogoPreservesSvgAspectRatioWithoutChangingHomeBranch()
+    {
+        var premiumHtml = WebUtility.HtmlDecode(await client.GetStringAsync("/lentes"));
+        Assert.Contains("class=\"site-footer-logo\" src=\"/media/figma/e7f22.svg\" alt=\"Novar\"", premiumHtml);
+        Assert.DoesNotContain("class=\"site-footer-logo\" src=\"/media/figma/e7f22.svg\" alt=\"Novar\" width=\"124\" height=\"34\"", premiumHtml);
+        var siteCss = await client.GetStringAsync("/css/site.css");
+        Assert.Contains(".site-footer-logo { display: block; width: 124px; height: auto; max-width: none; }", siteCss);
+        var webRoot = factory.Services.GetRequiredService<IWebHostEnvironment>().WebRootPath;
+        var svg = File.ReadAllText(Path.Combine(webRoot, "media", "figma", "e7f22.svg"));
+        Assert.Contains("width=\"91\" height=\"15.1665\" viewBox=\"0 0 91 15.1665\"", svg);
+        Assert.Equal(20.67, Math.Round(124.0 * 15.1665 / 91, 2));
+
+        var homeHtml = WebUtility.HtmlDecode(await client.GetStringAsync("/"));
+        Assert.Contains("class=\"home-footer-logo\" src=\"/media/novar-footer.svg\" alt=\"Novar\" width=\"240\" height=\"32\"", homeHtml);
+        Assert.DoesNotContain("class=\"site-footer-logo\"", homeHtml);
+    }
+
+    [Fact]
+    public async Task MyoLensFourSuppliedFaqAnswersRenderInQuestionOrder()
+    {
+        var html = WebUtility.HtmlDecode(await client.GetStringAsync("/lentes/myolens"));
+        var faq = Regex.Match(html, "<section class=\"premium-faq\"[\\s\\S]*?</section>").Value;
+        var questions = new[] { "¿Qué es MyoLens?", "¿Para quién está recomendado?", "¿Qué lo diferencia?", "¿Es igual a MyoFix?" };
+        var answers = new[]
+        {
+            "Es un lente monofocal diseñado para mejorar la experiencia visual de pacientes miopes.",
+            "Para usuarios con miopía que buscan corrección central y mayor confort visual.",
+            "Su desarrollo con inteligencia artificial y su enfoque en la compensación periférica.",
+            "No. MyoFix está orientado al manejo de miopía progresiva en niños y adolescentes. MyoLens está pensado para brindar mayor confort visual en pacientes miopes."
+        };
+        var lastQuestionPosition = -1;
+        var lastAnswerPosition = -1;
+        foreach (var (question, answer) in questions.Zip(answers))
+        {
+            var questionPosition = faq.IndexOf(question, StringComparison.Ordinal);
+            var answerPosition = faq.IndexOf(answer, StringComparison.Ordinal);
+            Assert.True(questionPosition > lastQuestionPosition);
+            Assert.True(answerPosition > lastAnswerPosition);
+            lastQuestionPosition = questionPosition;
+            lastAnswerPosition = answerPosition;
+        }
+        Assert.DoesNotContain("Respuesta pendiente de revisión editorial", faq);
     }
 
     [Theory]
@@ -152,7 +302,14 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
         Assert.Equal(expectedHash, Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant());
         var pages = await Task.WhenAll(new[] { "ai-lens", "myolens", "aiwork" }
             .Select(slug => client.GetStringAsync($"/lentes/{slug}")));
-        Assert.Contains(pages, html => html.Contains($"/media/figma/{file}"));
+        if (file is "40da9.png" or "c2edd.png" or "66c80.png")
+        {
+            // Original photographs stay immutable; only the hero now uses its full 2x export.
+            var product = Assert.Single(factory.Services.GetRequiredService<SiteContent>().PremiumProducts.Values, p => p.Hero.File == file);
+            Assert.Contains(pages, html => html.Contains($"/media/products/banners/{product.Slug}-2x.webp"));
+        }
+        else
+            Assert.Contains(pages, html => html.Contains($"/media/figma/{file}"));
     }
 
     [Theory]
@@ -175,6 +332,18 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
         var css = await client.GetStringAsync("/css/premium.css");
         Assert.DoesNotContain(".premium-brand img { width:", css);
         Assert.DoesNotContain(".premium-benefit-icon img { width:", css);
+    }
+
+    [Fact]
+    public async Task PremiumHeroGradientsReachTheBottomWithoutExposingAnImageStrip()
+    {
+        var css = await client.GetStringAsync("/css/premium.css");
+        var sharedOverlay = Regex.Match(css, @"(?m)^\.premium-hero::after\s*\{[^}]+\}").Value;
+        var aiLensOverlay = Regex.Match(css, @"\.premium-product--ai-lens \.premium-hero::after\s*\{[^}]+\}").Value;
+
+        Assert.Contains("inset: auto 0 0;", sharedOverlay);
+        Assert.Contains("height: 263.25px;", sharedOverlay);
+        Assert.Contains("height: 223px;", aiLensOverlay);
     }
 
     [Fact]

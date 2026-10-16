@@ -1,6 +1,6 @@
 /* Verified First-only geometry. Later user-supplied FAQ copy is tracked separately. */
-.progressive-product--first .prg-hero { height: 761px; }
-.progressive-product--first .prg-hero-art > img { width: 1500px; height: 826px; left: calc(50% - 780px); top: -65px; object-fit: fill; }
+.progressive-product--first .prg-hero { --prg-frame-height: 761; --prg-banner-width: 1500; --prg-banner-height: 826; --prg-banner-x: -60; --prg-banner-y: -65; --prg-copy-x: 755; --prg-copy-y: 235; }
+.progressive-product--first .prg-hero-art > img { object-fit: fill; object-position: center bottom; }
 .progressive-product--first .prg-hero-copy { left: calc(50% + 35px); top: 235px; width: 524px; gap: 16px; }
 .prg-first-logotype { display: block; position: relative; width: 224.287px; height: 100.517px; }
 .prg-first-logotype img { position: absolute; display: block; max-width: none; }
@@ -42,6 +42,5 @@
     .progressive-product--first .prg-gallery { height: auto; }
     .progressive-product--first .prg-details, .progressive-product--first .prg-technologies, .progressive-product--first .prg-faq { min-height: auto; }
 }
-
 
 .progressive-product--first .prg-faq .accordion-body { font-size: 14px; line-height: 24px; }

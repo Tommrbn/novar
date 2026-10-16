@@ -33,7 +33,7 @@ function fixture(hash = '', availableCount = 7) {
     document.querySelector = () => root;
     document.getElementById = id => panels.find(panel => panel.id === id);
     const events = {};
-    const window = { location: { hash }, addEventListener: (type, callback) => { events[type] = callback; } };
+    const window = { NovarText: (_key, fallback) => fallback, location: { hash }, addEventListener: (type, callback) => { events[type] = callback; } };
     const history = { entries: [], pushState(_state, _unused, value) { this.entries.push(value); window.location.hash = value; } };
     vm.runInNewContext(source, { document, window, history, requestAnimationFrame: callback => callback() });
     const fire = (tab, type, extras = {}) => {

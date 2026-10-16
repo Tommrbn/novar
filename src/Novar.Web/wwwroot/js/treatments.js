@@ -9,7 +9,7 @@
     if (!tabs.length || panels.some(panel => !panel)) return;
 
     list.setAttribute('role', 'tablist');
-    list.setAttribute('aria-label', 'Tratamientos disponibles');
+    list.setAttribute('aria-label', window.NovarText('treatments.available', 'Tratamientos disponibles'));
     list.querySelectorAll('li').forEach(item => item.setAttribute('role', 'presentation'));
     navigation.querySelectorAll('button:disabled').forEach(button => {
         button.setAttribute('role', 'tab');

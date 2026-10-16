@@ -64,7 +64,7 @@ public sealed class TriviaTests(WebApplicationFactory<Program> factory) : IClass
         Assert.Contains("id=\"trivia-check\" type=\"button\" class=\"btn btn-novar\" disabled", html);
         Assert.Matches("data-trivia-start[^>]*disabled", html);
         Assert.Contains("Activá JavaScript para responder la Trivia", html);
-        Assert.DoesNotContain("<form", html);
+        Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
         Assert.Contains("no evalúan tu visión ni reemplazan una consulta profesional", html);
     }
 

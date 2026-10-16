@@ -74,6 +74,35 @@ public sealed class HomeRefinementTests(WebApplicationFactory<Program> factory) 
         Assert.Equal("326D18CC868437CF1120336FA4B0FE71D6C81E5E71681966B495DC0B98D2EE25", Convert.ToHexString(SHA256.HashData(bytes)));
     }
 
+    [Theory]
+    [InlineData("accordion-button", "16px")]
+    [InlineData("accordion-body", "13px")]
+    public async Task HomeFaqTypeMatchesLensSizeWithoutShrinkingMobile(string elementClass, string size)
+    {
+        var siteCss = await client.GetStringAsync("/css/site.css");
+        var homeRule = Regex.Match(siteCss, $@"\.home-page \.novar-faq \.{elementClass}\s*\{{[^}}]+\}}").Value;
+        Assert.Contains($"font-size: {size}", homeRule);
+
+        var responsiveCss = await client.GetStringAsync("/css/home-responsive.css");
+        var mobileRule = Regex.Match(responsiveCss, $@"\.home-page \.novar-faq \.{elementClass}\s*\{{[^}}]+\}}").Value;
+        Assert.Contains("font-size: 16px", mobileRule);
+    }
+
+    [Theory]
+    [InlineData("button:hover")]
+    [InlineData("[role=\"button\"]:hover")]
+    [InlineData(".btn:hover")]
+    [InlineData(".world-cta:hover")]
+    [InlineData(".card-cta:hover")]
+    public async Task ButtonHoverStylesDoNotUnderlineLabels(string selector)
+    {
+        var css = await client.GetStringAsync("/css/site.css");
+        var rules = Regex.Matches(css, @"(?<selectors>[^{}]+)\{(?<body>[^{}]+)\}");
+        Assert.Contains(rules.Cast<Match>(), rule =>
+            rule.Groups["selectors"].Value.Split(',').Any(item => item.Trim() == selector)
+            && Regex.IsMatch(rule.Groups["body"].Value, @"text-decoration:\s*none\s*;"));
+    }
+
     [Fact]
     public async Task ScopedStylesKeepExactCtaAndLayeredGradientWithoutClippingCollage()
     {
@@ -104,7 +133,7 @@ public sealed class HomeRefinementTests(WebApplicationFactory<Program> factory) 
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/"));
         Assert.Contains("data-home-annotations-revision=\"home-annotations-v1\"", html);
-        Assert.Contains("<a class=\"hero-next\" href=\"#encontra\" aria-label=\"Descubrir los lentes\"><img src=\"/media/figma/9e5ee.svg\" alt=\"\" width=\"36\" height=\"18\" /></a>", html);
+        Assert.Contains("<a class=\"hero-next\" href=\"#encontra\" aria-label=\"Descubrir los lentes\"><img src=\"/media/figma/9e5ee.svg\" alt=\"\" width=\"52.6\" height=\"44.6\" /></a>", html);
         Assert.Contains("<a class=\"card-cta myofix-card-link\" href=\"https://www.novarmyofix.com/\" aria-label=\"Descubrí más sobre MyoFix\">", html);
         Assert.Single(Regex.Matches(html, "https://www\\.novarmyofix\\.com/"));
         Assert.DoesNotContain("Muestra para revisión: conocé Novar First", html);
@@ -150,18 +179,47 @@ public sealed class HomeRefinementTests(WebApplicationFactory<Program> factory) 
         }
 
         var premiumCss = await client.GetStringAsync("/css/premium.css");
-        var expanded = Regex.Match(premiumCss, @"\.premium-faq \.accordion-button:not\(\.collapsed\)\s*\{[^}]+\}").Value;
-        Assert.Contains("min-height: 68px", expanded);
-        Assert.Contains("padding: 18px 24px", expanded);
-        Assert.Contains("font-size: 16px", expanded);
-        Assert.Contains("font-weight: 400", expanded);
-        Assert.Contains("line-height: 2.1", expanded);
+        var button = Regex.Match(premiumCss, @"\.premium-faq \.accordion-button\s*\{[^}]+\}").Value;
+        Assert.Contains("min-height: 68px", button);
+        Assert.Contains("padding: 18px 24px", button);
+        Assert.Contains("font-size: 16px", button);
+        Assert.Contains("font-weight: 400", button);
+        Assert.Contains("line-height: 2.1", button);
 
         var siteCss = await client.GetStringAsync("/css/site.css");
+        Assert.Contains(".hero-next { position: absolute; right: 7%; bottom: 32px; display: grid; place-items: center; width: 44px; height: 44px;", siteCss);
+        Assert.Contains(".hero-next img { display: block; width: 52.6px; height: 44.6px; max-width: none; }", siteCss);
+        var sophiaPill = Regex.Match(siteCss, @"\.sophia-label\s*\{[^}]+\}").Value;
+        Assert.Contains("width: min(479.417px, 100%)", sophiaPill);
+        Assert.Contains("font-size: clamp(10px, 1.528vw, 22px); font-weight: 200", sophiaPill);
+        Assert.Contains("border: 1.833px solid transparent", sophiaPill);
+        Assert.Contains("position: relative; isolation: isolate", sophiaPill);
+        Assert.Contains("background: #d9d9d933", sophiaPill);
+        Assert.DoesNotContain("background: linear-gradient", sophiaPill);
+        Assert.Contains(".sophia-actions .btn-outline-novar { --bs-btn-hover-color: var(--ink); --bs-btn-hover-bg: #fff", siteCss);
         Assert.Contains(".treatment-copy { text-align: center; padding: clamp(", siteCss);
-        Assert.Contains("@supports (backdrop-filter: blur(12px))", siteCss);
+        var treatmentCopy = Regex.Match(siteCss, @"\.treatment-copy\s*\{[^}]+\}").Value;
+        Assert.DoesNotContain("border:", treatmentCopy);
+        Assert.DoesNotContain("background:", treatmentCopy);
+        Assert.DoesNotContain("box-shadow:", treatmentCopy);
+        Assert.DoesNotContain("backdrop-filter:", treatmentCopy);
         Assert.Contains(".treatment-copy { padding: clamp(24px, 3vw, 36px)", siteCss);
         Assert.Contains(".treatment-copy { padding: 24px 18px; }", siteCss);
+        var treatmentBadge = Regex.Match(siteCss, @"\.treatment-copy \.eyebrow\s*\{[^}]+\}").Value;
+        Assert.Contains("width: 148.402px; height: 37.496px", treatmentBadge);
+        Assert.Contains("border: 2.076px solid transparent", treatmentBadge);
+        Assert.Contains("font-weight: 200", treatmentBadge);
+        Assert.Contains("background: #d9d9d933", treatmentBadge);
+        Assert.DoesNotContain("linear-gradient", treatmentBadge);
+        var pillBorder = Regex.Match(siteCss, @"\.sophia-label::before, \.treatment-copy \.eyebrow::before\s*\{[^}]+\}").Value;
+        Assert.NotEmpty(pillBorder);
+        Assert.Contains("z-index: -1", pillBorder);
+        Assert.Contains("padding: 1.833px", pillBorder);
+        Assert.Contains("#1f023c 100%", pillBorder);
+        Assert.Contains("mask-composite: exclude", pillBorder);
+        Assert.Contains("-webkit-mask-composite: xor", pillBorder);
+        Assert.Contains("pointer-events: none", pillBorder);
+        Assert.Contains(".treatment-copy .eyebrow::before { padding: 2.076px; }", siteCss);
         Assert.Contains(".sophia-selection-marker img { display: block; width: 22px; height: auto", siteCss);
         Assert.Contains(".sophia-questions.is-enhanced li.sophia-glint::after", siteCss);
         Assert.Contains("transition: transform 480ms", siteCss);

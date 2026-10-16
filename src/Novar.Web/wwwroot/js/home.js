@@ -108,7 +108,7 @@
     }
     listen(toggle, 'click', () => {
         userPaused = !userPaused;
-        toggle.textContent = userPaused ? 'Reanudar preguntas' : 'Pausar preguntas';
+        toggle.textContent = window.NovarText(userPaused ? 'home.resumeQuestions' : 'home.pauseQuestions', userPaused ? 'Reanudar preguntas' : 'Pausar preguntas');
         rotation.setBlocked('user', userPaused);
     });
     listen(root, 'animationend', event => {

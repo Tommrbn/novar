@@ -1,0 +1,239 @@
+{
+  "sourceNode": "961:9641",
+  "titleLead": "Você sabia que pode",
+  "titleStrong": "potencializar suas lentes?",
+  "intro": [
+    {
+      "text": "Os "
+    },
+    {
+      "text": "tratamentos",
+      "emphasis": true
+    },
+    {
+      "text": " para lentes oftálmicas são "
+    },
+    {
+      "text": "tecnologias avançadas",
+      "emphasis": true
+    },
+    {
+      "text": " aplicadas às superfícies das lentes para melhorar sua "
+    },
+    {
+      "text": "funcionalidade",
+      "emphasis": true
+    },
+    {
+      "text": " , "
+    },
+    {
+      "text": "durabilidade",
+      "emphasis": true
+    },
+    {
+      "text": " e "
+    },
+    {
+      "text": "conforto",
+      "emphasis": true
+    },
+    {
+      "text": " visual"
+    }
+  ],
+  "heroImage": "74f40.png",
+  "tabs": [
+    {
+      "id": "uv",
+      "label": "Proteção UV",
+      "available": true
+    },
+    {
+      "id": "blue-tech",
+      "label": "Blue Tech",
+      "available": true
+    },
+    {
+      "id": "antirraya",
+      "label": "Antirrisco",
+      "available": true
+    },
+    {
+      "id": "polarizado",
+      "label": "Polarizado",
+      "available": true
+    },
+    {
+      "id": "hidrofobico",
+      "label": "Hidrofóbico",
+      "available": true
+    },
+    {
+      "id": "fotosensible",
+      "label": "Fotossensível",
+      "available": true
+    },
+    {
+      "id": "ilux",
+      "label": "Antirreflexo",
+      "available": true
+    }
+  ],
+  "details": [
+    {
+      "id": "uv",
+      "sourceNode": "961:9647",
+      "name": "Proteção UV",
+      "description": "As lentes NOVAR ajudam a reduzir a exposição dos olhos aos raios ultravioleta, oferecendo mais cuidado e conforto visual em atividades ao ar livre e durante a exposição ao sol.",
+      "image": "16fed.png",
+      "benefits": [
+        "Transparente durante o uso",
+        "Bloqueio UV de 100%",
+        "Proteção invisível"
+      ]
+    },
+    {
+      "id": "blue-tech",
+      "sourceNode": "961:9088",
+      "name": "Blue Tech",
+      "description": "A NOVAR BLUE TECH combina, em uma única lente, tecnologia de proteção por reflexão e por absorção em massa para melhorar o desempenho da lente e inibir a luz azul-violeta, que pode causar DMRI e danos prolongados à retina.",
+      "image": "f0cf4.png",
+      "benefits": [
+        "Mais descanso",
+        "Menos cansaço visual",
+        "Ideal para telas"
+      ]
+    },
+    {
+      "id": "antirraya",
+      "sourceNode": "961:9374",
+      "name": "Antirrisco",
+      "description": "Esta tecnologia exclusiva de nanocamada de última geração protege a superfície de lentes oftálmicas contra riscos, abrasões e exposição a produtos químicos domésticos e industriais comuns, como álcool e solventes, que podem degradar seriamente as lentes.",
+      "image": "3dd09.png",
+      "benefits": [
+        "Maior durabilidade",
+        "Superfície mais resistente",
+        "Mantém a nitidez"
+      ]
+    },
+    {
+      "id": "polarizado",
+      "sourceNode": "967:9925",
+      "name": "Polarizado",
+      "description": "ADVENTRA é uma tecnologia antiofuscante que atenua reflexos em superfícies. Ideal para melhorar o contraste e reduzir o ofuscamento em atividades ao ar livre.",
+      "image": "8af8d.png",
+      "benefits": [
+        "Máxima nitidez",
+        "Filtra a luz refletida",
+        "Mais conforto visual ao ar livre"
+      ]
+    },
+    {
+      "id": "hidrofobico",
+      "sourceNode": "961:8801",
+      "name": "Hidrofóbico",
+      "description": "O tratamento hidrofóbico é uma tecnologia avançada aplicada às lentes para repelir a água e evitar que ela grude na superfície. Ele cria uma camada protetora que reduz o acúmulo de gotas, facilitando uma visão nítida mesmo na chuva ou na umidade. Também ajuda a manter as lentes limpas por mais tempo, dificultando a aderência de poeira e sujeira.",
+      "image": "dd2a0.png",
+      "benefits": [
+        "Sempre limpa",
+        "A água não adere",
+        "Mantém a nitidez"
+      ]
+    },
+    {
+      "id": "fotosensible",
+      "sourceNode": "967:10198",
+      "name": "Fotossensível",
+      "description": "Tecnologia adicional que ajuda suas lentes a se adaptarem rapidamente a diferentes ambientes conforme a luz muda. Elas ficam claras em ambientes internos e escurecem quando expostas ao sol.",
+      "image": "23aae.png",
+      "benefits": [
+        "Sempre limpa",
+        "A água não adere",
+        "Mantém a nitidez"
+      ]
+    },
+    {
+      "id": "ilux",
+      "sourceNode": "961:8420",
+      "name": "Tratamento antirreflexo iLUX",
+      "description": "O tratamento antirreflexo reduz reflexos incômodos na superfície das lentes, melhorando a nitidez visual e a aparência. É ideal para quem trabalha diante de telas, dirige à noite ou deseja enxergar com mais nitidez em diferentes condições de iluminação. Também reduz o ofuscamento e melhora a transmissão de luz, proporcionando uma experiência visual mais confortável e relaxante.",
+      "image": "b6e78.png",
+      "benefits": [
+        "Maior durabilidade",
+        "Superfície mais resistente",
+        "Mantém a nitidez"
+      ]
+    }
+  ],
+  "comparisonLabel": "Comparação",
+  "comparisonTitle": "O que cada tratamento faz?",
+  "comparison": [
+    {
+      "number": "01",
+      "name": "Proteção UV",
+      "description": "Bloqueia os raios ultravioleta do sol.",
+      "benefits": [
+        "Bloqueio UV de 100%",
+        "Transparente durante o uso"
+      ]
+    },
+    {
+      "number": "02",
+      "name": "Blue Tech",
+      "description": "Reduz o cansaço causado pela luz azul das telas.",
+      "benefits": [
+        "Menos cansaço visual",
+        "Ideal para telas"
+      ]
+    },
+    {
+      "number": "03",
+      "name": "Antirrisco",
+      "description": "Protege a superfície da sua lente.",
+      "benefits": [
+        "Maior durabilidade",
+        "Superfície mais resistente"
+      ]
+    },
+    {
+      "number": "04",
+      "name": "Polarizado",
+      "description": "Reduz o ofuscamento.",
+      "benefits": [
+        "Transição automática",
+        "Proteção UV incluída"
+      ]
+    },
+    {
+      "number": "05",
+      "name": "Hidrofóbico",
+      "description": "Repele a água.",
+      "benefits": [
+        "Fácil de limpar",
+        "Menos manchas"
+      ]
+    },
+    {
+      "number": "06",
+      "name": "Fotossensível",
+      "description": "Adapta-se à luz.",
+      "benefits": [
+        "Escurece ao ar livre",
+        "Clareia em ambientes internos"
+      ]
+    },
+    {
+      "number": "07",
+      "name": "Antirreflexo",
+      "description": "Reduz reflexos incômodos.",
+      "benefits": [
+        "Mais nitidez",
+        "12 camadas"
+      ]
+    }
+  ],
+  "sophiaTitle": "Não sabe qual escolher?",
+  "sophiaDescription": "Converse com a Sophia; ela ajuda você a combinar os tratamentos ideais para a sua rotina.",
+  "sophiaAction": "Falar com a Sophia"
+}

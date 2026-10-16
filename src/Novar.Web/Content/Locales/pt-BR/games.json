@@ -1,0 +1,163 @@
+{
+  "sourceNode": "961:7324",
+  "titleLead": "Escolha um cartão e descubra",
+  "titleRest": "como está a sua visão",
+  "subtitleLead": "Desafios interativos para explorar sua percepção,",
+  "subtitleRest": "foco e resposta visual.",
+  "cards": [
+    {
+      "id": "codigo",
+      "number": "02/",
+      "badge": "Percepção",
+      "title": "CÓDIGO VISUAL",
+      "description": "Encontre o número escondido entre os pontos coloridos.",
+      "featured": false
+    },
+    {
+      "id": "intruso",
+      "number": "01/",
+      "badge": "Destaque",
+      "title": "INTRUSO CROMÁTICO",
+      "description": "Encontre a cor diferente em uma grade de pontos semelhantes.",
+      "featured": true
+    },
+    {
+      "id": "trivia",
+      "number": "03/",
+      "badge": "Conhecimento",
+      "title": "QUIZ",
+      "description": "Responda a perguntas sobre saúde visual e óptica.",
+      "featured": false
+    }
+  ],
+  "howEyebrow": "Como funciona?",
+  "howTitle": "Desafios para exercitar sua atenção",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Escolha um jogo",
+      "description": "Selecione o tipo de desafio visual que deseja explorar."
+    },
+    {
+      "number": "02",
+      "title": "Jogue cinco rodadas",
+      "description": "Responda no seu ritmo e preste atenção aos detalhes."
+    },
+    {
+      "number": "03",
+      "title": "Confira sua pontuação",
+      "description": "É um resultado recreativo: não avalia sua visão."
+    }
+  ],
+  "previewTitle": "Intruso Cromático",
+  "roundLabel": "Rodada 1 de 5",
+  "scoreLabel": "Pontuação: 0",
+  "previewInstruction": "Encontre a cor diferente entre os 9 quadrados",
+  "demoNotice": "Desafio recreativo. A pontuação não avalia sua visão.",
+  "trivia": {
+    "title": "Trivia",
+    "disclaimer": "Quiz educativo. Os acertos indicam respostas corretas, mas não avaliam sua visão nem substituem uma consulta profissional.",
+    "questions": [
+      {
+        "question": "Quantas vezes piscamos aproximadamente por minuto?",
+        "options": [
+          "2–5 vezes",
+          "10–20 vezes",
+          "30–40 vezes",
+          "Mais de 60 vezes"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "O que costuma acontecer com as piscadas quando você olha para uma tela por muito tempo?",
+        "options": [
+          "Aumentam bastante",
+          "Diminuem",
+          "Não mudam",
+          "Paramos de piscar completamente"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Qual parte do olho determina principalmente sua cor?",
+        "options": [
+          "A retina",
+          "A córnea",
+          "A íris",
+          "A pupila"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "A pupila é realmente uma parte preta do olho?",
+        "options": [
+          "Sim, é um tecido preto",
+          "Não, é uma abertura por onde a luz entra",
+          "É um músculo",
+          "É parte da retina"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Qual cor de olhos costuma ser mais sensível ao ofuscamento?",
+        "options": [
+          "Olhos claros",
+          "Olhos escuros",
+          "Somente olhos verdes",
+          "A cor não influencia em nada"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Qual hábito está associado a um menor risco de desenvolver ou agravar a miopia na infância?",
+        "options": [
+          "Ler com pouca luz",
+          "Passar mais tempo ao ar livre",
+          "Usar o celular com brilho baixo",
+          "Usar óculos de sol dentro de casa"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "O que acontece com sua pupila quando você entra em um lugar escuro?",
+        "options": [
+          "Ela fica menor",
+          "Ela dilata",
+          "Ela muda de cor",
+          "Não mudam"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Qual destas situações pode contribuir para o cansaço visual diante de uma tela?",
+        "options": [
+          "Olhar de perto por muito tempo",
+          "Piscar menos",
+          "Não fazer pausas visuais",
+          "Todas as alternativas"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "Se você enxerga perfeitamente de longe, isso significa que sua visão está 100% perfeita?",
+        "options": [
+          "Sim",
+          "Não necessariamente",
+          "Somente se você tiver menos de 40 anos",
+          "Sim, desde que não use óculos"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "BÔNUS: qual porcentagem das informações do ambiente costuma ser atribuída à visão?",
+        "options": [
+          "10%",
+          "30%",
+          "50%",
+          "Esta pergunta é uma pegadinha: não existe uma porcentagem universal estabelecida cientificamente"
+        ],
+        "correctIndex": 3
+      }
+    ]
+  }
+}

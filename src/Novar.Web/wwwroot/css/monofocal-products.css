@@ -5,9 +5,8 @@
 .monofocales-page .navbar-brand { margin: 0 48px 0 12px; }
 .monofocales-page .navbar-brand img, .monofocales-page .language img { max-width: none; }
 .monofocales-page .navbar-nav { gap: 10px; margin: 0 !important; }
-.monofocales-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; font-weight: 400; color: #000; }
-.monofocales-page .navbar .nav-item:first-child .nav-link { font-weight: 600; color: #1f023c; }
-.monofocales-page .navbar .nav-link[aria-current="page"] { font-weight: 700; }
+.monofocales-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; font-family: Poppins, sans-serif; font-weight: 400; color: #000; }
+.monofocales-page .navbar .nav-link[aria-current="page"] { font-weight: 600; color: #1f023c; }
 .monofocales-page .language { gap: 5.571px; margin-left: auto; padding: 8px 16px; background: #1d023b; color: #f6f5f7; font-size: 12.998px; line-height: 18.569px; letter-spacing: .325px; }
 .monofocal-product { overflow: clip; color: #1f023c; background: #f9f8fb; }
 .monofocal-product h1, .monofocal-product h2, .monofocal-product p { margin: 0; }
@@ -65,12 +64,13 @@
 .mono-gallery h2 { height: 84.764px; display: flex; gap: .15em; align-items: center; justify-content: center; font-size: 39.425px; font-weight: 400; line-height: 39.425px; letter-spacing: -1.1828px; }
 .mono-gallery h2 strong { font-weight: 600; }
 .mono-gallery h2 img { align-self: flex-start; margin: 26px -3px 0 -7px; max-width: none; }
-.mono-gallery-images { width: 1490px; margin: -33.754px auto 0; position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 305.364px 344.462px 344.462px 305.364px; gap: 63.37px; }
+/* One centering mechanism, shared by the static and animated layouts in all five pages. */
+.mono-gallery-images { width: 1490px; margin: -33.754px 0 0; position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 305.364px 344.462px 344.462px 305.364px; gap: 63.37px; }
 .mono-gallery-images > div { position: relative; height: 388.952px; margin-top: 71.45px; border-radius: 25.504px; overflow: hidden; }
 .mono-gallery-images > div:first-child, .mono-gallery-images > div:last-child { height: 345.136px; margin-top: 0; filter: blur(1.5px); opacity: .5; }
 .mono-gallery-images img { width: 100%; height: 100%; object-fit: cover; max-width: none; }
-.monofocal-product--single-vision .mono-gallery-images > div:last-child img { position: absolute; height: 246.34%; width: 156.68%; left: -34.7%; top: -123.18%; }
-.monofocal-product--indoor .mono-gallery-images > div:last-child img { position: absolute; height: 132.7%; left: 0; top: -16.35%; }
+.mono-gallery-images > [data-gallery-image="bef02.png"] img { position: absolute; height: 246.34%; width: 156.68%; left: -34.7%; top: -123.18%; object-fit: fill; }
+.mono-gallery-images > [data-gallery-image="1bc17.png"] img { position: absolute; height: 132.7%; left: 0; top: -16.35%; object-fit: fill; }
 
 .mono-treatments { min-height: 339.13px; padding: 74.275px 24px; text-align: center; background: linear-gradient(180deg, #f9f8fb 0%, #ede8f8 60%, #f9f8fb 100%); }
 .mono-treatments h2 { font-size: 33.424px; font-weight: 300; line-height: 36.766px; letter-spacing: normal; color: #1a1228; }
@@ -103,10 +103,6 @@
 .monofocal-product--indoor .mono-details figcaption { transform: scaleX(-1); }
 
 .mono-technologies { position: relative; height: 345.72px; padding-top: 73.47px; }
-.mono-watermark { position: absolute; top: -35px; right: -150px; white-space: pre-line; font-size: 280px; font-weight: 400; line-height: .93; letter-spacing: -8.4px; background: linear-gradient(90deg, rgb(31 2 60 / 5%), rgb(123 123 128 / 5%)); color: transparent; background-clip: text; }
-.monofocal-product--single-vision .mono-watermark { top: -140px; right: -165px; }
-.monofocal-product--outdoor .mono-watermark { top: -110px; right: -150px; }
-.monofocal-product--slim .mono-watermark { top: -70px; right: -80px; }
 .mono-technology-scroll { display: flex; gap: 23.05px; overflow-x: auto; scrollbar-width: thin; padding: 0 4px 8px; margin-left: max(20px, calc((100% - 1264px) / 2)); scroll-snap-type: x proximity; }
 .mono-technology-card { position: relative; flex: 0 0 616.63px; min-height: 218.399px; padding: 47.35px 43.79px 14px; border: 1.5px solid #fafafa; border-top: 7.501px solid #1f023c; border-radius: 11.252px; background: rgb(217 217 217 / 20%); box-shadow: 0 3px 3px rgb(0 0 0 / 25%); scroll-snap-align: start; }
 .mono-technology-card:nth-child(2) { border-top-color: #3d1a7a; }
@@ -115,7 +111,14 @@
 .mono-technology-card p { margin-top: 21.027px; color: rgb(1 21 44 / 65%); font-size: 15.002px; line-height: 18.753px; letter-spacing: -.4501px; }
 .mono-technology-card:first-child p { max-width: 481.555px; }
 .monofocal-product--outdoor .mono-technologies { padding-top: 61px; }
-.monofocal-product--slim .mono-technologies { padding-top: 27.08px; }
+.monofocal-product--slim .mono-technologies { height: auto; min-height: 345.72px; padding: 27.08px 0 90px; }
+/* Slim has three technologies: center the complete row instead of inheriting the two-card offset. */
+.monofocal-product--slim .mono-technology-scroll { width: min(1904px, calc(100% - 48px)); margin-inline: auto; padding-inline: 4px; }
+.monofocal-product--slim .mono-technology-card h2 { line-height: 1.25; }
+@media (min-width: 1200px) {
+    .monofocal-product--slim .mono-technology-scroll { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .monofocal-product--slim .mono-technology-card { min-width: 0; }
+}
 
 .mono-benefits { background: #f3f3f3; min-height: 483px; padding: 74px 0 93px; border-radius: 13px; }
 .mono-benefits h2, .mono-faq h2 { margin: 14px 0 18px; font-size: 44px; font-weight: 300; line-height: 1.12; letter-spacing: normal; }
@@ -136,13 +139,24 @@
 .mono-contact p { margin-top: 10px; font-size: 16px; color: #6d6874; }
 .mono-contact .mono-button { flex-shrink: 0; padding: 16px 28px; font-size: 13px; line-height: 20px; background: #3d1a7a; }
 .mono-related { padding-top: 39.37px; }
-.mono-related h2 { max-width: 1343px; height: 24.754px; margin: 0 auto 28.246px; font-size: 22.504px; font-weight: 600; line-height: 18.753px; letter-spacing: -.6751px; color: #000; }
-.mono-related-images { position: relative; left: calc(50% + 5px); transform: translateX(-50%); width: 1480px; display: grid; grid-template-columns: repeat(4, 370px); height: 286px; }
-.mono-related-images > a { display: block; position: relative; overflow: hidden; }
-.mono-related-images img { position: absolute; max-width: none; width: 100%; height: 100%; object-fit: cover; }
-.mono-related-images > a:first-child img { height: 129.37%; left: .07%; top: .03%; }
-.mono-related-images > a:nth-child(2) img { height: 160.49%; width: 234.12%; left: -67.15%; top: -9.72%; }
-.mono-related-images a:focus-visible { outline-offset: -6px; }
+.mono-related h2 { max-width: 1343px; height: 24.754px; margin: 0 auto 28.246px; font-size: 22.504px; font-weight: 600; line-height: 18.753px; letter-spacing: -.6751px; color: rgb(0 0 0 / 90%); }
+/* Full-bleed like Progresivos, scaling the original 370 × 286 crops together. */
+.mono-related-images { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mono-related-images > a { position: relative; display: block; min-width: 0; aspect-ratio: 370 / 286; overflow: hidden; color: #1f023c; text-decoration: none; }
+.mono-related-images img { display: block; position: absolute; inset: 0; max-width: none; width: 100%; height: 100%; object-fit: cover; }
+.mono-related-images [data-related-product="outdoor"] img { left: .07%; top: .03%; height: 129.37%; object-fit: fill; }
+.mono-related-images [data-related-product="single-vision"] img { left: -67.15%; top: -9.72%; width: 234.12%; height: 160.49%; object-fit: fill; }
+.mono-related-images span { font-size: 16px; line-height: 24px; font-weight: 600; text-align: center; }
+.mono-related-images a:focus-visible { outline: 3px solid #6b5a8a; outline-offset: -4px; }
+
+/* Geo keeps its partial; shared motion for all products lives in product-presentation.css. */
+.monofocal-product--geo .mono-gallery.is-enhanced .mono-gallery-images { display: block; height: 460.412px; }
+.monofocal-product--geo .mono-gallery.is-enhanced .mono-gallery-images > div { position: absolute; left: 0; top: 0; margin: 0; }
+.mono-gallery-controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 22px 16px 0; }
+.mono-gallery-controls[hidden] { display: none; }
+.mono-gallery-controls button { min-width: 44px; min-height: 44px; padding: 8px 14px; border: 1px solid #6b5a8a; border-radius: 24px; background: #fbfbfd; color: #1f023c; font: inherit; font-size: 14px; }
+.mono-gallery-controls button:hover { background: #ede8f8; }
+.mono-gallery-controls button:focus-visible { outline: 3px solid #6b5a8a; outline-offset: 3px; }
 
 .mono-footer { min-height: 590.703px; padding: 125.903px 0 80px; background: #fbfbfd; }
 .mono-footer-inner { position: relative; left: -12px; width: min(1134px, 100%); margin-inline: auto; padding-inline: 24px; }
@@ -239,8 +253,8 @@
     .mono-detail-photo { height: auto; aspect-ratio: 672 / 430; }
     .mono-details figcaption { font-size: 10px; }
     .mono-technologies, .monofocal-product--outdoor .mono-technologies, .monofocal-product--slim .mono-technologies { height: auto; padding: 80px 0; }
-    .mono-watermark { font-size: 140px; top: 0 !important; }
     .mono-technology-scroll { margin-left: 20px; padding-right: 20px; }
+    .monofocal-product--slim .mono-technology-scroll { width: calc(100% - 40px); }
     .mono-technology-card { flex-basis: min(85vw, 616.63px); padding: 32px 24px; }
     .mono-technology-card h2 { line-height: 1.2; }
     .mono-technology-card p { line-height: 1.4; }
@@ -254,8 +268,9 @@
     .mono-faq .accordion-button { line-height: 1.65; }
     .mono-contact { padding: 55px 24px; flex-direction: column; align-items: flex-start; }
     .mono-related h2 { height: auto; font-size: 18px; margin-bottom: 25px; }
-    .mono-related-images { left: auto; transform: none; width: 100%; height: 240px; display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
-    .mono-related-images > a { flex: 0 0 240px; scroll-snap-align: start; }
+    .mono-related-images { display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
+    .mono-related-images > a { flex: 0 0 min(85vw, 370px); scroll-snap-align: start; }
+    .monofocal-product--geo .mono-gallery.is-enhanced .mono-gallery-images { height: 265px; }
     .mono-footer { padding: 70px 0 50px; min-height: auto; }
     .mono-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; min-height: auto; }
     .mono-footer-logo { width: 120px; }

@@ -1,0 +1,454 @@
+[
+  {
+    "name": "Precisa",
+    "slug": "precisa",
+    "sourceNode": "974:621",
+    "wordmark": "precisa-wordmark.svg",
+    "wordmarkNode": "974:653",
+    "hero": "17cde-precisa-original.png",
+    "heroUnderlay": null,
+    "subtitle": "Equilíbrio visual para cada momento do dia",
+    "description": "Lente progressiva equilibrada para quem precisa enxergar com conforto em diferentes distâncias e realizar diversas tarefas com naturalidade.",
+    "tagline": "Visão equilibrada",
+    "introHeading": "Uma experiência progressiva confortável e versátil.",
+    "introEyebrow": "VISÃO EQUILIBRADA",
+    "intro": "A Novar Precisa acompanha a rotina diária com uma distribuição equilibrada da visão para longe, intermediário e perto.",
+    "scene": "9e69b.png",
+    "icons": [
+      {
+        "file": "precisa-balance.svg",
+        "label": "Visão equilibrada"
+      },
+      {
+        "file": "201ad.svg",
+        "label": "Leitura confortável"
+      },
+      {
+        "file": "f6349.svg",
+        "label": "Conforto diário"
+      }
+    ],
+    "gallery": [
+      "d96bc.png",
+      "817a6.png",
+      "15959.png",
+      "4eb31.png"
+    ],
+    "galleryName": "Precisa",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "details": "É uma solução pensada para quem busca conforto, boa área de leitura e adaptação natural.",
+    "design": "Lente progressiva.",
+    "idealFor": "Pessoas que buscam uma opção equilibrada para o dia a dia.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "detail": "b08fa.png",
+    "tags": [
+      "Visão equilibrada",
+      "Leitura confortável",
+      "Conforto diário"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "A Continuum Design Technology ajuda a otimizar a superfície da lente para melhorar a definição óptica e os campos visuais, elevando a qualidade da experiência com lentes progressivas."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Média / Alta"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Média / Alta"
+      },
+      {
+        "label": "Perto",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Precisa?",
+        "answer": "É uma lente progressiva equilibrada, pensada para quem busca conforto visual em diferentes atividades."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem busca uma solução versátil para ler, trabalhar, se movimentar e enxergar de longe."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Seu equilíbrio entre distâncias e uma área de leitura mais confortável."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Precisa Short",
+    "slug": "precisa-short",
+    "sourceNode": "982:221",
+    "wordmark": "precisa-short-wordmark.svg",
+    "wordmarkNode": "982:253",
+    "hero": "17cde.png",
+    "heroUnderlay": "aee00.png",
+    "subtitle": "Conforto progressivo para armações pequenas",
+    "description": "Lente progressiva equilibrada, adaptada a armações menores, com conforto para longe, intermediário e perto.",
+    "tagline": "Visão equilibrada",
+    "introHeading": "Uma experiência progressiva confortável e versátil.",
+    "introEyebrow": "VISÃO EQUILIBRADA",
+    "intro": "A Novar Precisa acompanha a rotina diária com uma distribuição equilibrada da visão para longe, intermediário e perto.",
+    "scene": "074f6.png",
+    "icons": [
+      {
+        "file": "5c77c.svg",
+        "label": "Design compacto"
+      },
+      {
+        "file": "ea641.svg",
+        "label": "Liberdade de armação"
+      },
+      {
+        "file": "8e7db.svg",
+        "label": "Conforto diário"
+      }
+    ],
+    "gallery": [
+      "71816.png",
+      "6691a.png",
+      "ec626.png",
+      "d3bf6.png"
+    ],
+    "galleryName": "Precisa short",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "details": "É uma solução pensada para quem busca conforto, boa área de leitura e adaptação natural.",
+    "design": "Lente progressiva.",
+    "idealFor": "Pessoas que buscam uma opção equilibrada para o dia a dia.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "detail": "d9782.png",
+    "tags": [
+      "Visão equilibrada",
+      "Leitura confortável",
+      "Conforto diário"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "A Continuum Design Technology ajuda a otimizar a superfície da lente para melhorar a definição óptica e os campos visuais, elevando a qualidade da experiência com lentes progressivas."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Média / Alta"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Média / Alta"
+      },
+      {
+        "label": "Perto",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Precisa?",
+        "answer": null
+      },
+      {
+        "question": "Para quem é indicado Novar Precisa?",
+        "answer": null
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Seu equilíbrio entre distâncias e uma área de leitura mais confortável."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Evolution",
+    "slug": "evolution",
+    "sourceNode": "964:2655",
+    "wordmark": "evolution-wordmark.svg",
+    "wordmarkNode": "964:2780",
+    "hero": "05e7f.png",
+    "heroUnderlay": null,
+    "subtitle": "Uma experiência progressiva mais ampla, nítida e avançada.",
+    "description": "Lente progressiva para quem busca campo visual mais amplo, nitidez e conforto em todas as distâncias.",
+    "tagline": "Visão exclusiva.",
+    "introHeading": "Mais campo visual para uma experiência superior.",
+    "introEyebrow": "VISÃO EXCLUSIVA",
+    "intro": "A Novar Evolution foi pensada para quem busca uma lente progressiva de alto desempenho. Seu design oferece campos visuais mais amplos e uma percepção mais nítida de objetos próximos e distantes.",
+    "scene": "b12ec.png",
+    "icons": [
+      {
+        "file": "563c0.svg",
+        "label": "Mais nitidez"
+      },
+      {
+        "file": "31808.svg",
+        "label": "Campo visual ampliado."
+      },
+      {
+        "file": "a08d8.svg",
+        "label": "Conforto premium"
+      }
+    ],
+    "gallery": [
+      "5aa06.png",
+      "2b637.png",
+      "1159e.png",
+      "7c4d9.png"
+    ],
+    "galleryName": "Evolution",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "details": "A Novar Geo foi desenvolvida para reduzir aberrações e melhorar a qualidade visual em diferentes posições do olhar. Uma opção monofocal avançada para quem busca mais precisão no dia a dia.",
+    "design": "Lente progressiva premium.",
+    "idealFor": "Pessoas que buscam uma experiência progressiva mais avançada.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™ / Smart Molding Process.",
+    "detail": "e2ed7.png",
+    "tags": [
+      "Maior amplitude",
+      "Mais detalhes",
+      "Mais conforto visual"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      },
+      {
+        "name": "Smart Fit Technology",
+        "description": "Tecnologia que analisa o formato da armação e ajusta de forma inteligente o design da lente, otimizando a redução de espessura para cada modelo. O resultado é um visual mais refinado, lentes mais leves e aparência mais natural."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Alta"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Alta"
+      },
+      {
+        "label": "Perto",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Evolution?",
+        "answer": "É uma lente progressiva premium projetada para oferecer campos visuais amplos e mais nitidez."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem busca uma solução mais avançada e confortável."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Seu conceito premium, com campo visual mais amplo e uma experiência mais refinada."
+      }
+    ],
+    "introEmphasis": [
+      "campos visuais mais amplos e percepção mais nítida"
+    ],
+    "detailEmphasis": [
+      "reduzir aberrações e melhorar a qualidade visual",
+      "opção monofocal"
+    ]
+  },
+  {
+    "name": "Evolution Short",
+    "slug": "evolution-short",
+    "sourceNode": "1002:246",
+    "wordmark": "evolution-short-wordmark.svg",
+    "wordmarkNode": "1002:277",
+    "hero": "05e7f.png",
+    "heroUnderlay": "65030.png",
+    "subtitle": "Máximo desempenho progressivo em armações pequenas",
+    "description": "Lente progressiva premium para quem busca alto desempenho visual em armações compactas.",
+    "tagline": "Visão compacta",
+    "introHeading": "A experiência Evolution adaptada a armações menores",
+    "introEyebrow": "VISÃO COMPACTA",
+    "intro": "A Novar Evolution Short combina tecnologia progressiva avançada com um design pensado para armações pequenas.",
+    "scene": "a3a80.png",
+    "icons": [
+      {
+        "file": "563c0.svg",
+        "label": "Alto desempenho."
+      },
+      {
+        "file": "5c77c.svg",
+        "label": "Formato compacto."
+      },
+      {
+        "file": "ea641.svg",
+        "label": "Estética e precisão"
+      }
+    ],
+    "gallery": [
+      "d2eca.png",
+      "81635.png",
+      "882d7.png",
+      "9790a.png"
+    ],
+    "galleryName": "Evolution Short",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "details": "Uma solução para quem busca qualidade visual premium sem abrir mão do estilo.",
+    "design": "Lente progressiva premium compacta.",
+    "idealFor": "Pessoas exigentes que usam armações pequenas.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "detail": "14e3b.png",
+    "tags": [
+      "Desempenho premium",
+      "Formato compacto"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Média / Alta"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Média / Alta"
+      },
+      {
+        "label": "Perto",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Evolution Short?",
+        "answer": "É a versão compacta da Evolution para armações pequenas."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem busca lentes progressivas premium e prefere armações menores."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Combina alto desempenho visual com liberdade estética para escolher armações menores."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "eLIFE",
+    "slug": "elife",
+    "sourceNode": "974:266",
+    "wordmark": "elife-wordmark.svg",
+    "wordmarkNode": "974:313",
+    "hero": "48fbb.png",
+    "heroUnderlay": null,
+    "subtitle": "Conforto visual para uma vida sempre conectada.",
+    "description": "Lente progressiva projetada para quem alterna constantemente entre telas, leitura, objetos próximos e distâncias intermediárias.",
+    "tagline": "Mais conforto para sua rotina digital.",
+    "introHeading": "Nitidez que acompanha seu ritmo",
+    "introEyebrow": "VISÃO EXCLUSIVA",
+    "intro": "A Novar eLIFE foi projetada para quem passa boa parte do dia diante de telas ou realizando tarefas de perto.",
+    "scene": "5df35.png",
+    "icons": [
+      {
+        "file": "377fc.svg",
+        "label": "Conforto ao usar telas"
+      },
+      {
+        "file": "201ad.svg",
+        "label": "Menos cansaço visual."
+      },
+      {
+        "file": "34d73.svg",
+        "label": "Adaptação rápida e confortável"
+      }
+    ],
+    "gallery": [
+      "c8a26.png",
+      "d941c.png",
+      "1afa3.png",
+      "39b6d.png"
+    ],
+    "galleryName": "eLIFE",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "details": "Seu design otimiza a visão intermediária e próxima, ajudando a reduzir o cansaço visual e melhorar o conforto em atividades digitais.",
+    "design": "Lente progressiva.",
+    "idealFor": "Pessoas que usam telas intensamente e realizam tarefas de perto.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™ / Adaptive Focus Technology.",
+    "detail": "a06b4.png",
+    "tags": [
+      "Conforto ao usar telas",
+      "Visão intermediária otimizada",
+      "Menos cansaço visual."
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      },
+      {
+        "name": "Adaptative Focus Technology",
+        "description": "Tecnologia pensada para uma nova forma de olhar, marcada pelo uso intenso de telas e por distâncias intermediárias. Ela amplia essa área da lente progressiva para proporcionar uma visão mais confortável, fluida e natural ao trabalhar, estudar e realizar atividades em ambientes digitais."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Média"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Alta"
+      },
+      {
+        "label": "Perto",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar eLIFE?",
+        "answer": "É uma lente progressiva para quem usa telas e precisa de mais conforto nas distâncias próximas e intermediárias."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem tem uma rotina digital intensa: computador, celular, leitura, reuniões e trabalho de escritório."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Prioriza as distâncias mais usadas na vida digital, ajudando a proporcionar mais conforto visual ao longo do dia."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  }
+]

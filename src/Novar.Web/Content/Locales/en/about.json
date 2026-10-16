@@ -1,0 +1,48 @@
+{
+  "sourceNode": "961:6952",
+  "eyebrow": "About us",
+  "titleLead": "Novar",
+  "titleRest": "around the world",
+  "sectionTitle": "About Us",
+  "tagline": "Optical innovation designed to transform the visual experience.",
+  "introLead": "We create technology",
+  "introRest": "so you can see the world with greater clarity, beauty, and confidence.",
+  "paragraphs": [
+    "Novar began with a clear goal: to understand how we really see and design lenses that adapt to the way we naturally perceive the world.",
+    "Years of research and development led to exclusive technologies such as Psicoptix Technology™ and CDT Technology™, which now define a new way to experience optics."
+  ],
+  "pillars": [
+    {
+      "title": "Consistency",
+      "description": "Optimized processes for consistent, reliable, high-quality results."
+    },
+    {
+      "title": "Efficiency",
+      "description": "Integrated solutions that streamline work, reduce manual tasks, and boost productivity."
+    },
+    {
+      "title": "Growth",
+      "description": "Flexible, scalable tools that evolve with each needs of each laboratory."
+    }
+  ],
+  "valuesEyebrow": "Our values",
+  "valuesTitle": "What defines us",
+  "values": [
+    {
+      "title": "Innovation",
+      "description": "We explore new ways to take optics beyond conventional standards."
+    },
+    {
+      "title": "Precision",
+      "description": "Every lens meets rigorous quality criteria to deliver superior optical performance."
+    },
+    {
+      "title": "Experience",
+      "description": "More than two decades of expertise applied to the development and evolution of ophthalmic solutions."
+    },
+    {
+      "title": "Design",
+      "description": "We combine function and aesthetics to create products where every detail has a purpose."
+    }
+  ]
+}

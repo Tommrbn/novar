@@ -1,0 +1,38 @@
+{
+  "fileKey": "BsmryGBLAW0gkLgs4Fw1X8",
+  "verifiedOn": "2026-10-14",
+  "scope": ["ultex-blended", "kriptok-blended", "freeline"],
+  "callsite": "Views/Home/BifocalOccupationalProduct.cshtml: .bop-related--bifocal",
+  "layout": "Three contiguous portraits, 1446 by 286 at source scale; columns 475:486:485. Mobile retains the crops in a horizontally scrollable strip.",
+  "behavior": "Preserve localized hover/focus CTAs and actual product links. Repeat all three source portraits, including current product marked aria-current=page. Office remains unchanged.",
+  "assetVerification": "Fresh Figma downloads match the existing local assets byte-for-byte (SHA-256). No edits or substitutes.",
+  "slots": [
+    {
+      "node": "1145:1955",
+      "kriptokNode": "1145:1940",
+      "file": "961e1.png",
+      "destination": "/lentes/ultex-blended",
+      "size": [475, 286],
+      "cropPercent": {"height": 166.08, "left": 0, "top": -14.28},
+      "sha256": "dfd69d87b9ff0d4b2eed13798d253e2f4d38429cead83c7cdec00bb549ef71a6"
+    },
+    {
+      "node": "1145:1957",
+      "kriptokNode": "1145:1943",
+      "file": "2c53f.png",
+      "destination": "/lentes/kriptok-blended",
+      "size": [486, 286],
+      "cropPercent": {"height": 226.19, "left": 0.07, "top": -37.42},
+      "sha256": "af94c8d032caf6fd982dbc1455ba72a40aed5b928c185e0f87172f8849144476"
+    },
+    {
+      "node": "1145:1958",
+      "kriptokNode": "1145:1947",
+      "file": "28518.png",
+      "destination": "/lentes/freeline",
+      "size": [485, 286],
+      "cropPercent": {"height": 169.58, "left": 0.1, "top": -7.14},
+      "sha256": "dbade206b75bd8c6e2b22f1dbf3bc3dae24aa566ba9465e2b842a2975fdcba02"
+    }
+  ]
+}

@@ -1537,6 +1537,15 @@
       "sourceFile": "https://www.figma.com/design/BsmryGBLAW0gkLgs4Fw1X8/WEB-VISION-NOVAR"
     },
     {
+      "file": "17cde-precisa-original.png",
+      "sha256": "80d3416c3fc4ba9b0040055a85a9f0ce540f4081708a6b63f52597bbcb532efa",
+      "kind": "figma-export",
+      "sourceNodes": [
+        "974:904"
+      ],
+      "sourceFile": "https://www.figma.com/design/BsmryGBLAW0gkLgs4Fw1X8/WEB-VISION-NOVAR"
+    },
+    {
       "file": "9e69b.png",
       "sha256": "324282d17baed34744f9a7675e156015dd32cdfffad10097be5bd19d425ecf54",
       "kind": "figma-export",
@@ -2048,6 +2057,15 @@
       "sourceFile": "https://www.figma.com/design/BsmryGBLAW0gkLgs4Fw1X8/WEB-VISION-NOVAR"
     },
     {
+      "file": "4fa80-first-original.png",
+      "sha256": "4440fc20f9ec0317858c003eecdb584b69949f101e1969f381c4b243f1913653",
+      "kind": "figma-export",
+      "sourceNodes": [
+        "689:4834"
+      ],
+      "sourceFile": "https://www.figma.com/design/BsmryGBLAW0gkLgs4Fw1X8/WEB-VISION-NOVAR"
+    },
+    {
       "file": "elife-wordmark.svg",
       "sha256": "cfc89df3e3a94b0685eef776e1f297b4602a11dfb52d74ddfb63ab1e543bec41",
       "kind": "figma-export",
@@ -2555,6 +2573,66 @@
     }
   ],
   "userSuppliedAssets": [
+    {
+      "path": "src/Novar.Web/wwwroot/media/treatments/antirraya-rayas.mp4",
+      "sha256": "ddbb90da92419da922cd1f4140175920a5e6f37fc1b4f3eb099c34000a8c0f10",
+      "kind": "user-supplied-video",
+      "source": "User-supplied RAYAS.mp4, 2026-10-05; explicit looping-video override, not a Figma export",
+      "bytes": 27472046,
+      "width": 3840,
+      "height": 2160,
+      "framesPerSecond": 30,
+      "durationSeconds": 6.333333,
+      "codecs": ["avc1", "mp4a"],
+      "audio": "Stereo 44100 Hz original audio retained; initially muted, deliberate sound control",
+      "metadataStatus": "Original bytes retained, moov at end (not faststart); decode/playback pending parent",
+      "callsite": "#antirraya .treatment-antirraya-video",
+      "poster": "media/figma/3dd09.png"
+    },
+    {
+      "path": "src/Novar.Web/wwwroot/media/treatments/hidrofobico.mp4",
+      "sha256": "e27bb5f937248adfdcd3a6b7c0b24cbbae4765532e5d5f5a6160b3fae6c07c1e",
+      "kind": "user-supplied-video",
+      "source": "User-supplied HIDROFOBICO.mp4, 2026-10-05",
+      "bytes": 39089249,
+      "width": 3840,
+      "height": 2160,
+      "framesPerSecond": 30,
+      "durationSeconds": 8.933333,
+      "codecs": ["avc1", "mp4a"],
+      "audio": "Original audio retained; muted initially with native user audio controls",
+      "metadataStatus": "Original MP4 bytes retained; browser decode and playback pending",
+      "callsite": "#hidrofobico .treatment-hidrofobico-image",
+      "poster": "media/figma/dd2a0.png"
+    },
+    {
+      "path": "src/Novar.Web/wwwroot/media/treatments/ilux-antirreflejo.mp4",
+      "sha256": "cd26bf7d9f0eab9697db56d7334c16b2a3d917b0f2c9d00a2a90af42dbbda97f",
+      "kind": "user-supplied-video",
+      "source": "User-supplied ANTIREFLEJO.mp4, 2026-10-05",
+      "bytes": 27169344,
+      "width": 3840,
+      "height": 2160,
+      "durationSeconds": 6.2,
+      "codecs": ["avc1", "mp4a"],
+      "audio": "Stereo, 44100 Hz; muted by default with native user audio controls",
+      "metadataStatus": "Original MP4 bytes retained; browser decode and playback pending",
+      "callsite": "#ilux .treatment-ilux-video"
+    },
+    {
+      "path": "src/Novar.Web/wwwroot/media/treatments/polarizado.mp4",
+      "sha256": "2cdee14b3f3a1105dabdaadb29a7e89f1fb9c853f011b3e564b1d51234a7cd1f",
+      "kind": "user-supplied-video",
+      "source": "User-supplied POLARIZADO.mp4, 2026-10-05",
+      "bytes": 13344514,
+      "width": 3840,
+      "height": 2160,
+      "durationSeconds": 3.433333,
+      "codecs": ["avc1", "mp4a"],
+      "metadataStatus": "MP4 atom inspection; browser decode and playback pending",
+      "callsite": "#polarizado .treatment-polarizado-video",
+      "poster": "media/figma/8af8d.png"
+    },
     {
       "path": "src/Novar.Web/wwwroot/media/novar-footer.svg",
       "sha256": "f9f51cada73b6632e4f46e51e657a7000c919046f034a215bd6532fe3df2bc23",
@@ -6577,6 +6655,17 @@
         "verification": "Original downloaded bytes match current local file; raster signature/root dimensions or SVG root attributes inspected without editing."
       },
       {
+        "file": "kriptok-banner-989-713.png",
+        "sha256": "c0d36735058ed69bf3055b9246a8b9b2187704b8fb9c2c02273e05c41d1bd536",
+        "bytes": 714131,
+        "signature": "png",
+        "rootGeometry": { "width": "1024", "height": "541" },
+        "sourceUrls": ["https://www.figma.com/api/mcp/asset/251997d7-55d6-4225-8a1c-2d0fd5347a41/a2798.png"],
+        "sourcePages": ["989:712"],
+        "sourceNodes": ["989:713"],
+        "verification": "2026-10-14 original Figma download, unchanged bytes saved under a scoped name; previous a2798.png retained for other pages. Browser geometry pending: localhost:5080 refused the connection."
+      },
+      {
         "file": "a3494.png",
         "sha256": "926188efe3d12d1506d03466a5c6933c90bd21ae2ce26c6376106265894bcc45",
         "bytes": 7272772,
@@ -7089,11 +7178,11 @@
       {
         "page": "989:712",
         "slug": "kriptok-blended",
-        "file": "a2798.png",
+        "file": "kriptok-banner-989-713.png",
         "sourceNode": "989:713",
         "slot": "imgRectangle113",
         "callsite": ".bop-hero-art img",
-        "sourceGeometry": "-translate-x-1/2 absolute h-[761px] left-[calc(50%-0.5px)] top-0 w-[1440px]",
+        "sourceGeometry": "-translate-x-1/2 absolute h-[761px] left-[calc(50%-0.5px)] top-0 w-[1440px]; reverified 2026-10-14 node 989:713",
         "sourceCrop": "absolute inset-0 max-w-none object-bottom pointer-events-none size-full",
         "sourceTransforms": [],
         "renderedGeometry": "Scoped CSS translation; browser measurement pending parent BOP04."
@@ -8757,5 +8846,26 @@
     ],
     "wordmarkPolicy": "Original default PNG group exports; no format/scale override, font substitution, redraw, or SVG path extraction. High-DPI sharpness needs owner review.",
     "runtimeGeometryStatus": "Pending parent BOP04, no browser approval"
-  }
+  },
+  "treatmentSilentBlueTech": {
+  "file": "blue-tech.mp4",
+  "source": "User-supplied original BLUE TECH.mp4",
+  "callsite": "Views/Shared/_TreatmentBlueTech.cshtml",
+  "sha256": "6cc31686ff96b83d4d01512d0ffb7399c9c0818a3b996ab86f47e1b632893ebc",
+  "bytes": 10246915,
+  "transformations": [],
+  "poster": "f0cf4.png",
+  "policy": "Muted inline autoplay once; no player controls. Fotosensible remains unmapped."
+},
+  "treatmentFotosensibleOriginal": {
+  "file": "fotosensible.mp4",
+  "source": "User-supplied POLARIZADO REAL.mp4",
+  "mapping": "Human explicitly selected Fotosensible despite source filename; Polarizado is unchanged",
+  "sha256": "ee041fc569ebb06b16198b3c0473fff459a864005a119fa8319d9bc46040baaf",
+  "bytes": 29829038,
+  "callsite": "Views/Shared/_TreatmentFotosensible.cshtml",
+  "transformations": [],
+  "preview": "23aae.png; existing responsive full-frame WebP derivatives",
+  "delivery_manifest": "docs/treatments-optimized-media.json"
+}
 }

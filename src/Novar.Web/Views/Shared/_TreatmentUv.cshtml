@@ -1,16 +1,18 @@
 @model TreatmentDetail
 <section id="@Model.Id" class="treatment-detail treatment-detail-uv" aria-labelledby="treatment-uv-title" data-treatment-detail="uv">
     <div class="treatment-uv-summary" data-figma-node="@Model.SourceNode">
-        <div><p class="treatment-uv-eyebrow">TRATAMIENTO</p><h2 id="treatment-uv-title">@Model.Name</h2></div>
+        <div><p class="treatment-uv-eyebrow">@T["TRATAMIENTO"]</p><h2 id="treatment-uv-title">@Model.Name</h2></div>
         <p class="treatment-uv-description">@Model.Description</p>
     </div>
-    <div class="treatment-uv-photo" data-figma-node="961:9643">
+    <div class="treatment-uv-photo" data-treatment-media data-figma-node="961:9643">
         <div class="treatment-uv-image-plane">
-            <img class="treatment-uv-image" src="~/media/figma/@Model.Image" alt="Mujer con lentes transparentes al aire libre" width="2752" height="1536" />
+            <video class="treatment-uv-image treatment-uv-video" data-treatment-video loop muted playsinline preload="none" aria-label="@Model.Name" hidden data-treatment-desktop="/media/treatments/optimized/uv-desktop.mp4" data-treatment-mobile="/media/treatments/optimized/uv-mobile.mp4">
+            </video>
+            <img class="treatment-uv-image" data-treatment-fallback src="~/media/treatments/optimized/uv-poster-1280.webp" srcset="/media/treatments/optimized/uv-poster-640.webp 640w, /media/treatments/optimized/uv-poster-1280.webp 1280w, /media/treatments/optimized/uv-poster-1920.webp 1920w" sizes="(max-width: 767.98px) 125vw, 117vw" loading="lazy" decoding="async" alt="@T["Mujer con lentes transparentes al aire libre"]" width="2752" height="1536" />
             <img class="treatment-uv-source-arrows" src="~/media/figma/b9b6a.svg" alt="" aria-hidden="true" />
         </div>
     </div>
-    <ul class="treatment-uv-benefits" aria-label="Características de Protección UV" data-figma-node="961:9775">
+    <ul class="treatment-uv-benefits" aria-label="@T["Características de Protección UV"]" data-figma-node="961:9775">
         @foreach (var benefit in Model.Benefits)
         {
             <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>

@@ -1,13 +1,15 @@
 /* Source: the four 1440 x 5716 Bifocales and Office frames. Never loaded by other groups. */
 .bifocal-occupational-page { background: #f9f8fb; }
+/* The skip-link target must not draw a page-wide ring below the related portraits.
+   Override the global important focus rule only on these pages, not on their links. */
+.bifocal-occupational-page #main:has(> :is(.bop-product--office, .bop-product--kriptok-blended, .bop-product--freeline)):focus-visible { outline: 0 !important; }
 .bifocal-occupational-page .site-header { top: 30.83px; }
 .bifocal-occupational-page .navbar { min-height: 61px; padding: 12px 24px; }
 .bifocal-occupational-page .navbar-brand { margin: 0 48px 0 12px; }
 .bifocal-occupational-page .navbar-brand img, .bifocal-occupational-page .language img { max-width: none; }
 .bifocal-occupational-page .navbar-nav { gap: 10px; margin: 0 !important; }
-.bifocal-occupational-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; font-weight: 400; color: #000; }
-.bifocal-occupational-page .navbar .nav-item:first-child .nav-link { font-weight: 600; color: #1f023c; }
-.bifocal-occupational-page .navbar .nav-link[aria-current="page"] { font-weight: 700; }
+.bifocal-occupational-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; font-family: Poppins, sans-serif; font-weight: 400; color: #000; }
+.bifocal-occupational-page .navbar .nav-link[aria-current="page"] { font-weight: 600; color: #1f023c; }
 .bifocal-occupational-page .language { gap: 5.571px; margin-left: auto; padding: 8px 16px; background: #1d023b; color: #f6f5f7; font-size: 12.998px; line-height: 18.569px; letter-spacing: .325px; }
 .bop-product { overflow: clip; color: #1f023c; background: #f9f8fb; }
 .bop-product h1, .bop-product h2, .bop-product p { margin: 0; }
@@ -79,7 +81,6 @@
 .bop-details figcaption { position: absolute; bottom: 15px; left: 15px; right: 15px; text-align: center; color: #fff; font-size: 12px; line-height: 18px; letter-spacing: .96px; }
 
 .bop-technologies { position: relative; height: 345.72px; padding-top: 73.47px; }
-.bop-watermark { position: absolute; top: -95.75px; right: -393.61px; width: 1167.21px; white-space: pre-line; font-size: 200px; font-weight: 400; line-height: 226px; letter-spacing: -6px; background: linear-gradient(90deg, rgb(31 2 60 / 5%), rgb(123 123 128 / 5%)); color: transparent; background-clip: text; }
 .bop-technology-scroll { display: flex; gap: 23.05px; overflow-x: auto; scrollbar-width: thin; padding: 0 4px 8px; margin-left: max(20px, calc((100% - 1264px) / 2 - .16px)); scroll-snap-type: x proximity; }
 .bop-technology-card { position: relative; flex: 0 0 616.63px; min-height: 218.399px; padding: 45.85px 32px 14px 46.67px; border: 1.5px solid #fafafa; border-top: 7.501px solid #1f023c; border-radius: 11.252px; background: rgb(217 217 217 / 20%); box-shadow: 0 3px 3px rgb(0 0 0 / 25%); scroll-snap-align: start; }
 .bop-technology-card:nth-child(2) { border-top-color: #3d1a7a; padding-left: 42.29px; padding-right: 24px; }
@@ -109,13 +110,11 @@
 .bop-contact .bop-button { flex-shrink: 0; padding: 16px 28px; font-size: 13px; line-height: 20px; background: #3d1a7a; }
 .bop-related { padding-top: 39.37px; }
 .bop-related h2 { max-width: 1300px; height: 24.754px; margin: 0 auto 28.246px; font-size: 22.504px; font-weight: 600; line-height: 18.753px; letter-spacing: -.6751px; color: #000; }
-.bop-related-images { position: relative; left: calc(50% - .5px); transform: translateX(-50%); width: 1446px; display: grid; grid-template-columns: 475px 486px 485px; height: 286px; }
-.bop-related-images > a { display: block; position: relative; overflow: hidden; }
-.bop-related-images img { position: absolute; max-width: none; width: 100%; height: 100%; object-fit: cover; }
-.bop-related-images > a:first-child img { height: 166.08%; left: 0; top: -14.28%; }
-.bop-related-images > a:nth-child(2) img { height: 226.19%; left: .07%; top: -37.42%; }
-.bop-related-images > a:nth-child(3) img { height: 169.58%; left: .1%; top: -7.14%; }
-.bop-related-images a:focus-visible { outline-offset: -6px; }
+.bop-related-images { position: relative; left: calc(50% - .5px); transform: translateX(-50%); width: 1446px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); height: 320px; }
+.bop-related-images > a { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 8px; color: #1f023c; text-decoration: none; }
+.bop-related-images img { display: block; position: static; max-width: 100%; width: 100%; height: 286px; object-fit: cover; }
+.bop-related-images span { font-size: 16px; line-height: 24px; font-weight: 600; text-align: center; }
+.bop-related-images a:focus-visible { outline: 3px solid #6b5a8a; outline-offset: 3px; }
 
 .bop-footer { min-height: 590.703px; padding: 125.903px 0 80px; background: #fbfbfd; }
 .bop-footer-inner { position: relative; left: -12px; width: min(1134px, 100%); margin-inline: auto; padding-inline: 24px; }
@@ -148,6 +147,31 @@
 .bop-product--ultex-blended .bop-hero-copy h1, .bop-product--ultex-blended .bop-wordmark { width: 339.301px; }
 .bop-product--kriptok-blended .bop-hero-copy { left: calc(50% + 29.828px); }
 .bop-product--kriptok-blended .bop-hero-art > img { left: calc(50% - 720.5px); top: 0; width: 1440px; height: 761px; object-fit: fill; object-position: bottom; }
+/* Keep the original 1440 × 761 composition, extending it on wider screens. */
+@media (min-width: 1441px) {
+    .bop-product--kriptok-blended .bop-hero { height: 52.847222vw; }
+    .bop-product--kriptok-blended .bop-hero-copy { top: 15.069444vw; }
+    .bop-product--kriptok-blended .bop-hero-art > img { left: 0; top: auto; bottom: 0; width: 100%; height: auto; }
+}
+
+/* Only Kriptok opts in to the existing Progresivos carousel controller. */
+.bop-product--kriptok-blended .bop-gallery.is-enhanced .bop-gallery-images { display: block; height: 460.412px; }
+.bop-product--kriptok-blended .bop-gallery.is-enhanced .bop-gallery-images > div { position: absolute; left: 0; top: 0; margin: 0; }
+.bop-product--kriptok-blended .bop-gallery-controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 22px 16px 0; }
+.bop-product--kriptok-blended .bop-gallery-controls[hidden] { display: none; }
+.bop-product--kriptok-blended .bop-gallery-controls button { min-width: 44px; min-height: 44px; padding: 8px 14px; border: 1px solid #6b5a8a; border-radius: 24px; background: #fbfbfd; color: #1f023c; font: inherit; font-size: 14px; }
+.bop-product--kriptok-blended .bop-gallery-controls button:hover { background: #ede8f8; }
+.bop-product--kriptok-blended .bop-gallery-controls button:focus-visible { outline: 3px solid #6b5a8a; outline-offset: 3px; }
+
+/* Shared bifocal portraits: Figma 1145:1955 / 1957 / 1958 (Kriptok 1940 / 1943 / 1947). */
+.bop-related--bifocal .bop-related-images { width: max(100%, 1446px); height: auto; grid-template-columns: 475fr 486fr 485fr; }
+.bop-related--bifocal .bop-related-images > a { position: relative; display: block; height: auto; aspect-ratio: 475 / 286; overflow: hidden; }
+.bop-related--bifocal .bop-related-images > a:nth-child(2) { aspect-ratio: 486 / 286; }
+.bop-related--bifocal .bop-related-images > a:nth-child(3) { aspect-ratio: 485 / 286; }
+.bop-related--bifocal .bop-related-images img { position: absolute; max-width: none; width: 100%; height: 166.08%; left: 0; top: -14.28%; object-fit: fill; }
+.bop-related--bifocal .bop-related-images > a:nth-child(2) img { height: 226.19%; left: .07%; top: -37.42%; }
+.bop-related--bifocal .bop-related-images > a:nth-child(3) img { height: 169.58%; left: .1%; top: -7.14%; }
+.bop-related--bifocal .bop-related-images a:focus-visible { outline-offset: -4px; }
 .bop-product--freeline .bop-hero-copy h1, .bop-product--freeline .bop-wordmark { height: 105.209px; }
 .bop-product--office .bop-hero-copy { left: calc(50% + 30.492px); }
 .bop-product--office .bop-hero-copy h1, .bop-product--office .bop-wordmark { width: 339.301px; height: 116.922px; }
@@ -168,25 +192,8 @@
 .bop-product--freeline .bop-details-copy { min-height: 484.158px; }
 .bop-product--office .bop-details-copy { min-height: 550.158px; }
 .bop-tag { display: inline-block; margin-top: 24px !important; }
-.bop-product--freeline .bop-watermark { right: -491.76px; }
-.bop-product--office .bop-watermark { top: -71.95px; right: -620.54px; }
-.bop-related--office .bop-related-images { left: calc(50% + 3.119px); width: 1446.238px; height: 286.547px; grid-template-columns: 370.561px 379.563px 378.813px 331.555px; }
+.bop-related--office .bop-related-images { left: 50%; width: min(370.561px, calc(100% - 48px)); height: 320px; grid-template-columns: minmax(0, 1fr); }
 .bop-related--office { padding-top: 38.763px; }
-.bop-related--office .bop-related-images > a:last-child { width: 331.555px; margin-left: -14.254px; }
-.bop-related--office .bop-related-images > a img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.bop-related--office .bop-related-images > a:first-child img:last-child { height: 204.56%; width: 134.26%; left: -14.4%; top: -40.54%; }
-/* Source hover variant: no timer, carousel or invented autoplay. */
-.bop-tagline:focus-visible { outline-offset: -5px; }
-.bop-tagline-initial, .bop-tagline-hover { transition: opacity 600ms linear; }
-.bop-tagline-hover { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; overflow: hidden; }
-.bop-tagline-hover img { position: absolute; left: 50%; top: 50%; max-width: none; transform: translate(-50%, -50%) scale(.75); }
-.bop-tagline-hover::after { content: ''; position: absolute; inset: 0; background: #1f023c; }
-.bop-tagline-hover span { position: relative; z-index: 1; color: rgb(251 251 253 / 29%); font-size: 39.425px; line-height: 1; letter-spacing: -1.183px; text-align: center; }
-.bop-tagline:hover .bop-tagline-initial, .bop-tagline:focus-visible .bop-tagline-initial { opacity: 0; }
-.bop-tagline:hover .bop-tagline-hover, .bop-tagline:focus-visible .bop-tagline-hover { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-    .bop-tagline-initial, .bop-tagline-hover { transition: none; }
-}
 
 @media (min-width: 1441px) {
     .bop-hero-art > img { width: 100%; height: auto; min-height: 100%; left: 0; }
@@ -251,7 +258,6 @@
     .bop-details h2 { font-size: 36px; }
     .bop-detail-photo { height: auto; aspect-ratio: 672 / 430; }
     .bop-details figcaption { font-size: 10px; }
-    .bop-watermark { font-size: 140px; top: 0 !important; }
     .bop-technology-scroll { margin-left: 20px; padding-right: 20px; }
     .bop-technology-card { flex-basis: min(85vw, 616.63px); padding: 32px 24px; }
     .bop-technology-card h2 { line-height: 1.2; }
@@ -266,8 +272,9 @@
     .bop-faq .accordion-button { line-height: 1.65; }
     .bop-contact { padding: 55px 24px; flex-direction: column; align-items: flex-start; }
     .bop-related h2 { height: auto; font-size: 18px; margin-bottom: 25px; }
-    .bop-related-images { left: auto; transform: none; width: 100%; height: 240px; display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
-    .bop-related-images > a { flex: 0 0 240px; scroll-snap-align: start; }
+    .bop-related-images { left: auto; transform: none; width: 100%; height: auto; min-height: 240px; display: flex; align-items: stretch; overflow-x: auto; scroll-snap-type: x proximity; }
+    .bop-related-images > a { flex: 0 0 240px; height: 240px; scroll-snap-align: start; }
+    .bop-related-images img { height: calc(100% - 32px); }
     .bop-footer { padding: 70px 0 50px; min-height: auto; }
     .bop-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; min-height: auto; }
     .bop-footer-logo { width: 120px; }
@@ -306,11 +313,11 @@
     .bop-product--office .bop-hero-copy h1 { height: 87.69px; }
     .bop-wordmark { transform: scale(.75); transform-origin: top left; }
     .bop-gallery h2 img { margin: 0; }
+    .bop-product--kriptok-blended .bop-gallery.is-enhanced .bop-gallery-images { height: 265px; }
+    .bop-related--bifocal .bop-related-images { left: auto; transform: none; width: 100%; min-height: 0; }
+    .bop-related--bifocal .bop-related-images > a { flex-basis: min(85vw, 475px); }
     .bop-technologies { height: auto; padding: 80px 0; }
-    .bop-watermark { line-height: 1.1; right: -100px !important; width: auto; }
-    .bop-tagline-hover span { font-size: 28px; }
-    .bop-related--office .bop-related-images { left: 0; width: 100%; }
-    .bop-related--office .bop-related-images > a:last-child { width: auto; margin-left: 0; }
+    .bop-related--office .bop-related-images { left: 0; transform: none; width: 100%; }
 }
 @media (max-width: 359px) {
     .bop-wordmark { transform: scale(.64); }

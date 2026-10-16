@@ -14,6 +14,12 @@ public sealed class MonofocalProductTests(WebApplicationFactory<Program> factory
     private readonly HttpClient client = factory.CreateClient();
     private SiteContent Content => factory.Services.GetRequiredService<SiteContent>();
 
+    private static string RelatedPhoto(string sibling) => sibling switch
+    {
+        "outdoor" => "07444.png", "single-vision" => "0b636.png", "slim" => "a62fc.png", "indoor" => "590b1.png",
+        _ => throw new ArgumentOutOfRangeException(nameof(sibling))
+    };
+
     [Theory]
     [InlineData("geo", "964:1916", "964:2247", "107")]
     [InlineData("single-vision", "992:1254", "992:1285", "223")]
@@ -60,12 +66,12 @@ public sealed class MonofocalProductTests(WebApplicationFactory<Program> factory
     }
 
     [Fact]
-    public async Task SourceCopyVariantsAndHonestFaqStateAreNotInventedOrCorrected()
+    public async Task SourceCopyVariantsAndAuthorizedFaqAnswersAreRendered()
     {
         Assert.Contains("Novar Sport", Content.MonofocalProducts["outdoor"].Intro);
         Assert.Contains("Novar Relax", Content.MonofocalProducts["indoor"].Intro);
         Assert.EndsWith("calidad digita.", Content.MonofocalProducts["single-vision"].Intro);
-        Assert.Equal("¿Para quién está recomendado Novar Geo ?", Content.MonofocalProducts["geo"].Questions[1].Question);
+        Assert.Equal("¿Para quién está recomendado?", Content.MonofocalProducts["geo"].Questions[1].Question);
         Assert.Equal("Blending Technology™", Content.MonofocalProducts["slim"].Technologies[2].Name);
         Assert.Contains("RoTech / WearFit", Content.MonofocalProducts["outdoor"].TechnologySpec);
         Assert.Equal("a3b80.png", Content.MonofocalProducts["outdoor"].HeroUnderlay);
@@ -77,19 +83,22 @@ public sealed class MonofocalProductTests(WebApplicationFactory<Program> factory
         foreach (var product in Content.MonofocalProducts.Values)
         {
             Assert.Equal(3, product.Questions.Length);
-            Assert.Null(product.Questions[0].Answer);
-            Assert.Null(product.Questions[1].Answer);
-            Assert.NotNull(product.Questions[2].Answer);
+            var hasAuthorizedFaq = product.Slug is "geo" or "single-vision" or "slim";
+            Assert.Equal(hasAuthorizedFaq ? 3 : 1, product.Questions.Count(question => question.Answer is not null));
             Assert.Equal(product.Slug == "slim" ? 3 : 2, product.Technologies.Length);
             Assert.Equal(4, product.Gallery.Length);
             Assert.Equal(3, product.Icons.Length);
             var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{product.Slug}"));
             var faq = Regex.Match(html, "<section class=\"mono-faq\"[\\s\\S]*?</section>").Value;
             Assert.Equal(3, Regex.Matches(faq, "class=\"accordion-button ").Count);
-            Assert.Equal(2, Regex.Matches(faq, "Respuesta pendiente de revisión editorial").Count);
+            Assert.Equal(hasAuthorizedFaq ? 0 : 2, Regex.Matches(faq, "Respuesta pendiente de revisión editorial").Count);
             Assert.Single(Regex.Matches(faq, "aria-expanded=\"true\""));
             Assert.Contains($"id=\"mono-{product.Slug}-faq-2\" class=\"accordion-collapse collapse show\"", faq);
-            Assert.Contains(product.Questions[2].Answer!, faq);
+            foreach (var question in product.Questions.Where(question => question.Answer is not null))
+            {
+                Assert.Contains(question.Question, faq);
+                Assert.Contains(question.Answer!, faq);
+            }
             Assert.Equal(3, Regex.Matches(faq, "data-bs-parent=").Count);
             var withoutInlineEmphasis = Regex.Replace(html, "</?strong>", "");
             var text = Regex.Replace(Regex.Replace(withoutInlineEmphasis, "<[^>]+>", " "), "\\s+", " ");
@@ -110,19 +119,24 @@ public sealed class MonofocalProductTests(WebApplicationFactory<Program> factory
         foreach (var product in Content.MonofocalProducts.Values)
         {
             var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{product.Slug}"));
-            Assert.Contains($"data-pending=\"Personalización de Novar {product.Name}\"", html);
+            Assert.Contains("<a class=\"btn btn-novar mono-button\" href=\"/tratamientos\">Personalizá tu lente</a>", html);
             foreach (var action in new[] { "Garantía", "Instagram", "LinkedIn", "Facebook", "YouTube" })
                 Assert.Contains($"data-pending=\"{action}\"", html);
             Assert.Contains("id=\"pending-modal\"", html);
             Assert.Contains("no se envían ni almacenan datos y no se generan resultados", html);
-            Assert.DoesNotContain("<form", html);
+            Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
             Assert.DoesNotContain("target=\"_blank\"", html);
             Assert.DoesNotContain("figma.com/api", html);
             Assert.Contains("href=\"/tratamientos\"", html);
             Assert.Contains("href=\"/#contacto\"", html);
             var related = Regex.Match(html, "<section class=\"mono-related\"[\\s\\S]*?</section>").Value;
-            Assert.Equal(4, Regex.Matches(related, "<a ").Count);
-            foreach (var slug in new[] { "outdoor", "single-vision", "slim", "geo" })
+            var cards = Regex.Matches(related, "<a href=\"/lentes/(?<slug>[^\"]+)\"[^>]*><img src=\"/media/figma/(?<hero>[^\"]+)\" alt=\"\" loading=\"lazy\" /><span[^>]*>(?<name>[^<]+)</span></a>");
+            var expected = Content.MonofocalProducts.Values.Where(item => item.Slug != "geo").OrderBy(item => item.Slug).ToArray();
+            var actualCards = cards.Select(item => (Slug: item.Groups["slug"].Value, Hero: item.Groups["hero"].Value, Name: item.Groups["name"].Value)).OrderBy(item => item.Slug);
+            Assert.Equal(expected.Select(item => (item.Slug, RelatedPhoto(item.Slug), item.Name)), actualCards);
+            Assert.Equal(4, cards.Count);
+            Assert.Equal(product.Slug == "geo" ? 0 : 1, Regex.Matches(related, "aria-current=\"page\"").Count);
+            foreach (var slug in expected.Select(item => item.Slug))
             {
                 Assert.Contains($"href=\"/lentes/{slug}\"", related);
                 Assert.Equal(HttpStatusCode.OK, (await client.GetAsync($"/lentes/{slug}")).StatusCode);
@@ -146,7 +160,20 @@ public sealed class MonofocalProductTests(WebApplicationFactory<Program> factory
         foreach (var product in Content.MonofocalProducts.Values)
         {
             var html = await client.GetStringAsync($"/lentes/{product.Slug}");
-            var files = Regex.Matches(html, "src=\"/media/figma/(?<file>[^\"]+)\"").Select(m => m.Groups["file"].Value).Distinct().ToArray();
+            var related = Regex.Match(html, "<section class=\"mono-related\"[\\s\\S]*?</section>").Value;
+            var relatedCards = Regex.Matches(related, "<a href=\"/lentes/(?<slug>[^\"]+)\"[^>]*><img src=\"/media/figma/(?<file>[^\"]+)\"")
+                .Select(match => (Slug: match.Groups["slug"].Value, File: match.Groups["file"].Value)).ToArray();
+            Assert.Equal(Content.MonofocalProducts.Values.Where(item => item.Slug != "geo").Select(item => (item.Slug, RelatedPhoto(item.Slug))).OrderBy(item => item.Slug),
+                relatedCards.Select(card => (card.Slug, card.File)).OrderBy(item => item.Slug));
+            foreach (var card in relatedCards)
+            {
+                var response = await client.GetAsync($"/media/figma/{card.File}");
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+                Assert.NotEmpty(await response.Content.ReadAsByteArrayAsync());
+            }
+            var files = Regex.Matches(html, "src=\"/media/figma/(?<file>[^\"]+)\"").Select(m => m.Groups["file"].Value)
+                .Except(relatedCards.Select(card => card.File).Where(file => !slots.Any(slot => slot.GetProperty("slug").GetString() == product.Slug && slot.GetProperty("file").GetString() == file)), StringComparer.Ordinal)
+                .Distinct().ToArray();
             foreach (var file in files)
             {
                 Assert.True(assets.ContainsKey(file), file);
@@ -174,9 +201,11 @@ public sealed class MonofocalProductTests(WebApplicationFactory<Program> factory
                 }
                 Assert.Contains(slots, slot => slot.GetProperty("slug").GetString() == product.Slug && slot.GetProperty("file").GetString() == file);
             }
-            foreach (var slot in slots.Where(s => s.GetProperty("slug").GetString() == product.Slug))
+            foreach (var slot in slots.Where(s => s.GetProperty("slug").GetString() == product.Slug && s.GetProperty("callsite").GetString() != ".mono-related-images img"))
             {
-                Assert.Contains(slot.GetProperty("file").GetString(), files);
+                // Original hero provenance remains archived; new opaque exports are checked by ProductBannerQualityTests.
+                if (slot.GetProperty("callsite").GetString() != ".mono-hero-art > img")
+                    Assert.Contains(slot.GetProperty("file").GetString(), files);
                 Assert.NotEmpty(slot.GetProperty("sourceNode").GetString()!);
                 Assert.NotEmpty(slot.GetProperty("callsite").GetString()!);
                 Assert.NotEmpty(slot.GetProperty("sourceGeometry").GetString()!);

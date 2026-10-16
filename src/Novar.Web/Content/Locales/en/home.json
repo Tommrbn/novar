@@ -1,0 +1,95 @@
+{
+  "highlights": [
+    {
+      "name": "AI·Lens",
+      "slug": "ai-lens",
+      "image": "2c335.png",
+      "description": "Have you ever wondered whether AI could help with presbyopia?",
+      "benefits": [
+        {
+          "label": "Distance vision",
+          "level": "High",
+          "percent": 100
+        },
+        {
+          "label": "Intermediate vision",
+          "level": "High",
+          "percent": 100
+        },
+        {
+          "label": "Near vision",
+          "level": "High",
+          "percent": 100
+        }
+      ]
+    },
+    {
+      "name": "MyoFix",
+      "slug": "",
+      "image": "52af8.png",
+      "description": "Is your child experiencing progressive myopia?",
+      "benefits": [
+        {
+          "label": "Distance vision",
+          "level": "High",
+          "percent": 100
+        },
+        {
+          "label": "Intermediate vision",
+          "level": "Medium",
+          "percent": 50
+        },
+        {
+          "label": "Near vision",
+          "level": "Medium",
+          "percent": 50
+        }
+      ]
+    },
+    {
+      "name": "MyoLens",
+      "slug": "myolens",
+      "image": "2eb1f.png",
+      "description": "Have you been prescribed reading glasses?",
+      "benefits": [
+        {
+          "label": "Distance vision",
+          "level": "High",
+          "percent": 100
+        },
+        {
+          "label": "Intermediate vision",
+          "level": "High",
+          "percent": 100
+        },
+        {
+          "label": "Near vision",
+          "level": "Medium / High",
+          "percent": 70
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "question": "Why does it get harder to see up close as I get older?",
+      "answer": "Focusing up close can become harder with age. This natural process is called presbyopia, and lenses are designed to restore comfort and clarity."
+    },
+    {
+      "question": "Why is my vision worse at night, or why do lights bother me?",
+      "answer": "In low light, some vision difficulties can become more noticeable. The right lens may help improve clarity, contrast, and visual comfort."
+    },
+    {
+      "question": "Can lenses do more than correct vision?",
+      "answer": "Yes. Lenses are designed for different needs: improving comfort, optimizing vision at different distances, or supporting specific visual needs."
+    },
+    {
+      "question": "What happens if I wear lenses without a prescription or with the wrong prescription?",
+      "answer": "An incorrect prescription can cause blurred vision, fatigue, or discomfort. That is why it is important to have an up-to-date prescription and advice from a professional."
+    },
+    {
+      "question": "Is it normal for children to need glasses?",
+      "answer": "Yes. Some vision difficulties can arise during childhood. Detecting them early helps find an appropriate solution and support visual development."
+    }
+  ]
+}

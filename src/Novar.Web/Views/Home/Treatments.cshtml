@@ -1,21 +1,21 @@
 @model TreatmentsContent
 @{
-    ViewData["Title"] = "Tratamientos";
+    ViewData["Title"] = T["Tratamientos"];
     ViewData["TreatmentsPage"] = true;
 }
-<div class="treatments-content" data-figma-node="@Model.SourceNode" data-treatments-revision="treatments-ilux-v1">
+<div class="treatments-content" data-figma-node="@Model.SourceNode" data-treatments-revision="treatments-performance-v1">
     <section class="treatments-hero" aria-labelledby="treatments-title">
         <img class="treatments-hero-image" src="~/media/figma/@Model.HeroImage" alt="" width="1437" height="553" />
         <div class="treatments-hero-copy">
             <h1 id="treatments-title">@Model.TitleLead <strong>@Model.TitleStrong</strong></h1>
             <p class="treatments-intro">@foreach (var part in Model.Intro) { if (part.Emphasis) { <strong>@part.Text</strong> } else { @part.Text } }</p>
             <div class="treatments-hero-facts">
-                <p><strong>Hasta siete</strong><span>Tratamientos disponibles</span></p>
-                <p><img src="~/media/figma/8e61b.svg" alt="Novar" /><img class="treatments-hero-logo-polarizado" src="~/media/figma/279a2.svg" alt="Novar" /><span>Tecnología óptica</span></p>
+                <p><strong>@T["Hasta siete"]</strong><span>@T["Tratamientos disponibles"]</span></p>
+                <p><img src="~/media/figma/8e61b.svg" alt="Novar" /><img class="treatments-hero-logo-polarizado" src="~/media/figma/279a2.svg" alt="Novar" /><span>@T["Tecnología óptica"]</span></p>
             </div>
         </div>
     </section>
-    <nav class="treatments-tabs" aria-label="Tratamientos" aria-describedby="treatments-availability">
+    <nav class="treatments-tabs" aria-label="@T["Tratamientos"]">
         <ul>
             @foreach (var tab in Model.Tabs)
             {
@@ -26,14 +26,13 @@
                     }
                     else
                     {
-                        <button type="button" disabled aria-disabled="true" title="Próximamente" aria-label="@tab.Label: próximamente">@tab.Label</button>
+                        <button type="button" disabled aria-disabled="true" title="@T["Próximamente"]" aria-label="@tab.Label: @T["Próximamente"]">@tab.Label</button>
                     }
                 </li>
             }
         </ul>
         <img class="treatments-tabs-line" src="~/media/figma/4e27d.svg" alt="" />
         <img class="treatments-tabs-active" src="~/media/figma/cfa16.svg" alt="" />
-        <p id="treatments-availability">Por ahora podés ver Protección UV, Blue Tech, Antirraya, Polarizado e Hidrofóbico. También podés ver Fotosensible. También podés ver Antirreflejo iLUX.</p>
     </nav>
     @foreach (var detail in Model.Details)
     {
@@ -70,21 +69,21 @@
         <p class="treatments-comparison-label">@Model.ComparisonLabel</p>
         <h2 id="treatments-comparison-title">@Model.ComparisonTitle</h2>
         <table class="treatments-table">
-            <caption class="visually-hidden">Comparación de los siete tratamientos para lentes</caption>
-            <thead class="visually-hidden"><tr><th scope="col">Tratamiento</th><th scope="col">Descripción</th><th scope="col">Características</th></tr></thead>
+            <caption class="visually-hidden">@T["Comparación de los siete tratamientos para lentes"]</caption>
+            <thead class="visually-hidden"><tr><th scope="col">@T["Tratamiento"]</th><th scope="col">@T["Descripción"]</th><th scope="col">@T["Características"]</th></tr></thead>
             <tbody>
                 @foreach (var row in Model.Comparison)
                 {
-                    var treatmentRowKey = row.Name switch
+                    var treatmentRowKey = row.Number switch
                     {
-                        "Protección UV" => "uv",
-                        "Blue Tech" => "blue-tech",
-                        "Antirraya" => "antirraya",
-                        "Polarizado" => "polarizado",
-                        "Hidrofóbico" => "hidrofobico",
-                        "Fotosensible" => "fotosensible",
-                        "Antirreflejo" => "ilux",
-                        _ => throw new InvalidOperationException($"No comparison row key is mapped for '{row.Name}'.")
+                        "01" => "uv",
+                        "02" => "blue-tech",
+                        "03" => "antirraya",
+                        "04" => "polarizado",
+                        "05" => "hidrofobico",
+                        "06" => "fotosensible",
+                        "07" => "ilux",
+                        _ => throw new InvalidOperationException($"No comparison row key is mapped for row '{row.Number}'.")
                     };
                     <tr data-treatment-row="@treatmentRowKey">
                         <th scope="row"><span class="treatments-row-number">@row.Number</span><span>@row.Name</span></th>
@@ -98,9 +97,10 @@
     <section class="treatments-sophia" aria-labelledby="treatments-sophia-title" data-figma-node="961:9794">
         <h2 id="treatments-sophia-title">@Model.SophiaTitle</h2>
         <p>@Model.SophiaDescription</p>
-        <button class="btn btn-novar treatments-sophia-action" type="button" data-pending="Sophia" aria-label="@Model.SophiaAction: pendiente de integración">@Model.SophiaAction<img src="~/media/figma/ef8cd.svg" alt="" /></button>
+        <button class="btn btn-novar treatments-sophia-action" type="button" data-pending="Sophia" aria-label="@Model.SophiaAction: @T["pendiente de integración"]">@Model.SophiaAction<img src="~/media/figma/ef8cd.svg" alt="" /></button>
     </section>
 </div>
 @section Scripts {
     <script src="~/js/treatments.js" asp-append-version="true" defer></script>
+    <script src="~/js/treatments-media.js" asp-append-version="true" defer></script>
 }

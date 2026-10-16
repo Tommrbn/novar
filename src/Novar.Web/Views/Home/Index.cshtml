@@ -1,42 +1,42 @@
 @model HomeContent
 @{
-    ViewData["Title"] = "La visión define tu historia";
+    ViewData["Title"] = T["La visión define tu historia"];
     ViewData["HomeFooter"] = true;
 }
-<section class="home-hero" aria-labelledby="home-title" data-figma-node="889:1324" data-home-revision="home-fidelity-v2" data-home-annotations-revision="home-annotations-v1" data-home-media-player="hero" data-home-media-source="/media/home/hero-banner.mp4" data-home-media-revision="home-media-v1">
-    <img class="hero-background" src="~/media/figma/home-hero-poster.png" alt="" width="1440" height="999" fetchpriority="high" />
-    <video class="hero-background home-hero-video" data-home-media-video id="home-hero-video" width="1920" height="1120" muted loop playsinline preload="none" poster="@Url.Content("~/media/figma/home-hero-poster.png")" aria-hidden="true" tabindex="-1" hidden></video>
-    <div class="hero-copy"><h1 id="home-title">La visión<br />define tu historia</h1></div>
-    <p class="hero-caption">AI-DRIVEN VISION</p>
-    <button class="home-video-toggle hero-video-toggle" type="button" data-home-media-toggle aria-controls="home-hero-video" aria-label="Reproducir video de portada" data-play-label="Reproducir video de portada" data-pause-label="Pausar video de portada" aria-pressed="false" hidden>Reproducir video de portada</button>
-    <a class="hero-next" href="#encontra" aria-label="Descubrir los lentes"><img src="~/media/figma/9e5ee.svg" alt="" width="36" height="18" /></a>
+<section class="home-hero" aria-labelledby="home-title" data-figma-node="889:1324" data-home-revision="home-fidelity-v2" data-home-annotations-revision="home-annotations-v1" data-home-media-player="hero" data-home-media-source="/media/home/optimized/hero-banner.mp4" data-home-media-revision="home-media-v2">
+    <img class="hero-background" src="~/media/home/optimized/hero-banner.webp" alt="" width="1440" height="999" fetchpriority="high" />
+    <video class="hero-background home-hero-video" data-home-media-video id="home-hero-video" width="1440" height="840" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/hero-banner.webp")" aria-hidden="true" tabindex="-1" hidden></video>
+    <div class="hero-copy"><h1 id="home-title">@T["La visión"]<br />@T["define tu historia"]</h1></div>
+    <p class="hero-caption">@T["AI-DRIVEN VISION"]</p>
+    <button class="home-video-toggle hero-video-toggle" type="button" data-home-media-toggle aria-controls="home-hero-video" aria-label="@T["Reproducir video de portada"]" hidden>@T["Reproducir video de portada"]</button>
+    <a class="hero-next" href="#encontra" aria-label="@T["Descubrir los lentes"]"><img src="~/media/figma/9e5ee.svg" alt="" width="52.6" height="44.6" /></a>
 </section>
 
 <section class="finder container-novar" id="encontra" aria-labelledby="finder-title">
     <div class="finder-art" data-home-media-player="finder" data-home-media-source="/media/home/lens-finder.mp4">
-        <img src="~/media/figma/lens-finder-poster.png" alt="Anteojos con lentes de color ámbar" width="604" height="455" loading="lazy" />
+        <img src="~/media/figma/lens-finder-poster.png" alt="@T["Anteojos con lentes de color ámbar"]" width="604" height="455" loading="lazy" />
         <video class="home-finder-video" data-home-media-video id="home-finder-video" width="2560" height="1440" muted loop playsinline preload="none" poster="@Url.Content("~/media/figma/lens-finder-poster.png")" aria-hidden="true" tabindex="-1" hidden></video>
-        <button class="home-video-toggle finder-video-toggle" type="button" data-home-media-toggle aria-controls="home-finder-video" aria-label="Reproducir video de los lentes" data-play-label="Reproducir video de los lentes" data-pause-label="Pausar video de los lentes" aria-pressed="false" hidden>Reproducir video de los lentes</button>
+        <button class="home-video-toggle finder-video-toggle" type="button" data-home-media-toggle aria-controls="home-finder-video" aria-label="@T["Reproducir video de los lentes"]" hidden>@T["Reproducir video de los lentes"]</button>
     </div>
-    <div class="finder-content"><h2 id="finder-title">Encontrá<br /><strong>tu lente ideal</strong></h2>
-        <p>Utilizá los filtros para elegir según tu <strong>edad</strong>, tus <strong>necesidades visuales</strong> o tus <strong>actividades diarias</strong>.</p>
+    <div class="finder-content"><h2 id="finder-title">@T["Encontrá"]<br /><strong>@T["tu lente ideal"]</strong></h2>
+        <p>@T["Utilizá los filtros para elegir según tu"] <strong>@T["edad"]</strong>, @T["tus"] <strong>@T["necesidades visuales"]</strong> @T["o tus"] <strong>@T["actividades diarias"]</strong>.</p>
         <div class="finder-choices">
-            <button type="button" data-pending="Recomendador por edad">Por edad <span aria-hidden="true">+</span></button>
-            <button type="button" data-pending="Recomendador por necesidad">Por necesidad <span aria-hidden="true">+</span></button>
-            <button type="button" data-pending="Recomendador por actividades y preferencias">Por actividades y preferencias <span aria-hidden="true">+</span></button>
+            <button type="button" data-pending="@T["feature:Recomendador por edad"]">@T["Por edad"] <span aria-hidden="true">+</span></button>
+            <button type="button" data-pending="@T["feature:Recomendador por necesidad"]">@T["Por necesidad"] <span aria-hidden="true">+</span></button>
+            <button type="button" data-pending="@T["feature:Recomendador por actividades y preferencias"]">@T["Por actividades y preferencias"] <span aria-hidden="true">+</span></button>
         </div>
-        <a class="btn btn-novar" href="/lentes">Explorá todos los lentes <span aria-hidden="true">→</span></a>
+        <a class="btn btn-novar" href="/lentes">@T["Explorá todos los lentes"] <span aria-hidden="true">→</span></a>
     </div>
 </section>
 
 <section class="featured container-novar" aria-labelledby="featured-title">
-    <p class="eyebrow">Destacados</p><h2 id="featured-title">Diseñados para mejorar<br />la forma de ver el mundo</h2>
-    <p>Los lentes más avanzados de Novar. Tecnología y experiencia visual sin compromisos.</p>
+    <p class="eyebrow">@T["Destacados"]</p><h2 id="featured-title">@T["Diseñados para mejorar"]<br />@T["la forma de ver el mundo"]</h2>
+    <p>@T["Los lentes más avanzados de Novar. Tecnología y experiencia visual sin compromisos."]</p>
     <div class="featured-grid">
         @foreach (var item in Model.Highlights)
         {
             <article class="lens-card">
-                <span class="tag">Destacado</span><img class="lens-card-image @(item.Slug == "ai-lens" ? "lens-card-image-mirrored" : "")" src="/media/figma/@item.Image" width="192" height="172" alt="Persona usando lentes @item.Name" loading="lazy" />
+                <span class="tag">@T["Destacado"]</span><img class="lens-card-image @(item.Slug == "ai-lens" ? "lens-card-image-mirrored" : "")" src="/media/figma/@item.Image" width="192" height="172" alt="@T["Persona usando lentes"] @item.Name" loading="lazy" />
                 <h3>@item.Name</h3><p class="lens-description">@item.Description</p>
                 <dl class="clarity-bars">
                     @foreach (var benefit in item.Benefits)
@@ -46,11 +46,11 @@
                 </dl>
                 @if (item.Slug.Length > 0)
                 {
-                <a class="card-cta" href="/lentes/@item.Slug">Descubrí más <span aria-hidden="true">→</span></a>
+                <a class="card-cta" href="/lentes/@item.Slug">@T["Descubrí más"] <span aria-hidden="true">→</span></a>
                 }
                 else
                 {
-                    <a class="card-cta myofix-card-link" href="https://www.novarmyofix.com/" aria-label="Descubrí más sobre MyoFix">Descubrí más <span aria-hidden="true">→</span></a>
+                    <a class="card-cta myofix-card-link" href="https://www.novarmyofix.com/" aria-label="@T["Descubrí más sobre MyoFix"]">@T["Descubrí más"] <span aria-hidden="true">→</span></a>
                 }
             </article>
         }
@@ -58,43 +58,44 @@
 </section>
 
 <section class="sophia-section container-novar" aria-labelledby="sophia-title" data-home-motion-revision="home-motion-v1">
-    <div class="sophia-copy"><p class="sophia-label"><img src="~/media/figma/84d44.svg" alt="" width="30" height="30" /> Tenés dudas? Preguntale a Sophia</p>
-        <h2 id="sophia-title">Elegir un lente no debería<br />ser una adivinanza</h2>
-        <p>Preguntale a Sophia. La inteligencia artificial<br class="desktop-only" /> que te guía hacia la mejor opción.</p>
-        <div class="sophia-actions"><button class="btn btn-novar" type="button" data-pending="Sophia"><img src="~/media/figma/b7758.svg" alt="" width="28" height="21" /> 24/7/365 Assistance</button><button class="btn btn-outline-novar" type="button" data-pending="Sophia multilenguaje"><img src="~/media/figma/f915d.svg" alt="" width="21" height="21" /> Multilenguaje</button></div>
+    <div class="sophia-copy"><p class="sophia-label"><img src="~/media/figma/84d44.svg" alt="" width="30" height="30" /> @T["Tenés dudas? Preguntale a Sophia"]</p>
+        <h2 id="sophia-title">@T["Elegir un lente no debería"]<br />@T["ser una adivinanza"]</h2>
+        <p>@T["Preguntale a Sophia. La inteligencia artificial"]<br class="desktop-only" /> @T["que te guía hacia la mejor opción."]</p>
+        <div class="sophia-actions"><button class="btn btn-novar" type="button" data-pending="Sophia"><img src="~/media/figma/b7758.svg" alt="" width="28" height="21" /> @T["24/7/365 Assistance"]</button><button class="btn btn-outline-novar" type="button" data-pending="@T["Sophia multilenguaje"]"><img src="~/media/figma/f915d.svg" alt="" width="21" height="21" /> @T["Multilenguaje"]</button></div>
     </div>
-    <div class="sophia-questions" role="region" aria-label="Preguntas que podés hacerle a Sophia" data-sophia-carousel>
+    <div class="sophia-questions" role="region" aria-label="@T["Preguntas que podés hacerle a Sophia"]" data-sophia-carousel>
         <div class="sophia-question-stage">
             <span class="sophia-selection-marker" aria-hidden="true"><img src="~/media/figma/539c7.svg" alt="" width="34.1358" height="29.5625" /></span>
             <ul class="sophia-question-list" id="sophia-question-list">
-                <li data-figma-node="889:1443">¿Qué hacer si tengo molestias?</li>
-                <li data-figma-node="889:1444">¿Qué test visuales puedo realizar como orientación?</li>
-                <li data-figma-node="889:1445">¿Cómo leer mi receta?</li>
-                <li class="selected" data-figma-node="889:1446">¿Qué lentes necesito?</li>
-                <li data-figma-node="889:1447">¿Cómo controlar la miopía?</li>
-                <li data-figma-node="889:1448">¿Cómo adaptarme a mis lentes?</li>
-                <li data-figma-node="889:1449">¿Cómo conocer el estado de un pedido?</li>
+                <li data-figma-node="889:1443">@T["¿Qué hacer si tengo molestias?"]</li>
+                <li data-figma-node="889:1444">@T["¿Qué test visuales puedo realizar como orientación?"]</li>
+                <li data-figma-node="889:1445">@T["¿Cómo leer mi receta?"]</li>
+                <li class="selected" data-figma-node="889:1446">@T["¿Qué lentes necesito?"]</li>
+                <li data-figma-node="889:1447">@T["¿Cómo controlar la miopía?"]</li>
+                <li data-figma-node="889:1448">@T["¿Cómo adaptarme a mis lentes?"]</li>
+                <li data-figma-node="889:1449">@T["¿Cómo conocer el estado de un pedido?"]</li>
             </ul>
         </div>
-        <button class="sophia-motion-toggle" type="button" aria-controls="sophia-question-list" hidden>Pausar preguntas</button>
+        <button class="sophia-motion-toggle" type="button" aria-controls="sophia-question-list" hidden>@T["Pausar preguntas"]</button>
     </div>
 </section>
 
 <section class="home-treatments" aria-labelledby="treatments-title"><div class="container-novar treatment-grid">
-    <div class="treatment-copy"><p class="eyebrow" data-figma-node="889:2156"><span>¿Sabías que...?</span></p><h2 id="treatments-title">Podés mejorar tu bienestar visual <span>con un pequeño cambio</span></h2>
-        <p>Los filtros en los lentes están pensados para <strong>mejorar tu visión</strong> en diferentes situaciones. Protege tus ojos y te ayuda a ver mejor, dependiendo de la actividad que estes realizando.</p>
+    <div class="treatment-copy"><p class="eyebrow" data-figma-node="889:2156"><span>@T["¿Sabías que...?"]</span></p><h2 id="treatments-title">@T["Podés mejorar tu bienestar visual"] <span>@T["con un pequeño cambio"]</span></h2>
+        <p>@T["Los filtros en los lentes están pensados para"] <strong>@T["mejorar tu visión"]</strong> @T["en diferentes situaciones. Protege tus ojos y te ayuda a ver mejor, dependiendo de la actividad que estes realizando."]</p>
         <ul class="comfort-benefits">
-            <li><span class="comfort-icon comfort-icon-eye" aria-hidden="true"><img src="~/media/figma/bf6dd.svg" alt="" width="68.2077" height="68.2077" /><img src="~/media/figma/6c179.svg" alt="" width="35.5037" height="30.5816" /></span><span>Menos fatiga<br />visual</span></li>
-            <li><span class="comfort-divider" aria-hidden="true"><img src="~/media/figma/6acd9.svg" alt="" width="68.2077" height="0.921725" /></span><span class="comfort-icon" aria-hidden="true"><img src="~/media/figma/38049.svg" alt="" width="68.2077" height="68.2077" /></span><span>Mayor<br />comodidad</span></li>
-            <li><span class="comfort-divider" aria-hidden="true"><img src="~/media/figma/6acd9.svg" alt="" width="68.2077" height="0.921725" /></span><span class="comfort-icon" aria-hidden="true"><img src="~/media/figma/37216.svg" alt="" width="68.2077" height="68.2077" /></span><span>Protección<br />según tu rutina</span></li>
+            <li><span class="comfort-icon comfort-icon-eye" aria-hidden="true"><img src="~/media/figma/bf6dd.svg" alt="" width="68.2077" height="68.2077" /><img src="~/media/figma/6c179.svg" alt="" width="35.5037" height="30.5816" /></span><span>@T["Menos fatiga"]<br />@T["visual"]</span></li>
+            <li><span class="comfort-divider" aria-hidden="true"><img src="~/media/figma/6acd9.svg" alt="" width="68.2077" height="0.921725" /></span><span class="comfort-icon" aria-hidden="true"><img src="~/media/figma/38049.svg" alt="" width="68.2077" height="68.2077" /></span><span>@T["Mayor"]<br />@T["comodidad"]</span></li>
+            <li><span class="comfort-divider" aria-hidden="true"><img src="~/media/figma/6acd9.svg" alt="" width="68.2077" height="0.921725" /></span><span class="comfort-icon" aria-hidden="true"><img src="~/media/figma/37216.svg" alt="" width="68.2077" height="68.2077" /></span><span>@T["Protección"]<br />@T["según tu rutina"]</span></li>
         </ul>
-        <a class="btn btn-novar treatment-cta" href="/tratamientos" data-figma-node="889:1764">Conocé más<img src="~/media/figma/e3b22.svg" alt="" width="15" height="15" /></a>
+        <a class="btn btn-novar treatment-cta" href="/tratamientos" data-figma-node="889:1764">@T["Conocé más"]<img src="~/media/figma/e3b22.svg" alt="" width="15" height="15" /></a>
     </div>
-    <div class="treatment-collage"><img class="collage-main" src="~/media/figma/2cc9c.png" alt="Mujer con lentes de color ámbar" width="367" height="586" loading="lazy" /><img class="collage-child" src="~/media/figma/65071.png" alt="Niña con anteojos al aire libre" width="249" height="208" loading="lazy" /><img class="collage-sport" src="~/media/figma/b3aff.png" alt="Ciclista con lentes de protección" width="249" height="260" loading="lazy" />
-        <span class="collage-tag tag-comfort"><span class="collage-eye" aria-hidden="true"><img src="~/media/figma/73742.svg" alt="" width="24" height="24" /><img src="~/media/figma/e52ae.svg" alt="" width="15" height="10" /></span>Confort Visual</span>
-        <span class="collage-tag tag-drive"><img src="~/media/figma/8dc9d.svg" alt="" width="24" height="24" />Conducción</span>
-        <span class="collage-tag tag-screen"><img src="~/media/figma/d2700.svg" alt="" width="24" height="24" />Protección para pantallas</span>
-        <span class="collage-tag tag-outdoor"><img src="~/media/figma/e8b67.svg" alt="" width="24" height="24" />Para Exterior</span>
+    <div class="treatment-collage" id="home-treatment-collage" data-treatment-collage data-pause-label="@T["Pausar imágenes"]" data-resume-label="@T["Reanudar imágenes"]"><img class="collage-main" src="~/media/figma/2cc9c.png" alt="@T["Mujer con lentes de color ámbar"]" width="367" height="586" loading="lazy" /><img class="collage-child" src="~/media/figma/65071.png" alt="@T["Niña con anteojos al aire libre"]" width="249" height="208" loading="lazy" /><img class="collage-sport" src="~/media/figma/b3aff.png" alt="@T["Ciclista con lentes de protección"]" width="249" height="260" loading="lazy" />
+        <span class="collage-tag tag-comfort"><span class="collage-eye" aria-hidden="true"><img src="~/media/figma/73742.svg" alt="" width="24" height="24" /><img src="~/media/figma/e52ae.svg" alt="" width="15" height="10" /></span>@T["Confort Visual"]</span>
+        <span class="collage-tag tag-drive"><img src="~/media/figma/8dc9d.svg" alt="" width="24" height="24" />@T["Conducción"]</span>
+        <span class="collage-tag tag-screen"><img src="~/media/figma/d2700.svg" alt="" width="24" height="24" />@T["Protección para pantallas"]</span>
+        <span class="collage-tag tag-outdoor"><img src="~/media/figma/e8b67.svg" alt="" width="24" height="24" />@T["Para Exterior"]</span>
+        <button class="collage-motion-toggle" type="button" aria-controls="home-treatment-collage" hidden>@T["Pausar imágenes"]</button>
     </div>
 </div></section>
 
@@ -102,60 +103,67 @@
     <script src="~/js/home.js" asp-append-version="true" defer></script>
     <script src="~/js/testimonials.js" asp-append-version="true" defer></script>
     <script src="~/js/home-media.js" asp-append-version="true" defer></script>
+    <script src="~/js/home-world-mobile.js" asp-append-version="true" defer></script>
+    <script src="~/js/home-treatment-collage.js" asp-append-version="true" defer></script>
 }
 
 <section class="world-section" aria-labelledby="world-title"><div class="container-novar text-center">
-    <p class="world-about eyebrow" data-figma-node="889:1697">Conocenos</p>
-    <h2 id="world-title"><strong>Encontranos</strong> en el mundo</h2><p>Novar está presente en mercados de todo el mundo, ofreciendo<br class="desktop-only" /> tecnología óptica de precisión con estándares internacionales de calidad.</p>
-    <div class="world-visual" data-figma-node="1072:238">
+    <p class="world-about eyebrow" data-figma-node="889:1697">@T["Conocenos"]</p>
+    <h2 id="world-title"><strong>@T["Encontranos"]</strong> @T["en el mundo"]</h2><p>@T["Novar está presente en mercados de todo el mundo, ofreciendo"]<br class="desktop-only" /> @T["tecnología óptica de precisión con estándares internacionales de calidad."]</p>
+    <p class="world-mobile-hint" id="world-mobile-hint" hidden>@T["Deslizá para explorar. Tocá una imagen para ver los controles."]</p>
+    <div class="world-visual" role="region" aria-labelledby="world-title" aria-describedby="world-mobile-hint" tabindex="0">
         <div class="world-shape-strip">
-            <img class="world-shape-orbit" src="~/media/figma/6b2a4.svg" alt="" width="328.5" height="328.5" />
-            <span class="world-shape-tall"></span><span class="world-shape-tall"></span>
-            <div class="world-shape-stack"><span class="world-shape-pill" aria-hidden="true"></span><blockquote class="world-shape-tinted world-quote" data-figma-node="1072:242"><span class="world-quote-mark" aria-hidden="true">“</span><p>Los mejores lentes progresivos que probé, nunca había usado con inteligencia artificial. Es un antes y un después. Recomiendo!</p></blockquote></div>
-            <span class="world-shape-tall"></span><span class="world-shape-tall"></span>
-            <div class="world-shape-stack"><span></span><span class="world-shape-pill"></span></div>
+            <div class="world-poster world-poster-crop world-shape-orbit world-media-player world-media-path" data-figma-node="1072:235" data-home-media-player="world-path" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-path.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-path.webp" alt="" width="1920" height="1080" loading="lazy" /><video data-home-media-video id="home-world-path-video" width="1920" height="1080" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-path.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-path-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button><button class="world-video-sound" type="button" data-home-media-sound aria-controls="home-world-path-video" aria-label="@T["Activar sonido"]" hidden>@T["Activar sonido"]</button></div></div>
+            <div class="world-shape-tall" data-figma-node="1072:236" data-home-media-player="world-portrait-1" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-portrait-1.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-navy.webp" alt="" width="1280" height="712" loading="lazy" /><video data-home-media-video id="home-world-portrait-1-video" width="432" height="768" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-navy.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-portrait-1-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button><button class="world-video-sound" type="button" data-home-media-sound aria-controls="home-world-portrait-1-video" aria-label="@T["Activar sonido"]" hidden>@T["Activar sonido"]</button></div></div>
+            <div class="world-shape-tall" data-figma-node="1072:237" data-home-media-player="world-portrait-2" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-portrait-2.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-navy.webp" alt="" width="1280" height="712" loading="lazy" /><video data-home-media-video id="home-world-portrait-2-video" width="432" height="768" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-navy.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-portrait-2-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button><button class="world-video-sound" type="button" data-home-media-sound aria-controls="home-world-portrait-2-video" aria-label="@T["Activar sonido"]" hidden>@T["Activar sonido"]</button></div></div>
+            <div class="world-poster world-shape-pill" data-figma-node="1072:240"><img src="~/media/home/optimized/world-turquoise.webp" alt="" width="640" height="360" loading="lazy" /></div>
+            <div class="world-poster world-poster-crop world-media-player" data-figma-node="1072:242" data-home-media-player="world-spectra-glasses" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-spectra-glasses.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-spectra-glasses.webp" alt="" width="986" height="720" loading="lazy" /><video data-home-media-video id="home-world-spectra-glasses-video" width="986" height="720" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-spectra-glasses.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-spectra-glasses-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button><button class="world-video-sound" type="button" data-home-media-sound aria-controls="home-world-spectra-glasses-video" aria-label="@T["Activar sonido"]" hidden>@T["Activar sonido"]</button></div></div>
+            <div class="world-shape-tall" data-figma-node="1072:238" data-home-media-player="world-portrait-3" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-portrait-3.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-navy.webp" alt="" width="1280" height="712" loading="lazy" /><video data-home-media-video id="home-world-portrait-3-video" width="432" height="768" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-navy.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-portrait-3-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button><button class="world-video-sound" type="button" data-home-media-sound aria-controls="home-world-portrait-3-video" aria-label="@T["Activar sonido"]" hidden>@T["Activar sonido"]</button></div></div>
+            <div class="world-shape-tall" data-figma-node="1072:239" data-home-media-player="world-sunset-glasses" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-sunset-glasses.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-sunset-glasses.webp" alt="" width="1024" height="772" loading="lazy" /><video data-home-media-video id="home-world-sunset-glasses-video" width="1200" height="680" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-sunset-glasses.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-sunset-glasses-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button><button class="world-video-sound" type="button" data-home-media-sound aria-controls="home-world-sunset-glasses-video" aria-label="@T["Activar sonido"]" hidden>@T["Activar sonido"]</button></div></div>
+            <div class="world-poster world-media-player world-media-earth" data-figma-node="1072:243" data-home-media-player="world-earth" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-earth.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-earth.webp" alt="" width="640" height="360" loading="lazy" /><video data-home-media-video id="home-world-earth-video" width="640" height="360" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-earth.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-earth-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button></div></div>
+            <div class="world-poster world-shape-pill world-media-player world-media-boy-glasses" data-figma-node="1072:241" data-home-media-player="world-boy-glasses" data-home-media-controls="world" data-home-media-source="/media/home/optimized/world-boy-glasses.mp4" data-home-media-play-label="@T["Reproducir video"]" data-home-media-pause-label="@T["Pausar video"]" data-home-media-sound-label="@T["Activar sonido"]" data-home-media-mute-label="@T["Silenciar video"]"><div class="world-media-clip"><img src="~/media/home/optimized/world-boy-glasses.webp" alt="" width="640" height="360" loading="lazy" /><video data-home-media-video id="home-world-boy-glasses-video" width="640" height="360" muted loop playsinline preload="none" poster="@Url.Content("~/media/home/optimized/world-boy-glasses.webp")" aria-hidden="true" tabindex="-1" hidden></video></div><div class="world-media-actions"><button class="world-video-toggle" type="button" data-home-media-toggle aria-controls="home-world-boy-glasses-video" aria-label="@T["Reproducir video"]" hidden>@T["Reproducir video"]</button></div></div>
         </div>
     </div>
-    <dl class="world-stats"><div><dt>Miradas felices</dt><dd>+41M</dd></div><div><dt>Países</dt><dd>+60</dd></div><div><dt>Laboratorios de producción</dt><dd>+290</dd></div></dl>
-    <a class="world-cta" href="/sobre-nosotros" data-figma-node="1126:232">Conocé más<img src="~/media/figma/e3b22.svg" alt="" width="15" height="15" /></a>
+    <dl class="world-stats"><div><dt>@T["Miradas felices"]</dt><dd>+41M</dd></div><div><dt>@T["Países"]</dt><dd>+60</dd></div><div><dt>@T["Laboratorios de producción"]</dt><dd>+290</dd></div></dl>
+    <a class="world-cta" href="/sobre-nosotros" data-figma-node="1126:232">@T["Conocé más"]<img src="~/media/figma/e3b22.svg" alt="" width="15" height="15" /></a>
 </div></section>
 
-<section class="testimonials container-novar" aria-labelledby="testimonials-title" data-testimonial-carousel data-home-refinements-revision="home-refinements-v1"><h2 id="testimonials-title">Tu experiencia</h2>
-    <div class="testimonial-grid" id="testimonial-list"><blockquote class="testimonial-side"><p>Marcos G.</p><footer>Progresivo · Evolution</footer></blockquote>
-        <blockquote class="testimonial-main"><div class="quote-stars" aria-hidden="true"><img src="~/media/figma/1e0d2.svg" width="14" height="14" alt="" /><img src="~/media/figma/1e0d2.svg" width="14" height="14" alt="" /><img src="~/media/figma/1e0d2.svg" width="14" height="14" alt="" /></div><p>Hernán Darío</p><footer>Monofocal · Novar</footer><q>Son los mejores, por eso no los cambio por nada.</q></blockquote>
-        <blockquote class="testimonial-side"><p>Valentina R.</p><footer>Progresivo · eLIFE</footer></blockquote>
+<section class="testimonials container-novar" aria-labelledby="testimonials-title" data-testimonial-carousel data-home-refinements-revision="home-refinements-v1"><h2 id="testimonials-title">@T["Tu experiencia"]</h2>
+    <div class="testimonial-grid" id="testimonial-list"><blockquote class="testimonial-side"><p>Marcos G.</p><footer>@T["Progresivo"] · Evolution</footer></blockquote>
+        <blockquote class="testimonial-main"><div class="quote-stars" aria-hidden="true"><img src="~/media/figma/1e0d2.svg" width="14" height="14" alt="" /><img src="~/media/figma/1e0d2.svg" width="14" height="14" alt="" /><img src="~/media/figma/1e0d2.svg" width="14" height="14" alt="" /></div><p>Hernán Darío</p><footer>@T["Monofocal"] · Novar</footer><q>@T["Son los mejores, por eso no los cambio por nada."]</q></blockquote>
+        <blockquote class="testimonial-side"><p>Valentina R.</p><footer>@T["Progresivo"] · eLIFE</footer></blockquote>
     </div>
     <div class="testimonial-controls" hidden>
-        <button type="button" class="round-button" data-testimonial-previous aria-controls="testimonial-list" aria-label="Experiencia anterior"><img src="~/media/figma/e30c0.svg" alt="" width="18" height="18" /></button>
-        <button type="button" class="testimonial-motion-toggle" aria-controls="testimonial-list" aria-pressed="false">Pausar experiencias</button>
-        <button type="button" class="round-button" data-testimonial-next aria-controls="testimonial-list" aria-label="Experiencia siguiente"><img src="~/media/figma/afd96.svg" alt="" width="18" height="18" /></button>
+        <button type="button" class="round-button" data-testimonial-previous aria-controls="testimonial-list" aria-label="@T["Experiencia anterior"]"><img src="~/media/figma/e30c0.svg" alt="" width="18" height="18" /></button>
+        <button type="button" class="testimonial-motion-toggle" aria-controls="testimonial-list" aria-pressed="false">@T["Pausar experiencias"]</button>
+        <button type="button" class="round-button" data-testimonial-next aria-controls="testimonial-list" aria-label="@T["Experiencia siguiente"]"><img src="~/media/figma/afd96.svg" alt="" width="18" height="18" /></button>
     </div>
     <p class="visually-hidden" data-testimonial-status aria-live="polite" aria-atomic="true"></p>
 </section>
 
-<section class="home-questions" aria-labelledby="faq-title"><div class="faq-narrow"><p class="eyebrow text-center">Preguntas frecuentes</p><h2 class="text-center" id="faq-title">¿Tenés dudas?</h2><partial name="_Faq" model='new FaqSection("home-faq", Model.Questions, 0)' /></div></section>
+<section class="home-questions" aria-labelledby="faq-title"><div class="faq-narrow"><p class="eyebrow text-center">@T["Preguntas frecuentes"]</p><h2 class="text-center" id="faq-title">@T["¿Tenés dudas?"]</h2><partial name="_Faq" model='new FaqSection("home-faq", Model.Questions, 0)' /></div></section>
 
 <section class="contact-section" id="contacto" aria-labelledby="contact-title" data-figma-node="964:980"><div class="contact-inner">
-    <form class="demo-form contact-form" data-demo-form="Formulario de contacto" onsubmit="return false" aria-describedby="contact-notice">
+    <form class="demo-form contact-form" data-demo-form="@T["Formulario de contacto"]" onsubmit="return false" aria-describedby="contact-notice">
         @* A disabled default submitter blocks native implicit submission when JavaScript is disabled. *@
-        <button type="submit" disabled hidden aria-hidden="true">Envío no disponible</button>
+        <button type="submit" disabled hidden aria-hidden="true">@T["Envío no disponible"]</button>
         <div class="contact-details">
-            <div class="contact-heading" data-figma-node="964:981"><p>¿Tenés alguna duda?</p><h2 id="contact-title">¡Contactanos!</h2></div>
-            <div class="social-links contact-socials" aria-label="Redes sociales pendientes de integración">
-                <button type="button" data-pending="Instagram" aria-label="Instagram: pendiente de integración"><span class="contact-social-icon contact-instagram" aria-hidden="true"><img src="~/media/figma/b0b3b.svg" alt="" width="26.2845" height="28.0087" /><img class="instagram-center" src="~/media/figma/af7e5.svg" alt="" width="13.456" height="14.3392" /><img class="instagram-dot" src="~/media/figma/de04b.svg" alt="" width="3.34564" height="3.62228" /></span></button>
-                <button type="button" data-pending="LinkedIn" aria-label="LinkedIn: pendiente de integración"><span class="contact-social-icon contact-linkedin" aria-hidden="true"><img class="linkedin-stem" src="~/media/figma/121ca.svg" alt="" width="5.11091" height="18.9252" /><img class="linkedin-dot" src="~/media/figma/fa725.svg" alt="" width="5.84104" height="6.05608" /><img class="linkedin-n" src="~/media/figma/d97eb.svg" alt="" width="17.5231" height="18.9252" /></span></button>
-                <button type="button" data-pending="Facebook" aria-label="Facebook: pendiente de integración"><img src="~/media/figma/d8886.svg" alt="" width="26.2847" height="27.2524" /></button>
-                <button type="button" data-pending="YouTube" aria-label="YouTube: pendiente de integración"><img src="~/media/figma/6e7af.svg" alt="" width="34.3139" height="24.9805" /></button>
+            <div class="contact-heading" data-figma-node="964:981"><p>@T["¿Tenés alguna duda?"]</p><h2 id="contact-title">@T["¡Contactanos!"]</h2></div>
+            <div class="social-links contact-socials" aria-label="@T["Redes sociales pendientes de integración"]">
+                <button type="button" data-pending="Instagram" aria-label="@T["Instagram: pendiente de integración"]"><span class="contact-social-icon contact-instagram" aria-hidden="true"><img src="~/media/figma/b0b3b.svg" alt="" width="26.2845" height="28.0087" /><img class="instagram-center" src="~/media/figma/af7e5.svg" alt="" width="13.456" height="14.3392" /><img class="instagram-dot" src="~/media/figma/de04b.svg" alt="" width="3.34564" height="3.62228" /></span></button>
+                <button type="button" data-pending="LinkedIn" aria-label="@T["LinkedIn: pendiente de integración"]"><span class="contact-social-icon contact-linkedin" aria-hidden="true"><img class="linkedin-stem" src="~/media/figma/121ca.svg" alt="" width="5.11091" height="18.9252" /><img class="linkedin-dot" src="~/media/figma/fa725.svg" alt="" width="5.84104" height="6.05608" /><img class="linkedin-n" src="~/media/figma/d97eb.svg" alt="" width="17.5231" height="18.9252" /></span></button>
+                <button type="button" data-pending="Facebook" aria-label="@T["Facebook: pendiente de integración"]"><img src="~/media/figma/d8886.svg" alt="" width="26.2847" height="27.2524" /></button>
+                <button type="button" data-pending="YouTube" aria-label="@T["YouTube: pendiente de integración"]"><img src="~/media/figma/6e7af.svg" alt="" width="34.3139" height="24.9805" /></button>
             </div>
-            <div class="contact-fields"><div><label for="contact-name">Nombre completo</label><input id="contact-name" class="form-control" type="text" autocomplete="off" /></div><div><label for="contact-email">Email</label><input id="contact-email" class="form-control" type="email" autocomplete="off" /></div></div>
-            <div class="contact-subject"><label for="contact-subject">Asunto</label><input id="contact-subject" class="form-control" type="text" autocomplete="off" /></div>
+            <div class="contact-fields"><div><label for="contact-name">@T["Nombre completo"]</label><input id="contact-name" class="form-control" type="text" autocomplete="off" /></div><div><label for="contact-email">@T["Email"]</label><input id="contact-email" class="form-control" type="email" autocomplete="off" /></div></div>
+            <div class="contact-subject"><label for="contact-subject">@T["Asunto"]</label><input id="contact-subject" class="form-control" type="text" autocomplete="off" /></div>
         </div>
-        <div class="contact-message"><label for="contact-message">Mensaje</label><textarea id="contact-message" class="form-control" rows="8"></textarea></div>
-        <div class="contact-submit"><button class="btn btn-outline-novar" type="button" data-pending="Formulario de contacto">Enviar</button><p class="form-notice" id="contact-notice">Muestra: no se envían ni almacenan datos.</p></div>
+        <div class="contact-message"><label for="contact-message">@T["Mensaje"]</label><textarea id="contact-message" class="form-control" rows="8"></textarea></div>
+        <div class="contact-submit"><button class="btn btn-outline-novar" type="button" data-pending="@T["Formulario de contacto"]">@T["Enviar"]</button><p class="form-notice" id="contact-notice">@T["Muestra: no se envían ni almacenan datos."]</p></div>
     </form>
 </div></section>
 
 <section class="newsletter-section" aria-labelledby="newsletter-title"><div class="container-novar newsletter-inner">
-    <div class="newsletter-top"><div><h2 id="newsletter-title">Stay<br /><strong>Connected</strong></h2><p>Novar Newsletter</p></div><div class="newsletter-copy"><h3>Suscríbete al newsletter de Novar</h3><p>Recibí novedades, lanzamientos y avances tecnológicos directamente en tu mail.</p><span class="form-notice">Suscripción pendiente de integración.</span></div></div>
-    <div class="warranty-panel" aria-labelledby="warranty-title"><div><h3 id="warranty-title">Activá la extensión de tu garantía</h3><p>Cobertura de 6 meses extensible a 12 meses.</p></div><button class="btn btn-novar" type="button" data-pending="Activación de garantía">Activar</button></div>
+    <div class="newsletter-top"><div><h2 id="newsletter-title">@T["Stay"]<br /><strong>@T["Connected"]</strong></h2><p>@T["Novar Newsletter"]</p></div><div class="newsletter-copy"><h3>@T["Suscríbete al newsletter de Novar"]</h3><p>@T["Recibí novedades, lanzamientos y avances tecnológicos directamente en tu mail."]</p><span class="form-notice">@T["Suscripción pendiente de integración."]</span></div></div>
+    <div class="warranty-panel" aria-labelledby="warranty-title"><div><h3 id="warranty-title">@T["Activá la extensión de tu garantía"]</h3><p>@T["Cobertura de 6 meses extensible a 12 meses."]</p></div><button class="btn btn-novar" type="button" data-pending="@T["Activación de garantía"]">@T["Activar"]</button></div>
 </div></section>

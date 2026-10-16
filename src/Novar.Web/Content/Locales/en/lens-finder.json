@@ -1,0 +1,262 @@
+{
+  "notice": "Guidance based on product features. Choosing lenses requires a professional evaluation.",
+  "needs": [
+    {
+      "id": "progressive",
+      "label": "I want to explore progressive lenses"
+    },
+    {
+      "id": "monofocal",
+      "label": "I want to explore single-vision lenses"
+    },
+    {
+      "id": "occupational",
+      "label": "I want to explore occupational lenses"
+    },
+    {
+      "id": "bifocal",
+      "label": "I want to explore bifocal lenses"
+    },
+    {
+      "id": "unsure",
+      "label": "I am not sure: show me the options"
+    }
+  ],
+  "preferences": [
+    {
+      "id": "first-experience",
+      "need": "progressive",
+      "label": "First experience with progressive lenses",
+      "slugs": [
+        "first"
+      ]
+    },
+    {
+      "id": "balanced",
+      "need": "progressive",
+      "label": "Balance for everyday use",
+      "slugs": [
+        "precisa"
+      ]
+    },
+    {
+      "id": "amplitude",
+      "need": "progressive",
+      "label": "Wide visual fields",
+      "slugs": [
+        "evolution"
+      ]
+    },
+    {
+      "id": "digital",
+      "need": "progressive",
+      "label": "Digital routine and near tasks",
+      "slugs": [
+        "elife"
+      ]
+    },
+    {
+      "id": "progressive-ai",
+      "need": "progressive",
+      "label": "Artificial-intelligence design",
+      "slugs": [
+        "ai-lens"
+      ]
+    },
+    {
+      "id": "one-distance",
+      "need": "monofocal",
+      "label": "General use at one distance",
+      "slugs": [
+        "single-vision"
+      ]
+    },
+    {
+      "id": "personalization",
+      "need": "monofocal",
+      "label": "Personalized single-vision design",
+      "slugs": [
+        "geo"
+      ]
+    },
+    {
+      "id": "myopia-comfort",
+      "need": "monofocal",
+      "label": "Explore comfort options for myopia",
+      "slugs": [
+        "myolens"
+      ]
+    },
+    {
+      "id": "sport",
+      "need": "monofocal",
+      "label": "Sports and wraparound glasses",
+      "slugs": [
+        "outdoor"
+      ]
+    },
+    {
+      "id": "near-support",
+      "need": "monofocal",
+      "label": "Study and screens: near-vision support",
+      "slugs": [
+        "indoor"
+      ]
+    },
+    {
+      "id": "thickness",
+      "need": "monofocal",
+      "label": "Known high prescription and reduced lens thickness",
+      "slugs": [
+        "slim",
+        "geo"
+      ]
+    },
+    {
+      "id": "desk",
+      "need": "occupational",
+      "label": "Desk work, reading, and screens",
+      "slugs": [
+        "office"
+      ]
+    },
+    {
+      "id": "work-ai",
+      "need": "occupational",
+      "label": "AI-powered work personalization",
+      "slugs": [
+        "aiwork"
+      ]
+    },
+    {
+      "id": "round",
+      "need": "bifocal",
+      "label": "Round segment",
+      "slugs": [
+        "ultex-blended"
+      ]
+    },
+    {
+      "id": "freeform",
+      "need": "bifocal",
+      "label": "Freeform digital manufacturing",
+      "slugs": [
+        "kriptok-blended"
+      ]
+    },
+    {
+      "id": "discreet",
+      "need": "bifocal",
+      "label": "More discreet segment",
+      "slugs": [
+        "kriptok-blended",
+        "freeline"
+      ]
+    }
+  ],
+  "compact": {
+    "label": "I prefer a small frame",
+    "replacements": [
+      {
+        "from": "precisa",
+        "to": "precisa-short"
+      },
+      {
+        "from": "evolution",
+        "to": "evolution-short"
+      }
+    ]
+  },
+  "products": [
+    {
+      "slug": "first",
+      "need": "progressive",
+      "reason": "Its description focuses on a first progressive-lens experience and comfortable adaptation."
+    },
+    {
+      "slug": "precisa",
+      "need": "progressive",
+      "reason": "Its description offers a balanced distribution for distance, intermediate, and near vision in everyday use."
+    },
+    {
+      "slug": "precisa-short",
+      "need": "progressive",
+      "reason": "It offers Precisa progressive balance for small frames."
+    },
+    {
+      "slug": "evolution",
+      "need": "progressive",
+      "reason": "Its description highlights wide visual fields and an advanced progressive experience."
+    },
+    {
+      "slug": "evolution-short",
+      "need": "progressive",
+      "reason": "It describes an advanced progressive experience for compact frames."
+    },
+    {
+      "slug": "elife",
+      "need": "progressive",
+      "reason": "Its description prioritizes screens, reading, and intermediate and near distances."
+    },
+    {
+      "slug": "ai-lens",
+      "need": "progressive",
+      "reason": "It is a progressive lens whose design uses artificial intelligence for multiple distances."
+    },
+    {
+      "slug": "single-vision",
+      "need": "monofocal",
+      "reason": "Its description presents a digitally manufactured single-vision lens for one distance."
+    },
+    {
+      "slug": "geo",
+      "need": "monofocal",
+      "reason": "It describes a personalized single-vision lens designed around visual quality, distortion, and thickness."
+    },
+    {
+      "slug": "myolens",
+      "need": "monofocal",
+      "reason": "Its description addresses visual comfort for people with myopia. MyoLens is not MyoFix and is not presented here as a childhood myopia-control lens."
+    },
+    {
+      "slug": "outdoor",
+      "need": "monofocal",
+      "reason": "Its description focuses on sports and the geometry of wraparound glasses."
+    },
+    {
+      "slug": "indoor",
+      "need": "monofocal",
+      "reason": "It describes a single-vision lens that supports near tasks, studying, and screen use."
+    },
+    {
+      "slug": "slim",
+      "need": "monofocal",
+      "reason": "Its description highlights thickness optimization for an already-known high prescription."
+    },
+    {
+      "slug": "office",
+      "need": "occupational",
+      "reason": "It describes an occupational lens for reading, desk work, and screens, focused on near and intermediate distances."
+    },
+    {
+      "slug": "aiwork",
+      "need": "occupational",
+      "reason": "Its description highlights AI-based personalization for working distances."
+    },
+    {
+      "slug": "kriptok-blended",
+      "need": "bifocal",
+      "reason": "Its description combines bifocal functionality, a more discreet segment, and Freeform digital manufacturing."
+    },
+    {
+      "slug": "ultex-blended",
+      "need": "bifocal",
+      "reason": "It describes a fused bifocal with a round segment for distance and near vision."
+    },
+    {
+      "slug": "freeline",
+      "need": "bifocal",
+      "reason": "Its description focuses on reducing the visibility of the bifocal segment."
+    }
+  ]
+}

@@ -4,10 +4,11 @@
     ViewData["PremiumPage"] = true;
     ViewData["PremiumVariant"] = Model.Slug;
     var faqId = $"premium-{Model.Slug}-faq";
+    var banner = ProductBannerAsset.ForSlug(Model.Slug);
 }
 <article class="premium-product premium-product--@Model.Slug" data-figma-node="@Model.SourceNode" data-premium-revision="premium-v1">
     <section class="premium-hero" aria-labelledby="premium-title">
-        <img class="premium-hero-image" src="~/media/figma/@Model.Hero.File" alt="@Model.Hero.Alt" width="@Model.Hero.Width" height="@Model.Hero.Height" data-figma-node="@Model.Hero.SourceNode" fetchpriority="high" />
+        <img class="premium-hero-image" src="~/media/products/banners/@banner.File" alt="@Model.Hero.Alt" width="@banner.Width" height="@banner.Height" data-figma-node="@banner.SourceNode" data-product-banner fetchpriority="high" />
         <h1 id="premium-title" class="premium-brand-pill">
             <span class="visually-hidden">Novar @Model.Name</span>
             @if (Model.Slug == "ai-lens")
@@ -39,7 +40,7 @@
 
     <section class="premium-technology" aria-labelledby="premium-technology-title">
         <div class="premium-technology-inner">
-            <p class="premium-technology-eyebrow">TECNOLOGÍA</p>
+            <p class="premium-technology-eyebrow">@T["TECNOLOGÍA"]</p>
             <div class="premium-technology-copy">
                 <h2 id="premium-technology-title">@Model.TechnologyTitle</h2>
                 <p class="premium-technology-description">@Model.TechnologyDescription</p>
@@ -56,7 +57,7 @@
         </div>
     </section>
 
-    <section class="premium-feature" aria-label="Características de @Model.Name">
+    <section class="premium-feature" aria-label="@T["Características de "]@Model.Name">
         <img class="premium-feature-image" src="~/media/figma/@Model.Feature.File" alt="@Model.Feature.Alt" width="@Model.Feature.Width" height="@Model.Feature.Height" data-figma-node="@Model.Feature.SourceNode" loading="lazy" />
         <div class="premium-callouts">
             @foreach (var callout in Model.Callouts)
@@ -80,9 +81,9 @@
     <section class="premium-faq" aria-labelledby="premium-faq-title">
         <div class="premium-faq-intro">
             <p class="premium-faq-eyebrow">FAQ</p>
-            <h2 id="premium-faq-title">Preguntas<br /> frecuentes</h2>
-            <p class="premium-faq-description">Todo lo que necesitás saber antes de elegir tu próxima lente.</p>
-            <a href="/#contacto">¿Tenés otra duda? Contactanos →</a>
+            <h2 id="premium-faq-title">@T["Preguntas"]<br /> @T["frecuentes"]</h2>
+            <p class="premium-faq-description">@T["Todo lo que necesitás saber antes de elegir tu próxima lente."]</p>
+            <a href="/#contacto">@T["¿Tenés otra duda? Contactanos →"]</a>
         </div>
         <partial name="_Faq" model="new FaqSection(faqId, Model.Questions, Model.OpenQuestion)" />
     </section>

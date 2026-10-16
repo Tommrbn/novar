@@ -8,7 +8,7 @@
 .premium-page .navbar-brand { margin: 0 48px 0 12px; }
 .premium-page .navbar-brand img { max-width: none; }
 .premium-page .navbar-nav { gap: 10px; margin: 0 !important; }
-.premium-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; color: #000; }
+.premium-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; font-family: Poppins, sans-serif; font-weight: 400; color: #000; }
 .premium-page .navbar .nav-link[aria-current="page"] { color: #1f023c; font-weight: 600; }
 .premium-page .language { gap: 5.571px; margin-left: auto; padding: 8px 16px; background: #1d023b; color: #f6f5f7; font-size: 12.998px; line-height: 18.569px; letter-spacing: .325px; }
 .premium-page .language img { max-width: none; }
@@ -18,7 +18,7 @@
 .premium-hero { position: relative; isolation: isolate; height: 798px; overflow: hidden; }
 .premium-hero-image { position: absolute; z-index: -2; top: 0; left: 0; width: 100%; height: 796.5px; object-fit: cover; }
 .premium-product--ai-lens .premium-hero-image { height: auto; min-height: 796.5px; object-fit: cover; object-position: center top; }
-.premium-hero::after { position: absolute; z-index: -1; content: ''; inset: auto 0 1.5px; height: 263.25px; background: linear-gradient(transparent, #000); }
+.premium-hero::after { position: absolute; z-index: -1; content: ''; inset: auto 0 0; height: 263.25px; background: linear-gradient(transparent, #000); }
 .premium-product--ai-lens .premium-hero::after { height: 223px; }
 .premium-brand-pill { position: absolute; top: 623.25px; left: 50%; transform: translateX(-50%); width: 126px; height: 39px; border-radius: 28.5px; background: rgb(247 246 247 / 10%); }
 .premium-brand { position: absolute; display: block; }
@@ -44,7 +44,8 @@
 .premium-technology-eyebrow { position: absolute; top: 93.75px; left: 33px; width: 109.5px; text-align: right; font-size: 15px; font-weight: 700; line-height: 18.75px; letter-spacing: -.45px; }
 .premium-technology h2 { max-width: 953px; font-size: 30px; font-weight: 700; line-height: 30px; letter-spacing: -.9px; white-space: pre-line; }
 .premium-product--ai-lens .premium-technology h2 { max-width: 892.5px; }
-.premium-technology-description { max-width: 895.5px; margin-top: 22.5px !important; font-size: 16.5px; font-weight: 700; line-height: 22.5px; letter-spacing: -.495px; }
+.premium-technology-description { max-width: 895.5px; margin-top: 22.5px !important; font-size: 16.5px; font-weight: 400; line-height: 22.5px; letter-spacing: -.495px; }
+.premium-product--ai-lens .premium-technology-description { white-space: pre-line; }
 .premium-product--aiwork .premium-technology-inner { padding-top: 54px; }
 .premium-product--aiwork .premium-technology-eyebrow { top: 66.75px; }
 .premium-product--aiwork .premium-technology h2 { max-width: 880px; line-height: 35px; }
@@ -61,13 +62,14 @@
 .premium-product--ai-lens .premium-benefit-icon { padding-left: 6px; }
 .premium-product--ai-lens .premium-benefits li:nth-child(3) .premium-benefit-icon { padding-left: 11.25px; }
 .premium-product--ai-lens .premium-benefits li:nth-child(4) .premium-benefit-icon { padding-left: 9px; }
-.premium-benefits li > span:last-child { display: block; width: 157px; max-width: 100%; margin: 16px 0 0 3px; opacity: .9; font-size: 15px; font-weight: 700; line-height: 13.5px; letter-spacing: -.45px; white-space: pre-line; }
+.premium-benefits li > span:last-child { display: block; width: 157px; max-width: 100%; margin: 16px 0 0 3px; opacity: .9; font-size: 15px; font-weight: 400; line-height: 13.5px; letter-spacing: -.45px; white-space: pre-line; }
 .premium-benefits li:first-child > span:last-child { margin-top: 20px; width: 145px; }
 .premium-benefits li:nth-child(2) > span:last-child { margin-top: 16.5px; width: 135px; }
 .premium-product--ai-lens .premium-benefits li:first-child > span:last-child { margin-top: 20.25px; width: 114px; }
 .premium-product--ai-lens .premium-benefits li:nth-child(3) > span:last-child { margin-top: 15.75px; width: 146.25px; }
 .premium-product--ai-lens .premium-benefits li:nth-child(4) > span:last-child { margin-top: 15.75px; width: 122.25px; }
 .premium-product--aiwork .premium-benefits { top: 353px; }
+.premium-product--aiwork .premium-benefits li > span:last-child { font-weight: 500; }
 
 .premium-feature { position: relative; height: 774px; }
 .premium-feature-image { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -79,17 +81,23 @@
 .premium-callout--bottom-left { left: 33.9583%; top: 634.5px; width: 205.5px; }
 .premium-callout--bottom-right { right: 6.6146%; top: 634.5px; width: 207px; text-align: right; }
 .premium-product--myolens .premium-callout--bottom-right { width: 228px; }
+.premium-product--ai-lens .premium-callout--top-left, .premium-product--ai-lens .premium-callout--bottom-left, .premium-product--ai-lens .premium-callout--bottom-right,
+.premium-product--myolens .premium-callout--top-left, .premium-product--myolens .premium-callout--bottom-right { font-weight: 500; }
 .premium-product--aiwork .premium-callout--top-left { left: 3.6111%; top: 76.25px; width: 313px; }
 .premium-product--aiwork .premium-callout--top-right { right: 2.9167%; top: 68.25px; width: 429px; }
 .premium-product--aiwork .premium-callout--bottom-left { left: 11.875%; top: 572.25px; width: 194.25px; }
 .premium-product--aiwork .premium-callout--bottom-right { right: 11.1806%; top: 591.25px; width: 187px; }
+.premium-product--aiwork .premium-callout--top-left, .premium-product--aiwork .premium-callout--bottom-left, .premium-product--aiwork .premium-callout--bottom-right { font-weight: 500; }
 
 .premium-explanation { min-height: 371.25px; padding: 86.25px 24px 70px; text-align: center; }
 .premium-explanation h2 { font-size: 22.5px; font-weight: 600; line-height: 27px; letter-spacing: -.675px; }
 .premium-explanation p { max-width: 810px; margin: 17.79px auto 0; font-size: 30px; font-weight: 700; line-height: 30px; letter-spacing: -.9px; }
+.premium-product--ai-lens .premium-explanation p, .premium-product--myolens .premium-explanation p { font-size: 27px; font-weight: 500; line-height: 30px; letter-spacing: -.81px; }
+.premium-product--myolens .premium-explanation p { max-width: 882px; }
+.premium-product--aiwork .premium-explanation p { font-size: 27px; font-weight: 500; line-height: 30px; letter-spacing: -.81px; }
 .premium-gallery { position: relative; width: min(1271.25px, calc(100% - 170px)); height: 705.75px; margin: 0 auto; }
 .premium-gallery-image { display: block; width: 100%; height: 100%; object-fit: cover; }
-.premium-watermark { position: absolute; top: 25px; right: 3.25px; width: 402px; height: 80px; display: grid; place-items: center; color: rgb(255 255 255 / 5%); font-size: 75px; font-weight: 900; line-height: 45px; letter-spacing: -2.25px; text-shadow: 0 3px 3px rgb(0 0 0 / 25%); }
+.premium-watermark { position: absolute; top: 25px; right: 3.25px; width: 402px; height: 80px; display: grid; place-items: center; background: rgb(255 255 255 / 5%); background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-fill-color: transparent; font-size: 75px; font-weight: 900; line-height: 45px; letter-spacing: -2.25px; text-shadow: 0 3px 3px rgb(0 0 0 / 25%); }
 .premium-product--ai-lens .premium-watermark { width: 317.25px; right: 7px; }
 .premium-gallery figcaption { position: absolute; top: 581px; left: 34px; right: 34px; color: white; white-space: pre-line; font-size: 30px; font-weight: 700; line-height: 30px; letter-spacing: -.9px; }
 
@@ -105,8 +113,6 @@
 .premium-faq .accordion-button { min-height: 68px; padding: 18px 24px; font-size: 16px; font-weight: 400; line-height: 2.1; letter-spacing: 0; color: #25212b; }
 .premium-faq .accordion-button span { color: #1d023b; line-height: 28px; }
 .premium-faq .accordion-body { padding: 0 24px 20px; font-size: 13px; line-height: 24px; color: #25212b; }
-.premium-faq .accordion-button:not(.collapsed) { min-height: 68px; padding: 18px 24px; font-size: 16px; font-weight: 400; line-height: 2.1; }
-.premium-product--ai-lens .premium-faq .accordion-button:not(.collapsed) { font-size: 16px; font-weight: 400; line-height: 2.1; }
 .premium-product--ai-lens .premium-faq .accordion-body { max-width: 507px; line-height: 2.1; }
 .premium-product--myolens .premium-faq .accordion-item:last-child:has(.accordion-button[aria-expanded="true"]) { min-height: 122px; }
 
@@ -135,6 +141,10 @@
 .premium-footer-socials button:hover { background: #ece5f5; }
 .premium-footer-socials img { display: block; max-width: none; }
 .premium-copyright { margin: 56.366px 0 0; padding-top: 32px; border-top: 1px solid #7b7b80; color: #7b7b80; font-size: 12px; line-height: 16px; }
+
+@media (min-width: 1200px) {
+    .premium-product--ai-lens .premium-benefits { position: static; margin-top: 24px; }
+}
 
 @media (max-width: 1199.98px) {
     .premium-page .navbar { padding: 12px 24px; }
@@ -172,7 +182,8 @@
     .premium-technology-inner, .premium-product--aiwork .premium-technology-inner { padding: 48px 24px; }
     .premium-technology-eyebrow, .premium-product--aiwork .premium-technology-eyebrow { position: static; width: auto; text-align: left; margin-bottom: 22px; }
     .premium-technology h2, .premium-product--aiwork .premium-technology h2 { font-size: 25px; line-height: 31px; white-space: normal; }
-    .premium-technology-description, .premium-product--aiwork .premium-technology-description { margin-top: 24px !important; font-weight: 600; line-height: 24px; }
+    .premium-technology-description, .premium-product--aiwork .premium-technology-description { margin-top: 24px !important; font-weight: 400; line-height: 24px; }
+    .premium-product--aiwork .premium-technology-description { font-weight: 400; }
     .premium-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 24px; margin-top: 38px; }
     .premium-benefits li > span:last-child { max-width: 165px; font-size: 14px; line-height: 18px; }
     .premium-feature { height: auto; }

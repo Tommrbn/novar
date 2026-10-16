@@ -1,0 +1,163 @@
+{
+  "sourceNode": "961:7324",
+  "titleLead": "Choose a card and find out",
+  "titleRest": "how your vision is doing",
+  "subtitleLead": "Interactive challenges to explore your perception,",
+  "subtitleRest": "focus, and visual response.",
+  "cards": [
+    {
+      "id": "codigo",
+      "number": "02/",
+      "badge": "Perception",
+      "title": "VISUAL CODE",
+      "description": "Find the hidden number among the colored dots.",
+      "featured": false
+    },
+    {
+      "id": "intruso",
+      "number": "01/",
+      "badge": "Featured",
+      "title": "COLOR INTRUDER",
+      "description": "Spot the different color in a grid of similar dots.",
+      "featured": true
+    },
+    {
+      "id": "trivia",
+      "number": "03/",
+      "badge": "Knowledge",
+      "title": "TRIVIA",
+      "description": "Answer questions about vision and optics.",
+      "featured": false
+    }
+  ],
+  "howEyebrow": "How does it work?",
+  "howTitle": "Challenges to test your attention",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Choose a game",
+      "description": "Select the type of vision challenge you want to explore."
+    },
+    {
+      "number": "02",
+      "title": "Play five rounds",
+      "description": "Answer at your own pace and pay attention to the details."
+    },
+    {
+      "number": "03",
+      "title": "See your score",
+      "description": "This is a recreational result; it does not evaluate your vision."
+    }
+  ],
+  "previewTitle": "Color Intruder",
+  "roundLabel": "Round 1 of 5",
+  "scoreLabel": "Score: 0",
+  "previewInstruction": "Find the different color among the 9 squares",
+  "demoNotice": "Recreational challenge. The score does not evaluate your vision.",
+  "trivia": {
+    "title": "Trivia",
+    "disclaimer": "Educational trivia. Correct answers show which responses were right; they do not evaluate your vision or replace professional advice.",
+    "questions": [
+      {
+        "question": "About how many times do we blink per minute?",
+        "options": [
+          "2–5 times",
+          "10–20 times",
+          "30–40 times",
+          "More than 60 times"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What usually happens to your blinking when you look at a screen for a long time?",
+        "options": [
+          "It increases a lot",
+          "It decreases",
+          "It stays the same",
+          "We stop blinking completely"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which part of the eye mainly determines its color?",
+        "options": [
+          "The retina",
+          "The cornea",
+          "The iris",
+          "The pupil"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Is the pupil really a black part of the eye?",
+        "options": [
+          "Yes, it is black tissue",
+          "No, it is an opening that lets light in",
+          "It is a muscle",
+          "It is part of the retina"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which eye color is usually more sensitive to glare?",
+        "options": [
+          "Light-colored eyes",
+          "Dark-colored eyes",
+          "Green eyes only",
+          "Color has no effect at all"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which habit is associated with a lower risk of developing or progressing myopia in childhood?",
+        "options": [
+          "Reading in dim light",
+          "Spending more time outdoors",
+          "Using a phone with low brightness",
+          "Wearing sunglasses indoors"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does your pupil do when you enter a dark place?",
+        "options": [
+          "It gets smaller",
+          "It dilates",
+          "It changes color",
+          "It stays the same"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which of these can contribute to eye strain when looking at a screen?",
+        "options": [
+          "Looking at something up close for a long time",
+          "Blinking less",
+          "Not taking visual breaks",
+          "All of the above"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "If you see perfectly at a distance, does that mean your vision is 100% perfect?",
+        "options": [
+          "Yes",
+          "Not necessarily",
+          "Only if you are under 40",
+          "Yes, as long as you do not wear glasses"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "BONUS: What percentage of information from our surroundings is often said to come through vision?",
+        "options": [
+          "10%",
+          "30%",
+          "50%",
+          "This is a trick question: no universal percentage has been scientifically established"
+        ],
+        "correctIndex": 3
+      }
+    ]
+  }
+}

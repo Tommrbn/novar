@@ -1,0 +1,338 @@
+[
+  {
+    "name": "Kriptok Blended",
+    "slug": "kriptok-blended",
+    "sourceNode": "989:712",
+    "category": "Bifocals",
+    "wordmarkNode": "989:744",
+    "hero": "a2798.png",
+    "heroUnderlay": null,
+    "heroEyebrow": null,
+    "subtitle": "Bifocal functionality with a more integrated look.",
+    "description": "A bifocal design with an invisible segment, for people seeking Freeform lens precision with a more refined appearance.",
+    "tagline": "A more discreet bifocal",
+    "introHeading": "Two vision zones, a cleaner appearance.",
+    "introEyebrow": "A MORE DISCREET BIFOCAL",
+    "intro": "Novar Kriptok Blended offers a bifocal solution for distance and near vision, with a more subtly integrated segment.",
+    "scene": "94673.png",
+    "gallery": [
+      "6e749.png",
+      "ed808.png",
+      "0127c.png",
+      "1305e.png"
+    ],
+    "galleryName": "Kriptok Blended",
+    "details": "An option for people who prefer bifocals but want a more refined look.",
+    "design": "Blended bifocal lens.",
+    "idealFor": "People looking for bifocals with a more refined appearance.",
+    "detail": "2c53f.png",
+    "tag": "Bifocal functionality with a less visible segment",
+    "watermark": "kriprok\nblended",
+    "wordmark": "bop-kriptok-blended-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology combining advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result is more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "More discreet segment"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Distance and near vision"
+      },
+      {
+        "file": "63457.svg",
+        "label": "Improved appearance."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "Low"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Kriptok Blended?",
+        "answer": "It is a bifocal with a more discreetly integrated segment."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people who prefer bifocals and want a cleaner appearance."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its invisible segment and Freeform digital manufacturing."
+      }
+    ]
+  },
+  {
+    "name": "Ultex Blended",
+    "slug": "ultex-blended",
+    "sourceNode": "992:2398",
+    "category": "Bifocals",
+    "wordmarkNode": "992:2430",
+    "hero": "46733.png",
+    "heroUnderlay": null,
+    "heroEyebrow": null,
+    "subtitle": "A round-segment bifocal with a more integrated, functional design.",
+    "description": "A fused bifocal lens with a round segment, designed for people who need a practical solution for distance and near vision.",
+    "tagline": "Classic bifocal, refined appearance",
+    "introHeading": "A bifocal solution with a smoother transition",
+    "introEyebrow": "CLASSIC BIFOCAL",
+    "intro": "Novar Ultex Blended is designed for people looking for fused bifocals with a round segment.",
+    "scene": "96f85.png",
+    "gallery": [
+      "b406e.png",
+      "26192.png",
+      "a3494.png",
+      "e41dc.png"
+    ],
+    "galleryName": "Ultex Blended",
+    "details": "Its design combines visual functionality with a more integrated appearance.",
+    "design": "Fused bifocal lens.",
+    "idealFor": "People looking for bifocals with a round segment.",
+    "detail": "1fa8f.png",
+    "tag": "Bifocal functionality with a refined appearance",
+    "watermark": "ultex\nblended",
+    "wordmark": "bop-ultex-blended-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology combining advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result is more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Round segment"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Practical vision."
+      },
+      {
+        "file": "63457.svg",
+        "label": "Improved appearance."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "Low"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Ultex Blended?",
+        "answer": "It is a fused bifocal lens with a round segment."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people who need distance and near vision in a traditional bifocal solution."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its round segment and more integrated appearance."
+      }
+    ]
+  },
+  {
+    "name": "Freeline",
+    "slug": "freeline",
+    "sourceNode": "992:2680",
+    "category": "Bifocals",
+    "wordmarkNode": "992:2712",
+    "hero": "55999.png",
+    "heroUnderlay": null,
+    "heroEyebrow": null,
+    "subtitle": "Bifocal function with a less visible appearance",
+    "description": "A bifocal designed to make the segment less visible while providing a functional solution for distance and near vision.",
+    "tagline": "More refined, just as practical",
+    "introHeading": "A bifocal designed for a more refined look",
+    "introEyebrow": "MORE REFINED",
+    "intro": "Novar Freeline uses peripheral areas of the lower meridian to make the segment less visible.",
+    "scene": "ac71d.png",
+    "gallery": [
+      "25532.png",
+      "8bc66.png",
+      "583b2.png",
+      "3f661.png"
+    ],
+    "galleryName": "Freeline",
+    "details": "An option for people who want the practicality of bifocals with a more discreet appearance.",
+    "design": "Aesthetic bifocal lens.",
+    "idealFor": "People looking for more discreet bifocals.",
+    "detail": "68fbb.png",
+    "tag": "A less visible segment",
+    "watermark": "freeline",
+    "wordmark": "bop-freeline-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology combining advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result is more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Less visible"
+      },
+      {
+        "file": "63457.svg",
+        "label": "Improved appearance."
+      },
+      {
+        "file": "472c2.svg",
+        "label": "Bifocal functionality."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "Low"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Novar Freeline?",
+        "answer": "It is a bifocal designed to make the segment less visible."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people who need bifocals but prefer a more discreet look."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its design aims to reduce the segment’s visibility."
+      }
+    ]
+  },
+  {
+    "name": "Office",
+    "slug": "office",
+    "sourceNode": "992:2962",
+    "category": "Occupational",
+    "wordmarkNode": "992:2994",
+    "hero": "773b8.png",
+    "heroUnderlay": "91467.png",
+    "heroEyebrow": "SINGLE-VISION",
+    "subtitle": "A clearer, more comfortable workspace.",
+    "description": "A wider, more comfortable field of vision for working, reading, and screens, with intermediate vision suited to each person’s distances and activities throughout the day.",
+    "tagline": "Comfort at work",
+    "introHeading": "A wider field of vision at the distances you use most.",
+    "introEyebrow": "COMFORT AT WORK",
+    "intro": "Novar Office keeps up with your workday: from screen to document, desk to meeting, with a wider, smoother field of near and intermediate vision.",
+    "scene": "199dd.png",
+    "gallery": [
+      "fa988.png",
+      "fd75e.png",
+      "68e36.png",
+      "286a2.png"
+    ],
+    "galleryName": "Kriptok Blended",
+    "details": "Its design supports visual ergonomics, helping you maintain more natural postures and work for hours with greater comfort and freedom of movement.",
+    "design": "Occupational lens.",
+    "idealFor": "People who work with screens, reading, and desk tasks.",
+    "detail": "89fbb.png",
+    "tag": "Greater comfort at near and intermediate distances",
+    "watermark": "Office",
+    "wordmark": "bop-office-wordmark.png",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology combining advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result is more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      }
+    ],
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "More discreet segment"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Distance and near vision"
+      },
+      {
+        "file": "63457.svg",
+        "label": "Improved appearance."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "Low / Medium"
+      },
+      {
+        "label": "Intermediate",
+        "level": "High"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Novar Office?",
+        "answer": "It is an occupational lens for near and intermediate vision."
+      },
+      {
+        "question": "Is it suitable for driving?",
+        "answer": "It is not intended to replace an all-distance progressive lens; its primary focus is the work environment."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its comfort at working distances and adaptability to different office needs."
+      }
+    ]
+  }
+]

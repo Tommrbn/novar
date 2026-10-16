@@ -1,4 +1,5 @@
 const { chromium } = require('playwright');
+const { expect } = require('playwright/test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -51,11 +52,13 @@ async function main() {
                 assert.ok(metrics.document <= metrics.viewport, `Horizontal overflow ${route}@${width}: ${JSON.stringify(metrics)}`);
 
                 const firstClosed = page.locator('.accordion-button[aria-expanded="false"]').first();
-                await firstClosed.focus();
+                const panelSelector = await firstClosed.getAttribute('data-bs-target');
+                const openedButton = page.locator(`.accordion-button[data-bs-target="${panelSelector}"]`);
+                await openedButton.focus();
                 await page.keyboard.press('Enter');
-                await page.waitForFunction(() => [...document.querySelectorAll('.accordion-button')].filter(x => x.getAttribute('aria-expanded') === 'true').length === 1);
-                assert.equal(await firstClosed.getAttribute('aria-expanded'), 'true');
-                const panel = page.locator(await firstClosed.getAttribute('data-bs-target'));
+                await expect(openedButton).toHaveAttribute('aria-expanded', 'true');
+                await expect(page.locator('.accordion-button[aria-expanded="true"]')).toHaveCount(1);
+                const panel = page.locator(panelSelector);
                 await panel.waitFor({ state: 'visible' });
                 assert.ok((await panel.innerText()).length > 10, 'Accordion answer is visible');
 
@@ -64,21 +67,24 @@ async function main() {
                 const modal = page.locator('#pending-modal');
                 await modal.waitFor({ state: 'visible' });
                 assert.match(await modal.innerText(), /no se envían ni almacenan datos/);
+                const modalHasFocus = () => page.evaluate(() => document.getElementById('pending-modal').contains(document.activeElement));
+                await expect.poll(modalHasFocus).toBe(true);
                 await page.keyboard.press('Tab');
-                assert.ok(await page.evaluate(() => document.getElementById('pending-modal').contains(document.activeElement)), 'Modal contains keyboard focus');
+                await expect.poll(modalHasFocus).toBe(true);
                 await page.keyboard.press('Escape');
                 await modal.waitFor({ state: 'hidden' });
-                assert.ok(await pending.evaluate(element => document.activeElement === element), 'Modal restores trigger focus');
+                await expect(pending).toBeFocused();
 
                 if (width < 992) {
                     await page.evaluate(() => scrollTo(0, 0));
-                    const toggle = page.getByRole('button', { name: 'Abrir menú' });
+                    const toggle = page.locator('.navbar-toggler[aria-controls="main-nav"]');
                     await toggle.click();
-                    assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+                    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+                    await expect(page.locator('#main-nav')).toHaveClass(/\bshow\b/);
                     await page.locator('#main-nav .nav-link').first().focus();
                     await page.keyboard.press('Escape');
-                    await page.waitForFunction(() => !document.getElementById('main-nav').classList.contains('show'));
-                    assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+                    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+                    await expect(page.locator('#main-nav')).toBeHidden();
                 }
 
                 if (route === '/') {
@@ -195,15 +201,18 @@ async function main() {
                     await page.locator('#contact-email').fill('test@example.invalid');
                     await page.locator('#contact-email').press('Enter');
                     await modal.waitFor({ state: 'visible' });
+                    await expect.poll(modalHasFocus).toBe(true);
                     await page.keyboard.press('Escape');
                     await modal.waitFor({ state: 'hidden' });
-                    await page.locator('.contact-form button[data-pending]').click();
+                    await page.locator('.contact-submit button[data-pending="Formulario de contacto"]').click();
                     await modal.waitFor({ state: 'visible' });
+                    await expect.poll(modalHasFocus).toBe(true);
                     await page.keyboard.press('Escape');
                     await modal.waitFor({ state: 'hidden' });
                     await page.locator('.warranty-panel button[data-pending]').click();
                     await modal.waitFor({ state: 'visible' });
-                    assert.match(await page.locator('#pending-feature').innerText(), /Activación de garantía/);
+                    await expect.poll(modalHasFocus).toBe(true);
+                    assert.equal((await page.locator('#pending-feature').textContent()).trim(), 'Activación de garantía');
                     await page.keyboard.press('Escape');
                     await modal.waitFor({ state: 'hidden' });
                     assert.deepEqual(requests, [], 'Demo forms must not send any request or navigation');
@@ -238,8 +247,8 @@ async function main() {
                 assert.equal(response.status(), 200, `Broken internal navigation: ${link}`);
             }
         }
-        await page.goto(base);
-        await page.getByRole('link', { name: 'Muestra para revisión: conocé Novar First' }).click();
+        await page.goto(`${base}/lentes`);
+        await page.getByRole('link', { name: 'First', exact: true }).click();
         await page.waitForURL('**/lentes/first');
         assert.match(await page.locator('h1').innerText(), /Novar First/);
         for (const route of ['/lentes/desconocido', '/lentes/myofix', '/no-existe']) {
@@ -248,7 +257,7 @@ async function main() {
         }
         await context.close();
 
-        const noJs = await browser.newContext({ javaScriptEnabled: false });
+        const noJs = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce' });
         const noJsPage = await noJs.newPage();
         await noJsPage.goto(base);
         const submissions = [];
@@ -257,7 +266,7 @@ async function main() {
         await noJsPage.locator('#contact-name').press('Enter');
         assert.equal(await noJsPage.locator('#newsletter-email').count(), 0);
         await noJsPage.locator('.warranty-panel button').click();
-        await noJsPage.waitForTimeout(300);
+        await noJsPage.waitForLoadState('networkidle');
         assert.deepEqual(submissions, [], 'No-JS forms must not navigate or submit');
         await noJs.close();
 

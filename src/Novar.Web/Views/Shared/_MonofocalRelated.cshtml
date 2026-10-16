@@ -1,0 +1,33 @@
+@model MonofocalProduct
+@inject Novar.Web.Services.SiteContent ProductContent
+@{
+    var products = ProductContent.ForCulture(System.Globalization.CultureInfo.CurrentUICulture).MonofocalProducts;
+    // All five Figma frames repeat these four portraits, including the current product.
+    // Keep the source order/crops and Geo's shared hover treatment, not the hero banners.
+    var nodes = Model.Slug switch
+    {
+        "geo" => new[] { "1145:1836", "1145:1825", "1145:1838", "1145:1841" },
+        "single-vision" => new[] { "1145:1856", "1145:1853", "1145:1857", "1145:1855" },
+        "outdoor" => new[] { "1145:1895", "1145:1892", "1145:1896", "1145:1894" },
+        "indoor" => new[] { "1145:1921", "1145:1918", "1145:1922", "1145:1920" },
+        "slim" => new[] { "1145:1934", "1145:1931", "1145:1935", "1145:1933" },
+        _ => throw new InvalidOperationException("Unknown monofocal frame")
+    };
+    var tiles = new[]
+    {
+        (Slug: "outdoor", Photo: "07444.png"),
+        (Slug: "single-vision", Photo: "0b636.png"),
+        (Slug: "slim", Photo: "a62fc.png"),
+        (Slug: "indoor", Photo: "590b1.png")
+    };
+}
+<section class="mono-related" aria-labelledby="mono-related-title" data-monofocal-related="portraits-v2">
+    <h2 id="mono-related-title">@T["Otros lentes monofocales"]</h2>
+    <div class="mono-related-images">
+        @for (var i = 0; i < tiles.Length; i++)
+        {
+            var tile = tiles[i];
+            <a href="/lentes/@tile.Slug" data-figma-node="@nodes[i]" data-related-product="@tile.Slug" data-related-cta="@T["Ver más"]" aria-current="@(tile.Slug == Model.Slug ? "page" : null)"><img src="~/media/figma/@tile.Photo" alt="" loading="lazy" /><span class="product-related-label">@products[tile.Slug].Name</span></a>
+        }
+    </div>
+</section>

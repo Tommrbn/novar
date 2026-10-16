@@ -50,7 +50,7 @@ public sealed class AboutTests(WebApplicationFactory<Program> factory) : IClassF
             Assert.DoesNotContain("about-footer", html);
             Assert.DoesNotContain("/media/figma/1bce4.svg", html);
             Assert.DoesNotContain("href=\"/sobre-nosotros\" aria-current=\"page\"", html);
-            Assert.Contains(path == "/lentes/first" ? "class=\"navbar navbar-expand-xl\"" : "class=\"navbar navbar-expand-lg\"", html);
+            Assert.Contains(path == "/lentes/first" ? "class=\"navbar navbar-expand-xl\"" : "class=\"navbar navbar-expand-xl\"", html);
             Assert.Contains("/media/figma/e7f22.svg", html);
         }
     }
@@ -110,7 +110,7 @@ public sealed class AboutTests(WebApplicationFactory<Program> factory) : IClassF
         Assert.Contains("flex-basis: 39.7297px", css);
         Assert.Contains("flex-basis: 44px; width: 44px; height: 44px", css);
         Assert.Contains("Función pendiente de integración", html);
-        Assert.DoesNotContain("<form", html);
+        Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
         var response = await client.PostAsync("/sobre-nosotros", new StringContent(""));
         Assert.Equal(HttpStatusCode.MethodNotAllowed, response.StatusCode);
     }

@@ -1,6 +1,6 @@
 @model AboutContent
 @{
-    ViewData["Title"] = "Sobre nosotros";
+    ViewData["Title"] = T["Sobre nosotros"];
     ViewData["AboutPage"] = true;
 }
 <div class="about-content" data-figma-node="@Model.SourceNode" data-about-revision="about-v1">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <ul class="about-pillars" aria-label="Pilares de Novar">
+        <ul class="about-pillars" aria-label="@T["Pilares de Novar"]">
             @foreach (var pillar in Model.Pillars)
             {
                 <li><h3>@pillar.Title</h3><p>@pillar.Description</p></li>

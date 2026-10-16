@@ -1,15 +1,23 @@
-@{ var aboutPage = ViewData["AboutPage"] is true; var gamesPage = ViewData["GamesPage"] is true; var treatmentsPage = ViewData["TreatmentsPage"] is true; var lensFinderPage = ViewData["LensFinderPage"] is true; var premiumPage = ViewData["PremiumPage"] is true; var progressivePage = ViewData["ProgressivePage"] is true; var monofocalPage = ViewData["MonofocalPage"] is true; var bifocalOccupationalPage = ViewData["BifocalOccupationalPage"] is true; }
+@using System.Globalization
+@using System.Text.Json
+@{ var aboutPage = ViewData["AboutPage"] is true; var gamesPage = ViewData["GamesPage"] is true; var treatmentsPage = ViewData["TreatmentsPage"] is true; var lensFinderPage = ViewData["LensFinderPage"] is true; var premiumPage = ViewData["PremiumPage"] is true; var progressivePage = ViewData["ProgressivePage"] is true; var monofocalPage = ViewData["MonofocalPage"] is true; var bifocalOccupationalPage = ViewData["BifocalOccupationalPage"] is true; var locale = CultureInfo.CurrentUICulture.Name; var localeCode = locale == "en" ? "EN" : locale == "pt-BR" ? "PT" : "ES"; var returnUrl = Context.Request.PathBase + Context.Request.Path + Context.Request.QueryString; }
+@{ var homePage = ViewData["HomeFooter"] is true; }
 <!DOCTYPE html>
-<html lang="es">
+<html lang="@locale">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Tecnología óptica de precisión para una visión más natural, clara y confortable." />
-    <title>@ViewData["Title"] · Novar</title>
+    <meta name="description" content="@T["Tecnología óptica de precisión para una visión más natural, clara y confortable."]" />
+    <title>@T[ViewData["Title"] as string ?? "Novar"] · Novar</title>
     <link rel="icon" href="~/media/figma/e7f22.svg" type="image/svg+xml" />
     <link rel="preload" href="~/fonts/poppins/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="~/vendor/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @if (homePage)
+    {
+        <link rel="stylesheet" href="~/css/home-responsive.css" asp-append-version="true" />
+    }
+    <script src="~/js/novar-i18n.js" asp-append-version="true" defer></script>
     @if (aboutPage)
     {
         <link rel="stylesheet" href="~/css/about.css" asp-append-version="true" />
@@ -41,17 +49,28 @@
     @if (progressivePage)
     {
         <link rel="stylesheet" href="~/css/progressive-products.css" asp-append-version="true" />
+        <script src="~/js/progressive-related.js" asp-append-version="true" defer></script>
         @if (ViewData["FirstProgressivePage"] is true)
         {
             <link rel="stylesheet" href="~/css/progressive-first.css" asp-append-version="true" />
         }
     }
+    @if (progressivePage || monofocalPage || bifocalOccupationalPage)
+    {
+        <link rel="stylesheet" href="~/css/product-tagline.css" asp-append-version="true" />
+        @* Opt in before the first band paints; a failed script leaves it readable. *@
+        <script src="~/js/product-tagline.js" asp-append-version="true"></script>
+    }
+    @if (progressivePage || monofocalPage || bifocalOccupationalPage || premiumPage)
+    {
+        <link rel="stylesheet" href="~/css/product-presentation.css" asp-append-version="true" />
+    }
 </head>
-<body class="@(aboutPage ? "about-page" : gamesPage ? "games-page" : treatmentsPage ? "treatments-page" : lensFinderPage ? "lens-finder-page" : premiumPage ? $"premium-page premium-page--{ViewData["PremiumVariant"]}" : progressivePage ? "progresivos-page" : monofocalPage ? "monofocales-page" : bifocalOccupationalPage ? "bifocal-occupational-page" : null)">
-    <a href="#main" class="skip-link">Saltar al contenido</a>
+<body class="@(homePage ? "home-page" : aboutPage ? "about-page" : gamesPage ? "games-page" : treatmentsPage ? "treatments-page" : lensFinderPage ? "lens-finder-page" : premiumPage ? $"premium-page premium-page--{ViewData["PremiumVariant"]}" : progressivePage ? "progresivos-page" : monofocalPage ? "monofocales-page" : bifocalOccupationalPage ? "bifocal-occupational-page" : null)">
+    <a href="#main" class="skip-link">@T["Saltar al contenido"]</a>
     <header class="site-header">
-        <nav class="navbar @(aboutPage || gamesPage || treatmentsPage || premiumPage || progressivePage || monofocalPage || bifocalOccupationalPage ? "navbar-expand-xl" : "navbar-expand-lg")" aria-label="Navegación principal">
-            <a class="navbar-brand" href="/" aria-label="Novar, inicio">
+        <nav class="navbar @(homePage || aboutPage || gamesPage || treatmentsPage || premiumPage || progressivePage || monofocalPage || bifocalOccupationalPage ? "navbar-expand-xl" : "navbar-expand-lg")" aria-label="@T["Navegación principal"]">
+            <a class="navbar-brand" href="/" aria-label="@T["Novar, inicio"]">
                 @if (gamesPage || treatmentsPage || premiumPage)
                 {
                     <img src="~/media/figma/4d514.svg" alt="Novar" />
@@ -81,43 +100,38 @@
                     <img src="~/media/figma/e7f22.svg" alt="Novar" width="96" height="28" />
                 }
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="@T["Abrir menú"]">@T["Menú"]</button>
             <div class="collapse navbar-collapse" id="main-nav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/sobre-nosotros" aria-current="@(aboutPage ? "page" : null)">Sobre nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/lentes" aria-current="@(lensFinderPage || premiumPage || progressivePage || monofocalPage || bifocalOccupationalPage ? "page" : null)">Encontrá tu lente</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tratamientos" aria-current="@(treatmentsPage ? "page" : null)">Tratamientos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/juegos" aria-current="@(gamesPage ? "page" : null)">Juegos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#warranty-title">Garantía</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">@T["Home"]</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sobre-nosotros" aria-current="@(aboutPage ? "page" : null)">@T["Sobre nosotros"]</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/lentes" aria-current="@(lensFinderPage || premiumPage || progressivePage || monofocalPage || bifocalOccupationalPage ? "page" : null)">@T["Encontrá tu lente"]</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tratamientos" aria-current="@(treatmentsPage ? "page" : null)">@T["Tratamientos"]</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/juegos" aria-current="@(gamesPage ? "page" : null)">@T["Juegos"]</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#warranty-title">@T["Garantía"]</a></li>
                 </ul>
-                <span class="language">
+                <form class="language language-form" asp-controller="Home" asp-action="ChangeLanguage" method="post" aria-label="@T["Cambiar idioma"]">
+                    <input type="hidden" name="returnUrl" value="@returnUrl" data-language-return-url />
                     @if (gamesPage || treatmentsPage || premiumPage)
                     {
-                        <img src="~/media/figma/ba1ea.svg" alt="" />
+                        <img src="~/media/figma/ba1ea.svg" alt="" aria-hidden="true" />
                     }
-                    else if (bifocalOccupationalPage)
+                    else if (bifocalOccupationalPage || monofocalPage || progressivePage || aboutPage)
                     {
-                        <img src="~/media/figma/5497d.svg" alt="" />
-                    }
-                    else if (monofocalPage)
-                    {
-                        <img src="~/media/figma/5497d.svg" alt="" />
-                    }
-                    else if (progressivePage)
-                    {
-                        <img src="~/media/figma/5497d.svg" alt="" />
-                    }
-                    else if (aboutPage)
-                    {
-                        <img src="~/media/figma/5497d.svg" alt="" />
+                        <img src="~/media/figma/5497d.svg" alt="" aria-hidden="true" />
                     }
                     else
                     {
-                        <img src="~/media/figma/ba1ea.svg" width="14" height="14" alt="" />
+                        <img src="~/media/figma/ba1ea.svg" alt="" aria-hidden="true" />
                     }
-                    <span lang="es" aria-label="Idioma: español">ES</span>
-                </span>
+                    <span class="language-code" aria-hidden="true">@localeCode</span>
+                    <label class="visually-hidden" for="site-language">@T["Cambiar idioma"]</label>
+                    <select id="site-language" name="culture" aria-label="@T["Cambiar idioma"]" data-language-picker>
+                        <option value="es" selected="@(locale == "es" ? "selected" : null)" lang="es">Español</option>
+                        <option value="en" selected="@(locale == "en" ? "selected" : null)" lang="en">English</option>
+                        <option value="pt-BR" selected="@(locale == "pt-BR" ? "selected" : null)" lang="pt-BR">Português</option>
+                    </select>
+                </form>
             </div>
         </nav>
     </header>
@@ -156,12 +170,13 @@
     }
     <div class="modal fade" id="pending-modal" tabindex="-1" aria-labelledby="pending-title" aria-describedby="pending-description" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-            <div class="modal-header"><h2 class="modal-title fs-5" id="pending-title">Función pendiente de integración</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
-            <div class="modal-body"><p class="eyebrow" id="pending-feature"></p><p id="pending-description">Esta es una muestra de diseño. Esta función está pendiente de integración: no se envían ni almacenan datos y no se generan resultados.</p></div>
-            <div class="modal-footer"><button type="button" class="btn btn-novar" data-bs-dismiss="modal">Entendido</button></div>
+            <div class="modal-header"><h2 class="modal-title fs-5" id="pending-title">@T["Función pendiente de integración"]</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@T["Cerrar"]"></button></div>
+            <div class="modal-body"><p class="eyebrow" id="pending-feature"></p><p id="pending-description">@T["Esta es una muestra de diseño. Esta función está pendiente de integración: no se envían ni almacenan datos y no se generan resultados."]</p></div>
+            <div class="modal-footer"><button type="button" class="btn btn-novar" data-bs-dismiss="modal">@T["Entendido"]</button></div>
         </div></div>
     </div>
-    <noscript><p class="no-script">Esta muestra no envía ni almacena datos. Activá JavaScript para usar el menú desplegable y los avisos de funciones pendientes.</p></noscript>
+    <noscript><p class="no-script">@T["Esta muestra no envía ni almacena datos. Activá JavaScript para usar el menú desplegable y los avisos de funciones pendientes."]</p></noscript>
+    <script id="novar-messages" type="application/json">@Html.Raw(JsonSerializer.Serialize(T.JavaScriptMessages))</script>
     <script src="~/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
     <script src="~/js/site.js" asp-append-version="true" defer></script>
     @await RenderSectionAsync("Scripts", required: false)

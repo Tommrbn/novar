@@ -29,9 +29,9 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
         Assert.Single(Regex.Matches(html, "<h1(?: |>)"));
         Assert.DoesNotContain("Ficha en preparación", html);
         Assert.DoesNotContain("Ver muestra: Novar First", html);
-        Assert.Contains($"data-pending=\"Personalización de Novar {factory.Services.GetRequiredService<SiteContent>().ProgressiveProducts[slug].Name}\"", html);
+        Assert.Contains("<a class=\"btn btn-novar prg-button\" href=\"/tratamientos\">Personalizá tu lente</a>", html);
         Assert.Contains("no se envían ni almacenan datos y no se generan resultados", html);
-        Assert.DoesNotContain("<form", html);
+        Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
         var svg = XDocument.Parse(await client.GetStringAsync($"/media/figma/{slug}-wordmark.svg"));
         Assert.Equal(width, svg.Root!.Attribute("width")!.Value);
         Assert.Equal(height, svg.Root.Attribute("height")!.Value);
@@ -51,11 +51,12 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
             Assert.False(content.PlannedProducts.Contains(product.Slug));
             Assert.False(content.PremiumProducts.ContainsKey(product.Slug));
             Assert.Equal(3, product.Questions.Length);
-            Assert.Single(product.Questions, x => x.Answer is not null);
+            if (product.Slug == "precisa-short") Assert.Single(product.Questions, x => x.Answer is not null);
+            else Assert.All(product.Questions, x => Assert.NotNull(x.Answer));
             var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{product.Slug}"));
             var faq = Regex.Match(html, "<section class=\"prg-faq\"[\\s\\S]*?</section>").Value;
             Assert.Equal(3, Regex.Matches(faq, "class=\"accordion-button ").Count);
-            Assert.Equal(2, Regex.Matches(faq, "Respuesta pendiente de revisión editorial").Count);
+            Assert.Equal(product.Slug == "precisa-short" ? 2 : 0, Regex.Matches(faq, "Respuesta pendiente de revisión editorial").Count);
             Assert.Single(Regex.Matches(faq, "aria-expanded=\"true\""));
             Assert.Contains($"id=\"prg-{product.Slug}-faq-2\" class=\"accordion-collapse collapse show\"", faq);
             Assert.Equal(3, Regex.Matches(faq, "data-bs-parent=").Count);
@@ -108,8 +109,8 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
     public void ElifeKeepsFreshFaqIdentityAndSourceTechnologySpellings()
     {
         var product = factory.Services.GetRequiredService<SiteContent>().ProgressiveProducts["elife"];
-        Assert.Equal("¿Qué es Novar eLife?", product.Questions[0].Question);
-        Assert.Equal("¿Para quién está recomendado Novar eLife?", product.Questions[1].Question);
+        Assert.Equal("¿Qué es Novar eLIFE?", product.Questions[0].Question);
+        Assert.Equal("¿Para quién está recomendado?", product.Questions[1].Question);
         Assert.DoesNotContain("Geo", string.Join(" ", product.Questions.Select(x => x.Question)));
         Assert.Contains("Adaptive Focus Technology", product.TechnologySpec);
         Assert.Equal("Adaptative Focus Technology", product.Technologies[2].Name);
@@ -129,9 +130,9 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
         Assert.Contains("data-progresivos-revision=\"progresivos-v1\"", html);
         Assert.Contains("/css/progressive-first.css", html);
         Assert.Contains("href=\"/lentes\" aria-current=\"page\"", html);
-        Assert.Contains("/media/figma/4fa80.png", html);
+        Assert.Contains("/media/products/banners/first-2x.webp", html);
         Assert.DoesNotContain("/media/figma/1fce9.png", html);
-        Assert.Contains("data-pending=\"Personalización de Novar First\"", html);
+        Assert.Contains("<a class=\"btn btn-novar prg-button\" href=\"/tratamientos\">Personalizá tu lente</a>", html);
         Assert.Contains("id=\"first-faq-2\" class=\"accordion-collapse collapse show\"", html);
         Assert.Contains(first.Questions[2].Answer!, html);
         Assert.Contains("href=\"/tratamientos\"", html);
@@ -195,12 +196,13 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
         Assert.Contains("aria-roledescription=\"carrusel\"", gallery);
         Assert.Contains($"id=\"{trackId}\"", gallery);
         Assert.Equal(expected, Regex.Matches(gallery, "data-gallery-image=\"([^\"]+)\"").Select(x => x.Groups[1].Value));
-        Assert.Equal(3, Regex.Matches(gallery, $"aria-controls=\"{trackId}\"").Count);
-        Assert.Equal(3, Regex.Matches(gallery, "<button type=\"button\"").Count);
-        Assert.Contains("data-gallery-controls hidden", gallery);
+        Assert.Single(Regex.Matches(gallery, "<button type=\"button\""));
+        Assert.Contains("gallery-motion-control visually-hidden-focusable", gallery);
         Assert.Contains("data-gallery-pause", gallery);
-        Assert.Contains("aria-pressed=\"false\"", gallery);
-        Assert.Contains("aria-live=\"polite\"", gallery);
+        Assert.DoesNotContain("data-gallery-previous", gallery);
+        Assert.DoesNotContain("data-gallery-next", gallery);
+        Assert.DoesNotContain("data-gallery-autoplay-interval", gallery);
+        if (slug == "precisa") Assert.Contains("data-gallery-sharp-outer=\"true\"", gallery);
         Assert.DoesNotContain("is-enhanced", gallery);
         Assert.DoesNotContain("style=", gallery);
         foreach (var file in expected)
@@ -210,7 +212,7 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
         Assert.Single(Regex.Matches(html, "<script[^>]+/js/progressive-gallery\\.js"));
         var script = await client.GetAsync("/js/progressive-gallery.js");
         Assert.Equal(HttpStatusCode.OK, script.StatusCode);
-        Assert.Contains("const INTERVAL = 5000", await script.Content.ReadAsStringAsync());
+        Assert.Contains("const INTERVAL = 2000", await script.Content.ReadAsStringAsync());
     }
 
     [Theory]
@@ -235,7 +237,12 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
         Assert.DoesNotContain("progresivos-v1", html);
         Assert.DoesNotContain("class=\"prg-footer\"", html);
         Assert.DoesNotContain("/css/progressive-first.css", html);
-        Assert.DoesNotContain("/js/progressive-gallery.js", html);
+        if (new[] { "/lentes/geo", "/lentes/single-vision", "/lentes/outdoor", "/lentes/indoor", "/lentes/slim", "/lentes/freeline" }.Contains(route))
+        {
+            Assert.Single(Regex.Matches(html, "/js/progressive-gallery\\.js"));
+            Assert.Contains("data-product-gallery", html);
+        }
+        else Assert.DoesNotContain("/js/progressive-gallery.js", html);
         Assert.DoesNotContain("data-progressive-gallery", html);
     }
 
@@ -246,12 +253,14 @@ public sealed class ProgressiveProductTests(WebApplicationFactory<Program> facto
         Assert.Equal(HttpStatusCode.NotFound, (await client.GetAsync(route)).StatusCode);
 
     [Fact]
-    public async Task RelatedLinksRemainCatalogOnlyAndNoInventedTaglineSwitchExists()
+    public async Task RelatedPresentationDoesNotChangeProductTaglines()
     {
-        var html = await client.GetStringAsync("/lentes/precisa");
-        var related = Regex.Match(html, "<section class=\"prg-related\"[\\s\\S]*?</section>").Value;
-        Assert.Equal(4, Regex.Matches(related, "href=\"/lentes\"").Count);
-        Assert.DoesNotContain("Visión sin esfuerzo", html);
-        Assert.Contains("Visión equilibrada", WebUtility.HtmlDecode(html));
+        foreach (var current in new[] { "first", "precisa", "precisa-short", "evolution", "evolution-short", "elife" })
+        {
+            var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{current}"));
+            var related = Regex.Match(html, "<section class=\"prg-related[^\"]*\"[\\s\\S]*?</section>").Value;
+            Assert.DoesNotContain("Visión sin esfuerzo", related);
+            if (current == "precisa") Assert.Contains("Visión equilibrada", html);
+        }
     }
 }

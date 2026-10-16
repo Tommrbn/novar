@@ -1,13 +1,18 @@
 @model TreatmentDetail
 <section id="@Model.Id" class="treatment-detail treatment-detail-blue-tech" aria-labelledby="treatment-blue-tech-title" data-treatment-detail="blue-tech" data-figma-node="961:9082">
     <div class="treatment-blue-tech-summary" data-figma-node="@Model.SourceNode">
-        <div><p class="treatment-blue-tech-eyebrow">TRATAMIENTO</p><h2 id="treatment-blue-tech-title">@Model.Name</h2></div>
+        <div><p class="treatment-blue-tech-eyebrow">@T["TRATAMIENTO"]</p><h2 id="treatment-blue-tech-title">@Model.Name</h2></div>
         <p class="treatment-blue-tech-description">@Model.Description</p>
     </div>
-    <div class="treatment-blue-tech-photo" data-figma-node="961:9084">
-        <img class="treatment-blue-tech-image" src="~/media/figma/@Model.Image" alt="Hombre con lentes frente a luz azul" width="1448" height="1086" />
+    <div class="treatment-blue-tech-photo" data-treatment-media data-figma-node="961:9084">
+        <video class="treatment-blue-tech-image" data-treatment-video loop muted playsinline preload="none" aria-label="@Model.Name" hidden data-treatment-desktop="/media/treatments/optimized/blue-tech-desktop.mp4" data-treatment-mobile="/media/treatments/optimized/blue-tech-mobile.mp4">
+            </video>
+        <img data-treatment-fallback hidden class="treatment-blue-tech-image" src="~/media/treatments/optimized/blue-tech-poster-1280.webp" srcset="/media/treatments/optimized/blue-tech-poster-640.webp 640w, /media/treatments/optimized/blue-tech-poster-1280.webp 1280w, /media/treatments/optimized/blue-tech-poster-1920.webp 1448w" sizes="(max-width: 767.98px) 125vw, 117vw" loading="lazy" decoding="async" alt="@T["Hombre con lentes frente a luz azul"]" width="1448" height="1086" />
+        <noscript>
+        <img class="treatment-blue-tech-image" src="~/media/treatments/optimized/blue-tech-poster-1280.webp" srcset="/media/treatments/optimized/blue-tech-poster-640.webp 640w, /media/treatments/optimized/blue-tech-poster-1280.webp 1280w, /media/treatments/optimized/blue-tech-poster-1920.webp 1448w" sizes="(max-width: 767.98px) 125vw, 117vw" loading="lazy" decoding="async" alt="@T["Hombre con lentes frente a luz azul"]" width="1448" height="1086" />
+        </noscript>
     </div>
-    <ul class="treatment-blue-tech-benefits" aria-label="Características de Blue Tech" data-figma-node="961:9216">
+    <ul class="treatment-blue-tech-benefits" aria-label="@T["Características de Blue Tech"]" data-figma-node="961:9216">
         @foreach (var benefit in Model.Benefits)
         {
             <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>

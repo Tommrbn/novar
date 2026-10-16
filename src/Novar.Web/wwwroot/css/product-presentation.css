@@ -1,0 +1,314 @@
+/* Shared product conventions requested in the October review. Home is excluded. */
+/* Decorative product lettering — Figma coordinates are relative to a centered 1440px frame.
+   Keep the first text line aligned with the technology cards, not the browser's right edge.
+   The extra half-em padding preserves ink outside Figma's deliberately tight line boxes. */
+:is(.prg-watermark, .mono-watermark, .bop-watermark) {
+    position: absolute;
+    display: block;
+    left: calc(50% - 720px + var(--watermark-x));
+    top: calc(var(--watermark-top) - .5em);
+    width: var(--watermark-width);
+    padding-block: .5em;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    font-size: var(--watermark-size, 280px);
+    font-weight: 400;
+    font-style: normal;
+    line-height: var(--watermark-line, 45.007px);
+    letter-spacing: -.03em;
+    text-align: var(--watermark-align, center);
+    white-space: pre;
+    background: linear-gradient(90deg, rgb(31 2 60 / 5%), rgb(123 123 128 / 5%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* 989:624: first */
+.progressive-product--first .prg-watermark {
+    --watermark-x: 911.449px;
+    --watermark-top: 92.119px;
+    --watermark-width: 583.596px;
+}
+
+/* 989:704: precisa */
+.progressive-product--precisa .prg-watermark {
+    --watermark-x: 288.328px;
+    --watermark-top: 19.221px;
+    --watermark-width: 1436.987px;
+}
+
+/* 989:710: precisa-short */
+.progressive-product--precisa-short .prg-watermark {
+    --watermark-x: 490.668px;
+    --watermark-top: -65.49px;
+    --watermark-width: 1436.987px;
+    --watermark-line: 235px;
+    --watermark-align: left;
+}
+
+/* 989:654: evolution */
+.progressive-product--evolution .prg-watermark {
+    --watermark-x: 135px;
+    --watermark-top: 78.834px;
+    --watermark-width: 1436.987px;
+}
+
+/* 1002:493: evolution-short */
+.progressive-product--evolution-short .prg-watermark {
+    --watermark-x: 247px;
+    --watermark-top: -7.107px;
+    --watermark-width: 1436.987px;
+    --watermark-line: 246px;
+    --watermark-align: left;
+}
+
+/* 989:701: elife */
+.progressive-product--elife .prg-watermark {
+    --watermark-x: 439px;
+    --watermark-top: 63.236px;
+    --watermark-width: 1436.987px;
+}
+
+/* 989:627: geo */
+.monofocal-product--geo .mono-watermark {
+    --watermark-x: 1007.719px;
+    --watermark-top: 38.148px;
+    --watermark-width: 583.596px;
+}
+
+/* 992:1501: single-vision */
+.monofocal-product--single-vision .mono-watermark {
+    --watermark-x: 668.5px;
+    --watermark-top: -128.413px;
+    --watermark-width: 1023.315px;
+    --watermark-size: 220px;
+    --watermark-line: 261px;
+}
+
+/* 992:2359: slim */
+.monofocal-product--slim .mono-watermark {
+    --watermark-x: 899.258px;
+    --watermark-top: 4.234px;
+    --watermark-width: 583.596px;
+}
+
+/* 989:960: kriptok-blended */
+.bop-product--kriptok-blended .bop-watermark {
+    --watermark-x: 666.395px;
+    --watermark-top: -99.645px;
+    --watermark-width: 1167.21px;
+    --watermark-size: 200px;
+    --watermark-line: 226px;
+    --watermark-align: left;
+}
+
+/* 992:2641: ultex-blended */
+.bop-product--ultex-blended .bop-watermark {
+    --watermark-x: 666.395px;
+    --watermark-top: -99.645px;
+    --watermark-width: 1167.21px;
+    --watermark-size: 200px;
+    --watermark-line: 226px;
+    --watermark-align: left;
+}
+
+/* 992:2923: freeline */
+.bop-product--freeline .bop-watermark {
+    --watermark-x: 764.551px;
+    --watermark-top: -99.643px;
+    --watermark-width: 1167.21px;
+    --watermark-size: 200px;
+    --watermark-line: 226px;
+    --watermark-align: left;
+}
+
+/* 992:3205: office */
+.bop-product--office .bop-watermark {
+    --watermark-x: 893.334px;
+    --watermark-top: -75.85px;
+    --watermark-width: 1167.21px;
+    --watermark-size: 200px;
+    --watermark-line: 226px;
+    --watermark-align: left;
+}
+
+/* 992:1787: outdoor */
+.monofocal-product--outdoor .mono-watermark {
+    --watermark-x: 280.363px;
+    --watermark-top: -6.973px;
+    --watermark-width: 1310.952px;
+}
+
+/* 992:2073: indoor */
+.monofocal-product--indoor .mono-watermark {
+    --watermark-x: 471.512px;
+    --watermark-top: 38.148px;
+    --watermark-width: 1119.807px;
+}
+
+/* No narrow-screen Figma frames were supplied: retain a quiet, right-aligned decoration.
+   Shrink the lettering itself rather than cropping an offscreen desktop text box. */
+@media (max-width: 767px) {
+    :is(.prg-watermark, .mono-watermark, .bop-watermark) {
+        left: auto;
+        right: 20px;
+        top: -.5em;
+        width: max-content;
+        font-size: clamp(64px, 19vw, 140px);
+        line-height: 1;
+        text-align: right;
+    }
+}
+@media (forced-colors: active) {
+    :is(.prg-watermark, .mono-watermark, .bop-watermark) { display: none; }
+}
+@media (min-width: 768px) {
+    :is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) #main :is(.prg-hero, .mono-hero, .bop-hero) {
+        height: 761px;
+        aspect-ratio: auto;
+    }
+    :is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) #main :is(.prg-hero-art, .mono-hero-art, .bop-hero-art) > img {
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: cover;
+        object-position: center;
+    }
+    :is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) #main :is(.prg-hero-copy, .mono-hero-copy, .bop-hero-copy) {
+        top: 210px;
+        left: calc(50% + 30px);
+        width: min(467px, calc(50% - 54px));
+    }
+    .premium-page #main .premium-hero { height: 761px; }
+    .premium-page #main .premium-hero-image { height: 100%; min-height: 0; object-fit: cover; }
+    .premium-page #main .premium-hero-copy { top: auto; bottom: 32px; }
+}
+
+/* The original black logotypes remain intact; light export mattes blend into the photograph. */
+:is(.prg-wordmark, .mono-wordmark) { mix-blend-mode: darken; }
+.bop-wordmark { filter: brightness(1.03); mix-blend-mode: multiply; }
+
+/* The same four identity-stable slots now animate in every family. */
+:is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) [data-product-gallery].is-enhanced [data-gallery-track] {
+    display: block;
+    height: 460.412px;
+}
+:is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) [data-product-gallery].is-enhanced [data-gallery-track] > div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+.gallery-motion-control:focus-visible {
+    display: block;
+    margin: 16px auto;
+    padding: 10px 20px;
+    border: 1px solid #6b5a8a;
+    border-radius: 24px;
+    background: #fbfbfd;
+    color: #1f023c;
+    outline: 3px solid #6b5a8a;
+    outline-offset: 3px;
+}
+@media (max-width: 767px) {
+    /* Reserve the full portrait height before the copy; the former 390px overlapped its 420px art. */
+    :is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) #main :is(.prg-hero, .mono-hero, .bop-hero) { padding-top: 420px; }
+    /* Complete opaque exports no longer need offsets that compensated transparent side bands. */
+    #main :is(.monofocal-product--outdoor, .monofocal-product--indoor, .bop-product--office) [data-product-banner] {
+        width: auto;
+        height: 440px;
+        left: calc(50% - 240px);
+        top: 0;
+        object-fit: cover;
+    }
+    :is(.progresivos-page, .monofocales-page, .bifocal-occupational-page) [data-product-gallery].is-enhanced [data-gallery-track] { height: 265px; }
+}
+
+/* Existing portrait links become product choices without nested buttons or a second tap. */
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+}
+#main .bop-related--office .bop-related-images > a[data-related-cta] > img { height: 100%; }
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgb(31 2 60 / 66%);
+    opacity: 0;
+    transition: opacity 220ms ease-out;
+}
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > span {
+    position: absolute;
+    z-index: 2;
+    left: 16px;
+    right: 16px;
+    top: 50%;
+    transform: translateY(calc(-50% - 30px));
+    color: #fff;
+    font-size: clamp(22px, 2vw, 32px);
+    line-height: 1.2;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 220ms ease-out;
+}
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::after {
+    content: attr(data-related-cta);
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: calc(50% + 8px);
+    transform: translateX(-50%);
+    padding: 10px 24px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 16px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 220ms ease-out;
+}
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:is(:hover, :focus-visible)::before,
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:is(:hover, :focus-visible)::after,
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:is(:hover, :focus-visible) > span { opacity: 1; }
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:focus-visible { outline: 3px solid #fff; outline-offset: -5px; }
+@media (hover: none), (pointer: coarse) {
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::before,
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::after,
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > span { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    /* With autoplay disabled, every original portrait remains reachable by touch/keyboard scrolling. */
+    #main :is([data-product-gallery], [data-progressive-gallery]).is-enhanced :is([data-gallery-track], .prg-gallery-images) {
+        display: flex;
+        width: 100%;
+        height: 265px;
+        left: 0;
+        transform: none;
+        overflow-x: auto;
+        gap: 24px;
+        padding-inline: 24px;
+    }
+    #main :is([data-product-gallery], [data-progressive-gallery]).is-enhanced :is([data-gallery-track], .prg-gallery-images) > div {
+        position: relative;
+        flex: 0 0 175px;
+        width: 175px !important;
+        height: 235px !important;
+        margin: 0;
+        transform: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+    }
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::before,
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::after,
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > span { transition: none; }
+}

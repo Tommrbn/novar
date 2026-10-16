@@ -30,14 +30,22 @@ public sealed class AntirrayaTests(WebApplicationFactory<Program> factory) : ICl
     }
 
     [Fact]
-    public async Task StaticSourceImageIsOriginalJpegWithoutInventedComparator()
+    public async Task UserVideoLoopsMutedAndRetainsOriginalJpegFallback()
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/tratamientos"));
         var panel = Regex.Match(html, "<section id=\"antirraya\"[\\s\\S]*?</section>").Value;
-        Assert.Contains("/media/figma/3dd09.png", panel);
-        Assert.Contains("width=\"2752\" height=\"1536\"", panel);
+        Assert.Contains("/media/treatments/optimized/antirraya-poster-1280.webp", panel);
+        Assert.Contains("/media/treatments/optimized/antirraya-poster-1280.webp", panel);
+        var video = Regex.Match(panel, "<video[^>]*>").Value;
+        foreach (var attribute in new[] { "loop", "muted", "playsinline", "preload=\"none\"", "aria-label=\"Antirraya\"" })
+            Assert.Contains(attribute, video);
+        Assert.Contains("data-treatment-desktop=\"/media/treatments/optimized/antirraya-desktop.mp4\"", panel);
+        Assert.DoesNotContain("data-antirraya-play", panel);
+        Assert.DoesNotContain(" controls", video);
+        Assert.DoesNotContain("data-antirraya-sound", panel);
+        Assert.DoesNotContain("/js/treatment-antirraya.js", html);
         Assert.Contains("la lente de la izquierda presenta rayas", panel);
-        foreach (var absent in new[] { "f0cf4.png", "16fed.png", "d517c.svg", "b9b6a.svg", "<button", "<input", "type=\"range\"" })
+        foreach (var absent in new[] { "f0cf4.png", "16fed.png", "d517c.svg", "b9b6a.svg", "<input", "type=\"range\"" })
             Assert.DoesNotContain(absent, panel);
         var image = await client.GetByteArrayAsync("/media/figma/3dd09.png");
         Assert.Equal(2975203, image.Length);
@@ -60,16 +68,56 @@ public sealed class AntirrayaTests(WebApplicationFactory<Program> factory) : ICl
             Assert.DoesNotContain("aria-hidden", opening);
         }
         var script = await client.GetByteArrayAsync("/js/treatments.js");
-        Assert.Equal("07AABB40D63527D68CF71C894F967241109CF9BD5362C7BAF3FB9398FCC0883E", Convert.ToHexString(SHA256.HashData(script)));
+        Assert.Equal("08E6C116A0D2BE8B54F28FE173633514604A5A1E0B4F85CCA3D04E6FFF8D5EA5", Convert.ToHexString(SHA256.HashData(script)));
     }
+
+    [Fact]
+    public async Task AntirrayaVideoFillsBandWithoutChangingSummaryOrBenefits()
+    {
+        var css = await client.GetStringAsync("/css/treatments.css");
+        var video = Assert.Single(CssRules(css, ".treatment-antirraya-video"));
+        foreach (var declaration in new[] { "width: 100%", "height: 100%", "object-fit: cover" })
+            Assert.Contains(declaration, video);
+
+        var bands = CssRules(css, ".treatment-antirraya-photo");
+        Assert.Equal(3, bands.Length);
+        Assert.Contains("height: 719px", bands[0]);
+        Assert.Contains("margin-top: -82px", bands[0]);
+        Assert.Contains("overflow: hidden", bands[0]);
+        Assert.Contains("height: 580px", bands[1]);
+        Assert.Contains("height: 380px", bands[2]);
+        Assert.Contains("margin-top: -24px", bands[2]);
+        Assert.Contains("border: 1px solid #000", Assert.Single(CssRules(css, ".treatment-antirraya-video-plane::after")));
+    }
+
+    [Fact]
+    public async Task UserVideoServesOriginalBytesAndByteRanges()
+    {
+        var response = await client.GetAsync("/media/treatments/antirraya-rayas.mp4");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal("video/mp4", response.Content.Headers.ContentType?.MediaType);
+        var bytes = await response.Content.ReadAsByteArrayAsync();
+        Assert.Equal(27472046, bytes.Length);
+        Assert.Equal("DDBB90DA92419DA922CD1F4140175920A5E6F37FC1B4F3EB099C34000A8C0F10", Convert.ToHexString(SHA256.HashData(bytes)));
+        using var request = new HttpRequestMessage(HttpMethod.Get, "/media/treatments/antirraya-rayas.mp4");
+        request.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(0, 127);
+        var range = await client.SendAsync(request);
+        Assert.Equal(HttpStatusCode.PartialContent, range.StatusCode);
+        Assert.Equal("bytes 0-127/27472046", range.Content.Headers.ContentRange?.ToString());
+        Assert.Equal(bytes.Take(128), await range.Content.ReadAsByteArrayAsync());
+    }
+
+    private static string[] CssRules(string css, string selector) =>
+        Regex.Matches(css, $@"(?m)^\s*{Regex.Escape(selector)}\s*\{{([^}}]*)\}}")
+            .Select(match => match.Groups[1].Value)
+            .ToArray();
 
     [Fact]
     public async Task AntirrayaStylesAndExactFooterAssetReuseStayStateScoped()
     {
         var css = await client.GetStringAsync("/css/treatments.css");
         Assert.Contains(".treatment-antirraya-photo { height: 719px; margin-top: -82px; overflow: hidden; }", css);
-        Assert.Contains("top: -7.83%", css);
-        Assert.Contains("height: 107.86%", css);
+        Assert.Contains("object-fit: cover", CssRules(css, ".treatment-antirraya-video")[0]);
         Assert.Contains(".treatments-content[data-active-treatment=\"antirraya\"] .treatments-tabs a[aria-selected=\"true\"] { font-weight: 700; }", css);
         Assert.Contains(".treatments-page[data-active-treatment=\"antirraya\"] .treatments-linkedin-blue-tech { display: block; }", css);
         var sourceIcon = await client.GetByteArrayAsync("/media/figma/1db5c.svg");

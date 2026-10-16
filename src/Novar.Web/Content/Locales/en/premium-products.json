@@ -1,0 +1,282 @@
+[
+  {
+    "name": "AI Lens",
+    "slug": "ai-lens",
+    "sourceNode": "894:233",
+    "heroCopy": "Real innovation. Beyond the known.\nA vision of the future.",
+    "hero": {
+      "file": "40da9.png",
+      "sourceNode": "977:10921",
+      "alt": "Woman wearing glasses and looking out of a car window",
+      "width": 2528,
+      "height": 1896
+    },
+    "feature": {
+      "file": "68e81.png",
+      "sourceNode": "894:241",
+      "alt": "Woman wearing AI Lens among blurred figures",
+      "width": 2752,
+      "height": 1536
+    },
+    "gallery": {
+      "file": "fcfe9.png",
+      "sourceNode": "894:329",
+      "alt": "Woman in a green dress walking outdoors",
+      "width": 1549,
+      "height": 1015
+    },
+    "technologyTitle": "Comfort and natural vision from the very first use.\nThe first progressive lens designed with artificial intelligence.",
+    "technologyDescription": "Novar AiLens© is the result of the latest global technological innovation, designed to go beyond what is currently known. It optimizes the lens to help you see the world with fewer peripheral limits.\n\nNovar©’s exclusive, revolutionary AI-GET technology uses artificial intelligence to design progressive lenses with optical qualities that surpass those created by other methods.",
+    "benefits": [
+      {
+        "label": "Comfortable\nand natural vision",
+        "icon": "8c8de.svg",
+        "sourceNode": "977:11322"
+      },
+      {
+        "label": "A more comfortable\nreading area",
+        "icon": "71321.svg",
+        "sourceNode": "977:11326"
+      },
+      {
+        "label": "No swimming effect",
+        "icon": "60515.svg",
+        "sourceNode": "977:11328"
+      },
+      {
+        "label": "No eye strain",
+        "icon": "757b0.svg",
+        "sourceNode": "977:11338"
+      }
+    ],
+    "callouts": [
+      {
+        "slot": "top-left",
+        "text": "Designed to provide smooth vision at every distance.",
+        "sourceNode": "894:284"
+      },
+      {
+        "slot": "top-right",
+        "text": "First lens designed with",
+        "secondaryText": "Artificial intelligence",
+        "sourceNode": "894:285"
+      },
+      {
+        "slot": "bottom-left",
+        "text": "Thanks to its advanced technology, it reduces the feeling of swaying.",
+        "sourceNode": "894:283"
+      },
+      {
+        "slot": "bottom-right",
+        "text": "Ideal for people who spend a lot of time in front of screens.",
+        "sourceNode": "894:282"
+      }
+    ],
+    "technologyName": "Psicoptix Technology™",
+    "technologySummary": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance.",
+    "galleryCaption": "Enjoy the world\nwith clarity so natural,\nas if you were not wearing lenses.",
+    "watermark": "AI LENS",
+    "questions": [
+      {
+        "question": "What is Novar AI·Lens?",
+        "answer": "It is a progressive lens designed with artificial intelligence for an advanced visual experience."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people seeking a premium progressive lens that is comfortable, fluid, and highly adaptable."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "The combination of Psicoptix and AI-GET optimizes the design and enhances the visual experience at every distance."
+      }
+    ],
+    "openQuestion": 2
+  },
+  {
+    "name": "MyoLens",
+    "slug": "myolens",
+    "sourceNode": "977:11066",
+    "heroCopy": "A new generation\nof lenses for people with myopia.",
+    "hero": {
+      "file": "c2edd.png",
+      "sourceNode": "977:11243",
+      "alt": "Two young people wearing clear glasses outdoors",
+      "width": 2752,
+      "height": 1536
+    },
+    "feature": {
+      "file": "c69be.png",
+      "sourceNode": "977:11072",
+      "alt": "Close-up of a young person wearing MyoLens",
+      "width": 3277,
+      "height": 4096
+    },
+    "gallery": {
+      "file": "459f9.png",
+      "sourceNode": "977:11097",
+      "alt": "Woman wearing clear-framed glasses",
+      "width": 2752,
+      "height": 1536
+    },
+    "technologyTitle": "A single-vision lens developed with artificial intelligence to optimize myopia correction in the central visual field.",
+    "technologyDescription": "Novar MyoLens is designed for people with myopia who want clear central vision and greater comfort. It combines Psicoptix and AI-GET to compensate for peripheral overcorrection and improve visual perception.",
+    "benefits": [
+      {
+        "label": "Optimized central correction.",
+        "icon": "8c8de.svg",
+        "sourceNode": "984:11372"
+      },
+      {
+        "label": "Greater peripheral comfort.",
+        "icon": "71321.svg",
+        "sourceNode": "984:11376"
+      },
+      {
+        "label": "AI-powered design.",
+        "icon": "60515.svg",
+        "sourceNode": "984:11378"
+      },
+      {
+        "label": "A more stable visual experience.",
+        "icon": "757b0.svg",
+        "sourceNode": "984:11388"
+      }
+    ],
+    "callouts": [
+      {
+        "slot": "top-left",
+        "text": "A comfort-focused single-vision lens for myopia.",
+        "sourceNode": "977:11092"
+      },
+      {
+        "slot": "top-right",
+        "text": "Greater visual stability for people with myopia",
+        "sourceNode": "977:11093"
+      },
+      {
+        "slot": "bottom-right",
+        "text": "Optimized central correction and peripheral comfort.",
+        "sourceNode": "977:11090"
+      }
+    ],
+    "technologyName": "Psicoptix Technology™ / AI-GET Technology™.",
+    "technologySummary": "AI-GET and Psicoptix work in the lens design to optimize central vision and compensate for peripheral effects, creating a more comfortable experience for people with myopia.",
+    "galleryCaption": "Central clarity with\nsmart technology.",
+    "watermark": "MYOLENS",
+    "questions": [
+      {
+        "question": "What is MyoLens?",
+        "answer": "It is a single-vision lens designed to improve the visual experience for people with myopia."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people with myopia seeking central correction and greater visual comfort."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its AI-based design and focus on peripheral compensation."
+      },
+      {
+        "question": "Is it the same as MyoFix?",
+        "answer": "No. MyoFix is intended for myopia management in children and adolescents. MyoLens is designed to provide greater visual comfort for people with myopia."
+      }
+    ],
+    "openQuestion": 3
+  },
+  {
+    "name": "AIWork",
+    "slug": "aiwork",
+    "sourceNode": "988:11447",
+    "heroCopy": "Smart vision for better work.",
+    "hero": {
+      "file": "66c80.png",
+      "sourceNode": "988:11448",
+      "alt": "Professional wearing glasses and working on a laptop",
+      "width": 2752,
+      "height": 1536
+    },
+    "feature": {
+      "file": "3f12a.png",
+      "sourceNode": "988:11481",
+      "alt": "Two professionals wearing glasses and working in an office",
+      "width": 2752,
+      "height": 1536
+    },
+    "gallery": {
+      "file": "b7de4.png",
+      "sourceNode": "988:11496",
+      "alt": "Professional wearing glasses in front of a computer and screens",
+      "width": 2752,
+      "height": 1536
+    },
+    "technologyTitle": "An occupational lens designed with artificial intelligence for professionals who need visual precision in multitasking and digital environments.",
+    "technologyDescription": "Designed for modern work, combining technology and artificial intelligence to optimize the experience with screens, documents, and precision tasks. More than a traditional occupational lens, AIWORK adapts vision at intermediate and near distances to support greater comfort, concentration, and visual performance for professionals seeking productivity in digital workplaces.",
+    "benefits": [
+      {
+        "label": "Less eye strain.",
+        "icon": "8c8de.svg",
+        "sourceNode": "988:11567"
+      },
+      {
+        "label": "Comfort for screen use.",
+        "icon": "71321.svg",
+        "sourceNode": "988:11571"
+      },
+      {
+        "label": "AI-powered design.",
+        "icon": "60515.svg",
+        "sourceNode": "988:11573"
+      },
+      {
+        "label": "Workplace precision.",
+        "icon": "757b0.svg",
+        "sourceNode": "988:11583"
+      }
+    ],
+    "callouts": [
+      {
+        "slot": "top-left",
+        "text": "Its algorithms adapt the design to each user’s working distances and visual needs, helping reduce eye strain.",
+        "sourceNode": "988:11650"
+      },
+      {
+        "slot": "top-right",
+        "text": "More comfort at the distances you use throughout your workday.",
+        "sourceNode": "988:11492"
+      },
+      {
+        "slot": "bottom-left",
+        "text": "Designed for offices, studios, screens, meetings, and multitasking routines.",
+        "sourceNode": "988:11491"
+      },
+      {
+        "slot": "bottom-right",
+        "text": "Optimized performance for near, intermediate, and extended vision.",
+        "sourceNode": "988:11490"
+      }
+    ],
+    "technologyName": "AI-GET Technology™.",
+    "technologySummary": "AI-GET optimizes the design based on the user’s visual needs and working distances, improving precision, comfort, and fluidity.",
+    "galleryCaption": "Visual precision at near,\nintermediate, and extended distances.",
+    "watermark": "AIWORK",
+    "questions": [
+      {
+        "question": "What is MyoFix?",
+        "answer": "It is a lens designed to support myopia management in children and adolescents."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For children and adolescents with progressive myopia, always under professional guidance and follow-up."
+      },
+      {
+        "question": "Does it replace professional follow-up?",
+        "answer": "No. Follow-up with an eye-care professional is essential for proper adaptation and monitoring."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its combination of central correction and controlled peripheral defocus."
+      }
+    ],
+    "openQuestion": 3
+  }
+]

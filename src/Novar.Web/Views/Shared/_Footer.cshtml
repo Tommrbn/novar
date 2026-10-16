@@ -2,26 +2,26 @@
 <footer class="site-footer">
     <div class="container-novar">
         <div class="footer-grid">
-            <div class="footer-brand"><a href="/" aria-label="Novar, inicio">
+            <div class="footer-brand"><a href="/" aria-label="@T["Novar, inicio"]">
                 @if (homeFooter)
                 {
                     <img class="home-footer-logo" src="~/media/novar-footer.svg" alt="Novar" width="240" height="32" />
                 }
                 else
                 {
-                    <img src="~/media/figma/e7f22.svg" alt="Novar" width="124" height="34" />
+                    <img class="site-footer-logo" src="~/media/figma/e7f22.svg" alt="Novar" />
                 }
-            </a><p>Tecnología óptica de precisión para una visión más natural, clara y confortable.</p><partial name="_SocialLinks" /></div>
-            <div><h2>Productos</h2><ul><li><a href="/lentes">Progresivos</a></li><li><a href="/lentes">Ocupacionales</a></li><li><a href="/lentes">Monofocales</a></li><li><a href="/lentes">Bifocales</a></li><li><a href="/lentes">Premium</a></li></ul></div>
-            <div><h2 class="visually-hidden">Novar</h2><ul><li><a href="/sobre-nosotros">Sobre nosotros</a></li><li><a href="/tratamientos">Tratamientos</a></li><li><button type="button" data-pending="Garantía">Garantía</button></li><li><a href="/juegos">Juegos visuales</a></li><li><a href="/#contacto">Contacto</a></li></ul></div>
-            <div><h2>Contacto</h2><p>mkt@novar-tech.com</p><p>Presencia internacional</p>
+            </a><p>@T["Tecnología óptica de precisión para una visión más natural, clara y confortable."]</p><partial name="_SocialLinks" /></div>
+            <div><h2>@T["Productos"]</h2><ul><li><a href="/lentes">@T["Progresivos"]</a></li><li><a href="/lentes">@T["Ocupacionales"]</a></li><li><a href="/lentes">@T["Monofocales"]</a></li><li><a href="/lentes">@T["Bifocales"]</a></li><li><a href="/lentes">@T["Premium"]</a></li></ul></div>
+            <div><h2 class="visually-hidden">Novar</h2><ul><li><a href="/sobre-nosotros">@T["Sobre nosotros"]</a></li><li><a href="/tratamientos">@T["Tratamientos"]</a></li><li><button type="button" data-pending="@T["Garantía"]">@T["Garantía"]</button></li><li><a href="/juegos">@T["Juegos visuales"]</a></li><li><a href="/#contacto">@T["Contacto"]</a></li></ul></div>
+            <div><h2>@T["Contacto"]</h2><p>mkt@novar-tech.com</p><p>@T["Presencia internacional"]</p>
                 @if (!homeFooter)
                 {
-                    <a class="sample-link" href="/lentes/first">Ver muestra: Novar First →</a>
+                    <a class="sample-link" href="/lentes/first">@T["Ver muestra: Novar First →"]</a>
                 }
             </div>
         </div>
-        <p class="copyright">© 2026 Novar. Todos los derechos reservados.</p>
-        <p class="sample-note">Muestra de diseño · Home + Novar First. El resto del sitio espera aprobación visual.</p>
+        <p class="copyright">@T["© 2026 Novar. Todos los derechos reservados."]</p>
+        <p class="sample-note">@T["Muestra de diseño · Home + Novar First. El resto del sitio espera aprobación visual."]</p>
     </div>
 </footer>

@@ -5,23 +5,23 @@
 .progresivos-page .navbar-brand { margin: 0 48px 0 12px; }
 .progresivos-page .navbar-brand img, .progresivos-page .language img { max-width: none; }
 .progresivos-page .navbar-nav { gap: 10px; margin: 0 !important; }
-.progresivos-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; color: #000; }
+.progresivos-page .navbar .nav-link { min-height: 32px; padding: 6px 12px; font-size: 14px; line-height: 20px; font-family: Poppins, sans-serif; font-weight: 400; color: #000; }
 .progresivos-page .navbar .nav-link[aria-current="page"] { color: #1f023c; font-weight: 600; }
 .progresivos-page .language { gap: 5.571px; margin-left: auto; padding: 8px 16px; background: #1d023b; color: #f6f5f7; font-size: 12.998px; line-height: 18.569px; letter-spacing: .325px; }
 .progressive-product { overflow: clip; color: #1f023c; background: #f9f8fb; }
 .progressive-product h1, .progressive-product h2, .progressive-product p { margin: 0; }
 .prg-container { width: min(1264px, calc(100% - 176px)); margin-inline: auto; }
 .prg-button { padding: 14px 28px; border-radius: 100px; font-size: 16px; line-height: 24px; font-weight: 600; }
-.prg-hero { position: relative; height: 763.09px; }
+.prg-hero { --prg-frame-height: 763.09375; --prg-banner-width: 1443.344238; --prg-banner-height: 762.266174; --prg-banner-x: -1.672119; --prg-banner-y: 0; --prg-copy-x: 755.429016; --prg-copy-y: 234.884766; position: relative; container-type: inline-size; height: calc(var(--prg-frame-height) * 1px); }
 .prg-hero-art { position: absolute; inset: 0; overflow: hidden; }
-.prg-hero-art > img { position: absolute; left: calc(50% - 721.672px); top: 0; width: 1443.344px; height: 762.266px; max-width: none; object-fit: cover; }
+.prg-hero-art > img { position: absolute; left: calc(50% - 720px + var(--prg-banner-x) * 1px); top: calc(var(--prg-banner-y) * 1px); width: calc(var(--prg-banner-width) * 1px); height: calc(var(--prg-banner-height) * 1px); max-width: none; object-fit: cover; }
 .prg-category { position: absolute; left: -.25px; top: 120.77px; display: grid; place-items: center; width: 216.786px; height: 42.757px; border: .75px solid rgb(251 251 253 / 50%); border-radius: 0 0 109.518px 0; color: #fff; background: linear-gradient(90deg, #0e7ee2, #7f0c12); font-size: 14.25px; }
 .prg-hero-copy { position: absolute; left: calc(50% + 35.43px); top: 234.88px; width: 415px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .prg-wordmark { display: block; max-width: none; }
 .prg-hero-copy h2 { font-size: 30px; font-weight: 300; line-height: 1.3; letter-spacing: -.9px; color: #000; }
 .prg-hero-copy > p { font-size: 16px; font-weight: 300; line-height: 1.5; letter-spacing: -.48px; color: rgb(0 0 0 / 65%); }
-.progressive-product--precisa-short .prg-hero { height: 770.77px; }
-.progressive-product--precisa-short .prg-hero-art > img { width: 1459.443px; height: 770.769px; left: calc(50% - 732.25px); }
+.progressive-product--precisa-short .prg-hero { --prg-frame-height: 770.768555; --prg-banner-width: 1459.443359; --prg-banner-height: 770.768555; --prg-banner-x: -12.246833; --prg-copy-x: 758.441406; --prg-copy-y: 244.788086; }
+.progressive-product--precisa-short .prg-hero-underlay { object-fit: fill; }
 .progressive-product--precisa-short .prg-hero-copy { left: calc(50% + 38.44px); top: 244.79px; gap: 16px; }
 .progressive-product--precisa-short .prg-hero-copy h2 { line-height: 1.11; }
 .prg-tagline { position: relative; height: 117px; overflow: hidden; display: grid; place-items: center; background: #f6f5f7; }
@@ -74,7 +74,6 @@
 .prg-details figcaption { margin-top: 14px; text-align: right; color: #7b7b80; font-size: 10px; letter-spacing: 1.2px; }
 .progressive-product--precisa-short .prg-detail-photo img { height: 112.85%; width: 127.45%; left: -13.72%; top: -3.08%; }
 .prg-technologies { position: relative; padding: 91px 0 115px; min-height: 422.09px; }
-.prg-watermark { position: absolute; top: -35px; right: -30px; white-space: pre-line; font-size: 280px; font-weight: 400; line-height: .8; letter-spacing: -8.4px; background: linear-gradient(90deg, rgb(31 2 60 / 5%), rgb(123 123 128 / 5%)); color: transparent; background-clip: text; }
 .prg-technology-scroll { display: flex; gap: 23.05px; overflow-x: auto; scrollbar-width: thin; padding: 4px 4px 8px; margin-left: max(24px, calc((100% - 1264px) / 2)); scroll-snap-type: x proximity; }
 .prg-technology-card { position: relative; flex: 0 0 616.63px; min-height: 210.034px; padding: 55.5px 43.79px 18px; border: 1.5px solid #fafafa; border-top: 7.501px solid #1f023c; border-radius: 11.252px; background: rgb(217 217 217 / 20%); box-shadow: 0 3px 3px rgb(0 0 0 / 25%); scroll-snap-align: start; }
 .prg-technology-card:nth-child(2) { border-top-color: #3d1a7a; }
@@ -98,17 +97,53 @@
 .prg-contact h2 { font-size: 30px; line-height: 1.22; font-weight: 300; letter-spacing: -.9px; }
 .prg-contact p { margin-top: 16px; font-size: 14px; color: #6d6874; }
 .prg-contact .prg-button { flex-shrink: 0; font-size: 13px; line-height: 20px; }
-.prg-related { padding-top: 45.65px; }
-.prg-related h2 { max-width: 1294px; margin: 0 auto 34px; padding: 0 16px; font-size: 20px; font-weight: 600; line-height: 24px; letter-spacing: -.6px; color: #000; }
-.prg-related-images { display: grid; grid-template-columns: 370.561fr 379.563fr 378.813fr 331.555fr; height: 286.547px; overflow: hidden; }
-.prg-related-images > a { display: block; position: relative; overflow: hidden; }
-.prg-related-images img { position: absolute; max-width: none; width: 100%; height: 100%; object-fit: cover; transition: filter 300ms ease-out; }
-.prg-related-images > a:first-child img { width: 134.26%; height: 204.56%; left: -14.4%; top: -40.54%; }
-.prg-related-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; color: #fff; opacity: 0; transition: opacity 300ms ease-out; }
-.prg-related-overlay strong { font-size: 40px; line-height: 1.2; font-weight: 600; }
-.prg-related-overlay > span { font-size: 17.872px; border: 1px solid #fff; padding: 9px 25px; border-radius: 50px; }
-.prg-related-images a:hover img, .prg-related-images a:focus-visible img { filter: blur(2.5px); }
-.prg-related-images a:hover .prg-related-overlay, .prg-related-images a:focus-visible .prg-related-overlay { opacity: 1; }
+.prg-related { padding-top: 40.87px; }
+.prg-related h2 { width: min(1292.976px, calc(100% - 48px)); margin: 0 auto 27.754px; font-size: 22.504px; font-weight: 600; line-height: 1.1; letter-spacing: -.6751px; color: rgb(0 0 0 / 90%); }
+/* Source positions include the 14.254px overlap at Evolution's right edge. */
+.prg-related-images { display: grid; grid-template-columns: 25.73342% 26.35852% 25.31657% 23.02464%; aspect-ratio: 1440 / 286.547; overflow: clip; }
+.prg-related-card { position: relative; min-width: 0; height: 100%; overflow: hidden; isolation: isolate; }
+.prg-related-card summary { position: relative; display: block; height: 100%; cursor: pointer; list-style: none; }
+.prg-related-card summary::-webkit-details-marker { display: none; }
+.prg-related-media { position: absolute; inset: 0; display: block; overflow: hidden; transition: filter 180ms ease-out; }
+.prg-related-media img { position: absolute; inset: 0; display: block; max-width: none; width: 100%; height: 100%; object-fit: cover; }
+.prg-related-card--ai-lens .prg-related-photo { width: 134.26%; height: 204.56%; left: -14.4%; top: -40.54%; object-fit: fill; }
+.prg-related-card--evolution .prg-related-media { right: -3.91%; }
+.prg-related-card[open] .prg-related-media { filter: blur(2.5px); transition-duration: 360ms; transition-timing-function: cubic-bezier(.16, 1, .3, 1); }
+.prg-related-options { position: absolute; inset: 0; z-index: 1; isolation: isolate; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 12px; pointer-events: none; }
+.prg-related-card[open] > .prg-related-options { display: flex; }
+/* An optical aperture opens the violet veil, without scaling or moving either photo layer. */
+.prg-related-options::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgb(31 2 60 / 66%); }
+.prg-related-card[open] > .prg-related-options::before { animation: prg-related-aperture 420ms cubic-bezier(.16, 1, .3, 1) both; }
+.prg-related-card[open] .prg-related-option { animation: prg-related-focus 240ms ease-out 80ms both; }
+.prg-related-card[open] .prg-related-option:nth-child(2) { animation-delay: 120ms; }
+@keyframes prg-related-aperture {
+    from { clip-path: inset(50% 0); opacity: 0; }
+    to { clip-path: inset(0); opacity: 1; }
+}
+@keyframes prg-related-focus {
+    from { opacity: 0; filter: blur(3px); }
+    to { opacity: 1; filter: blur(0); }
+}
+.prg-related-option { display: flex; max-width: 100%; flex-direction: column; align-items: center; gap: 8px; padding: 4px 8px; color: #fff; text-align: center; text-decoration: none; pointer-events: auto; }
+.prg-related-option:hover { color: #fff; }
+.prg-related-name { font-size: clamp(24px, 2.78vw, 40px); line-height: 1; font-weight: 600; overflow-wrap: anywhere; }
+.prg-related-card--precisa .prg-related-name, .prg-related-card--evolution .prg-related-name { font-size: clamp(20px, 1.8vw, 26px); line-height: 1.15; }
+.prg-related-cta { position: relative; display: grid; place-items: center; width: 123.319px; height: 42px; }
+.prg-related-cta > img { position: absolute; display: block; max-width: none; }
+.prg-related-cta > span { position: relative; color: #fff; font-size: 17.872px; line-height: 1.3; font-weight: 400; }
+.prg-related-hint { position: absolute; right: 16px; bottom: 16px; display: none; padding: 10px 16px; border-radius: 100px; background: #1f023c; color: #fff; font-size: 16px; }
+.prg-related-card summary:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+.prg-related-option:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.prg-related-card summary:focus-visible .prg-related-hint { display: block; }
+.prg-related-card[open] .prg-related-hint { display: none; }
+@media (hover: none), (pointer: coarse) {
+    .prg-related-hint { display: block; }
+}
+/* Keep both choices legible before four desktop panels become too short. */
+@media (max-width: 1023px) {
+    .prg-related-images { display: flex; aspect-ratio: auto; overflow-x: auto; scroll-snap-type: x proximity; }
+    .prg-related-card { flex: 0 0 min(85vw, 370.561px); height: auto; aspect-ratio: 370.561 / 286.547; scroll-snap-align: start; }
+}
 .prg-footer { min-height: 607.592px; padding: 142.8px 0 80px; background: #fbfbfd; }
 .prg-footer-inner { width: min(1134px, 100%); margin-inline: auto; padding-inline: 24px; }
 .prg-footer-grid { display: grid; grid-template-columns: repeat(4, 240px); gap: 48px; min-height: 192px; }
@@ -134,9 +169,6 @@
 .prg-footer-socials img { display: block; max-width: none; }
 .prg-copyright { margin: 56.366px 0 0; padding-top: 32px; border-top: 1px solid #7b7b80; color: #7b7b80; font-size: 12px; line-height: 16px; }
 
-@media (min-width: 1441px) {
-    .prg-hero-art > img { width: 100%; height: auto; min-height: 100%; left: 0; }
-}
 @media (max-width: 1199px) {
     .progresivos-page .navbar { padding: 12px 20px; }
     .progresivos-page .navbar-brand { margin: 0; }
@@ -183,7 +215,6 @@
     .prg-details h2 { font-size: 36px; }
     .prg-detail-photo { height: auto; aspect-ratio: 672 / 430; }
     .prg-technologies { min-height: auto; padding: 80px 0; }
-    .prg-watermark { font-size: 140px; top: 0; }
     .prg-technology-scroll { margin-left: 20px; padding-right: 20px; }
     .prg-technology-card { flex-basis: min(85vw, 616.63px); padding: 32px 24px; }
     .prg-technology-card h2 { line-height: 1.2; }
@@ -197,10 +228,7 @@
     .prg-faq h2 br { display: none; }
     .prg-contact { padding: 55px 24px; flex-direction: column; align-items: flex-start; }
     .prg-related h2 { font-size: 18px; margin-bottom: 25px; }
-    .prg-related-images { height: 240px; display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
-    .prg-related-images > a { flex: 0 0 240px; scroll-snap-align: start; }
-    .prg-related-overlay { opacity: 1; background: rgb(31 2 60 / 24%); }
-    .prg-related-overlay strong { font-size: 28px; }
+    .prg-related-card--precisa .prg-related-name, .prg-related-card--evolution .prg-related-name { font-size: 22px; }
     .prg-footer { padding: 70px 0 50px; min-height: auto; }
     .prg-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; min-height: auto; }
     .prg-footer-logo { width: 120px; }
@@ -214,12 +242,16 @@
     .prg-footer-grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .prg-related-images img, .prg-related-overlay { transition: none; }
+    .prg-related-media { transition: none; }
+    .prg-related-card[open] .prg-related-media { transition-duration: 0s; }
+    .prg-related-card[open] > .prg-related-options::before,
+    .prg-related-card[open] .prg-related-option { animation: none; }
 }
 
 /* Evolution variants retain their own source crop, copy widths and visible third card. */
-.progressive-product--evolution .prg-hero, .progressive-product--evolution-short .prg-hero { height: 763.09px; }
-.progressive-product--evolution .prg-hero-art > img, .progressive-product--evolution-short .prg-hero-art > img { width: 1450.963px; height: 766.29px; left: calc(50% - 724.4815px); }
+.progressive-product--evolution .prg-hero, .progressive-product--evolution-short .prg-hero { --prg-frame-height: 761; --prg-banner-width: 1450.963257; --prg-banner-height: 766.289978; --prg-banner-x: -4.480469; --prg-copy-x: 771; --prg-copy-y: 235; }
+.progressive-product--evolution-short .prg-hero { --prg-frame-height: 766; --prg-copy-y: 242.884766; }
+.progressive-product--evolution-short .prg-hero-underlay { --prg-banner-x: -3.481628; }
 .progressive-product--evolution .prg-hero-copy { left: calc(50% + 51px); top: 235px; gap: 21px; }
 .progressive-product--evolution-short .prg-hero-copy { left: calc(50% + 51px); top: 242.88px; gap: 13px; }
 .progressive-product--evolution .prg-hero-copy h2, .progressive-product--evolution-short .prg-hero-copy h2 { line-height: 1.22; }
@@ -231,10 +263,28 @@
 .progressive-product--evolution .prg-gallery-images > [data-gallery-image="2b637.png"] img { position: absolute; width: 100%; height: 132.83%; left: -.11%; top: -.05%; }
 .progressive-product--evolution .prg-detail-photo img { height: 269.53%; width: 102.46%; left: -1.23%; top: -69.06%; }
 .progressive-product--evolution-short .prg-detail-photo img { height: 117.31%; width: 108.38%; left: -4.19%; top: 2.49%; }
-.progressive-product--evolution-short .prg-watermark, .progressive-product--precisa-short .prg-watermark { max-width: 1190px; line-height: .879; }
 .progressive-product--evolution .prg-technology-card, .progressive-product--evolution-short .prg-technology-card { padding-top: 49.46px; min-height: 218.249px; }
-.prg-related-overlay > span { position: relative; display: grid; place-items: center; width: 123.319px; height: 42px; border: none; padding: 0; }
-.prg-related-overlay > span img { position: absolute; inset: 0; width: auto; height: auto; object-fit: fill; filter: none !important; }
+/* Evolution keeps all three technologies visible in a centered group. */
+.progressive-product--evolution .prg-technology-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(1264px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 4px 4px 8px;
+    overflow: visible;
+    scroll-snap-type: none;
+}
+.progressive-product--evolution .prg-technology-card {
+    min-width: 0;
+    padding: 32px 24px;
+}
+.progressive-product--evolution .prg-technology-card h2 { line-height: 1.2; }
+@media (max-width: 999px) {
+    .progressive-product--evolution .prg-technology-scroll {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(616px, calc(100% - 40px));
+    }
+}
 .prg-treatments h2 { font-size: 33.424px; line-height: 36.766px; }
 .prg-details figcaption { position: absolute; bottom: 22px; left: 24px; right: 24px; text-align: center; margin: 0; color: #fff; font-size: 12px; line-height: normal; letter-spacing: .96px; }
 @media (max-width: 1199px) {
@@ -250,7 +300,8 @@
 }
 
 /* eLIFE source exceptions and exact shared text metrics. */
-.progressive-product--elife .prg-hero-art > img { width: 1774px; height: 937px; left: calc(50% - 800px); top: -174px; object-fit: fill; }
+.progressive-product--elife .prg-hero { --prg-banner-width: 1774; --prg-banner-height: 937; --prg-banner-x: -80; --prg-banner-y: -174; --prg-copy-x: 763; }
+.progressive-product--elife .prg-hero-art > img { object-fit: fill; object-position: center bottom; }
 .progressive-product--elife .prg-hero-copy { left: calc(50% + 43px); gap: 21px; }
 .progressive-product--elife .prg-hero-copy h2 { line-height: 1.22; }
 .progressive-product--elife .prg-scene { transform: none; }
@@ -263,6 +314,28 @@
 .progressive-product--elife .prg-gallery-images > [data-gallery-image="1afa3.png"] img { position: absolute; width: 100%; height: 157.37%; left: .24%; top: -20.65%; }
 .progressive-product--elife .prg-detail-photo img { height: 191.78%; width: 100%; left: 0; top: -27.04%; }
 .progressive-product--elife .prg-technology-card { padding-top: 49.46px; min-height: 218.249px; }
+
+/* eLIFE shows all three technologies as one centered group, not a clipped side rail. */
+.progressive-product--elife .prg-technology-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(1264px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 4px 4px 8px;
+    overflow: visible;
+    scroll-snap-type: none;
+}
+.progressive-product--elife .prg-technology-card {
+    min-width: 0;
+    padding: 32px 24px;
+}
+.progressive-product--elife .prg-technology-card h2 { line-height: 1.2; }
+@media (max-width: 999px) {
+    .progressive-product--elife .prg-technology-scroll {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(616px, calc(100% - 40px));
+    }
+}
 .prg-treatments p { font-size: 15.002px; line-height: 18.753px; }
 .prg-specs { font-size: 15.002px; line-height: 24px; }
 .prg-tags { gap: 5px; }
@@ -274,9 +347,6 @@
 .prg-contact p { margin-top: 10px; font-size: 16px; }
 .prg-contact .prg-button { background: #3d1a7a; padding: 16px 28px; }
 .prg-icons li > span { margin-bottom: 6px; }
-@media (min-width: 1441px) {
-    .progressive-product--elife .prg-hero-art > img { width: max(1774px, 123.194vw); height: auto; top: -12.0833vw; left: -5.5556vw; }
-}
 @media (max-width: 1199px) {
     .progressive-product--elife .prg-hero-copy { left: 53%; width: 42%; }
     .progressive-product--elife .prg-intro-copy { padding-top: 10px; }
@@ -290,13 +360,12 @@
 }
 
 /* Source text emphasis and tablet-safe proportional wordmarks. */
-.progresivos-page .navbar .nav-link { font-weight: 600; color: #1f023c; }
+.progresivos-page .navbar .nav-link { font-weight: 400; color: #1f023c; }
 .prg-intro-description strong, .prg-details-copy > p strong { font-weight: 600; }
 .progressive-product--evolution .prg-intro-description { max-width: 429.176px; line-height: 21px; }
 .progressive-product--evolution .prg-details-copy > p:not(.prg-eyebrow) { max-width: 419.492px; line-height: 22px; }
 .progressive-product--elife .prg-details-copy > p:not(.prg-eyebrow) { max-width: 419.492px; line-height: 21px; }
 .prg-faq .accordion-button { color: #25212b; font-weight: 400; line-height: 2.1; padding: 20px 24px; }
-.prg-related-images > a:first-child .prg-related-underlay { inset: 0; width: 100%; height: 100%; }
 @media (min-width: 768px) and (max-width: 1023px) {
     .prg-wordmark { transform: scale(.78); transform-origin: top left; }
 }
@@ -319,4 +388,16 @@
 .prg-gallery-controls button:focus-visible { outline: 3px solid #6b5a8a; outline-offset: 3px; }
 @media (max-width: 767px) {
     .prg-gallery.is-enhanced .prg-gallery-images { height: 265px; }
+}
+
+/* Precisa's supplied review asks for sharp lateral portraits; other progressives keep the source blur. */
+.progressive-product--precisa .prg-gallery-images > div:first-child,
+.progressive-product--precisa .prg-gallery-images > div:last-child { filter: none; }
+
+/* Scale each Figma banner plane with its clipping frame, not the photo alone.
+   Container units exclude the scrollbar and avoid gaps on wide desktops. */
+@media (min-width: 1441px) {
+    .progressive-product .prg-hero { height: auto; aspect-ratio: 1440 / var(--prg-frame-height); }
+    .progressive-product .prg-hero .prg-hero-art > img { width: calc(var(--prg-banner-width) / 14.4 * 1cqw); height: calc(var(--prg-banner-height) / 14.4 * 1cqw); left: calc(var(--prg-banner-x) / 14.4 * 1cqw); top: calc(var(--prg-banner-y) / 14.4 * 1cqw); }
+    .progressive-product .prg-hero > .prg-hero-copy { left: calc(var(--prg-copy-x) / 14.4 * 1cqw); top: calc(var(--prg-copy-y) / 14.4 * 1cqw); }
 }

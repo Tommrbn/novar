@@ -12,11 +12,11 @@ public sealed class HomeMediaTests(WebApplicationFactory<Program> factory) : ICl
     public async Task HomeVideoPlayersAreMutedLazyAndKeepAccessiblePosterFallbacks()
     {
         var html = await client.GetStringAsync("/");
-        Assert.Contains("data-home-media-revision=\"home-media-v1\"", html);
-        Assert.Contains("data-home-media-source=\"/media/home/hero-banner.mp4\"", html);
+        Assert.Contains("data-home-media-revision=\"home-media-v2\"", html);
+        Assert.Contains("data-home-media-source=\"/media/home/optimized/hero-banner.mp4\"", html);
         Assert.Contains("data-home-media-source=\"/media/home/lens-finder.mp4\"", html);
 
-        var videos = System.Text.RegularExpressions.Regex.Matches(html, "<video\\b[^>]*>");
+        var videos = System.Text.RegularExpressions.Regex.Matches(html, "<video\\b[^>]*id=\"home-(?:hero|finder)-video\"[^>]*>");
         Assert.Equal(2, videos.Count);
         foreach (System.Text.RegularExpressions.Match video in videos)
         {
@@ -29,7 +29,7 @@ public sealed class HomeMediaTests(WebApplicationFactory<Program> factory) : ICl
             Assert.Contains(" hidden", video.Value);
             Assert.DoesNotContain("autoplay", video.Value, StringComparison.OrdinalIgnoreCase);
             Assert.DoesNotContain(" src=", video.Value, StringComparison.OrdinalIgnoreCase);
-            Assert.Contains("poster=\"/media/figma/", video.Value);
+            Assert.Contains(video.Value.Contains("id=\"home-hero-video\"") ? "poster=\"/media/home/optimized/hero-banner.webp\"" : "poster=\"/media/figma/lens-finder-poster.png\"", video.Value);
         }
 
         var toggles = System.Text.RegularExpressions.Regex.Matches(html, "<button class=\"home-video-toggle[^>]*>");
@@ -38,8 +38,8 @@ public sealed class HomeMediaTests(WebApplicationFactory<Program> factory) : ICl
         {
             Assert.Contains("aria-controls=\"", toggle.Value);
             Assert.Contains("aria-label=\"Reproducir video", toggle.Value);
-            Assert.Contains("data-play-label=\"Reproducir video", toggle.Value);
-            Assert.Contains("data-pause-label=\"Pausar video", toggle.Value);
+            Assert.DoesNotContain("Pausar", toggle.Value, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("aria-pressed", toggle.Value);
             Assert.Contains(" hidden", toggle.Value);
         }
 
@@ -47,6 +47,17 @@ public sealed class HomeMediaTests(WebApplicationFactory<Program> factory) : ICl
         Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/js/home-media.js")).StatusCode);
         var otherPage = await client.GetStringAsync("/lentes");
         Assert.DoesNotContain("/js/home-media.js?v=", otherPage);
+    }
+
+    [Fact]
+    public async Task FinderVideoBlendsItsWhiteBackgroundIntoTheExistingArtwork()
+    {
+        var css = await client.GetStringAsync("/css/site.css");
+        var videoRule = System.Text.RegularExpressions.Regex.Match(css, @"\.finder-art \.home-finder-video \{[^}]+\}").Value;
+
+        Assert.Contains(".finder-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }", css);
+        Assert.Contains("position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; background: transparent;", videoRule);
+        Assert.DoesNotContain("background: #fff", videoRule);
     }
 
     [Theory]

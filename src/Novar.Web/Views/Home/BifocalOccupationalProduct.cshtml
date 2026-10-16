@@ -1,18 +1,19 @@
 @model BifocalOccupationalProduct
+@inject Novar.Web.Services.SiteContent ProductContent
 @{
     ViewData["Title"] = $"Novar {Model.Name}";
     ViewData["BifocalOccupationalPage"] = true;
     ViewData["BifocalOccupationalVariant"] = Model.Slug;
     var office = Model.Slug == "office";
+    var kriptok = Model.Slug == "kriptok-blended";
+    var banner = ProductBannerAsset.ForSlug(Model.Slug);
+    var catalog = ProductContent.ForCulture(System.Globalization.CultureInfo.CurrentUICulture);
+    var officeRelated = catalog.PremiumProducts["aiwork"];
 }
 <article class="bop-product bop-product--@Model.Slug" data-figma-node="@Model.SourceNode" data-bifocal-occupational-revision="bifocal-occupational-v1" data-product-category="@Model.Category">
     <section class="bop-hero" aria-labelledby="bop-title">
-        <div class="bop-hero-art">
-            @if (Model.HeroUnderlay is not null)
-            {
-                <img class="bop-hero-underlay" src="~/media/figma/@Model.HeroUnderlay" alt="" aria-hidden="true" />
-            }
-            <img src="~/media/figma/@Model.Hero" alt="Persona con anteojos Novar @Model.Name" fetchpriority="high" />
+        <div class="bop-hero-art" data-figma-node="@banner.SourceNode">
+            <img src="~/media/products/banners/@banner.File" alt="@T["Persona con anteojos Novar"] @Model.Name" width="@banner.Width" height="@banner.Height" data-product-banner fetchpriority="high" />
         </div>
         <p class="bop-category">@Model.Category.ToUpperInvariant()</p>
         <div class="bop-hero-copy">
@@ -23,18 +24,17 @@
             <h1 id="bop-title"><span class="visually-hidden">Novar @Model.Name</span><img class="bop-wordmark" src="~/media/figma/@Model.Wordmark" alt="" data-figma-node="@Model.WordmarkNode" /></h1>
             <h2>@Model.Subtitle</h2>
             <p class="bop-hero-description">@Model.Description</p>
-            <button class="btn btn-novar bop-button" type="button" data-pending="Personalización de Novar @Model.Name">Personalizá tu lente</button>
+            <a class="btn btn-novar bop-button" href="/tratamientos">@T["Personalizá tu lente"]</a>
         </div>
     </section>
-    <div class="bop-tagline" tabindex="0" role="group" aria-label="@Model.Tagline. Visión sin esfuerzo" data-hover-source="443:1240">
+    <div class="bop-tagline" data-product-tagline>
         <div class="bop-tagline-art" aria-hidden="true"><img src="~/media/figma/33850.png" alt="" /></div>
         <img class="bop-tagline-orb" src="~/media/figma/5cebf.svg" alt="" />
-        <p class="bop-tagline-initial" aria-hidden="true">@Model.Tagline</p>
-        <div class="bop-tagline-hover" aria-hidden="true"><img src="~/media/figma/d68bc.svg" alt="" /><span>Visión sin esfuerzo</span></div>
+        <p>@Model.Tagline</p>
     </div>
     <section class="bop-intro" aria-labelledby="bop-intro-title">
         <div class="bop-intro-panel">
-            <div class="bop-scene"><img src="~/media/figma/@Model.Scene" alt="Escena cotidiana con Novar @Model.Name" loading="lazy" /></div>
+            <div class="bop-scene"><img src="~/media/figma/@Model.Scene" alt="@T["Escena cotidiana con Novar"] @Model.Name" loading="lazy" /></div>
             <div class="bop-intro-copy">
                 <p class="bop-intro-eyebrow">@Model.IntroEyebrow</p>
                 <h2 id="bop-intro-title">@Model.IntroHeading</h2>
@@ -48,39 +48,47 @@
             </div>
         </div>
     </section>
-    <section class="bop-gallery" aria-labelledby="bop-gallery-title">
-        <h2 id="bop-gallery-title"><span>@Model.GalleryName<img src="~/media/figma/26db8.svg" alt="®" /></span> es <strong>para vos</strong></h2>
-        <div class="bop-gallery-images">
-            @foreach (var file in Model.Gallery)
-            {
-                <div><img src="~/media/figma/@file" alt="Persona con anteojos, @Model.Name" loading="lazy" /></div>
-            }
-        </div>
-    </section>
+    @if (kriptok)
+    {
+        <partial name="_KriptokGallery" model="Model" />
+    }
+    else
+    {
+        <section class="bop-gallery" aria-labelledby="bop-gallery-title" aria-roledescription="@T["carrusel"]" data-product-gallery>
+            <h2 id="bop-gallery-title"><span>@Model.GalleryName<img src="~/media/figma/26db8.svg" alt="®" /></span> @T["es"] <strong>@T["para vos"]</strong></h2>
+            <div class="bop-gallery-images" data-gallery-track>
+                @foreach (var file in Model.Gallery)
+                {
+                    <div data-gallery-image="@file"><img src="~/media/figma/@file" alt="@T["Persona con anteojos"] @Model.Name" loading="lazy" /></div>
+                }
+            </div>
+            <partial name="_GalleryMotionControl" />
+        </section>
+    }
     <section class="bop-treatments" aria-labelledby="bop-treatments-title">
-        <h2 id="bop-treatments-title">Mejorá tu visión con tratamientos</h2>
-        <p>Los tratamientos son tecnologías avanzadas que se aplican a las superficies de las lentes para mejorar su funcionalidad, durabilidad y comodidad visual</p>
-        <a class="btn btn-novar bop-button" href="/tratamientos">Conocelos <img src="~/media/figma/baa56.svg" alt="" /></a>
+        <h2 id="bop-treatments-title">@T["Mejorá tu visión con tratamientos"]</h2>
+        <p>@T["Los tratamientos son tecnologías avanzadas que se aplican a las superficies de las lentes para mejorar su funcionalidad, durabilidad y comodidad visual"]</p>
+        <a class="btn btn-novar bop-button" href="/tratamientos">@T["Conocelos"] <img src="~/media/figma/baa56.svg" alt="" /></a>
     </section>
     <section class="bop-details" aria-labelledby="bop-details-title">
         <div class="bop-details-layout">
             <div class="bop-details-copy">
-                <p class="bop-eyebrow">DETALLES DEL PRODUCTO</p>
-                <h2 id="bop-details-title">Empezar a ver de otra manera puede sentirse natural.</h2>
+                <p class="bop-eyebrow">@T["DETALLES DEL PRODUCTO"]</p>
+                <h2 id="bop-details-title">@T["Empezar a ver de otra manera puede sentirse natural."]</h2>
                 <p>@Model.Details</p>
                 <dl class="bop-specs">
-                    <div><img src="~/media/figma/747a9.svg" alt="" /><dt>Diseño:</dt><dd>@Model.Design</dd></div>
-                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>Ideal para:</dt><dd>@Model.IdealFor</dd></div>
-                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>Tecnología:</dt><dd>@Model.TechnologySpec</dd></div>
+                    <div><img src="~/media/figma/747a9.svg" alt="" /><dt>@T["Diseño:"]</dt><dd>@Model.Design</dd></div>
+                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>@T["Ideal para:"]</dt><dd>@Model.IdealFor</dd></div>
+                    <div><img src="~/media/figma/90e08.svg" alt="" /><dt>@T["Tecnología:"]</dt><dd>@Model.TechnologySpec</dd></div>
                 </dl>
                 <p class="bop-tag">@Model.Tag</p>
             </div>
-            <figure><div class="bop-detail-photo"><img src="~/media/figma/@Model.Detail" alt="Escena de uso de Novar @Model.Name" loading="lazy" /></div><figcaption>SUPERFICIE DIGITAL PERSONALIZADA</figcaption></figure>
+            <figure><div class="bop-detail-photo"><img src="~/media/figma/@Model.Detail" alt="@T["Escena de uso de Novar"] @Model.Name" loading="lazy" /></div><figcaption>@T["SUPERFICIE DIGITAL PERSONALIZADA"]</figcaption></figure>
         </div>
     </section>
-    <section class="bop-technologies" aria-label="Tecnologías de Novar @Model.Name">
+    <section class="bop-technologies" aria-label="@T["Tecnologías de Novar"] @Model.Name">
         <span class="bop-watermark" aria-hidden="true">@Model.Watermark</span>
-        <div class="bop-technology-scroll" tabindex="0" role="region" aria-label="Tecnologías; desplazá para ver las tarjetas">
+        <div class="bop-technology-scroll" tabindex="0" role="region" aria-label="@T["Tecnologías; desplazá para ver las tarjetas"]">
             @foreach (var technology in Model.Technologies)
             {
                 <div class="bop-technology-card"><h2>@technology.Name</h2><p>@technology.Description</p></div>
@@ -89,32 +97,36 @@
     </section>
     <section class="bop-benefits" aria-labelledby="bop-benefits-title">
         <div class="bop-container">
-            <p class="bop-eyebrow">BENEFICIOS</p><h2 id="bop-benefits-title">Claridad donde la necesitás</h2>
-            <p>Una lectura simple del rendimiento visual esperado en cada distancia.</p>
+            <p class="bop-eyebrow">@T["BENEFICIOS"]</p><h2 id="bop-benefits-title">@T["Claridad donde la necesitás"]</h2>
+            <p>@T["Una lectura simple del rendimiento visual esperado en cada distancia."]</p>
             <dl>@foreach (var benefit in Model.Benefits) { <div><dt>@benefit.Label</dt><dd><span aria-hidden="true">◉</span> @benefit.Level</dd></div> }</dl>
         </div>
     </section>
     <section class="bop-faq" aria-labelledby="bop-faq-title">
-        <div><p class="bop-eyebrow">FAQ</p><h2 id="bop-faq-title">Preguntas<br /> frecuentes</h2><p>Todo lo que necesitás saber antes de elegir tu próxima lente.</p><a href="/#contacto">¿Tenés otra duda? Contactanos →</a></div>
+        <div><p class="bop-eyebrow">FAQ</p><h2 id="bop-faq-title">@T["Preguntas"]<br /> @T["frecuentes"]</h2><p>@T["Todo lo que necesitás saber antes de elegir tu próxima lente."]</p><a href="/#contacto">@T["¿Tenés otra duda? Contactanos →"]</a></div>
         <partial name="_Faq" model='new FaqSection($"bop-{Model.Slug}-faq", Model.Questions, 2)' />
     </section>
     <section class="bop-contact">
-        <div><h2>Tu próxima forma de ver empieza acá.</h2><p>Consultá con una óptica especializada y encontrá la configuración ideal para vos.</p></div>
-        <a class="btn btn-novar bop-button" href="/#contacto">CONTACTANOS →</a>
+        <div><h2>@T["Tu próxima forma de ver empieza acá."]</h2><p>@T["Consultá con una óptica especializada y encontrá la configuración ideal para vos."]</p></div>
+        <a class="btn btn-novar bop-button" href="/#contacto">@T["CONTACTANOS →"]</a>
     </section>
-    <section class="bop-related @(office ? "bop-related--office" : "")" aria-labelledby="bop-related-title">
-        <h2 id="bop-related-title">@(office ? "Otros lentes progresivos" : "Otros lentes bifocales")</h2>
+    <section class="bop-related @(office ? "bop-related--office" : "bop-related--bifocal")" aria-labelledby="bop-related-title">
+        <h2 id="bop-related-title">@(office ? T["Explorar otros lentes en el catálogo"] : T["Otros lentes bifocales"])</h2>
         <div class="bop-related-images">
-            @foreach (var file in office ? new[] { "ca299.png", "1f46b.png", "ef547.png", "43874.png" } : new[] { "961e1.png", "2c53f.png", "28518.png" })
+            @if (!office)
             {
-                <a href="/lentes" aria-label="Explorar otros lentes en el catálogo">
-                    @if (office)
-                    {
-                        <img class="bop-related-underlay" src="~/media/figma/f9381.png" alt="" aria-hidden="true" loading="lazy" />
-                    }
-                    <img src="~/media/figma/@file" alt="Persona con anteojos Novar" loading="lazy" />
-                </a>
+                <a href="/lentes/ultex-blended" aria-current="@(Model.Slug == "ultex-blended" ? "page" : null)" data-figma-node="@(kriptok ? "1145:1940" : "1145:1955")" data-related-cta="@T["Ver más"]"><img src="~/media/figma/961e1.png" alt="" loading="lazy" /><span class="product-related-label">@catalog.BifocalOccupationalProducts["ultex-blended"].Name</span></a>
+                <a href="/lentes/kriptok-blended" aria-current="@(kriptok ? "page" : null)" data-figma-node="@(kriptok ? "1145:1943" : "1145:1957")" data-related-cta="@T["Ver más"]"><img src="~/media/figma/2c53f.png" alt="" loading="lazy" /><span class="product-related-label">@catalog.BifocalOccupationalProducts["kriptok-blended"].Name</span></a>
+                <a href="/lentes/freeline" aria-current="@(Model.Slug == "freeline" ? "page" : null)" data-figma-node="@(kriptok ? "1145:1947" : "1145:1958")" data-related-cta="@T["Ver más"]"><img src="~/media/figma/28518.png" alt="" loading="lazy" /><span class="product-related-label">@catalog.BifocalOccupationalProducts["freeline"].Name</span></a>
+            }
+            else
+            {
+                <a href="/lentes/@officeRelated.Slug" data-related-cta="@T["Ver más"]"><img src="~/media/figma/@officeRelated.Hero.File" alt="" loading="lazy" /><span>@officeRelated.Name</span></a>
             }
         </div>
     </section>
 </article>
+
+@section Scripts {
+    <script src="~/js/progressive-gallery.js" asp-append-version="true" defer></script>
+}

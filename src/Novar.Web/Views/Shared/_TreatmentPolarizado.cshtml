@@ -1,15 +1,17 @@
 @model TreatmentDetail
 <section id="@Model.Id" class="treatment-detail treatment-detail-polarizado" aria-labelledby="treatment-polarizado-title" data-treatment-detail="polarizado" data-figma-node="967:9919">
     <div class="treatment-polarizado-summary" data-figma-node="@Model.SourceNode">
-        <div><p class="treatment-polarizado-eyebrow">TRATAMIENTO</p><h2 id="treatment-polarizado-title">@Model.Name</h2></div>
+        <div><p class="treatment-polarizado-eyebrow">@T["TRATAMIENTO"]</p><h2 id="treatment-polarizado-title">@Model.Name</h2></div>
         <p class="treatment-polarizado-description">@Model.Description</p>
     </div>
-    <div class="treatment-polarizado-photo" data-figma-node="967:9921">
+    <div class="treatment-polarizado-photo" data-treatment-media data-figma-node="967:9921">
         <div class="treatment-polarizado-image-plane" data-figma-node="I967:9921;1:2038">
-            <img class="treatment-polarizado-image" src="~/media/figma/@Model.Image" alt="Atleta con gafas de sol en una pista de atletismo" width="2752" height="1536" />
+            <video data-treatment-video loop class="treatment-polarizado-video" muted playsinline preload="none" aria-label="@Model.Name" hidden data-treatment-desktop="/media/treatments/optimized/polarizado-desktop.mp4" data-treatment-mobile="/media/treatments/optimized/polarizado-mobile.mp4">
+            </video>
+            <img class="treatment-polarizado-video" data-treatment-fallback src="~/media/treatments/optimized/polarizado-poster-1280.webp" srcset="/media/treatments/optimized/polarizado-poster-640.webp 640w, /media/treatments/optimized/polarizado-poster-1280.webp 1280w, /media/treatments/optimized/polarizado-poster-1920.webp 1920w" sizes="(max-width: 767.98px) 125vw, 117vw" loading="lazy" decoding="async" alt="@Model.Name" />
         </div>
     </div>
-    <ul class="treatment-polarizado-benefits" aria-label="Características de Polarizado" data-figma-node="967:10053">
+    <ul class="treatment-polarizado-benefits" aria-label="@T["Características de Polarizado"]" data-figma-node="967:10053">
         @foreach (var benefit in Model.Benefits)
         {
             <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>

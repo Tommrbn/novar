@@ -2,15 +2,15 @@
 @{ var titleParts = Model.Name.Split(' ', 2); }
 <section id="@Model.Id" class="treatment-detail treatment-detail-ilux" aria-labelledby="treatment-ilux-title" data-treatment-detail="ilux" data-figma-node="961:8330">
     <div class="treatment-ilux-summary" data-figma-node="@Model.SourceNode">
-        <div><p class="treatment-ilux-eyebrow">TRATAMIENTO</p><h2 id="treatment-ilux-title">@titleParts[0] <strong>@titleParts[1]</strong></h2></div>
+        <div><p class="treatment-ilux-eyebrow">@T["TRATAMIENTO"]</p><h2 id="treatment-ilux-title">@titleParts[0] <strong>@titleParts[1]</strong></h2></div>
         <p class="treatment-ilux-description">@Model.Description</p>
     </div>
-    <div class="treatment-ilux-photo" data-figma-node="961:8419">
-        <div class="treatment-ilux-image-plane" data-figma-node="I961:8419;1:2038">
-            <img class="treatment-ilux-image" src="~/media/figma/@Model.Image" alt="Hombre con gafas: la lente de la izquierda muestra reflejos y la de la derecha se ve clara" width="2752" height="1536" />
-        </div>
+    <div class="treatment-ilux-photo" data-treatment-media data-figma-node="961:8419">
+        <video data-treatment-video loop class="treatment-ilux-video" muted playsinline preload="none" aria-labelledby="treatment-ilux-title" data-figma-node="I961:8419;1:2038" hidden data-treatment-desktop="/media/treatments/optimized/ilux-desktop.mp4" data-treatment-mobile="/media/treatments/optimized/ilux-mobile.mp4">
+            </video>
+        <img class="treatment-ilux-video" data-treatment-fallback src="~/media/treatments/optimized/ilux-poster-1280.webp" srcset="/media/treatments/optimized/ilux-poster-640.webp 640w, /media/treatments/optimized/ilux-poster-1280.webp 1280w, /media/treatments/optimized/ilux-poster-1920.webp 1920w" sizes="(max-width: 767.98px) 125vw, 117vw" loading="lazy" decoding="async" alt="@Model.Name" />
     </div>
-    <ul class="treatment-ilux-benefits" aria-label="Características de Antirreflejo iLUX" data-figma-node="961:8495">
+    <ul class="treatment-ilux-benefits" aria-label="@T["Características de Antirreflejo iLUX"]" data-figma-node="961:8495">
         @foreach (var benefit in Model.Benefits)
         {
             <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>

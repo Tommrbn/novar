@@ -1,0 +1,454 @@
+[
+  {
+    "name": "Precisa",
+    "slug": "precisa",
+    "sourceNode": "974:621",
+    "wordmark": "precisa-wordmark.svg",
+    "wordmarkNode": "974:653",
+    "hero": "17cde-precisa-original.png",
+    "heroUnderlay": null,
+    "subtitle": "Visual balance throughout the day",
+    "description": "A balanced progressive lens for people who need comfortable vision at different distances and for a range of everyday tasks.",
+    "tagline": "Balanced vision",
+    "introHeading": "A comfortable, versatile progressive-lens experience.",
+    "introEyebrow": "BALANCED VISION",
+    "intro": "Novar Precisa supports daily routines with a balanced distribution of distance, intermediate, and near vision.",
+    "scene": "9e69b.png",
+    "icons": [
+      {
+        "file": "precisa-balance.svg",
+        "label": "Balanced vision"
+      },
+      {
+        "file": "201ad.svg",
+        "label": "Comfortable reading"
+      },
+      {
+        "file": "f6349.svg",
+        "label": "Everyday comfort"
+      }
+    ],
+    "gallery": [
+      "d96bc.png",
+      "817a6.png",
+      "15959.png",
+      "4eb31.png"
+    ],
+    "galleryName": "Precisa",
+    "detailHeading": "Seeing differently can feel natural.",
+    "details": "It is designed for people seeking comfort, a good reading area, and a natural adjustment.",
+    "design": "Progressive lens.",
+    "idealFor": "People looking for a balanced option for everyday use.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "detail": "b08fa.png",
+    "tags": [
+      "Balanced vision",
+      "Comfortable reading",
+      "Everyday comfort"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Continuum Design Technology helps optimize the lens surface to improve optical definition and visual fields, elevating the progressive-lens experience."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "Medium / High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "Medium / High"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Novar Precisa?",
+        "answer": "It is a balanced progressive lens for people who want visual comfort across different activities."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people looking for a versatile solution for reading, working, moving around, and distance vision."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its balance across distances and more comfortable reading area."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Precisa Short",
+    "slug": "precisa-short",
+    "sourceNode": "982:221",
+    "wordmark": "precisa-short-wordmark.svg",
+    "wordmarkNode": "982:253",
+    "hero": "17cde.png",
+    "heroUnderlay": "aee00.png",
+    "subtitle": "Progressive comfort for small frames",
+    "description": "A balanced progressive lens adapted to smaller frames, offering comfortable distance, intermediate, and near vision.",
+    "tagline": "Balanced vision",
+    "introHeading": "A comfortable, versatile progressive-lens experience.",
+    "introEyebrow": "BALANCED VISION",
+    "intro": "Novar Precisa supports daily routines with a balanced distribution of distance, intermediate, and near vision.",
+    "scene": "074f6.png",
+    "icons": [
+      {
+        "file": "5c77c.svg",
+        "label": "Compact design"
+      },
+      {
+        "file": "ea641.svg",
+        "label": "Frame freedom"
+      },
+      {
+        "file": "8e7db.svg",
+        "label": "Everyday comfort"
+      }
+    ],
+    "gallery": [
+      "71816.png",
+      "6691a.png",
+      "ec626.png",
+      "d3bf6.png"
+    ],
+    "galleryName": "Precisa short",
+    "detailHeading": "Seeing differently can feel natural.",
+    "details": "It is designed for people seeking comfort, a good reading area, and a natural adjustment.",
+    "design": "Progressive lens.",
+    "idealFor": "People looking for a balanced option for everyday use.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "detail": "d9782.png",
+    "tags": [
+      "Balanced vision",
+      "Comfortable reading",
+      "Everyday comfort"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Continuum Design Technology helps optimize the lens surface to improve optical definition and visual fields, elevating the progressive-lens experience."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "Medium / High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "Medium / High"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Novar Precisa?",
+        "answer": null
+      },
+      {
+        "question": "Who is Novar Precisa recommended for?",
+        "answer": null
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its balance across distances and more comfortable reading area."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Evolution",
+    "slug": "evolution",
+    "sourceNode": "964:2655",
+    "wordmark": "evolution-wordmark.svg",
+    "wordmarkNode": "964:2780",
+    "hero": "05e7f.png",
+    "heroUnderlay": null,
+    "subtitle": "A wider, clearer, more advanced progressive experience.",
+    "description": "A progressive lens for people seeking a wider field of view, clarity, and comfort at every distance.",
+    "tagline": "Exclusive vision.",
+    "introHeading": "A wider field of vision for a superior experience.",
+    "introEyebrow": "EXCLUSIVE VISION",
+    "intro": "Novar Evolution is designed for people seeking a high-performance progressive lens. Its design offers wider fields of view and clearer perception of both near and distant objects.",
+    "scene": "b12ec.png",
+    "icons": [
+      {
+        "file": "563c0.svg",
+        "label": "Greater clarity"
+      },
+      {
+        "file": "31808.svg",
+        "label": "Wider field of vision."
+      },
+      {
+        "file": "a08d8.svg",
+        "label": "Premium comfort"
+      }
+    ],
+    "gallery": [
+      "5aa06.png",
+      "2b637.png",
+      "1159e.png",
+      "7c4d9.png"
+    ],
+    "galleryName": "Evolution",
+    "detailHeading": "Seeing differently can feel natural.",
+    "details": "Novar Geo is designed to reduce aberrations and improve visual quality across different viewing positions. An advanced single-vision option for people seeking greater everyday precision.",
+    "design": "Premium progressive lens.",
+    "idealFor": "People seeking a more advanced progressive-lens experience.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™ / Smart Molding Process.",
+    "detail": "e2ed7.png",
+    "tags": [
+      "Wider field of vision",
+      "More detail",
+      "Greater visual comfort"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      },
+      {
+        "name": "Smart Fit Technology",
+        "description": "Technology that analyzes frame shape and intelligently adjusts lens design to optimize thickness reduction for each frame. The result is a more refined look, lighter lenses, and a more natural appearance."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "High"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Novar Evolution?",
+        "answer": "It is a premium progressive lens designed to provide wide fields of view and greater clarity."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people seeking a more advanced, comfortable solution."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "Its premium approach, with a wider field of view and a more refined experience."
+      }
+    ],
+    "introEmphasis": [
+      "wider fields of view and clearer perception"
+    ],
+    "detailEmphasis": [
+      "reduce aberrations and improve visual quality",
+      "single-vision option"
+    ]
+  },
+  {
+    "name": "Evolution Short",
+    "slug": "evolution-short",
+    "sourceNode": "1002:246",
+    "wordmark": "evolution-short-wordmark.svg",
+    "wordmarkNode": "1002:277",
+    "hero": "05e7f.png",
+    "heroUnderlay": "65030.png",
+    "subtitle": "Maximum progressive performance in small frames",
+    "description": "A premium progressive lens designed for people seeking high visual performance in compact frames.",
+    "tagline": "Compact vision",
+    "introHeading": "The Evolution experience, adapted for smaller frames",
+    "introEyebrow": "COMPACT VISION",
+    "intro": "Novar Evolution Short combines advanced progressive technology with a design for small frames.",
+    "scene": "a3a80.png",
+    "icons": [
+      {
+        "file": "563c0.svg",
+        "label": "High performance."
+      },
+      {
+        "file": "5c77c.svg",
+        "label": "Compact format."
+      },
+      {
+        "file": "ea641.svg",
+        "label": "Refined appearance and precision"
+      }
+    ],
+    "gallery": [
+      "d2eca.png",
+      "81635.png",
+      "882d7.png",
+      "9790a.png"
+    ],
+    "galleryName": "Evolution Short",
+    "detailHeading": "Seeing differently can feel natural.",
+    "details": "A solution for people seeking premium visual quality without compromising on style.",
+    "design": "Premium short progressive lens.",
+    "idealFor": "Discerning users who wear small frames.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "detail": "14e3b.png",
+    "tags": [
+      "Premium performance",
+      "Compact format"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "Medium / High"
+      },
+      {
+        "label": "Intermediate",
+        "level": "Medium / High"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Evolution Short?",
+        "answer": "It is the compact version of Evolution for small frames."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people seeking premium progressive lenses who prefer smaller frames."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "It combines high visual performance with the freedom to choose smaller frames."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "eLIFE",
+    "slug": "elife",
+    "sourceNode": "974:266",
+    "wordmark": "elife-wordmark.svg",
+    "wordmarkNode": "974:313",
+    "hero": "48fbb.png",
+    "heroUnderlay": null,
+    "subtitle": "Comfortable vision for a life that is always connected.",
+    "description": "A progressive lens designed for people who frequently switch between screens, reading, near objects, and intermediate distances.",
+    "tagline": "More comfort for your digital routine.",
+    "introHeading": "Clarity that adapts to your pace",
+    "introEyebrow": "EXCLUSIVE VISION",
+    "intro": "Novar eLIFE is designed for people who spend much of the day in front of screens or doing near tasks.",
+    "scene": "5df35.png",
+    "icons": [
+      {
+        "file": "377fc.svg",
+        "label": "Screen comfort"
+      },
+      {
+        "file": "201ad.svg",
+        "label": "Less eye strain."
+      },
+      {
+        "file": "34d73.svg",
+        "label": "Quick, comfortable adjustment"
+      }
+    ],
+    "gallery": [
+      "c8a26.png",
+      "d941c.png",
+      "1afa3.png",
+      "39b6d.png"
+    ],
+    "galleryName": "eLIFE",
+    "detailHeading": "Seeing differently can feel natural.",
+    "details": "Its design optimizes intermediate and near vision, helping reduce eye strain and improve comfort during digital activities.",
+    "design": "Progressive lens.",
+    "idealFor": "People who use screens extensively and perform near tasks.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™ / Adaptive Focus Technology.",
+    "detail": "a06b4.png",
+    "tags": [
+      "Screen comfort",
+      "Optimized intermediate vision",
+      "Less eye strain."
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Just as an 8K screen builds an image from millions of pixels to reveal every detail with greater precision, this exclusive Novar technology optimizes the lens point by point. Each micro-zone contributes visual information to create a more defined, uniform, natural image and clearer vision across the entire field."
+      },
+      {
+        "name": "Adaptative Focus Technology",
+        "description": "Technology designed for a new way of seeing shaped by intensive screen use and intermediate distances. It widens that area of the progressive lens to provide more comfortable, fluid, natural vision while working, studying, and navigating digital environments."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Distance",
+        "level": "Medium"
+      },
+      {
+        "label": "Intermediate",
+        "level": "High"
+      },
+      {
+        "label": "Near",
+        "level": "High"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is Novar eLIFE?",
+        "answer": "It is a progressive lens for people who use screens and need greater comfort at near and intermediate distances."
+      },
+      {
+        "question": "Who is it recommended for?",
+        "answer": "For people with intensive digital routines: computer and phone use, reading, meetings, and office work."
+      },
+      {
+        "question": "What makes it different?",
+        "answer": "It prioritizes the distances used most in digital life to help provide a more comfortable visual experience throughout the day."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  }
+]

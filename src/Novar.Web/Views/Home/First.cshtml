@@ -4,60 +4,56 @@
     ViewData["ProgressivePage"] = true;
     ViewData["ProgressiveVariant"] = "first";
     ViewData["FirstProgressivePage"] = true;
+    var banner = ProductBannerAsset.ForSlug("first");
 }
 <article class="product-first progressive-product progressive-product--first" data-figma-node="@Model.SourceNode" data-progresivos-revision="progresivos-v1">
     <section class="prg-hero" aria-labelledby="first-title">
-        <div class="prg-hero-art"><img src="~/media/figma/4fa80.png" alt="Mujer con lentes Novar First" width="1500" height="826" fetchpriority="high" /></div>
-        <p class="prg-category">Progresivos</p>
+        <div class="prg-hero-art" data-figma-node="689:4834"><img src="~/media/products/banners/@banner.File" alt="@T["Mujer con lentes Novar First"]" width="@banner.Width" height="@banner.Height" data-product-banner fetchpriority="high" /></div>
+        <p class="prg-category">@T["Progresivos"]</p>
         <div class="prg-hero-copy">
             <h1 id="first-title"><span class="visually-hidden">Novar First</span><span class="prg-first-logotype" aria-hidden="true"><img class="prg-first-brand" src="~/media/figma/720fe.svg" alt="" /><img class="prg-first-name" src="~/media/figma/bcfcf.svg" alt="" /><img class="prg-first-registered" src="~/media/figma/4cd56.svg" alt="" /></span></h1>
             <h2>@Model.Subtitle</h2><p>@Model.Description</p>
-            <button class="btn btn-novar prg-button" type="button" data-pending="Personalización de Novar First">Personalizá tu lente</button>
+            <a class="btn btn-novar prg-button" href="/tratamientos">@T["Personalizá tu lente"]</a>
         </div>
     </section>
-    <div class="prg-tagline"><div class="prg-tagline-art" aria-hidden="true"><img src="~/media/figma/33850.png" alt="" /></div><img class="prg-tagline-orb" src="~/media/figma/5cebf.svg" alt="" /><p>Visión sin esfuerzo.</p></div>
+    <div class="prg-tagline" data-product-tagline><div class="prg-tagline-art" aria-hidden="true"><img src="~/media/figma/33850.png" alt="" /></div><img class="prg-tagline-orb" src="~/media/figma/5cebf.svg" alt="" /><p>@T["Visión sin esfuerzo"].</p></div>
     <section class="prg-intro" aria-labelledby="first-intro-title">
         <div class="prg-intro-panel">
-            <div class="prg-scene"><img src="~/media/figma/4fd70.png" alt="Hombre con anteojos mirando hacia la luz" width="434" height="388" loading="lazy" /></div>
+            <div class="prg-scene"><img src="~/media/figma/4fd70.png" alt="@T["Hombre con anteojos mirando hacia la luz"]" width="434" height="388" loading="lazy" /></div>
             <div class="prg-intro-copy">
-                <p class="prg-intro-eyebrow">VISIÓN SIN ESFUERZO</p>
-                <h2 id="first-intro-title">Claridad que acompaña tu primera adaptación.</h2><p class="prg-intro-description">@Model.Intro</p>
+                <p class="prg-intro-eyebrow">@T["VISIÓN SIN ESFUERZO"]</p>
+                <h2 id="first-intro-title">@T["Claridad que acompaña tu primera adaptación."]</h2><p class="prg-intro-description">@Model.Intro</p>
                 <ul class="prg-icons">
-                    <li><span><img src="~/media/figma/ea184.svg" alt="" /></span>Transición suave y natural</li>
-                    <li><span><img src="~/media/figma/201ad.svg" alt="" /></span>Visión clara en todas las distancias</li>
-                    <li><span><img src="~/media/figma/e25aa.svg" alt="" /></span>Adaptación rápida y cómoda</li>
+                    <li><span><img src="~/media/figma/ea184.svg" alt="" /></span>@T["Transición suave y natural"]</li>
+                    <li><span><img src="~/media/figma/201ad.svg" alt="" /></span>@T["Visión clara en todas las distancias"]</li>
+                    <li><span><img src="~/media/figma/e25aa.svg" alt="" /></span>@T["Adaptación rápida y cómoda"]</li>
                 </ul>
             </div>
         </div>
     </section>
-    <section class="prg-gallery" aria-labelledby="gallery-title" aria-roledescription="carrusel" data-progressive-gallery data-gallery-revision="progresivos-gallery-v2">
-        <h2 id="gallery-title">First<img src="~/media/figma/10f0c.svg" alt="®" /> <strong>es para vos</strong></h2>
+    <section class="prg-gallery" aria-labelledby="gallery-title" aria-roledescription="@T["carrusel"]" data-progressive-gallery data-gallery-revision="progresivos-gallery-v2">
+        <h2 id="gallery-title">First<img src="~/media/figma/10f0c.svg" alt="®" /> <strong>@T["es para vos"]</strong></h2>
         <div class="prg-gallery-images" id="first-gallery-images">
-            <div data-gallery-image="32288.png"><img src="~/media/figma/32288.png" alt="Mujer con lentes y abrigo rojo" width="305" height="345" loading="lazy" /></div>
-            <div data-gallery-image="1319b.png"><img src="~/media/figma/1319b.png" alt="Mujer con lentes de marco rojo" width="344" height="389" loading="lazy" /></div>
-            <div data-gallery-image="46906.png"><img src="~/media/figma/46906.png" alt="Hombre con anteojos en exteriores" width="344" height="389" loading="lazy" /></div>
-            <div data-gallery-image="2131c.png"><img src="~/media/figma/2131c.png" alt="Mujer con anteojos al aire libre" width="305" height="345" loading="lazy" /></div>
+            <div data-gallery-image="32288.png"><img src="~/media/figma/32288.png" alt="@T["Mujer con lentes y abrigo rojo"]" width="305" height="345" loading="lazy" /></div>
+            <div data-gallery-image="1319b.png"><img src="~/media/figma/1319b.png" alt="@T["Mujer con lentes de marco rojo"]" width="344" height="389" loading="lazy" /></div>
+            <div data-gallery-image="46906.png"><img src="~/media/figma/46906.png" alt="@T["Hombre con anteojos en exteriores"]" width="344" height="389" loading="lazy" /></div>
+            <div data-gallery-image="2131c.png"><img src="~/media/figma/2131c.png" alt="@T["Mujer con anteojos al aire libre"]" width="305" height="345" loading="lazy" /></div>
         </div>
-        <div class="prg-gallery-controls" data-gallery-controls hidden>
-            <button type="button" data-gallery-previous aria-controls="first-gallery-images" aria-label="Composición anterior">←</button>
-            <button type="button" data-gallery-pause aria-controls="first-gallery-images" aria-pressed="false">Pausar</button>
-            <button type="button" data-gallery-next aria-controls="first-gallery-images" aria-label="Composición siguiente">→</button>
-            <span class="visually-hidden" data-gallery-status aria-live="polite" aria-atomic="true"></span>
-        </div>
+        <partial name="_GalleryMotionControl" />
     </section>
-    <section class="prg-treatments" aria-labelledby="first-treatments-title"><h2 id="first-treatments-title">Mejorá tu visión con tratamientos</h2><p>Los tratamientos son tecnologías avanzadas que se aplican a las superficies de las lentes<br class="desktop-only" /> para mejorar su funcionalidad, durabilidad y comodidad visual</p><a class="btn btn-novar prg-button" href="/tratamientos">Conocelos <img src="~/media/figma/baa56.svg" alt="" /></a></section>
+    <section class="prg-treatments" aria-labelledby="first-treatments-title"><h2 id="first-treatments-title">@T["Mejorá tu visión con tratamientos"]</h2><p>@T["Los tratamientos son tecnologías avanzadas que se aplican a las superficies de las lentes para mejorar su funcionalidad, durabilidad y comodidad visual"]</p><a class="btn btn-novar prg-button" href="/tratamientos">@T["Conocelos"] <img src="~/media/figma/baa56.svg" alt="" /></a></section>
     <section class="prg-details" aria-labelledby="details-title">
         <div class="prg-details-copy">
-            <p class="prg-eyebrow">Detalles del producto</p><h2 id="details-title">Empezar a ver de otra manera puede sentirse natural.</h2><p>@Model.Details</p>
-            <dl class="prg-specs"><div><dt>Diseño:</dt><dd>Lente progresivo.</dd></div><div><dt>Ideal para:</dt><dd>@Model.IdealFor</dd></div><div><dt>Tecnología:</dt><dd>Psicoptix Technology ™ / CDT Technology ™</dd></div></dl>
-            <ul class="prg-tags"><li>Transición natural</li><li>Visión clara</li><li>Adaptación simple</li></ul>
+            <p class="prg-eyebrow">@T["Detalles del producto"]</p><h2 id="details-title">@T["Empezar a ver de otra manera puede sentirse natural."]</h2><p>@Model.Details</p>
+            <dl class="prg-specs"><div><dt>@T["Diseño:"]</dt><dd>@T["Lente progresivo."]</dd></div><div><dt>@T["Ideal para:"]</dt><dd>@Model.IdealFor</dd></div><div><dt>@T["Tecnología:"]</dt><dd>Psicoptix Technology ™ / CDT Technology ™</dd></div></dl>
+            <ul class="prg-tags"><li>@T["Transición natural"]</li><li>@T["Visión clara"]</li><li>@T["Adaptación simple"]</li></ul>
         </div>
-        <figure><div class="prg-detail-photo"><img src="~/media/figma/316aa.png" alt="Hombre trabajando frente a una computadora" width="672" height="430" loading="lazy" /></div><figcaption>SUPERFICIE DIGITAL PERSONALIZADA</figcaption></figure>
+        <figure><div class="prg-detail-photo"><img src="~/media/figma/316aa.png" alt="@T["Hombre trabajando frente a una computadora"]" width="672" height="430" loading="lazy" /></div><figcaption>@T["SUPERFICIE DIGITAL PERSONALIZADA"]</figcaption></figure>
     </section>
-    <section class="prg-technologies" aria-label="Tecnologías de Novar First"><span class="prg-watermark" aria-hidden="true">first</span><div class="prg-technology-scroll" tabindex="0" role="region" aria-label="Tecnologías de Novar First">@foreach (var technology in Model.Technologies) { <div class="prg-technology-card"><h2>@technology.Name</h2><p>@technology.Description</p></div> }</div></section>
-    <section class="prg-benefits" aria-labelledby="benefits-title"><div class="prg-container"><p class="prg-eyebrow">Beneficios</p><h2 id="benefits-title">Claridad donde la necesitás</h2><p>Una lectura simple del rendimiento visual esperado en cada distancia.</p><dl>@foreach (var benefit in Model.Benefits) { <div><dt>@benefit.Label</dt><dd><span aria-hidden="true">◉</span> @benefit.Level</dd></div> }</dl></div></section>
-    <section class="prg-faq" aria-labelledby="first-faq-title"><div><p class="prg-eyebrow">FAQ</p><h2 id="first-faq-title">Preguntas<br /> frecuentes</h2><p>Todo lo que necesitás saber antes de elegir tu próxima lente.</p><a href="/#contacto">¿Tenés otra duda? Contactanos →</a></div><partial name="_Faq" model='new FaqSection("first-faq", Model.Questions, 2)' /></section>
-    <section class="prg-contact"><div><h2>Tu próxima forma de ver empieza acá.</h2><p>Consultá con una óptica especializada y encontrá la configuración ideal para vos.</p></div><a class="btn btn-novar prg-button" href="/#contacto">Contactanos →</a></section>
+    <section class="prg-technologies" aria-label="@T["Tecnologías de Novar First"]"><span class="prg-watermark" aria-hidden="true">first</span><div class="prg-technology-scroll" tabindex="0" role="region" aria-label="@T["Tecnologías de Novar First"]">@foreach (var technology in Model.Technologies) { <div class="prg-technology-card"><h2>@technology.Name</h2><p>@technology.Description</p></div> }</div></section>
+    <section class="prg-benefits" aria-labelledby="benefits-title"><div class="prg-container"><p class="prg-eyebrow">@T["Beneficios"]</p><h2 id="benefits-title">@T["Claridad donde la necesitás"]</h2><p>@T["Una lectura simple del rendimiento visual esperado en cada distancia."]</p><dl>@foreach (var benefit in Model.Benefits) { <div><dt>@benefit.Label</dt><dd><span aria-hidden="true">◉</span> @benefit.Level</dd></div> }</dl></div></section>
+    <section class="prg-faq" aria-labelledby="first-faq-title"><div><p class="prg-eyebrow">FAQ</p><h2 id="first-faq-title">@T["Preguntas"]<br /> @T["frecuentes"]</h2><p>@T["Todo lo que necesitás saber antes de elegir tu próxima lente."]</p><a href="/#contacto">@T["¿Tenés otra duda? Contactanos →"]</a></div><partial name="_Faq" model='new FaqSection("first-faq", Model.Questions, 2)' /></section>
+    <section class="prg-contact"><div><h2>@T["Tu próxima forma de ver empieza acá."]</h2><p>@T["Consultá con una óptica especializada y encontrá la configuración ideal para vos."]</p></div><a class="btn btn-novar prg-button" href="/#contacto">@T["CONTACTANOS →"]</a></section>
     <partial name="_ProgressiveRelated" />
 </article>
 @section Scripts {

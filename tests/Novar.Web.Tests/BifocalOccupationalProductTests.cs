@@ -60,7 +60,7 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
     }
 
     [Fact]
-    public async Task SourceCopyAndThirdOpenFaqStateArePreservedWithoutInventingAnswers()
+    public async Task SourceCopyAndAuthorizedFaqAnswersAreRendered()
     {
         Assert.Equal("kriprok\nblended", Content.BifocalOccupationalProducts["kriptok-blended"].Watermark);
         var office = Content.BifocalOccupationalProducts["office"];
@@ -69,24 +69,26 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
         Assert.StartsWith("Novar Office acompaña", office.Intro);
         Assert.Equal(new[] { "Segmento más discreto", "Visión lejos y cerca", "Estética mejorada." }, office.Icons.Select(x => x.Label));
         Assert.Equal(new[] { "Baja / Media", "Alta", "Alta" }, office.Benefits.Select(x => x.Level));
-        Assert.Equal("\u00a0Su comodidad en distancias de trabajo y su adaptación a distintas necesidades de oficina", office.Questions[2].Answer);
+        Assert.Equal("Su comodidad en distancias de trabajo y su adaptación a distintas necesidades de oficina.", office.Questions[2].Answer);
 
         foreach (var product in Content.BifocalOccupationalProducts.Values)
         {
             Assert.Equal(3, product.Questions.Length);
-            Assert.Null(product.Questions[0].Answer);
-            Assert.Null(product.Questions[1].Answer);
-            Assert.NotNull(product.Questions[2].Answer);
+            Assert.All(product.Questions, question => Assert.NotNull(question.Answer));
             Assert.Equal(2, product.Technologies.Length);
             Assert.Equal(4, product.Gallery.Length);
             Assert.Equal(3, product.Icons.Length);
             var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{product.Slug}"));
             var faq = Section(html, "bop-faq");
             Assert.Equal(3, Regex.Matches(faq, "class=\"accordion-button ").Count);
-            Assert.Equal(2, Regex.Matches(faq, "Respuesta pendiente de revisión editorial").Count);
+            Assert.DoesNotContain("Respuesta pendiente de revisión editorial", faq);
             Assert.Single(Regex.Matches(faq, "aria-expanded=\"true\""));
             Assert.Contains($"id=\"bop-{product.Slug}-faq-2\" class=\"accordion-collapse collapse show\"", faq);
-            Assert.Contains(product.Questions[2].Answer!, faq);
+            foreach (var question in product.Questions)
+            {
+                Assert.Contains(question.Question, faq);
+                Assert.Contains(question.Answer!, faq);
+            }
             Assert.Equal(3, Regex.Matches(faq, "data-bs-parent=").Count);
             var text = Normalize(Regex.Replace(html, "<[^>]+>", " "));
             foreach (var copy in new[] { product.Subtitle, product.Description, product.Tagline, product.IntroHeading, product.IntroEyebrow,
@@ -98,7 +100,7 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
                 Assert.Contains(Normalize(technology.Description), text);
             }
             Assert.Equal(2, Regex.Matches(html, "class=\"bop-technology-card\"").Count);
-            Assert.Contains(product.Slug == "office" ? "Otros lentes progresivos" : "Otros lentes bifocales", html);
+            Assert.Contains(product.Slug == "office" ? "Explorar otros lentes en el catálogo" : "Otros lentes bifocales", html);
         }
     }
 
@@ -108,23 +110,29 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
         foreach (var product in Content.BifocalOccupationalProducts.Values)
         {
             var html = WebUtility.HtmlDecode(await client.GetStringAsync($"/lentes/{product.Slug}"));
-            Assert.Contains($"data-pending=\"Personalización de Novar {product.Name}\"", html);
+            Assert.Contains("<a class=\"btn btn-novar bop-button\" href=\"/tratamientos\">Personalizá tu lente</a>", html);
             foreach (var action in new[] { "Garantía", "Instagram", "LinkedIn", "Facebook", "YouTube" })
                 Assert.Contains($"data-pending=\"{action}\"", html);
             Assert.Contains("id=\"pending-modal\"", html);
             Assert.Contains("no se envían ni almacenan datos y no se generan resultados", html);
-            Assert.DoesNotContain("<form", html);
+            Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
             Assert.DoesNotContain("target=\"_blank\"", html);
             Assert.DoesNotContain("figma.com/api", html);
             Assert.DoesNotContain("data-progressive-gallery", html);
             Assert.Contains("href=\"/tratamientos\"", html);
             Assert.Contains("href=\"/#contacto\"", html);
             var related = Section(html, "bop-related");
-            var count = product.Slug == "office" ? 4 : 3;
-            Assert.Equal(count, Regex.Matches(related, "<a ").Count);
-            Assert.Equal(count, Regex.Matches(related, "href=\"/lentes\"").Count);
-            Assert.Equal(product.Slug == "office" ? 8 : 3, Regex.Matches(related, "<img ").Count);
-            Assert.Equal(product.Slug == "office" ? 1 : 0, Regex.Matches(html, "class=\"bop-hero-underlay\"").Count);
+            var expected = product.Slug == "office"
+                ? new[] { Content.PremiumProducts["aiwork"] }
+                    .Select(item => (item.Slug, item.Name, Hero: item.Hero.File))
+                : Content.BifocalOccupationalProducts.Values.Where(item => item.Category == "Bifocales")
+                    .Select(item => (item.Slug, item.Name, Hero: item.Slug == "ultex-blended" ? "961e1.png" : item.Slug == "kriptok-blended" ? "2c53f.png" : "28518.png"));
+            var cards = Regex.Matches(related, "<a href=\"/lentes/(?<slug>[^\"]+)\"[^>]*><img src=\"/media/figma/(?<hero>[^\"]+)\" alt=\"\" loading=\"lazy\" /><span[^>]*>(?<name>[^<]+)</span></a>")
+                .Select(item => (Slug: item.Groups["slug"].Value, Name: item.Groups["name"].Value, Hero: item.Groups["hero"].Value)).OrderBy(item => item.Slug);
+            Assert.Equal(expected.OrderBy(item => item.Slug), cards);
+            Assert.Equal(product.Slug == "office" ? 1 : 3, cards.Count());
+            if (product.Slug == "office") Assert.DoesNotContain(product.Slug, cards.Select(item => item.Slug));
+            Assert.DoesNotContain("class=\"bop-hero-underlay\"", html);
             Assert.Equal(4, Regex.Matches(Section(html, "bop-gallery"), "loading=\"lazy\"").Count);
         }
         Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/lentes")).StatusCode);
@@ -139,7 +147,7 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
         var verified = manifest.RootElement.GetProperty("bifocalOccupationalAssetVerification");
         var assets = verified.GetProperty("assets").EnumerateArray().ToDictionary(x => x.GetProperty("file").GetString()!);
         var slots = verified.GetProperty("slots").EnumerateArray().ToArray();
-        Assert.Equal(63, assets.Count);
+        Assert.Equal(64, assets.Count);
         Assert.Equal(138, slots.Length);
         foreach (var (file, asset) in assets)
         {
@@ -175,15 +183,36 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
         foreach (var product in Content.BifocalOccupationalProducts.Values)
         {
             var html = await client.GetStringAsync($"/lentes/{product.Slug}");
-            var files = Regex.Matches(html, "src=\"/media/figma/(?<file>[^\"]+)\"").Select(m => m.Groups["file"].Value).Distinct().ToArray();
+            var related = Section(html, "bop-related");
+            var relatedCards = Regex.Matches(related, "<a href=\"/lentes/(?<slug>[^\"]+)\"[^>]*><img src=\"/media/figma/(?<file>[^\"]+)\"")
+                .Select(match => (Slug: match.Groups["slug"].Value, File: match.Groups["file"].Value)).ToArray();
+            var expectedRelated = product.Slug == "office"
+                ? new[] { (Slug: "aiwork", File: Content.PremiumProducts["aiwork"].Hero.File) }
+                : Content.BifocalOccupationalProducts.Values.Where(item => item.Category == "Bifocales")
+                    .Select(item => (Slug: item.Slug, File: item.Slug == "ultex-blended" ? "961e1.png" : item.Slug == "kriptok-blended" ? "2c53f.png" : "28518.png")).ToArray();
+            Assert.Equal(expectedRelated.OrderBy(item => item.Slug), relatedCards.OrderBy(item => item.Slug));
+            foreach (var card in relatedCards)
+            {
+                var response = await client.GetAsync($"/media/figma/{card.File}");
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+                Assert.NotEmpty(await response.Content.ReadAsByteArrayAsync());
+            }
+            var files = Regex.Matches(html, "src=\"/media/figma/(?<file>[^\"]+)\"").Select(m => m.Groups["file"].Value)
+                .Except(relatedCards.Select(card => card.File).Where(file => !slots.Any(slot => slot.GetProperty("slug").GetString() == product.Slug && slot.GetProperty("file").GetString() == file)), StringComparer.Ordinal)
+                .Distinct().ToArray();
             foreach (var file in files)
             {
                 Assert.True(assets.ContainsKey(file), file);
                 Assert.Contains(slots, slot => slot.GetProperty("slug").GetString() == product.Slug && slot.GetProperty("file").GetString() == file);
             }
-            foreach (var slot in slots.Where(s => s.GetProperty("slug").GetString() == product.Slug))
+            // Provenance retains the original Figma hover asset, superseded by
+            // the shared scroll reveal. It is no longer a rendered image slot.
+            foreach (var slot in slots.Where(s => s.GetProperty("slug").GetString() == product.Slug &&
+                s.GetProperty("callsite").GetString() is not ".bop-related-images img" and not ".bop-tagline-hover img"))
             {
-                Assert.Contains(slot.GetProperty("file").GetString(), files);
+                // Original hero provenance remains archived; new opaque exports are checked by ProductBannerQualityTests.
+                if (slot.GetProperty("callsite").GetString() != ".bop-hero-art img")
+                    Assert.Contains(slot.GetProperty("file").GetString(), files);
                 Assert.Equal(product.SourceNode, slot.GetProperty("page").GetString());
                 foreach (var key in new[] { "sourceNode", "callsite", "sourceGeometry", "sourceCrop" })
                     Assert.NotEmpty(slot.GetProperty(key).GetString()!);
@@ -208,16 +237,12 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
     }
 
     [Fact]
-    public async Task GeometryAndHoverRemainScopedResponsiveAndReducedMotionSafe()
+    public async Task GeometryRemainsScopedResponsiveWithTheSharedScrollReveal()
     {
         var css = await client.GetStringAsync("/css/bifocal-occupational-products.css");
         foreach (var width in new[] { "1441px", "1199px", "1023px", "767px", "359px" })
             Assert.Contains(width, css);
         Assert.Contains("margin: -33.754px 0 0", css);
-        Assert.Contains("transition: opacity 600ms linear", css);
-        Assert.Contains(".bop-tagline:focus-visible .bop-tagline-hover", css);
-        Assert.Contains("@media (prefers-reduced-motion: reduce)", css);
-        Assert.Contains("transition: none", css);
         Assert.Contains("transform: scaleX(-1)", css);
         Assert.Contains("overflow-x: auto", css);
         Assert.DoesNotContain("@keyframes", css);
@@ -227,11 +252,11 @@ public sealed class BifocalOccupationalProductTests(WebApplicationFactory<Progra
         foreach (var product in Content.BifocalOccupationalProducts.Values)
         {
             var html = await client.GetStringAsync($"/lentes/{product.Slug}");
-            Assert.Contains("class=\"bop-tagline\" tabindex=\"0\" role=\"group\"", html);
-            Assert.Contains("data-hover-source=\"443:1240\"", html);
-            Assert.Contains("/media/figma/d68bc.svg", html);
+            Assert.Contains("class=\"bop-tagline\" data-product-tagline", html);
+            Assert.DoesNotContain("data-hover-source", html);
+            Assert.Contains("/js/product-tagline.js", html);
             Assert.DoesNotContain("autoplay", html, StringComparison.OrdinalIgnoreCase);
-            Assert.Equal(2, Regex.Matches(html, "<script ").Count);
+            Assert.Equal(6, Regex.Matches(html, "<script ").Count);
         }
     }
 

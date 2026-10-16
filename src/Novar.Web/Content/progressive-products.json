@@ -5,7 +5,7 @@
     "sourceNode": "974:621",
     "wordmark": "precisa-wordmark.svg",
     "wordmarkNode": "974:653",
-    "hero": "17cde.png",
+    "hero": "17cde-precisa-original.png",
     "heroUnderlay": null,
     "subtitle": "Equilibrio visual para cada momento del día",
     "description": "Lente progresivo equilibrado para quienes necesitan ver con comodidad en distintas distancias y realizar diferentes tareas con naturalidad.",
@@ -73,14 +73,14 @@
     "questions": [
       {
         "question": "¿Qué es Novar Precisa?",
-        "answer": null
+        "answer": "Es un lente progresivo equilibrado, pensado para quienes necesitan comodidad visual en distintas actividades."
       },
       {
-        "question": "¿Para quién está recomendado Novar Precisa?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para personas que buscan una solución versátil para leer, trabajar, moverse y ver de lejos."
       },
       {
-        "question": "¿ Qué lo diferencia ?",
+        "question": "¿Qué lo diferencia?",
         "answer": "Su balance entre distancias y su zona de lectura más confortable."
       }
     ],
@@ -253,15 +253,15 @@
     "questions": [
       {
         "question": "¿Qué es Novar Evolution?",
-        "answer": null
+        "answer": "Es un lente progresivo premium diseñado para ofrecer campos visuales amplios y mayor nitidez."
       },
       {
-        "question": "¿Para quién está recomendado Novar Evolution?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que quieren una solución más avanzada y confortable."
       },
       {
-        "question": "¿ Qué lo diferencia ?",
-        "answer": "La optimización de aberraciones y campos visuales."
+        "question": "¿Qué lo diferencia?",
+        "answer": "Su enfoque premium, con mayor amplitud visual y una experiencia más refinada."
       }
     ],
     "introEmphasis": [
@@ -344,15 +344,15 @@
     ],
     "questions": [
       {
-        "question": "¿Qué es Novar Evolution Short?",
-        "answer": null
+        "question": "¿Qué es Evolution Short?",
+        "answer": "Es la versión compacta de Evolution para armazones pequeños."
       },
       {
-        "question": "¿Para quién está recomendado Novar Evolution Short?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que buscan progresivos premium y prefieren monturas reducidas."
       },
       {
-        "question": "¿ Qué lo diferencia ?",
+        "question": "¿Qué lo diferencia?",
         "answer": "Combina alto rendimiento visual con libertad estética para elegir marcos más pequeños."
       }
     ],
@@ -436,15 +436,15 @@
     ],
     "questions": [
       {
-        "question": "¿Qué es Novar eLife?",
-        "answer": null
+        "question": "¿Qué es Novar eLIFE?",
+        "answer": "Es un lente progresivo pensado para personas que usan pantallas y necesitan mayor comodidad en visión cercana e intermedia."
       },
       {
-        "question": "¿Para quién está recomendado Novar eLife?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios con rutinas digitales intensivas: computadora, celular, lectura, reuniones y trabajo de oficina."
       },
       {
-        "question": "¿ Qué lo diferencia ?",
+        "question": "¿Qué lo diferencia?",
         "answer": "Prioriza las distancias más usadas en la vida digital, ayudando a lograr una experiencia visual más cómoda durante el día."
       }
     ],

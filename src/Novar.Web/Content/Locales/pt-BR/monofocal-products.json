@@ -1,0 +1,448 @@
+[
+  {
+    "name": "Geo",
+    "slug": "geo",
+    "sourceNode": "964:1916",
+    "wordmark": "geo-wordmark.svg",
+    "wordmarkNode": "964:2247",
+    "hero": "95b95.png",
+    "heroUnderlay": null,
+    "subtitle": "Mais detalhes, mais precisão, mais nitidez.",
+    "description": "A geometria asférica da GEO permite reduzir a espessura e manter uma aparência mais natural dos olhos por trás das lentes.",
+    "introHeading": "Uma visão monofocal mais precisa e personalizada.",
+    "introEyebrow": "VISÃO SEM ESFORÇO",
+    "intro": "Seu design busca preservar uma visão mais fiel, minimizando as distorções visuais associadas a graus elevados.",
+    "details": "A Novar Geo foi desenvolvida para reduzir aberrações e melhorar a qualidade visual em diferentes posições do olhar. Uma opção monofocal avançada para quem busca mais precisão no dia a dia.",
+    "design": "Lente monofocal personalizada asférica e atórica.",
+    "idealFor": "Pessoas que buscam maior qualidade visual em lentes monofocais.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "tagline": "Nitidez em todas as direções.",
+    "scene": "1beca.png",
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Melhor percepção de detalhes"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Mais precisão"
+      },
+      {
+        "file": "054ca.svg",
+        "label": "Visão personalizada"
+      }
+    ],
+    "gallery": [
+      "294d0.png",
+      "82c00.png",
+      "0195f.png",
+      "86295.png"
+    ],
+    "galleryRegistered": "cfae7.svg",
+    "detail": "1956d.png",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "tags": [
+      "Mais precisão",
+      "Mais detalhes",
+      "Mais estabilidade visual"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Conforme a prescrição"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Conforme o uso"
+      },
+      {
+        "label": "Perto",
+        "level": "Conforme o uso"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Geo?",
+        "answer": "É uma lente monofocal personalizada para maior precisão."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem busca uma experiência monofocal mais avançada."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "A otimização das aberrações e dos campos visuais."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": [
+      "reduzir aberrações e melhorar a qualidade visual",
+      "opção monofocal"
+    ]
+  },
+  {
+    "name": "Single Vision",
+    "slug": "single-vision",
+    "sourceNode": "992:1254",
+    "wordmark": "single-vision-wordmark.svg",
+    "wordmarkNode": "992:1285",
+    "hero": "4df71.png",
+    "heroUnderlay": null,
+    "subtitle": "Nitidez digital para uma visão simples e precisa",
+    "description": "Lente monofocal com qualidade digital Freeform para quem precisa de correção visual em uma única distância.",
+    "introHeading": "Uma solução nítida, simples e confiável",
+    "introEyebrow": "PRECISÃO ESSENCIAL",
+    "intro": "A Novar Single Vision oferece uma experiência monofocal de qualidade digital.",
+    "details": "A Novar Single Vision foi projetada para corrigir a visão com precisão e oferecer conforto no dia a dia.",
+    "design": "Lente monofocal",
+    "idealFor": "Pessoas que precisam de correção visual em uma única distância.",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "tagline": "Precisão essencial",
+    "scene": "bbc12.png",
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Nitidez no dia a dia"
+      },
+      {
+        "file": "8696c.svg",
+        "label": "Precisão digital."
+      },
+      {
+        "file": "054ca.svg",
+        "label": "Correção simples"
+      }
+    ],
+    "gallery": [
+      "fd8c7.png",
+      "b8444.png",
+      "a7e93.png",
+      "bef02.png"
+    ],
+    "galleryRegistered": "26db8.svg",
+    "detail": "a1bf9.png",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "tags": [
+      "Mais precisão",
+      "Mais nitidez",
+      "Conforto diário"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Alta, conforme a prescrição"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Conforme o uso"
+      },
+      {
+        "label": "Perto",
+        "level": "Conforme a prescrição"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Single Vision?",
+        "answer": "É uma lente monofocal para corrigir a visão em uma única distância."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem tem miopia, hipermetropia ou astigmatismo e não precisa de lentes progressivas."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Sua fabricação digital e a possibilidade de personalização."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Outdoor",
+    "slug": "outdoor",
+    "sourceNode": "992:1540",
+    "wordmark": "outdoor-wordmark.svg",
+    "wordmarkNode": "992:1571",
+    "hero": "c103f.png",
+    "heroUnderlay": "a3b80.png",
+    "subtitle": "Visão precisa para você se movimentar sem limites",
+    "description": "Lente monofocal para atletas e pessoas que usam armações envolventes e precisam de conforto visual em movimento.",
+    "introHeading": "Projetado para acompanhar cada desafio",
+    "introEyebrow": "DESEMPENHO EM MOVIMENTO",
+    "intro": "A Novar Sport foi pensada para armações envolventes e atividades exigentes.",
+    "details": "Seu design busca manter uma experiência visual confortável e personalizada mesmo em armações esportivas curvas.",
+    "design": "Lente monofocal esportiva",
+    "idealFor": "Atletas ou pessoas que usam armações envolventes",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™ / RoTech / WearFit",
+    "tagline": "Desempenho em movimento",
+    "scene": "5efc7.png",
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Adaptado para armações envolventes"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Visão nítida em todas as distâncias"
+      },
+      {
+        "file": "0deb0.svg",
+        "label": "Visão em movimento"
+      }
+    ],
+    "gallery": [
+      "65af3.png",
+      "8c110.png",
+      "cbfa4.png",
+      "f2dac.png"
+    ],
+    "galleryRegistered": "26db8.svg",
+    "detail": "974e7.png",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "tags": [
+      "Conforto visual em armações curvas e situações ativas"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Alta"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Média"
+      },
+      {
+        "label": "Perto",
+        "level": "Conforme a prescrição"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Outdoor?",
+        "answer": null
+      },
+      {
+        "question": "Para quem é indicado Novar Outdoor?",
+        "answer": null
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Sua adaptação à curvatura e à geometria de óculos esportivos"
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Indoor",
+    "slug": "indoor",
+    "sourceNode": "992:1826",
+    "wordmark": "indoor-wordmark.svg",
+    "wordmarkNode": "992:1857",
+    "hero": "f6cad.png",
+    "heroUnderlay": "a3b80.png",
+    "subtitle": "Um descanso para seus olhos em dias intensos.",
+    "description": "Lente monofocal desenvolvida para jovens que precisam aliviar o cansaço visual em tarefas de perto e no uso de telas.",
+    "introHeading": "Pensado para estudar, trabalhar e viver entre telas",
+    "introEyebrow": "VISÃO MAIS DESCANSADA",
+    "intro": "A Novar Relax acompanha estudantes e pessoas pré-presbitas que sentem cansaço visual.",
+    "details": "Seu design oferece apoio para a visão de perto e ajuda a reduzir o esforço visual durante atividades prolongadas.",
+    "design": "Lente monofocal com apoio acomodativo",
+    "idealFor": "Estudantes, jovens profissionais e pessoas com cansaço visual",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™",
+    "tagline": "Visão mais descansada",
+    "scene": "2eb1f.png",
+    "icons": [
+      {
+        "file": "45cb4.svg",
+        "label": "Apoio para visão de perto"
+      },
+      {
+        "file": "4482b.svg",
+        "label": "Visão nítida em todas as distâncias"
+      },
+      {
+        "file": "91260.svg",
+        "label": "Ideal para telas"
+      }
+    ],
+    "gallery": [
+      "0cdcb.png",
+      "ee021.png",
+      "c74c7.png",
+      "1bc17.png"
+    ],
+    "galleryRegistered": "26db8.svg",
+    "detail": "50d91.png",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "tags": [
+      "Mais conforto visual",
+      "Ideal para telas"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Alta, conforme a prescrição"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Média"
+      },
+      {
+        "label": "Perto",
+        "level": "Alta"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Indoor?",
+        "answer": null
+      },
+      {
+        "question": "Para quem é indicado Novar Indoor?",
+        "answer": null
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Seu apoio adicional para tarefas de perto."
+      }
+    ],
+    "introEmphasis": [],
+    "detailEmphasis": []
+  },
+  {
+    "name": "Slim",
+    "slug": "slim",
+    "sourceNode": "992:2112",
+    "wordmark": "slim-wordmark.svg",
+    "wordmarkNode": "992:2143",
+    "hero": "05436.png",
+    "heroUnderlay": null,
+    "subtitle": "Mais fina por fora. Mais inteligente por dentro.",
+    "description": "Projetada para transformar a experiência de quem usa graus elevados.",
+    "introHeading": "Onde outros veem espessura, a Slim vê possibilidades.",
+    "introEyebrow": "MENOS ESPESSURA, MAIS LIBERDADE",
+    "intro": "A otimização inteligente da espessura e da área de visão permite criar lentes mais finas, leves e elegantes, ampliar as opções de armações e oferecer conforto desde o primeiro uso.",
+    "details": "A Novar Slim seleciona automaticamente a zona óptica e a desloca para reduzir a espessura da borda em lentes de alto grau. Assim, permite escolher opções mais elegantes e confortáveis, inclusive armações que antes poderiam ser mais difíceis de usar.",
+    "design": "Lente monofocal personalizada",
+    "idealFor": "Pessoas com graus positivos ou negativos elevados",
+    "technologySpec": "Psicoptix Technology™ / CDT Technology™ / Blending Technology™",
+    "tagline": "Menos espessura, mais liberdade",
+    "scene": "2dccf.png",
+    "icons": [
+      {
+        "file": "67f73.svg",
+        "label": "Menos espessura."
+      },
+      {
+        "file": "9db79.svg",
+        "label": "Mais conforto"
+      },
+      {
+        "file": "054ca.svg",
+        "label": "Adaptada à forma única do seu olhar."
+      }
+    ],
+    "gallery": [
+      "2dd61.png",
+      "bd93c.png",
+      "3a032.png",
+      "51602.png"
+    ],
+    "galleryRegistered": "26db8.svg",
+    "detail": "26106.png",
+    "detailHeading": "Enxergar de outra forma pode parecer natural.",
+    "tags": [
+      "Mais precisão",
+      "Mais detalhes",
+      "Mais estabilidade visual"
+    ],
+    "technologies": [
+      {
+        "name": "Psicoptix Technology™",
+        "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+      },
+      {
+        "name": "CDT Technology™",
+        "description": "Assim como uma tela 8K forma imagens com milhões de pixels para revelar cada detalhe com maior precisão, essa tecnologia exclusiva da Novar otimiza a lente ponto a ponto. Cada microzona contribui com informações visuais para formar uma imagem mais definida, uniforme e natural, proporcionando uma visão mais nítida em todo o campo visual."
+      },
+      {
+        "name": "Blending Technology™",
+        "description": "Essa tecnologia reduz estrategicamente a espessura para criar lentes mais finas, leves e elegantes, especialmente para graus positivos ou negativos elevados. O resultado é mais conforto no dia a dia, uma aparência mais harmoniosa e a liberdade de olhar e ser visto com confiança."
+      }
+    ],
+    "benefits": [
+      {
+        "label": "Longe",
+        "level": "Conforme a prescrição"
+      },
+      {
+        "label": "Intermediária",
+        "level": "Conforme o uso"
+      },
+      {
+        "label": "Perto",
+        "level": "Conforme o uso"
+      }
+    ],
+    "questions": [
+      {
+        "question": "O que é Novar Slim?",
+        "answer": "É uma lente monofocal pensada para reduzir a espessura em graus elevados."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem busca lentes mais finas, leves e elegantes."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Sua otimização automática da zona óptica e da espessura."
+      }
+    ],
+    "introEmphasis": [
+      "mais finas, leves e elegantes"
+    ],
+    "detailEmphasis": []
+  }
+]

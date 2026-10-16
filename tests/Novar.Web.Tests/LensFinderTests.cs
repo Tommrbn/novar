@@ -85,8 +85,8 @@ public sealed class LensFinderTests(WebApplicationFactory<Program> factory) : IC
         Assert.Equal(HttpStatusCode.NotFound, genericResponse.StatusCode);
         var generic = await genericResponse.Content.ReadAsStringAsync();
         var header = Regex.Match(html, "<header class=\"site-header\">[\\s\\S]*?</header>").Value;
-        Assert.Equal(Regex.Match(generic, "<header class=\"site-header\">[\\s\\S]*?</header>").Value,
-            header.Replace("href=\"/lentes\" aria-current=\"page\"", "href=\"/lentes\""));
+        Assert.Equal(Regex.Match(generic, "<header class=\"site-header\">[\\s\\S]*?</header>").Value.WithoutLanguagePreferenceForm(),
+            header.Replace("href=\"/lentes\" aria-current=\"page\"", "href=\"/lentes\"").WithoutLanguagePreferenceForm());
         Assert.Equal(Regex.Match(generic, "<footer class=\"site-footer\">[\\s\\S]*?</footer>").Value,
             Regex.Match(html, "<footer class=\"site-footer\">[\\s\\S]*?</footer>").Value);
     }

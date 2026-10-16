@@ -1,9 +1,9 @@
 @model PendingPage
 @{ ViewData["Title"] = Model.Title; }
 <section class="pending-page container-novar">
-    <p class="eyebrow">Muestra de diseño</p>
+    <p class="eyebrow">@T["Muestra de diseño"]</p>
     <h1>@Model.Title</h1>
-    <p>Esta sección está planificada y se desarrollará después de aprobar la muestra visual de Home y Novar First.</p>
-    <p>No es el catálogo completo ni una recomendación de lentes.</p>
-    <div class="d-flex flex-wrap gap-3"><a class="btn btn-novar" href="/lentes/first">Ver muestra: Novar First</a><a class="btn btn-outline-novar" href="/">Volver a Home</a></div>
+    <p>@T["Esta sección está planificada y se desarrollará después de aprobar la muestra visual de Home y Novar First."]</p>
+    <p>@T["No es el catálogo completo ni una recomendación de lentes."]</p>
+    <div class="d-flex flex-wrap gap-3"><a class="btn btn-novar" href="/lentes/first">@T["Ver muestra: Novar First"]</a><a class="btn btn-outline-novar" href="/">@T["Volver a Home"]</a></div>
 </section>

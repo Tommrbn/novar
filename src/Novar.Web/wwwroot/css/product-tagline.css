@@ -1,0 +1,30 @@
+/* Shared only by the existing product bands; their artwork and geometry stay intact. */
+[data-product-tagline] { isolation: isolate; }
+
+html[data-tagline-pending] [data-product-tagline]::after,
+[data-product-tagline][data-tagline-state]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: #1f023c;
+    pointer-events: none;
+    transform: translateY(0);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-product-tagline][data-tagline-state="revealed"]::after {
+    transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-tagline-pending] [data-product-tagline]::after,
+    [data-product-tagline][data-tagline-state]::after {
+        transition: none;
+    }
+}
+
+@media print {
+    html[data-tagline-pending] [data-product-tagline]::after,
+    [data-product-tagline][data-tagline-state]::after { display: none; }
+}

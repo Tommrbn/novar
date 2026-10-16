@@ -4,7 +4,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const base = process.env.NOVAR_BASE_URL || 'http://localhost:5080';
-const output = path.resolve('artifacts/treatments-preview');
+const fotosensiblePhotoOnly = process.argv.includes('--fotosensible-photo-only');
+const output = path.resolve(fotosensiblePhotoOnly
+    ? 'artifacts/treatments-fotosensible-image-sizing/runtime' : 'artifacts/treatments-preview');
 const widths = [1440, 1083, 1024, 768, 390, 320];
 const svgSizes = {
     'b9b6a.svg': [56.401, 30.6381], '7bc95.svg': [10.2128, 10.2128],
@@ -35,6 +37,7 @@ async function verifyBlueTech(page, width) {
     await page.evaluate(() => document.fonts.ready);
     const metrics = await page.evaluate(() => {
         const rect = element => {
+            if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
             const r = element.getBoundingClientRect();
             return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
         };
@@ -78,9 +81,9 @@ async function verifyBlueTech(page, width) {
         assert.ok(asset.x >= circle.x && asset.x + asset.width <= circle.x + circle.width);
         assert.ok(asset.y >= circle.y && asset.y + asset.height <= circle.y + circle.height);
     });
-    const photo = metrics.assets.find(asset => asset.file === 'f0cf4.png');
-    assert.equal(photo.naturalWidth, 1448);
-    assert.equal(photo.naturalHeight, 1086);
+    const photo = metrics.assets.find(asset => asset.file === 'blue-tech-poster-1280.webp');
+    assert.ok([640, 1280, 1448].includes(photo.naturalWidth));
+    near(photo.naturalWidth / photo.naturalHeight, 1448 / 1086, 'Blue Tech authentic aspect', .01);
     assert.equal(photo.objectFit, 'cover');
     if (width === 1440) {
         near(metrics.summary.x, 129.2085, 'Blue Tech card x');
@@ -89,9 +92,9 @@ async function verifyBlueTech(page, width) {
         near(metrics.summary.height, 178, 'Blue Tech card height');
         near(metrics.photo.y, 893, 'Blue Tech crop top');
         near(metrics.photo.height, 680, 'Blue Tech crop height');
-        near(photo.x, -124, 'Blue Tech image x');
-        near(photo.width, 1684, 'Blue Tech image width');
-        near(photo.height, 937.707, 'Blue Tech image height');
+        near(photo.x, metrics.photo.x, 'Blue Tech poster x');
+        near(photo.width, metrics.photo.width, 'Blue Tech poster width');
+        near(photo.height, metrics.photo.height, 'Blue Tech poster height');
         near(metrics.benefits.x, 353, 'Blue Tech benefits x');
         near(metrics.benefits.y, 1550, 'Blue Tech benefits y');
         metrics.badges.forEach((badge, i) => near(badge.width, [191, 248, 212][i], `Badge${i} width`, .1));
@@ -139,6 +142,7 @@ async function verifyAntirraya(page, width) {
     await page.evaluate(() => document.fonts.ready);
     const metrics = await page.evaluate(() => {
         const rect = element => {
+            if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
             const r = element.getBoundingClientRect();
             return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
         };
@@ -150,7 +154,7 @@ async function verifyAntirraya(page, width) {
         return {
             overflow: document.documentElement.scrollWidth - innerWidth,
             summary: box('.treatment-antirraya-summary'), photo: box('.treatment-antirraya-photo'),
-            plane: box('.treatment-antirraya-image-plane'), benefits: box('.treatment-antirraya-benefits'),
+            plane: box('.treatment-antirraya-video-plane'), video: box('.treatment-antirraya-video'), benefits: box('.treatment-antirraya-benefits'),
             underline: box('.treatments-tabs-active'),
             badges: [...document.querySelectorAll('.treatment-antirraya-benefits li')].map(rect),
             circles: [...document.querySelectorAll('.treatment-antirraya-benefits .treatment-benefit-check')].map(rect),
@@ -160,7 +164,7 @@ async function verifyAntirraya(page, width) {
             crop: getComputedStyle(document.querySelector('.treatment-antirraya-photo')).overflow,
             fonts: [...document.fonts].filter(font => font.family === 'Poppins' && font.status === 'loaded').map(font => font.weight),
             assets: [...document.querySelectorAll('.treatments-content img, .treatments-footer img, .site-header img')]
-                .filter(image => !image.closest('[hidden]') && getComputedStyle(image).display !== 'none')
+                .filter(image => !image.closest('[hidden]') && !image.closest('video') && getComputedStyle(image).display !== 'none')
                 .map(image => ({ file: image.src.split('/').pop(), ...rect(image), naturalWidth: image.naturalWidth,
                     naturalHeight: image.naturalHeight, inCollapsedMenu: !!image.closest('#main-nav') && innerWidth < 1200 }))
         };
@@ -168,7 +172,7 @@ async function verifyAntirraya(page, width) {
     assert.ok(metrics.overflow <= 0, `Antirraya overflow at ${width}: ${metrics.overflow}`);
     assert.equal(metrics.layer, '2');
     assert.equal(metrics.crop, 'hidden');
-    assert.equal(new Set(metrics.assets.map(asset => asset.file)).size, 18);
+    assert.equal(new Set(metrics.assets.map(asset => asset.file)).size, 17);
     for (const weight of ['300', '400', '700']) assert.ok(metrics.fonts.includes(weight), `Poppins${weight} must load`);
     for (const asset of metrics.assets) {
         assert.ok(asset.naturalWidth > 0 && (asset.width > 0 || asset.inCollapsedMenu));
@@ -182,9 +186,14 @@ async function verifyAntirraya(page, width) {
         assert.ok(asset.x >= circle.x && asset.x + asset.width <= circle.x + circle.width);
         assert.ok(asset.y >= circle.y && asset.y + asset.height <= circle.y + circle.height);
     });
-    const image = metrics.assets.find(asset => asset.file === '3dd09.png');
-    assert.equal(image.naturalWidth, 2752);
-    assert.equal(image.naturalHeight, 1536);
+    const video = page.locator('#antirraya .treatment-antirraya-video');
+    assert.equal(await video.getAttribute('poster'), null);
+    assert.equal(await video.getAttribute('src'), null);
+    assert.equal(await video.getAttribute('loop'), '');
+    near(metrics.video.width, metrics.photo.width, 'Antirraya full-band video width');
+    near(metrics.video.height, metrics.photo.height, 'Antirraya full-band video height');
+    near(metrics.plane.width, metrics.photo.width, 'Antirraya full-band plane width');
+    near(metrics.plane.height, metrics.photo.height, 'Antirraya full-band plane height');
     if (width === 1440) {
         near(metrics.summary.x, 129, 'Antirraya card x');
         near(metrics.summary.y, 758, 'Antirraya card y');
@@ -192,11 +201,9 @@ async function verifyAntirraya(page, width) {
         near(metrics.summary.height, 178, 'Antirraya card height');
         near(metrics.photo.y, 854, 'Antirraya image viewport y');
         near(metrics.photo.height, 719, 'Antirraya lower crop at1573');
-        near(metrics.plane.x, -11, 'Antirraya frame x');
-        near(metrics.plane.width, 1461, 'Antirraya frame width');
-        near(metrics.plane.height, 756, 'Antirraya frame height');
-        near(image.y, 854 - 756 * .0783, 'Antirraya image crop offset');
-        near(image.height, 756 * 1.0786, 'Antirraya source image height');
+        near(metrics.plane.x, 0, 'Antirraya full-band plane x');
+        near(metrics.plane.width, 1440, 'Antirraya full-band plane width');
+        near(metrics.plane.height, 719, 'Antirraya full-band plane height');
         near(metrics.benefits.x, 353, 'Antirraya benefits x');
         near(metrics.benefits.y, 1550, 'Antirraya benefits y');
         metrics.badges.forEach((badge, i) => near(badge.width, [191, 248, 212][i], `Antirraya badge${i} width`, .1));
@@ -250,6 +257,7 @@ async function verifyPolarizado(page, width) {
     await page.evaluate(() => document.fonts.ready);
     const metrics = await page.evaluate(() => {
         const rect = element => {
+            if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
             const r = element.getBoundingClientRect();
             return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
         };
@@ -262,6 +270,13 @@ async function verifyPolarizado(page, width) {
             overflow: document.documentElement.scrollWidth - innerWidth,
             summary: box('.treatment-polarizado-summary'), photo: box('.treatment-polarizado-photo'),
             plane: box('.treatment-polarizado-image-plane'), benefits: box('.treatment-polarizado-benefits'),
+            video: (() => {
+                const v = document.querySelector('.treatment-polarizado-video');
+                return { ...rect(v), muted: v.muted, defaultMuted: v.defaultMuted,
+                    controls: v.controls, playsInline: v.playsInline, preload: v.preload,
+                    autoplay: v.autoplay, loop: v.loop, paused: v.paused,
+                    poster: v.poster, fit: getComputedStyle(v).objectFit };
+            })(),
             underline: box('.treatments-tabs-active'),
             badges: [...document.querySelectorAll('.treatment-polarizado-benefits li')].map(rect),
             circles: [...document.querySelectorAll('.treatment-polarizado-benefits .treatment-benefit-check')].map(rect),
@@ -293,9 +308,21 @@ async function verifyPolarizado(page, width) {
         assert.ok(asset.x >= circle.x && asset.x + asset.width <= circle.x + circle.width);
         assert.ok(asset.y >= circle.y && asset.y + asset.height <= circle.y + circle.height);
     });
-    const image = metrics.assets.find(asset => asset.file === '8af8d.png');
-    assert.equal(image.naturalWidth, 2752);
-    assert.equal(image.naturalHeight, 1536);
+    assert.equal(metrics.video.muted, true);
+    assert.equal(metrics.video.defaultMuted, true);
+    assert.equal(metrics.video.controls, false);
+    assert.equal(metrics.video.playsInline, true);
+    assert.equal(metrics.video.preload, 'none');
+    assert.equal(metrics.video.controls, false);
+    assert.equal(metrics.video.autoplay, false); // Reduced-motion fixture disables native autoplay.
+    assert.equal(metrics.video.loop, true);
+    assert.equal(metrics.video.paused, true);
+    assert.equal(metrics.video.poster, '');
+    assert.equal(metrics.video.fit, 'cover');
+    near(metrics.plane.width, metrics.photo.width, 'Polarizado full-width plane');
+    near(metrics.plane.height, metrics.photo.height, 'Polarizado full-height plane');
+    near(metrics.video.width, metrics.photo.width, 'Polarizado full-width video');
+    near(metrics.video.height, metrics.photo.height, 'Polarizado full-height video');
     if (width === 1440) {
         near(metrics.summary.x, 129, 'Polarizado card x');
         near(metrics.summary.y, 758, 'Polarizado card y');
@@ -303,12 +330,7 @@ async function verifyPolarizado(page, width) {
         near(metrics.summary.height, 178, 'Polarizado card height');
         near(metrics.photo.y, 893, 'Polarizado image viewport y');
         near(metrics.photo.height, 680, 'Polarizado crop ends at1573');
-        near(metrics.plane.x, -124, 'Polarizado source plane x');
-        near(metrics.plane.width, 1684, 'Polarizado source plane width');
-        near(metrics.plane.height, 937.696, 'Polarizado source plane height');
-        near(image.x, -124 - 1684 * .0001, 'Polarizado original image x');
-        near(image.y, 893 - 937.696 * .0924, 'Polarizado original crop offset');
-        near(image.height, 937.696 * 1.0024, 'Polarizado original image height');
+        near(metrics.plane.x, metrics.photo.x, 'Polarizado plane x');
         near(metrics.benefits.x, 353, 'Polarizado benefits x');
         near(metrics.benefits.y, 1550, 'Polarizado benefits y');
         metrics.badges.forEach((badge, i) => near(badge.width, [191, 248, 300][i], `Polarizado badge${i} width`, .1));
@@ -354,9 +376,11 @@ async function verifyHidrofobico(page, width) {
     assert.equal(await page.locator('.treatments-linkedin-blue-tech').isVisible(), true);
     assert.deepEqual(await page.locator('.treatment-hidrofobico-benefits li > span:last-child').allTextContents(),
         ['Siempre limpio', 'El agua no de adhiere', 'Mantiene la claridad']);
+    await page.waitForFunction(() => document.querySelector('#hidrofobico video').preload === 'none');
     await page.evaluate(() => document.fonts.ready);
     const metrics = await page.evaluate(() => {
         const rect = element => {
+            if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
             const r = element.getBoundingClientRect();
             return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
         };
@@ -366,6 +390,15 @@ async function verifyHidrofobico(page, width) {
             return { family: s.fontFamily, weight: s.fontWeight, size: s.fontSize, line: s.lineHeight, spacing: s.letterSpacing };
         };
         return {
+            video: (() => {
+                const video = document.querySelector('#hidrofobico video');
+                return { ...rect(video), src: video.currentSrc, poster: video.poster,
+                    decodedWidth: video.videoWidth, decodedHeight: video.videoHeight, duration: video.duration,
+                    muted: video.muted, defaultMuted: video.defaultMuted, controls: video.controls,
+                    playsInline: video.playsInline, preload: video.preload, paused: video.paused,
+                    autoplay: video.autoplay, loop: video.loop, label: video.getAttribute('aria-label'),
+                    objectFit: getComputedStyle(video).objectFit };
+            })(),
             overflow: document.documentElement.scrollWidth - innerWidth,
             summary: box('.treatment-hidrofobico-summary'), photo: box('.treatment-hidrofobico-photo'),
             plane: box('.treatment-hidrofobico-image-plane'), benefits: box('.treatment-hidrofobico-benefits'),
@@ -401,10 +434,26 @@ async function verifyHidrofobico(page, width) {
         assert.ok(asset.x >= circle.x && asset.x + asset.width <= circle.x + circle.width);
         assert.ok(asset.y >= circle.y && asset.y + asset.height <= circle.y + circle.height);
     });
-    const image = metrics.assets.find(asset => asset.file === 'dd2a0.png');
-    assert.equal(image.naturalWidth, 2752);
-    assert.equal(image.naturalHeight, 1536);
-    assert.equal(image.objectFit, 'cover');
+    assert.ok(metrics.assets.some(asset => asset.file === 'hidrofobico-poster-1280.webp'));
+    assert.equal(metrics.video.src, '');
+    assert.equal(metrics.video.poster, '');
+    assert.equal(metrics.video.decodedWidth, 0);
+    assert.equal(metrics.video.decodedHeight, 0);
+    assert.equal(metrics.video.duration, null); // NaN serializes to null: no source loaded under reduced motion.
+    for (const property of ['muted', 'defaultMuted', 'playsInline', 'paused'])
+        assert.equal(metrics.video[property], true, `Hidrofóbico ${property}`);
+    assert.equal(metrics.video.controls, false);
+    assert.equal(metrics.video.autoplay, false); // Reduced-motion fixture disables native autoplay.
+    assert.equal(metrics.video.loop, true);
+    assert.equal(metrics.video.preload, 'none');
+    assert.equal(metrics.video.label, 'Hidrofóbico');
+    assert.equal(metrics.video.objectFit, 'cover');
+    near(metrics.plane.x, metrics.photo.x, 'Hidrofóbico full-band plane x');
+    near(metrics.plane.width, metrics.photo.width, 'Hidrofóbico full-band plane width');
+    near(metrics.plane.height, metrics.photo.height, 'Hidrofóbico full-band plane height');
+    near(metrics.video.x, metrics.photo.x, 'Hidrofóbico full-band video x');
+    near(metrics.video.width, metrics.photo.width, 'Hidrofóbico full-band video width');
+    near(metrics.video.height, metrics.photo.height, 'Hidrofóbico full-band video height');
     if (width === 1440) {
         near(metrics.summary.x, 129, 'Hidrofóbico card x');
         near(metrics.summary.y, 758, 'Hidrofóbico card y');
@@ -412,12 +461,6 @@ async function verifyHidrofobico(page, width) {
         near(metrics.summary.height, 178, 'Hidrofóbico card height');
         near(metrics.photo.y, 893, 'Hidrofóbico image viewport y');
         near(metrics.photo.height, 680, 'Hidrofóbico crop ends at1573');
-        near(metrics.plane.x, -23, 'Hidrofóbico source plane x');
-        near(metrics.plane.width, 1684, 'Hidrofóbico source plane width');
-        near(metrics.plane.height, 937.696, 'Hidrofóbico source plane height');
-        near(image.x, -23, 'Hidrofóbico original image x');
-        near(image.y, 893, 'Hidrofóbico original image y');
-        near(image.height, 937.696, 'Hidrofóbico original image height');
         near(metrics.benefits.x, 353, 'Hidrofóbico benefits x');
         near(metrics.benefits.y, 1550, 'Hidrofóbico benefits y');
         metrics.badges.forEach((badge, i) => near(badge.width, [191, 248, 212][i], `Hidrofóbico badge${i} width`, .1));
@@ -454,12 +497,67 @@ async function verifyHidrofobico(page, width) {
     return metrics;
 }
 
+function assertFotosensiblePhotoCoverage(metrics, width) {
+    const { photo, plane, image } = metrics;
+    near(photo.x, 0, 'Fotosensible full-width band x', .75);
+    near(photo.width, width, 'Fotosensible full-width band', .75);
+    const bandHeight = width > 1199.98 ? 680 : Math.max(220, Math.min(width * .5625, 580));
+    near(photo.height, bandHeight, 'Fotosensible shared banner height', .75);
+    near(plane.x, -width * 146 / 1440, 'Fotosensible proportional plane x', .75);
+    near(plane.width, width * 1684 / 1440, 'Fotosensible proportional plane width', .75);
+    near(plane.height, Math.max(bandHeight, width * 937.696 / 1440), 'Fotosensible source plane with minimum coverage', .75);
+    near(image.x, plane.x - plane.width * .16, 'Fotosensible source crop x', .75);
+    near(image.y, plane.y - plane.height * .1248, 'Fotosensible source crop y', .75);
+    near(image.width, plane.width * 1.2465, 'Fotosensible source crop width', .75);
+    near(image.height, plane.height * 1.2495, 'Fotosensible source crop height', .75);
+    for (const layer of [plane, image]) {
+        assert.ok(layer.x <= photo.x && layer.x + layer.width >= photo.x + photo.width,
+            'Fotosensible photo must have no horizontal gap');
+        assert.ok(layer.y <= photo.y && layer.y + layer.height >= photo.y + photo.height,
+            'Fotosensible photo must have no vertical gap');
+    }
+}
+
+async function verifyFotosensiblePhotoOnly(browser) {
+    const evidence = [];
+    for (const width of [1440, 1920, 1024, 768, 390, 320]) {
+        const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: 'reduce' });
+        try {
+            const page = await context.newPage();
+            await page.goto(`${base}/tratamientos#fotosensible`, { waitUntil: 'networkidle' });
+            await page.evaluate(() => document.fonts.ready);
+            await page.locator('#fotosensible').waitFor({ state: 'visible' });
+            const metrics = await page.evaluate(() => {
+                const box = selector => {
+                    const r = document.querySelector(selector).getBoundingClientRect();
+                    return { x: r.x, y: r.y, width: r.width, height: r.height };
+                };
+                const image = document.querySelector('.treatment-fotosensible-image');
+                return { photo: box('.treatment-fotosensible-photo'), plane: box('.treatment-fotosensible-image-plane'),
+                    image: box('.treatment-fotosensible-image'), overflow: document.documentElement.scrollWidth - innerWidth,
+                    source: image.getAttribute('src'), naturalWidth: image.naturalWidth, naturalHeight: image.naturalHeight };
+            });
+            assert.equal(metrics.source, '/media/treatments/optimized/fotosensible-poster-1280.webp');
+            assert.ok([640, 1280, 1920].includes(metrics.naturalWidth));
+            near(metrics.naturalWidth / metrics.naturalHeight, 2752 / 1536, 'Fotosensible authentic aspect', .01);
+            assert.ok(metrics.overflow <= 0, `Fotosensible overflow at ${width}: ${metrics.overflow}`);
+            assertFotosensiblePhotoCoverage(metrics, width);
+            await page.screenshot({ path: path.join(output, `fotosensible-photo-${width}.png`), fullPage: true });
+            evidence.push({ width, ...metrics });
+        } finally { await context.close(); }
+    }
+    fs.writeFileSync(path.join(output, 'checks.json'), JSON.stringify({ evidence }, null, 2));
+    console.log(`Fotosensible photo coverage passed at ${evidence.map(item => item.width).join(', ')}; evidence: ${output}`);
+}
+
 async function verifyFotosensible(page, width) {
     await page.locator('#treatment-tab-fotosensible').click();
     assert.equal(new URL(page.url()).hash, '#fotosensible');
     assert.equal(await page.locator('#treatment-tab-fotosensible').getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator('[data-treatment-detail]:visible').count(), 1);
     assert.equal(await page.locator('#fotosensible').isVisible(), true);
+    assert.equal(await page.locator('#fotosensible [data-treatment-video]').count(), 1);
+    assert.equal(await page.locator('#fotosensible [data-treatment-video]').getAttribute('src'), null);
     await verifyTreatmentLogos(page, true);
     assert.equal(await page.locator('.treatments-linkedin-default').isVisible(), false);
     assert.equal(await page.locator('.treatments-linkedin-blue-tech').isVisible(), true);
@@ -468,6 +566,7 @@ async function verifyFotosensible(page, width) {
     await page.evaluate(() => document.fonts.ready);
     const metrics = await page.evaluate(() => {
         const rect = element => {
+            if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
             const r = element.getBoundingClientRect();
             return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
         };
@@ -512,17 +611,18 @@ async function verifyFotosensible(page, width) {
         assert.ok(asset.x >= circle.x && asset.x + asset.width <= circle.x + circle.width);
         assert.ok(asset.y >= circle.y && asset.y + asset.height <= circle.y + circle.height);
     });
-    const image = metrics.assets.find(asset => asset.file === '23aae.png');
-    assert.equal(image.naturalWidth, 2752);
-    assert.equal(image.naturalHeight, 1536);
+    const image = metrics.assets.find(asset => asset.file === 'fotosensible-poster-1280.webp');
+    assert.ok([640, 1280, 1920].includes(image.naturalWidth));
+    near(image.naturalWidth / image.naturalHeight, 2752 / 1536, 'Fotosensible authentic aspect', .01);
     assert.equal(image.objectFit, 'fill');
+    assertFotosensiblePhotoCoverage({ ...metrics, image }, width);
     if (width === 1440) {
         near(metrics.summary.x, 129, 'Fotosensible card x');
         near(metrics.summary.y, 758, 'Fotosensible card y');
         near(metrics.summary.width, 1181.583, 'Fotosensible card width');
         near(metrics.summary.height, 178, 'Fotosensible card height');
         near(metrics.photo.y, 847, 'Fotosensible image viewport y');
-        near(metrics.photo.height, 726, 'Fotosensible crop ends at1573');
+        near(metrics.photo.height, 680, 'Fotosensible shared desktop band height');
         near(metrics.plane.x, -146, 'Fotosensible source plane x');
         near(metrics.plane.width, 1684, 'Fotosensible source plane width');
         near(metrics.plane.height, 937.696, 'Fotosensible source plane height');
@@ -531,7 +631,7 @@ async function verifyFotosensible(page, width) {
         near(image.width, 1684 * 1.2465, 'Fotosensible original image width');
         near(image.height, 937.696 * 1.2495, 'Fotosensible original image height');
         near(metrics.benefits.x, 353, 'Fotosensible benefits x');
-        near(metrics.benefits.y, 1550, 'Fotosensible benefits y');
+        near(metrics.benefits.y, 1504, 'Fotosensible benefits preserve23px band overlap');
         metrics.badges.forEach((badge, i) => near(badge.width, [191, 248, 212][i], `Fotosensible badge${i} width`, .1));
         near(metrics.underline.x, 919, 'Fotosensible underline x');
         near(metrics.underline.y, 705, 'Fotosensible underline y');
@@ -581,6 +681,7 @@ async function verifyIlux(page, width) {
     await page.evaluate(() => document.fonts.ready);
     const metrics = await page.evaluate(() => {
         const rect = element => {
+            if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
             const r = element.getBoundingClientRect();
             return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
         };
@@ -592,7 +693,14 @@ async function verifyIlux(page, width) {
         return {
             overflow: document.documentElement.scrollWidth - innerWidth,
             summary: box('.treatment-ilux-summary'), photo: box('.treatment-ilux-photo'),
-            plane: box('.treatment-ilux-image-plane'), benefits: box('.treatment-ilux-benefits'),
+            video: box('.treatment-ilux-video'), benefits: box('.treatment-ilux-benefits'),
+            videoState: (() => {
+                const video = document.querySelector('.treatment-ilux-video');
+                return { controls: video.controls, muted: video.muted, playsInline: video.playsInline,
+                    autoplay: video.autoplay, loop: video.loop, preload: video.preload,
+                    source: video.getAttribute('src'),
+                    objectFit: getComputedStyle(video).objectFit };
+            })(),
             underline: box('.treatments-tabs-active'),
             badges: [...document.querySelectorAll('.treatment-ilux-benefits li')].map(rect),
             circles: [...document.querySelectorAll('.treatment-ilux-benefits .treatment-benefit-check')].map(rect),
@@ -625,10 +733,18 @@ async function verifyIlux(page, width) {
         assert.ok(asset.x >= circle.x && asset.x + asset.width <= circle.x + circle.width);
         assert.ok(asset.y >= circle.y && asset.y + asset.height <= circle.y + circle.height);
     });
-    const image = metrics.assets.find(asset => asset.file === 'b6e78.png');
-    assert.equal(image.naturalWidth, 2752);
-    assert.equal(image.naturalHeight, 1536);
-    assert.equal(image.objectFit, 'fill');
+    assert.equal(metrics.videoState.controls, false);
+    assert.equal(metrics.videoState.muted, true);
+    assert.equal(metrics.videoState.playsInline, true);
+    assert.equal(metrics.videoState.autoplay, false);
+    assert.equal(metrics.videoState.loop, true);
+    assert.equal(metrics.videoState.preload, 'none');
+    assert.equal(metrics.videoState.source, null);
+    assert.equal(metrics.videoState.objectFit, 'cover');
+    near(metrics.video.x, metrics.photo.x, 'Ilux video x');
+    near(metrics.video.y, metrics.photo.y, 'Ilux video y');
+    near(metrics.video.width, metrics.photo.width, 'Ilux video fills width');
+    near(metrics.video.height, metrics.photo.height, 'Ilux full-band poster/video height');
     if (width === 1440) {
         near(metrics.summary.x, 129, 'Ilux card x');
         near(metrics.summary.y, 758, 'Ilux card y');
@@ -636,13 +752,6 @@ async function verifyIlux(page, width) {
         near(metrics.summary.height, 178, 'Ilux card height');
         near(metrics.photo.y, 893, 'Ilux image viewport y');
         near(metrics.photo.height, 680, 'Ilux crop ends at1573');
-        near(metrics.plane.x, -124, 'Ilux source plane x');
-        near(metrics.plane.width, 1684, 'Ilux source plane width');
-        near(metrics.plane.height, 937.696, 'Ilux source plane height');
-        near(image.x, -124 - 1684 * .1079, 'Ilux original image x');
-        near(image.y, 893 - 937.696 * .1869, 'Ilux original image y');
-        near(image.width, 1684 * 1.2163, 'Ilux original image width');
-        near(image.height, 937.696 * 1.2192, 'Ilux original image height');
         near(metrics.benefits.x, 353, 'Ilux benefits x');
         near(metrics.benefits.y, 1550, 'Ilux benefits y');
         metrics.badges.forEach((badge, i) => near(badge.width, [191, 248, 212][i], `Ilux badge${i} width`, .1));
@@ -700,6 +809,11 @@ async function main() {
     let browser;
     try { browser = await chromium.launch({ headless: true }); }
     catch { browser = await chromium.launch({ headless: true, channel: 'msedge' }); }
+    if (fotosensiblePhotoOnly) {
+        try { await verifyFotosensiblePhotoOnly(browser); }
+        finally { await browser.close(); }
+        return;
+    }
     const evidence = [];
     const errors = [];
     try {
@@ -711,7 +825,7 @@ async function main() {
             page.on('requestfailed', request => errors.push(`Failed request: ${request.url()}`));
             page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
             assert.equal((await page.goto(`${base}/tratamientos`, { waitUntil: 'networkidle' })).status(), 200);
-            assert.equal(await page.locator('[data-treatments-revision="treatments-ilux-v1"]').count(), 1,
+            assert.equal(await page.locator('[data-treatments-revision="treatments-performance-v1"]').count(), 1,
                 'Stale preview: only the user may restart their app before treatment verification');
             await page.evaluate(async () => {
                 await Promise.all([...document.images].map(image => image.decode()));
@@ -719,7 +833,8 @@ async function main() {
             });
             const metrics = await page.evaluate(() => {
                 const rect = element => {
-                    const r = element.getBoundingClientRect();
+                    if (element.matches('[data-treatment-video]') && element.hidden) element = element.closest('[data-treatment-detail]').querySelector('[data-treatment-fallback]');
+            const r = element.getBoundingClientRect();
                     return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
                 };
                 const box = selector => rect(document.querySelector(selector));
@@ -767,7 +882,7 @@ async function main() {
             assert.equal(metrics.summaryLayer, '2');
             assert.equal(metrics.photoOverflow, 'hidden');
             assert.ok(metrics.sourceArrows.x + metrics.sourceArrows.width < 0, 'Source arrows remain outside the visible crop, not a fake slider');
-            const uvPhoto = metrics.assets.find(asset => asset.file === '16fed.png');
+            const uvPhoto = metrics.assets.find(asset => asset.file === 'uv-poster-1280.webp');
             near(metrics.photo.height, Math.min(680, width * 680 / 1440), 'Responsive UV photo band height', .75);
             near(uvPhoto.x, -width * 124 / 1440, 'Responsive UV image plane x', 1.5);
             near(uvPhoto.width, width * 1684 / 1440, 'Responsive UV image plane width', 1.5);
@@ -807,7 +922,7 @@ async function main() {
                 near(hero.width, 1440, 'Hero image box width');
                 near(hero.height, 689, 'Hero image box height');
                 assert.equal(hero.objectFit, 'cover');
-                const photo = metrics.assets.find(asset => asset.file === '16fed.png');
+                const photo = metrics.assets.find(asset => asset.file === 'uv-poster-1280.webp');
                 near(photo.x, -124, 'Photo plane x');
                 near(photo.width, 1684, 'Photo plane width');
                 near(photo.height, 937.707, 'Photo plane height');

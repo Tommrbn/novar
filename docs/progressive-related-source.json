@@ -1,0 +1,49 @@
+{
+  "section": "Otros lentes progresivos",
+  "figmaFile": "BsmryGBLAW0gkLgs4Fw1X8",
+  "figmaGroup": "689:4990",
+  "scope": ["first", "precisa", "precisa-short", "evolution", "evolution-short", "elife"],
+  "restingLayout": {
+    "referenceWidth": 1440,
+    "photoHeight": 286.547,
+    "edgeToEdge": true,
+    "evolutionOverlap": 14.254,
+    "labelsVisible": false
+  },
+  "bannersLeftToRight": [
+    {
+      "node": "689:4996",
+      "photo": "ca299.png",
+      "products": ["ai-lens"],
+      "evidence": "Main component 1:790 click destination 1:590 identifies Novar AiLens.",
+      "cropPercent": { "width": 134.26, "height": 204.56, "left": -14.4, "top": -40.54 }
+    },
+    {
+      "node": "689:4995",
+      "photo": "1f46b.png",
+      "products": ["precisa", "precisa-short"],
+      "hoverVariant": "1:1977"
+    },
+    {
+      "node": "689:4993",
+      "photo": "ef547.png",
+      "products": ["evolution", "evolution-short"],
+      "hoverVariant": "1:1986"
+    },
+    {
+      "node": "689:4994",
+      "photo": "43874.png",
+      "products": ["elife"],
+      "hoverVariant": "1:1995"
+    }
+  ],
+  "sharedAssets": { "underlay": "f9381.png", "cta": "dd7d5.svg", "directory": "src/Novar.Web/wwwroot/media/figma" },
+  "assetVerification": "Existing local files matched fresh Figma exports byte-for-byte. No artwork was redrawn or replaced.",
+  "interaction": {
+    "userRequestedAdaptation": "Repeated banners group both product variants; reveal separate links and blur the photograph on hover.",
+    "nativeFallback": "Details/summary supports tap, Enter and Space without JavaScript. Escape, outside pointer and focus exit dismiss the enhanced choices.",
+    "visualReference": "Hover variants use 2.5px photo blur, white Poppins names and the original CTA SVG.",
+    "implementationAdaptation": "Two-option groups use smaller names and a subtle violet contrast layer; narrow layouts use a horizontal photo strip. Current-page links remain grouped and are marked aria-current.",
+    "motion": "Native CSS filter transition (300ms ease-out), disabled for reduced motion; no exported Figma keyframe timeline was available."
+  }
+}

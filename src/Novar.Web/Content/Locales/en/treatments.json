@@ -1,0 +1,239 @@
+{
+  "sourceNode": "961:9641",
+  "titleLead": "Did you know you can",
+  "titleStrong": "enhance your lenses?",
+  "intro": [
+    {
+      "text": "Lens "
+    },
+    {
+      "text": "treatments",
+      "emphasis": true
+    },
+    {
+      "text": " for ophthalmic lenses are "
+    },
+    {
+      "text": "advanced technologies",
+      "emphasis": true
+    },
+    {
+      "text": " applied to lens surfaces to improve their "
+    },
+    {
+      "text": "functionality",
+      "emphasis": true
+    },
+    {
+      "text": " , "
+    },
+    {
+      "text": "durability",
+      "emphasis": true
+    },
+    {
+      "text": " and "
+    },
+    {
+      "text": "comfort",
+      "emphasis": true
+    },
+    {
+      "text": " visually"
+    }
+  ],
+  "heroImage": "74f40.png",
+  "tabs": [
+    {
+      "id": "uv",
+      "label": "UV Protection",
+      "available": true
+    },
+    {
+      "id": "blue-tech",
+      "label": "Blue Tech",
+      "available": true
+    },
+    {
+      "id": "antirraya",
+      "label": "Anti-scratch",
+      "available": true
+    },
+    {
+      "id": "polarizado",
+      "label": "Polarized",
+      "available": true
+    },
+    {
+      "id": "hidrofobico",
+      "label": "Hydrophobic",
+      "available": true
+    },
+    {
+      "id": "fotosensible",
+      "label": "Photochromic",
+      "available": true
+    },
+    {
+      "id": "ilux",
+      "label": "Anti-reflective",
+      "available": true
+    }
+  ],
+  "details": [
+    {
+      "id": "uv",
+      "sourceNode": "961:9647",
+      "name": "UV Protection",
+      "description": "NOVAR lenses help reduce eye exposure to ultraviolet rays, providing added care and visual comfort during outdoor activities and sun exposure.",
+      "image": "16fed.png",
+      "benefits": [
+        "Clear when worn",
+        "100% UV blocking",
+        "Invisible protection"
+      ]
+    },
+    {
+      "id": "blue-tech",
+      "sourceNode": "961:9088",
+      "name": "Blue Tech",
+      "description": "NOVAR BLUE TECH combines reflective protection technology with in-mass absorption technology in a single lens to improve lens performance and inhibit blue-violet light that may cause AMD and long-term retinal damage.",
+      "image": "f0cf4.png",
+      "benefits": [
+        "Better rest",
+        "Less eye strain",
+        "Ideal for screens"
+      ]
+    },
+    {
+      "id": "antirraya",
+      "sourceNode": "961:9374",
+      "name": "Anti-scratch",
+      "description": "This new, exclusive, state-of-the-art nanolayer technology protects ophthalmic lens surfaces from scratches, abrasions, and exposure to common household and industrial chemicals such as alcohol and solvents, which can seriously degrade lens surfaces.",
+      "image": "3dd09.png",
+      "benefits": [
+        "Greater durability",
+        "More durable surface",
+        "Maintains clarity"
+      ]
+    },
+    {
+      "id": "polarizado",
+      "sourceNode": "967:9925",
+      "name": "Polarized",
+      "description": "ADVENTRA is anti-glare technology that reduces reflections from surfaces. It is designed to improve contrast and reduce glare during outdoor activities.",
+      "image": "8af8d.png",
+      "benefits": [
+        "Maximum clarity",
+        "Filters reflected light",
+        "More comfortable vision outdoors"
+      ]
+    },
+    {
+      "id": "hidrofobico",
+      "sourceNode": "961:8801",
+      "name": "Hydrophobic",
+      "description": "Hydrophobic treatment is an advanced technology applied to lenses to repel water and keep it from adhering to the surface. It creates a protective layer that reduces water droplets, helping maintain clear vision in rain or humidity. It also helps keep lenses clean longer by making it harder for dust and dirt to adhere.",
+      "image": "dd2a0.png",
+      "benefits": [
+        "Stays clean",
+        "Water does not adhere",
+        "Maintains clarity"
+      ]
+    },
+    {
+      "id": "fotosensible",
+      "sourceNode": "967:10198",
+      "name": "Photochromic",
+      "description": "Additional technology helps lenses adapt to different environments as lighting changes. They remain clear indoors and darken when exposed to sunlight.",
+      "image": "23aae.png",
+      "benefits": [
+        "Stays clean",
+        "Water does not adhere",
+        "Maintains clarity"
+      ]
+    },
+    {
+      "id": "ilux",
+      "sourceNode": "961:8420",
+      "name": "iLUX anti-reflective treatment",
+      "description": "Anti-reflective treatment reduces distracting reflections on lens surfaces, improving visual clarity and appearance. It is suitable for people who work in front of screens, drive at night, or want clearer vision in different lighting conditions. It also reduces glare and improves light transmission for a more comfortable, relaxed visual experience.",
+      "image": "b6e78.png",
+      "benefits": [
+        "Greater durability",
+        "More durable surface",
+        "Maintains clarity"
+      ]
+    }
+  ],
+  "comparisonLabel": "Comparison",
+  "comparisonTitle": "What does each treatment do?",
+  "comparison": [
+    {
+      "number": "01",
+      "name": "UV Protection",
+      "description": "Blocks the sun’s ultraviolet rays.",
+      "benefits": [
+        "100% UV blocking",
+        "Clear when worn"
+      ]
+    },
+    {
+      "number": "02",
+      "name": "Blue Tech",
+      "description": "Reduces eye strain from blue light emitted by screens.",
+      "benefits": [
+        "Less eye strain",
+        "Ideal for screens"
+      ]
+    },
+    {
+      "number": "03",
+      "name": "Anti-scratch",
+      "description": "Protects your lens surface.",
+      "benefits": [
+        "Greater durability",
+        "More durable surface"
+      ]
+    },
+    {
+      "number": "04",
+      "name": "Polarized",
+      "description": "Reduces glare.",
+      "benefits": [
+        "Automatic tint change",
+        "UV protection included"
+      ]
+    },
+    {
+      "number": "05",
+      "name": "Hydrophobic",
+      "description": "Repels water.",
+      "benefits": [
+        "Easy to clean",
+        "Fewer smudges"
+      ]
+    },
+    {
+      "number": "06",
+      "name": "Photochromic",
+      "description": "Adapts to light.",
+      "benefits": [
+        "Darkens outdoors",
+        "Clear indoors"
+      ]
+    },
+    {
+      "number": "07",
+      "name": "Anti-reflective",
+      "description": "Reduces distracting reflections.",
+      "benefits": [
+        "Greater clarity",
+        "12 layers"
+      ]
+    }
+  ],
+  "sophiaTitle": "Not sure which one to choose?",
+  "sophiaDescription": "Talk to Sophia; she can help you combine treatments for your routine.",
+  "sophiaAction": "Talk to Sophia"
+}

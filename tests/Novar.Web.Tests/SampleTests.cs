@@ -102,7 +102,8 @@ public sealed class SampleTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task DemoFormsBlockImplicitSubmissionAndHaveNoNamedPayload()
     {
         var html = await client.GetStringAsync("/");
-        var forms = Regex.Matches(html, "<form[\\s\\S]*?</form>");
+        var forms = Regex.Matches(html, "<form[\\s\\S]*?</form>")
+            .Where(form => !form.Value.Contains("language-form", StringComparison.Ordinal)).ToArray();
         Assert.Single(forms);
         foreach (Match form in forms)
         {
@@ -129,7 +130,7 @@ public sealed class SampleTests : IClassFixture<WebApplicationFactory<Program>>
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/"));
         Assert.DoesNotContain("world-poster.png", html);
         Assert.DoesNotContain("long-testimonial", html);
-        Assert.Single(Regex.Matches(html, "nunca había usado con inteligencia artificial"));
+        Assert.DoesNotContain("nunca había usado con inteligencia artificial", html);
         Assert.DoesNotContain("newsletter-email", html);
         Assert.DoesNotContain("Ver muestra: Novar First", html);
         Assert.DoesNotContain("Muestra para revisión: conocé Novar First", html);
@@ -199,14 +200,15 @@ public sealed class SampleTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task WorldQuoteIsOnlyInsidePurpleCardAndAccessible()
+    public async Task WorldGlassesReplaceTheQuoteWithoutChangingTestimonials()
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/"));
         Assert.Contains("data-home-revision=\"home-fidelity-v2\"", html);
-        var quote = Regex.Match(html, "<blockquote class=\"world-shape-tinted world-quote\"[\\s\\S]*?</blockquote>").Value;
-        Assert.Contains("data-figma-node=\"1072:242\"", quote);
-        Assert.Contains("Los mejores lentes progresivos que probé", quote);
-        Assert.Contains("class=\"world-quote-mark\" aria-hidden=\"true\"", quote);
+        var world = Regex.Match(html, "<section class=\"world-section\"[\\s\\S]*?</section>").Value;
+        Assert.Contains("data-figma-node=\"1072:242\"", world);
+        Assert.Contains("src=\"/media/home/optimized/world-spectra-glasses.webp\" alt=\"\"", world);
+        Assert.DoesNotContain("Los mejores lentes progresivos que probé", world);
+        Assert.DoesNotContain("world-quote", world);
         Assert.DoesNotContain("class=\"world-visual\" aria-hidden=\"true\"", html);
         Assert.DoesNotContain("long-testimonial", html);
     }

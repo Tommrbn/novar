@@ -70,12 +70,12 @@
     ],
     "questions": [
       {
-        "question": "¿Qué es Novar Kriptok Blended?",
-        "answer": null
+        "question": "¿Qué es Kriptok Blended?",
+        "answer": "Es un bifocal con segmento integrado de forma más discreta."
       },
       {
-        "question": "¿Para quién está recomendado Novar Kriptok Blended?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que prefieren bifocales y buscan una estética más limpia."
       },
       {
         "question": "¿Qué lo diferencia?",
@@ -154,12 +154,12 @@
     ],
     "questions": [
       {
-        "question": "¿Qué es Novar Ultex Blended?",
-        "answer": null
+        "question": "¿Qué es Ultex Blended?",
+        "answer": "Es un lente bifocal fusionado con segmento redondo."
       },
       {
-        "question": "¿Para quién está recomendado Novar Ultex Blended?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que necesitan lejos y cerca en una solución bifocal tradicional."
       },
       {
         "question": "¿Qué lo diferencia?",
@@ -239,11 +239,11 @@
     "questions": [
       {
         "question": "¿Qué es Novar Freeline?",
-        "answer": null
+        "answer": "Es un bifocal diseñado para mejorar la invisibilidad del segmento."
       },
       {
-        "question": "¿Para quién está recomendado Novar Freeline?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que necesitan bifocales pero prefieren una estética más discreta."
       },
       {
         "question": "¿Qué lo diferencia?",
@@ -323,15 +323,15 @@
     "questions": [
       {
         "question": "¿Qué es Novar Office?",
-        "answer": null
+        "answer": "Es un lente ocupacional para visión cercana e intermedia."
       },
       {
-        "question": "¿Para quién está recomendado Novar Office?",
-        "answer": null
+        "question": "¿Sirve para manejar?",
+        "answer": "No está pensado como reemplazo de un progresivo para todas las distancias; su foco principal es el entorno laboral."
       },
       {
         "question": "¿Qué lo diferencia?",
-        "answer": " Su comodidad en distancias de trabajo y su adaptación a distintas necesidades de oficina"
+        "answer": "Su comodidad en distancias de trabajo y su adaptación a distintas necesidades de oficina."
       }
     ]
   }

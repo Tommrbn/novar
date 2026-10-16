@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -29,7 +30,7 @@ public sealed class HidrofobicoTests(WebApplicationFactory<Program> factory) : I
         Assert.DoesNotContain("El agua no se adhiere", panel);
         Assert.Equal("Repele el agua.", content.Comparison[4].Description);
         Assert.Equal(new[] { "Fácil limpieza", "Menos marcas" }, content.Comparison[4].Benefits);
-        Assert.Contains("Polarizado e Hidrofóbico.", html);
+        Assert.DoesNotContain("Polarizado e Hidrofóbico.", html);
     }
 
     [Fact]
@@ -45,18 +46,27 @@ public sealed class HidrofobicoTests(WebApplicationFactory<Program> factory) : I
             Assert.DoesNotContain(" hidden", opening);
             Assert.DoesNotContain("aria-hidden", opening);
         }
-        Assert.Equal("07AABB40D63527D68CF71C894F967241109CF9BD5362C7BAF3FB9398FCC0883E",
+        Assert.Equal("08E6C116A0D2BE8B54F28FE173633514604A5A1E0B4F85CCA3D04E6FFF8D5EA5",
             Convert.ToHexString(SHA256.HashData(await client.GetByteArrayAsync("/js/treatments.js"))));
     }
 
     [Fact]
-    public async Task HidrofobicoUsesTheOriginalStaticPhotographAndCheckAssets()
+    public async Task HidrofobicoUsesMutedNativeVideoWithOriginalPosterAndCheckAssets()
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/tratamientos"));
         var panel = Regex.Match(html, "<section id=\"hidrofobico\"[\\s\\S]*?</section>").Value;
-        Assert.Contains("src=\"/media/figma/dd2a0.png\"", panel);
-        Assert.Contains("width=\"2752\" height=\"1536\"", panel);
-        Assert.Contains("alt=\"Mujer con gafas mojadas:", panel);
+        var video = Regex.Match(panel, "<video\\b[^>]*>").Value;
+        Assert.NotEmpty(video);
+        Assert.Contains("data-treatment-desktop=\"/media/treatments/optimized/hidrofobico-desktop.mp4\"", video);
+        Assert.Contains("/media/treatments/optimized/hidrofobico-poster-1280.webp", panel);
+        Assert.Contains("aria-label=\"Hidrofóbico\"", video);
+        Assert.Contains(" muted", video);
+        Assert.DoesNotContain(" autoplay", video);
+        Assert.Contains(" playsinline", video);
+        Assert.Contains("preload=\"none\"", video);
+        Assert.Contains(" loop", video);
+        foreach (var absent in new[] { " controls", "data-uv-video", "data-home-media", "onmouseenter", "aria-hidden", "tabindex=\"-1\"" })
+            Assert.DoesNotContain(absent, video, StringComparison.OrdinalIgnoreCase);
         Assert.Equal(3, Regex.Matches(panel, "src=\"/media/figma/7bc95.svg\"").Count);
         foreach (var absent in new[] { "16fed.png", "8af8d.png", "b9b6a.svg", "<button", "<input", "type=\"range\"" })
             Assert.DoesNotContain(absent, panel);
@@ -73,7 +83,10 @@ public sealed class HidrofobicoTests(WebApplicationFactory<Program> factory) : I
     {
         var css = await client.GetStringAsync("/css/treatments.css");
         Assert.Contains(".treatment-hidrofobico-photo { height: 680px; margin-top: -43px; overflow: hidden; }", css);
-        Assert.Contains(".treatment-hidrofobico-image-plane { width: 1684px; height: 937.696px; margin-left: calc(50% - 743px); }", css);
+        Assert.Contains(".treatment-hidrofobico-image-plane { width: 100%; height: 100%; margin-left: 0; }", css);
+        Assert.Equal(1, Regex.Matches(css, @"\.treatment-hidrofobico-image-plane\s*\{").Count);
+        Assert.Contains(".treatment-hidrofobico-photo { height: 580px; }", css);
+        Assert.Contains(".treatment-hidrofobico-photo { height: 380px; margin-top: -24px; }", css);
         Assert.Contains(".treatment-hidrofobico-image { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }", css);
         Assert.Contains(".treatments-content[data-active-treatment=\"hidrofobico\"] .treatments-tabs-active { left: 622.792px; top: 51px; }", css);
         Assert.Contains(".treatments-content[data-active-treatment=\"hidrofobico\"] .treatments-tabs a[aria-selected=\"true\"] { font-weight: 700; }", css);
@@ -82,6 +95,26 @@ public sealed class HidrofobicoTests(WebApplicationFactory<Program> factory) : I
         Assert.Contains(".treatments-page[data-active-treatment=\"hidrofobico\"] .treatments-linkedin-blue-tech { display: block; }", css);
         Assert.Contains(".treatment-hidrofobico-description { margin-top: 0; font-size: 14px; line-height: 21px; }", css);
         Assert.Contains(".treatment-hidrofobico-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }", css);
+    }
+
+    [Fact]
+    public async Task HidrofobicoOriginalVideoSupportsHeadRangeAndExactHash()
+    {
+        const string path = "/media/treatments/hidrofobico.mp4";
+        const long expectedLength = 39_089_249;
+        using var head = new HttpRequestMessage(HttpMethod.Head, path);
+        using var headResponse = await client.SendAsync(head);
+        Assert.Equal(HttpStatusCode.OK, headResponse.StatusCode);
+        Assert.Equal(expectedLength, headResponse.Content.Headers.ContentLength);
+        Assert.Equal("video/mp4", headResponse.Content.Headers.ContentType?.MediaType);
+        using var range = new HttpRequestMessage(HttpMethod.Get, path);
+        range.Headers.Range = new RangeHeaderValue(0, 0);
+        using var rangeResponse = await client.SendAsync(range);
+        Assert.Equal(HttpStatusCode.PartialContent, rangeResponse.StatusCode);
+        Assert.Equal(expectedLength, rangeResponse.Content.Headers.ContentRange?.Length);
+        Assert.Equal(new byte[] { 0 }, await rangeResponse.Content.ReadAsByteArrayAsync());
+        Assert.Equal("E27BB5F937248ADFDCD3A6B7C0B24CBBAE4765532E5D5F5A6160B3FAE6C07C1E",
+            Convert.ToHexString(SHA256.HashData(await client.GetByteArrayAsync(path))));
     }
 
     [Theory]

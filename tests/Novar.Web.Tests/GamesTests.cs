@@ -12,6 +12,26 @@ public sealed class GamesTests(WebApplicationFactory<Program> factory) : IClassF
     private readonly HttpClient client = factory.CreateClient();
 
     [Fact]
+    public async Task GamesSelectionKeepsAccessibleStaticDefaultAndLoadsControllerFirst()
+    {
+        var html = WebUtility.HtmlDecode(await client.GetStringAsync("/juegos"));
+        Assert.Contains("data-featured-label=\"Destacado\"", html);
+        Assert.Single(Regex.Matches(html, "class=\"game-card game-card-featured\""));
+        Assert.Matches("data-game-card=\"intruso\"[^>]*aria-pressed=\"true\"[^>]*disabled", html);
+        Assert.Equal(2, Regex.Matches(html, "data-game-card=\"(?:codigo|trivia)\"[^>]*aria-pressed=\"false\"[^>]*disabled").Count);
+        Assert.True(html.IndexOf("/js/games-selection.js", StringComparison.Ordinal) < html.IndexOf("/js/games.js", StringComparison.Ordinal));
+        Assert.Contains("<noscript>", html);
+        var css = await client.GetStringAsync("/css/games.css");
+        Assert.Contains(".game-art-intruso .game-dot { background: #a78bca; }", css);
+        Assert.DoesNotContain(".game-card-featured .game-dot {", css);
+        var selection = await client.GetStringAsync("/js/games-selection.js");
+        Assert.Contains("grid.append(entry.card)", selection);
+        Assert.Contains("preventScroll: true", selection);
+        foreach (var forbidden in new[] { "innerHTML", "cloneNode", "scrollIntoView", "fetch(", "localStorage", "sessionStorage" })
+            Assert.DoesNotContain(forbidden, selection);
+    }
+
+    [Fact]
     public async Task GamesRendersAllOriginalCardsAndInstructionalCopy()
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/juegos"));
@@ -69,7 +89,7 @@ public sealed class GamesTests(WebApplicationFactory<Program> factory) : IClassF
             Assert.NotEmpty(button);
             Assert.DoesNotContain("data-pending", button);
         }
-        Assert.DoesNotContain("<form", html);
+        Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
         var js = await client.GetStringAsync("/js/games.js");
         Assert.Contains("function selectPanel(id)", js);
         Assert.Contains("if (!active('codigo')", js);

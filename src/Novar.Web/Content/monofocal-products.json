@@ -73,11 +73,11 @@
     "questions": [
       {
         "question": "¿Qué es Novar Geo?",
-        "answer": null
+        "answer": "Es un monofocal personalizado de mayor precisión."
       },
       {
-        "question": "¿Para quién está recomendado Novar Geo ?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que buscan una experiencia monofocal más avanzada."
       },
       {
         "question": "¿Qué lo diferencia?",
@@ -163,12 +163,12 @@
     ],
     "questions": [
       {
-        "question": "¿Qué es Novar Single Vision?",
-        "answer": null
+        "question": "¿Qué es Single Vision?",
+        "answer": "Es un lente monofocal para corregir la visión en una sola distancia."
       },
       {
-        "question": "¿Para quién está recomendado Novar Single Vision?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios con miopía, hipermetropía o astigmatismo que no necesitan progresivos."
       },
       {
         "question": "¿Qué lo diferencia?",
@@ -429,11 +429,11 @@
     "questions": [
       {
         "question": "¿Qué es Novar Slim?",
-        "answer": null
+        "answer": "Es un lente monofocal pensado para reducir espesor en altas potencias."
       },
       {
-        "question": "¿Para quién está recomendado Novar Slim?",
-        "answer": null
+        "question": "¿Para quién está recomendado?",
+        "answer": "Para usuarios que buscan lentes más finos, livianos y estéticos."
       },
       {
         "question": "¿Qué lo diferencia?",

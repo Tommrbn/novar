@@ -1,58 +1,89 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Localization;
 using Novar.Web.Models;
 using Novar.Web.Services;
+using System.Globalization;
 
 namespace Novar.Web.Controllers;
 
-public sealed class HomeController(SiteContent content) : Controller
+public sealed class HomeController(SiteContent content, SiteText text) : Controller
 {
     [HttpGet("/")]
-    public IActionResult Index() => View(content.Home);
+    public IActionResult Index() => View(content.ForCulture(CultureInfo.CurrentUICulture).Home);
 
     [HttpGet("/lentes/{slug}")]
     public IActionResult Product(string slug)
     {
-        if (slug == content.First.Slug)
+        var localized = content.ForCulture(CultureInfo.CurrentUICulture);
+        if (slug == localized.First.Slug)
         {
-            return View("First", content.First);
+            return View("First", localized.First);
         }
 
-        if (content.PremiumProducts.TryGetValue(slug, out var premium))
+        if (localized.PremiumProducts.TryGetValue(slug, out var premium))
         {
             return View("Premium", premium);
         }
 
-        if (content.ProgressiveProducts.TryGetValue(slug, out var progressive))
+        if (localized.ProgressiveProducts.TryGetValue(slug, out var progressive))
         {
             return View("ProgressiveProduct", progressive);
         }
 
-        if (content.MonofocalProducts.TryGetValue(slug, out var monofocal))
+        if (localized.MonofocalProducts.TryGetValue(slug, out var monofocal))
         {
             return View("MonofocalProduct", monofocal);
         }
 
-        if (content.BifocalOccupationalProducts.TryGetValue(slug, out var bifocalOccupational))
+        if (localized.BifocalOccupationalProducts.TryGetValue(slug, out var bifocalOccupational))
         {
             return View("BifocalOccupationalProduct", bifocalOccupational);
         }
 
-        return content.PlannedProducts.Contains(slug)
-            ? View("Pending", new PendingPage("Ficha en preparación"))
+        return localized.PlannedProducts.Contains(slug)
+            ? View("Pending", new PendingPage(text["Ficha en preparación"]))
             : NotFound();
     }
 
     [HttpGet("/lentes")]
-    public IActionResult Catalog() => View(content.LensFinder);
+    public IActionResult Catalog() => View(content.ForCulture(CultureInfo.CurrentUICulture).LensFinder);
 
     [HttpGet("/sobre-nosotros")]
-    public IActionResult About() => View(content.About);
+    public IActionResult About() => View(content.ForCulture(CultureInfo.CurrentUICulture).About);
 
     [HttpGet("/tratamientos")]
-    public IActionResult Treatments() => View(content.Treatments);
+    public IActionResult Treatments() => View(content.ForCulture(CultureInfo.CurrentUICulture).Treatments);
 
     [HttpGet("/juegos")]
-    public IActionResult Games() => View(content.Games);
+    public IActionResult Games() => View(content.ForCulture(CultureInfo.CurrentUICulture).Games);
+
+    [HttpPost("/language")]
+    [ValidateAntiForgeryToken]
+    public IActionResult ChangeLanguage([FromForm] string? culture, [FromForm] string? returnUrl)
+    {
+        var selected = SiteText.NormalizeCulture(culture) ?? "es";
+        Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(selected)),
+            new CookieOptions
+            {
+                Path = "/",
+                HttpOnly = true,
+                IsEssential = true,
+                SameSite = SameSiteMode.Lax,
+                Secure = Request.IsHttps,
+                Expires = DateTimeOffset.UtcNow.AddYears(1)
+            });
+
+        return LocalRedirect(IsSafeLocalReturnUrl(returnUrl) ? returnUrl! : "/");
+    }
+
+    private bool IsSafeLocalReturnUrl(string? returnUrl) =>
+        !string.IsNullOrWhiteSpace(returnUrl)
+        && returnUrl.StartsWith("/", StringComparison.Ordinal)
+        && !returnUrl.StartsWith("//", StringComparison.Ordinal)
+        && !returnUrl.StartsWith("/\\", StringComparison.Ordinal)
+        && Url.IsLocalUrl(returnUrl);
 
     [Route("/estado/{code:int}")]
     public IActionResult Status(int code)

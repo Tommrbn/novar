@@ -12,6 +12,38 @@ public sealed class BlueTechTests(WebApplicationFactory<Program> factory) : ICla
     private readonly HttpClient client = factory.CreateClient();
 
     [Fact]
+    public async Task BlueTechVideoFillsPreservedPhotoSectionGeometry()
+    {
+        // Source-contract regression only: browser coverage is verified separately.
+        var css = await client.GetStringAsync("/css/treatments.css");
+        var rules = Regex.Matches(css, @"\.treatment-blue-tech-image\s*\{([^}]*)\}");
+        var videoRule = Assert.Single(rules.Cast<Match>()).Value;
+        Assert.Contains("width: 100%", videoRule);
+        Assert.Contains("height: 100%", videoRule);
+        Assert.Contains("object-fit: cover", videoRule);
+        Assert.Contains(".treatment-blue-tech-photo { height: 680px; margin-top: -43px; overflow: hidden; }", css);
+        Assert.Contains(".treatment-blue-tech-photo { height: 580px; }", css);
+        Assert.Contains(".treatment-blue-tech-photo { height: 380px; margin-top: -24px; }", css);
+    }
+
+    [Fact]
+    public async Task BlueTechVideoFramesFromTopWithoutChangingPosterOrBandPolicy()
+    {
+        var css = await client.GetStringAsync("/css/treatments.css");
+        var video = Assert.Single(Regex.Matches(css, @"\.treatment-blue-tech-image\[data-treatment-video\]\s*\{([^}]*)\}").Cast<Match>()).Value;
+        Assert.Contains("object-position: 50% 0%", video);
+        foreach (var absent in new[] { "height:", "width:", "transform:", "object-fit:" })
+            Assert.DoesNotContain(absent, video);
+        var shared = Assert.Single(Regex.Matches(css, @"\.treatment-blue-tech-image\s*\{([^}]*)\}").Cast<Match>()).Value;
+        Assert.Contains("object-fit: cover", shared);
+        Assert.DoesNotContain("object-position:", shared);
+        Assert.Contains(".treatment-blue-tech-photo { height: 680px; margin-top: -43px; overflow: hidden; }", css);
+        Assert.Contains(".treatment-blue-tech-photo { height: 580px; }", css);
+        Assert.Contains(".treatment-blue-tech-photo { height: 380px; margin-top: -24px; }", css);
+        Assert.Contains("height: clamp(220px, 56.25vw, 580px)", css);
+    }
+
+    [Fact]
     public async Task BlueTechPreservesSourceCopyAndItsDistinctOriginalImage()
     {
         var detail = Assert.Single(factory.Services.GetRequiredService<SiteContent>().Treatments.Details,
@@ -25,10 +57,25 @@ public sealed class BlueTechTests(WebApplicationFactory<Program> factory) : ICla
         Assert.Contains("data-figma-node=\"961:9082\"", panel);
         Assert.Contains(detail.Description, panel);
         Assert.All(detail.Benefits, benefit => Assert.Contains(benefit, panel));
-        Assert.Contains("/media/figma/f0cf4.png", panel);
+        Assert.Contains("/media/treatments/optimized/blue-tech-poster-1280.webp", panel);
         Assert.DoesNotContain("16fed.png", panel);
         Assert.DoesNotContain("<button", panel);
         Assert.DoesNotContain("type=\"range\"", panel);
+    }
+
+    [Fact]
+    public async Task BlueTechUsesAuthenticSilentAutoplayVideo()
+    {
+        var html = WebUtility.HtmlDecode(await client.GetStringAsync("/tratamientos"));
+        var panel = Regex.Match(html, "<section id=\"blue-tech\"[\\s\\S]*?</section>").Value;
+        var video = Regex.Match(panel, "<video[^>]*>").Value;
+        foreach (var attribute in new[] { "muted", "playsinline", "data-treatment-video", "preload=\"none\"" })
+            Assert.Contains(attribute, video);
+        Assert.DoesNotContain(" controls", video);
+        Assert.Contains(" loop", video);
+        Assert.Contains("data-treatment-fallback", panel);
+        Assert.Equal("6CC31686FF96B83D4D01512D0FFB7399C9C0818A3B996AB86F47E1B632893EBC",
+            Convert.ToHexString(SHA256.HashData(await client.GetByteArrayAsync("/media/treatments/blue-tech.mp4"))));
     }
 
     [Fact]

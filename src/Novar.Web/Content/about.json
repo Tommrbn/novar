@@ -4,7 +4,7 @@
   "titleLead": "Novar",
   "titleRest": "en el mundo",
   "sectionTitle": "Sobre Nosotros",
-  "tagline": "Tecnología óptica pensada para transformar la manera de ver.",
+  "tagline": "Innovación óptica pensada para transformar la experiencia visual.",
   "introLead": "Creamos la tecnología",
   "introRest": "para que puedas ver el mundo con más claridad, belleza y confianza.",
   "paragraphs": [
@@ -13,16 +13,16 @@
   ],
   "pillars": [
     {
-      "title": "Precisión",
-      "description": "Tecnología que optimiza cada etapa para lograr resultados más exactos, consistentes y confiables."
+      "title": "Consistencia",
+      "description": "Procesos optimizados para alcanzar resultados uniformes, confiables y de alta calidad."
     },
     {
       "title": "Eficiencia",
-      "description": "Soluciones conectadas que simplifican procesos, reducen tareas manuales y mejoran la productividad."
+      "description": "Soluciones integradas que agilizan el trabajo, reducen tareas manuales y potencian la productividad."
     },
     {
       "title": "Crecimiento",
-      "description": "Herramientas flexibles y escalables que acompañan a cada laboratorio en su evolución y expansión."
+      "description": "Herramientas flexibles y escalables que evolucionan junto a las necesidades de cada laboratorio."
     }
   ],
   "valuesEyebrow": "Nuestros valores",
@@ -30,19 +30,19 @@
   "values": [
     {
       "title": "Innovación",
-      "description": "Desarrollamos tecnologías exclusivas que ningún otro fabricante ofrece."
+      "description": "Exploramos nuevas formas de llevar la óptica más allá de los estándares convencionales."
     },
     {
       "title": "Precisión",
-      "description": "Cada lente se diseña y fabrica con los más altos estándares de calidad óptica."
+      "description": "Cada lente responde a rigurosos criterios de calidad para asegurar un desempeño óptico superior."
     },
     {
       "title": "Experiencia",
-      "description": "Más de dos décadas perfeccionando la ciencia y el arte de los lentes oftálmicos."
+      "description": "Más de dos décadas de conocimiento aplicado al desarrollo y evolución de soluciones oftálmicas."
     },
     {
       "title": "Diseño",
-      "description": "Creemos que la tecnología y la estética pueden coexistir en perfecta armonía."
+      "description": "Integramos funcionalidad y estética para crear productos donde cada detalle tiene un propósito."
     }
   ]
 }

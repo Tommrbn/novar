@@ -1,4 +1,6 @@
 using System.Net;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Hosting;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -44,18 +46,26 @@ public sealed class IluxTests(WebApplicationFactory<Program> factory) : IClassFi
             Assert.DoesNotContain(" hidden", opening);
             Assert.DoesNotContain("aria-hidden", opening);
         }
-        Assert.Equal("07AABB40D63527D68CF71C894F967241109CF9BD5362C7BAF3FB9398FCC0883E",
+        Assert.Equal("08E6C116A0D2BE8B54F28FE173633514604A5A1E0B4F85CCA3D04E6FFF8D5EA5",
             Convert.ToHexString(SHA256.HashData(await client.GetByteArrayAsync("/js/treatments.js"))));
     }
 
     [Fact]
-    public async Task IluxUsesTheAuthenticStaticPhotoWithoutInventedComparisonControls()
+    public async Task IluxUsesSilentAutoplayVideoWithoutInventedComparisonControls()
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/tratamientos"));
         var panel = Regex.Match(html, "<section id=\"ilux\"[\\s\\S]*?</section>").Value;
-        Assert.Contains("src=\"/media/figma/b6e78.png\"", panel);
-        Assert.Contains("width=\"2752\" height=\"1536\"", panel);
-        Assert.Contains("alt=\"Hombre con gafas:", panel);
+        var video = Assert.Single(Regex.Matches(panel, "<video\\b[^>]*>").Cast<Match>()).Value;
+        foreach (var attribute in new[] { " muted", " playsinline", "preload=\"none\"", "aria-labelledby=\"treatment-ilux-title\"" })
+            Assert.Contains(attribute, video);
+        Assert.DoesNotContain(" autoplay", video);
+        Assert.DoesNotContain(" controls", video);
+        Assert.Contains(" loop", video);
+        Assert.Contains("data-treatment-desktop=\"/media/treatments/optimized/ilux-desktop.mp4\"", panel);
+        Assert.DoesNotContain("treatment-ilux-image", panel);
+        Assert.DoesNotContain("/js/treatment-ilux.js", html);
+        Assert.Contains("/media/treatments/optimized/ilux-poster-1280.webp", panel);
+        Assert.Contains("data-treatment-fallback", panel);
         Assert.Equal(3, Regex.Matches(panel, "src=\"/media/figma/7bc95.svg\"").Count);
         foreach (var absent in new[] { "16fed.png", "23aae.png", "b9b6a.svg", "<button", "<input", "type=\"range\"", "role=\"slider\"" })
             Assert.DoesNotContain(absent, panel);
@@ -68,12 +78,44 @@ public sealed class IluxTests(WebApplicationFactory<Program> factory) : IClassFi
     }
 
     [Fact]
-    public async Task IluxPreservesItsDistinctCropWeightsAndScopedOriginalBranding()
+    public async Task SuppliedIluxVideoRetainsExactBytesAndSupportsHeadAndRange()
+    {
+        const long length = 27169344;
+        var environment = factory.Services.GetRequiredService<IWebHostEnvironment>();
+        var file = Path.Combine(environment.WebRootPath, "media", "treatments", "ilux-antirreflejo.mp4");
+        Assert.True(File.Exists(file));
+        await using (var stream = File.OpenRead(file))
+        {
+            Assert.Equal(length, stream.Length);
+            Assert.Equal("CD26BF7D9F0EAB9697DB56D7334C16B2A3D917B0F2C9D00A2A90AF42DBBDA97F",
+                Convert.ToHexString(await SHA256.HashDataAsync(stream)));
+        }
+        const string path = "/media/treatments/ilux-antirreflejo.mp4";
+        using var head = new HttpRequestMessage(HttpMethod.Head, path);
+        using var response = await client.SendAsync(head);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(length, response.Content.Headers.ContentLength);
+        Assert.Equal("video/mp4", response.Content.Headers.ContentType?.MediaType);
+        using var range = new HttpRequestMessage(HttpMethod.Get, path);
+        range.Headers.Range = new RangeHeaderValue(0, 0);
+        using var partial = await client.SendAsync(range);
+        Assert.Equal(HttpStatusCode.PartialContent, partial.StatusCode);
+        Assert.Equal(length, partial.Content.Headers.ContentRange?.Length);
+        Assert.Equal("video/mp4", partial.Content.Headers.ContentType?.MediaType);
+        Assert.Single(await partial.Content.ReadAsByteArrayAsync());
+    }
+
+    [Fact]
+    public async Task IluxPreservesItsResponsiveBoxAndScopedOriginalBranding()
     {
         var css = await client.GetStringAsync("/css/treatments.css");
         Assert.Contains(".treatment-ilux-photo { height: 680px; margin-top: -43px; overflow: hidden; }", css);
-        Assert.Contains(".treatment-ilux-image-plane { position: relative; width: 1684px; height: 937.696px; margin-left: calc(50% - 844px); overflow: hidden; }", css);
-        Assert.Contains(".treatment-ilux-image { position: absolute; top: -18.69%; left: -10.79%; display: block; width: 121.63%; height: 121.92%; max-width: none; }", css);
+        Assert.Contains(".treatment-ilux-video { display: block; width: 100%; height: 100%; object-fit: cover; }", css);
+        Assert.Contains(".treatment-ilux-photo { height: 580px; }", css);
+        Assert.Contains(".treatment-ilux-photo { height: 380px; margin-top: -24px; }", css);
+        Assert.Contains("margin: -23px auto 0", css);
+        Assert.DoesNotContain(".treatment-ilux-image-plane", css);
+        Assert.DoesNotContain(".treatment-ilux-image {", css);
         Assert.Contains(".treatment-ilux-summary h2 strong { font-weight: 600; }", css);
         Assert.Contains(".treatments-content[data-active-treatment=\"ilux\"] .treatments-tabs-active { left: 939.792px; top: 51px; }", css);
         Assert.Contains(".treatments-content[data-active-treatment=\"ilux\"] .treatments-tabs a[aria-selected=\"true\"] { font-weight: 600; }", css);
@@ -95,5 +137,7 @@ public sealed class IluxTests(WebApplicationFactory<Program> factory) : IClassFi
         Assert.DoesNotContain("treatment-detail-ilux", html);
         Assert.DoesNotContain("treatments-ilux-v1", html);
         Assert.DoesNotContain("/media/figma/b6e78.png", html);
+        Assert.DoesNotContain("/media/treatments/ilux-antirreflejo.mp4", html);
+        Assert.DoesNotContain("/js/treatment-ilux.js", html);
     }
 }

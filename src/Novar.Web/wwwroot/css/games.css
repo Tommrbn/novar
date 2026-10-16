@@ -41,8 +41,8 @@
 .game-card-featured .game-card-badge { padding: 3.825px 11.475px; background: #3d1a7a; color: #fff; }
 .game-card-featured .game-art { height: 269.673px; margin-top: 11.475px; border: 1.913px solid rgb(196 168 240 / 40%); border-radius: 15.301px; box-shadow: 0 23.907px 28.689px rgb(61 26 122 / 25%); }
 .game-card-featured .game-dot-grid { top: 29.031px; left: calc(50% - 127.005px); grid-template-columns: repeat(7, 21.038px); grid-template-rows: repeat(6, 21.038px); gap: 17.21315px; }
-.game-card-featured .game-dot { background: #a78bca; }
-.game-card-featured .game-dot-intruder { background: #8f5bd0; box-shadow: 0 0 15.301px rgb(245 166 35 / 53%); }
+.game-art-intruso .game-dot { background: #a78bca; }
+.game-art-intruso .game-dot-intruder { background: #8f5bd0; box-shadow: 0 0 15.301px rgb(245 166 35 / 53%); }
 .game-card-featured .game-card-copy { padding: 19.126px 3.825px 0; }
 .game-card-featured .game-card-number { gap: 11.475px; line-height: 30.601px; }
 .game-card-featured .game-card-number::after { height: .956px; }

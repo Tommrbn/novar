@@ -1,15 +1,16 @@
 @model TreatmentDetail
 <section id="@Model.Id" class="treatment-detail treatment-detail-fotosensible" aria-labelledby="treatment-fotosensible-title" data-treatment-detail="fotosensible" data-figma-node="967:10192">
     <div class="treatment-fotosensible-summary" data-figma-node="@Model.SourceNode">
-        <div><p class="treatment-fotosensible-eyebrow">TRATAMIENTO</p><h2 id="treatment-fotosensible-title">@Model.Name</h2></div>
+        <div><p class="treatment-fotosensible-eyebrow">@T["TRATAMIENTO"]</p><h2 id="treatment-fotosensible-title">@Model.Name</h2></div>
         <p class="treatment-fotosensible-description">@Model.Description</p>
     </div>
-    <div class="treatment-fotosensible-photo" data-figma-node="967:10194">
+    <div class="treatment-fotosensible-photo" data-treatment-media data-figma-node="967:10194">
+        <video class="treatment-fotosensible-video" data-treatment-video loop muted playsinline preload="none" hidden aria-label="@Model.Name" data-treatment-desktop="/media/treatments/optimized/fotosensible-desktop.mp4" data-treatment-mobile="/media/treatments/optimized/fotosensible-mobile.mp4"></video>
         <div class="treatment-fotosensible-image-plane" data-figma-node="I967:10194;1:2038">
-            <img class="treatment-fotosensible-image" src="~/media/figma/@Model.Image" alt="Mujer con gafas oscuras y los ojos cerrados al aire libre, con cielo azul de fondo" width="2752" height="1536" />
+            <img data-treatment-fallback class="treatment-fotosensible-image" src="~/media/treatments/optimized/fotosensible-poster-1280.webp" srcset="/media/treatments/optimized/fotosensible-poster-640.webp 640w, /media/treatments/optimized/fotosensible-poster-1280.webp 1280w, /media/treatments/optimized/fotosensible-poster-1920.webp 1920w" sizes="(max-width: 767.98px) 125vw, 117vw" loading="lazy" decoding="async" alt="@T["Mujer con gafas oscuras y los ojos cerrados al aire libre, con cielo azul de fondo"]" width="2752" height="1536" />
         </div>
     </div>
-    <ul class="treatment-fotosensible-benefits" aria-label="Características de Fotosensible" data-figma-node="967:10326">
+    <ul class="treatment-fotosensible-benefits" aria-label="@T["Características de Fotosensible"]" data-figma-node="967:10326">
         @foreach (var benefit in Model.Benefits)
         {
             <li><span class="treatment-benefit-check"><img src="~/media/figma/7bc95.svg" alt="" /></span><span>@benefit</span></li>

@@ -69,7 +69,7 @@
         ];
     }
 
-    function createIntruso(seed = DEFAULT_SEED) {
+    function createIntruso(seed = DEFAULT_SEED, translate = (key, fallback) => fallback) {
         let attemptSeed = normalizeSeed(seed);
         function makeRounds(currentSeed) {
             const random = randomFrom(currentSeed);
@@ -110,7 +110,10 @@
             const correct = colors[choice] === correctColor;
             checked = true;
             score += correct ? 1 : 0;
-            feedback = { correct, message: correct ? '¡Encontraste el intruso!' : 'No era ese color.' };
+            feedback = {
+                correct,
+                message: translate(correct ? 'game.intruderCorrect' : 'game.intruderWrong', correct ? '¡Encontraste el intruso!' : 'No era ese color.')
+            };
             return true;
         }
         function next() {
@@ -125,7 +128,11 @@
         return Object.freeze({ getState, choose, next, restart });
     }
 
-    function createCodigo(seed = DEFAULT_SEED) {
+    function createCodigo(seed = DEFAULT_SEED, translate = (key, fallback, values = {}) => {
+        let text = fallback;
+        for (const [name, value] of Object.entries(values)) text = text.replaceAll(`{${name}}`, String(value));
+        return text;
+    }) {
         const random = randomFrom(normalizeSeed(seed) ^ 0x9e3779b9);
         const answers = Array.from({ length: ROUND_COUNT }, () => Math.floor(random() * 10));
         let index, score, checked, complete, feedback, draft;
@@ -158,7 +165,7 @@
             if (checked || complete || typeof value !== 'string') return false;
             draft = value;
             if (value.length !== 1 || value.charCodeAt(0) < 48 || value.charCodeAt(0) > 57) {
-                feedback = { kind: 'invalid', message: 'Ingresá una sola cifra del 0 al 9.' };
+                feedback = { kind: 'invalid', message: translate('game.codeInvalid', 'Ingresá una sola cifra del 0 al 9.') };
                 return false;
             }
             const correct = Number(value) === answers[index];
@@ -167,7 +174,9 @@
             feedback = {
                 kind: 'answer', correct,
                 answer: String(answers[index]),
-                message: correct ? '¡Número correcto!' : `El número era ${answers[index]}.`
+                message: correct
+                    ? translate('game.codeCorrect', '¡Número correcto!')
+                    : translate('game.codeWrong', 'El número era {answer}.', { answer: answers[index] })
             };
             return true;
         }

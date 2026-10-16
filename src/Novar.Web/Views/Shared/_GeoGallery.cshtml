@@ -1,0 +1,11 @@
+@model MonofocalProduct
+<section class="mono-gallery" aria-labelledby="mono-gallery-title" aria-roledescription="@T["carrusel"]" data-product-gallery data-gallery-revision="geo-gallery-v2">
+    <h2 id="mono-gallery-title">@Model.Name<img src="~/media/figma/@Model.GalleryRegistered" alt="®" /> @T["es"] <strong>@T["para vos"]</strong></h2>
+    <div class="mono-gallery-images" id="mono-geo-gallery-images" data-gallery-track>
+        @foreach (var photo in Model.Gallery)
+        {
+            <div data-gallery-image="@photo"><img src="~/media/figma/@photo" alt="@T["Persona con anteojos"] @Model.Name" loading="lazy" /></div>
+        }
+    </div>
+    <partial name="_GalleryMotionControl" />
+</section>

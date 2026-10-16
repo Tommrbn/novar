@@ -1,14 +1,17 @@
-/* User-requested motion: 5000 ms cadence / 650 ms transition, not Figma timing. */
+/* Shared product motion: a new composition every 2000 ms; no visible navigation. */
 (function () {
     "use strict";
 
-    const INTERVAL = 5000;
+    const INTERVAL = 2000;
     const DURATION = 650;
     const mounted = new WeakMap();
     const modulo = (value) => (value % 4 + 4) % 4;
+    const translate = typeof window !== "undefined" && typeof window.NovarText === "function"
+        ? window.NovarText
+        : (_key, fallback, values = {}) => fallback.replace(/\{(\w+)\}/g, (_, name) => values[name] ?? `{${name}}`);
 
     // Positions belong to visual slots; the four original DOM/image identities never move.
-    function layout(width, index) {
+    function layout(width, index, sharpOuter = false) {
         const compact = width < 1000;
         const widths = compact ? [155, 175, 175, 155] : [305.364, 344.462, 344.462, 305.364];
         const gap = compact ? 40 : 63.37;
@@ -18,7 +21,7 @@
             const position = {
                 slot, x, y: outer ? 0 : compact ? 30 : 71.46,
                 width: item, height: compact ? (outer ? 210 : 235) : (outer ? 345.136 : 388.952),
-                opacity: outer ? .5 : 1, filter: outer ? "blur(1.5px)" : "blur(0px)"
+                opacity: outer ? .5 : 1, filter: outer && !sharpOuter ? "blur(1.5px)" : "blur(0px)"
             };
             x += item + gap;
             return position;
@@ -45,7 +48,7 @@
         ];
     }
 
-    function createRotation(clock, onChange) {
+    function createRotation(clock, onChange, interval = INTERVAL) {
         const blockers = new Set(["offscreen"]);
         let index = 0;
         let timer = null;
@@ -54,7 +57,7 @@
             if (timer !== null) clock.clearTimeout(timer);
             timer = null;
             if (!destroyed && blockers.size === 0) {
-                timer = clock.setTimeout(() => advance(1, false), INTERVAL);
+                timer = clock.setTimeout(() => advance(1, false), interval);
             }
         }
         function advance(direction, manual = true) {
@@ -84,14 +87,15 @@
         if (mounted.has(root)) return mounted.get(root);
         const win = env.window;
         const doc = env.document;
-        const track = root.querySelector(".prg-gallery-images");
+        const track = root.querySelector("[data-gallery-track]") || root.querySelector(".prg-gallery-images");
         const controls = root.querySelector("[data-gallery-controls]");
         const pause = root.querySelector("[data-gallery-pause]");
+        const pauseEnabled = root.getAttribute("data-gallery-pause-control") !== "false";
         const previous = root.querySelector("[data-gallery-previous]");
         const next = root.querySelector("[data-gallery-next]");
         const status = root.querySelector("[data-gallery-status]");
         const cards = track ? Array.from(track.children) : [];
-        if (cards.length !== 4 || !controls || !pause || !previous || !next || !status) return null;
+        if (cards.length !== 4) return null;
 
         const reduced = win.matchMedia("(prefers-reduced-motion: reduce)");
         const lifecycle = new win.AbortController();
@@ -106,6 +110,7 @@
         let suspended = false;
         let generation = 0;
         let connection = 0;
+        const sharpOuter = root.getAttribute("data-gallery-sharp-outer") === "true";
 
         function stopAnimations() {
             generation += 1;
@@ -115,7 +120,7 @@
         }
         function render(index, manual, animate = true) {
             const before = positions;
-            const after = layout(width, index);
+            const after = layout(width, index, sharpOuter);
             stopAnimations();
             const current = generation;
             cards.forEach((card, identity) => {
@@ -127,7 +132,7 @@
                 }
             });
             positions = after;
-            if (manual) status.textContent = `Composición ${index + 1} de 4`;
+            if (manual && status) status.textContent = translate('gallery.composition', 'Composición {index} de 4', { index: index + 1 });
             if (animations.length) {
                 Promise.all(animations.map((animation) => animation.finished)).then(() => {
                     if (destroyed || current !== generation) return;
@@ -138,36 +143,52 @@
                 }).catch(() => { /* Cancelled by lifecycle, preference or resize. */ });
             }
         }
-        const rotation = createRotation(win, render);
+        const configuredInterval = Number(root.getAttribute("data-gallery-autoplay-interval"));
+        const rotation = createRotation(win, render, configuredInterval > 0 ? configuredInterval : INTERVAL);
         function syncPause() {
+            if (!pause) return;
             const paused = rotation.isBlocked("user");
             pause.setAttribute("aria-pressed", String(paused));
-            pause.textContent = paused ? "Reanudar" : "Pausar";
+            pause.textContent = translate(paused ? 'gallery.resume' : 'gallery.pause', paused ? 'Reanudar' : 'Pausar');
         }
         function preference() {
             rotation.block("reduced", reduced.matches);
             if (reduced.matches) stopAnimations();
         }
         function manual(direction) {
+            // Legacy galleries without a pause control stop autoplay on manual navigation.
+            if (!pauseEnabled) rotation.block("user", true);
             if (animations.length) pendingDirection = direction;
             else rotation.advance(direction);
         }
         function connect() {
             const currentConnection = ++connection;
             activeEvents = new win.AbortController();
-            const listen = (target, type, listener) => target.addEventListener(type, listener, { signal: activeEvents.signal });
-            listen(previous, "click", () => manual(-1));
-            listen(next, "click", () => manual(1));
-            listen(pause, "click", () => {
-                rotation.block("user", !rotation.isBlocked("user"));
+            const listen = (target, type, listener, options = {}) => target.addEventListener(type, listener, { ...options, signal: activeEvents.signal });
+            function setOffscreen(offscreen) {
+                rotation.block("offscreen", offscreen);
+                if (offscreen) stopAnimations();
+            }
+            function checkVisibility() {
+                if (destroyed || suspended || currentConnection !== connection) return;
+                const rect = root.getBoundingClientRect();
+                const visibleWidth = Math.max(0, Math.min(rect.right, win.innerWidth) - Math.max(rect.left, 0));
+                const visibleHeight = Math.max(0, Math.min(rect.bottom, win.innerHeight) - Math.max(rect.top, 0));
+                const area = rect.width * rect.height;
+                setOffscreen(area <= 0 || visibleWidth * visibleHeight / area < .2);
+            }
+            if (previous) listen(previous, "click", () => manual(-1));
+            if (next) listen(next, "click", () => manual(1));
+            if (pause) listen(pause, "click", () => {
+                const pausing = !rotation.isBlocked("user");
+                rotation.block("user", pausing);
+                // Explicit resume must work without moving keyboard focus off its button.
+                if (!pausing) rotation.block("focus", false);
                 stopAnimations();
                 syncPause();
             });
-            listen(root, "pointerenter", () => {
-                rotation.block("hover", true);
-                stopAnimations();
-            });
-            listen(root, "pointerleave", () => rotation.block("hover", false));
+            // These portraits have no pointer actions. Scrolling beneath a stationary
+            // mouse (or a touch-generated pointerenter) must not silently pause them.
             listen(root, "focusin", () => {
                 rotation.block("focus", true);
                 stopAnimations();
@@ -176,24 +197,21 @@
             listen(doc, "visibilitychange", () => {
                 rotation.block("hidden", doc.hidden);
                 if (doc.hidden) stopAnimations();
+                else checkVisibility();
             });
             listen(reduced, "change", preference);
             rotation.block("hidden", doc.hidden);
             rotation.block("focus", root.contains(doc.activeElement));
-            rotation.block("hover", root.matches(":hover"));
-            rotation.block("offscreen", true);
             preference();
             if (win.IntersectionObserver) {
                 intersection = new win.IntersectionObserver((entries) => {
                     if (destroyed || suspended || currentConnection !== connection) return;
                     entries.forEach((entry) => {
-                        const offscreen = !entry.isIntersecting || entry.intersectionRatio < .2;
-                        rotation.block("offscreen", offscreen);
-                        if (offscreen) stopAnimations();
+                        setOffscreen(!entry.isIntersecting || entry.intersectionRatio < .2);
                     });
                 }, { threshold: .2 });
                 intersection.observe(root);
-            }
+            } else listen(win, "scroll", checkVisibility, { passive: true });
             function fit() {
                 if (destroyed || suspended || currentConnection !== connection) return;
                 const nextWidth = track.getBoundingClientRect().width;
@@ -201,11 +219,14 @@
                     width = nextWidth;
                     render(rotation.index, false, false);
                 }
+                checkVisibility();
             }
             if (win.ResizeObserver) {
                 resize = new win.ResizeObserver(fit);
                 resize.observe(track);
             } else listen(win, "resize", fit);
+            // Seed visibility immediately, including reloads/history restores midway
+            // down the page; do not wait indefinitely for an observer's first delivery.
             fit();
         }
         function disconnect() {
@@ -223,14 +244,14 @@
             rotation.destroy();
             cards.forEach((card) => card.removeAttribute("style"));
             root.classList.remove("is-enhanced");
-            controls.hidden = true;
+            if (controls) controls.hidden = true;
             mounted.delete(root);
         }
 
-        // Without observers the gallery remains manual; missing JS keeps the original grid.
+        // Missing observers use a passive scroll fallback; missing JS keeps the original grid.
         root.classList.add("is-enhanced");
         render(0, false, false);
-        controls.hidden = false;
+        if (controls) controls.hidden = false;
         syncPause();
         connect();
         win.addEventListener("pagehide", (event) => {
@@ -254,7 +275,7 @@
         module.exports = { INTERVAL, DURATION, layout, keyframes, createRotation, initGallery };
     }
     if (typeof document !== "undefined") {
-        document.querySelectorAll("[data-progressive-gallery]").forEach((root) => {
+        document.querySelectorAll("[data-progressive-gallery], [data-product-gallery]").forEach((root) => {
             initGallery(root, { window, document });
         });
     }

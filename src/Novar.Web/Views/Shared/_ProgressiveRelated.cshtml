@@ -1,10 +1,39 @@
-<section class="prg-related" aria-labelledby="prg-related-title">
-    <h2 id="prg-related-title">Otros lentes progresivos</h2>
+@inject Novar.Web.Services.SiteContent ProductContent
+@{
+    var catalog = ProductContent.ForCulture(System.Globalization.CultureInfo.CurrentUICulture);
+    // The four Figma banners are product families, not one photo per variant.
+    var groups = new[]
+    {
+        (Key: "ai-lens", Photo: "ca299.png", Node: "689:4996", Products: new[] { (Slug: "ai-lens", Name: catalog.PremiumProducts["ai-lens"].Name) }),
+        (Key: "precisa", Photo: "1f46b.png", Node: "689:4995", Products: new[] { (Slug: "precisa", Name: catalog.ProgressiveProducts["precisa"].Name), (Slug: "precisa-short", Name: catalog.ProgressiveProducts["precisa-short"].Name) }),
+        (Key: "evolution", Photo: "ef547.png", Node: "689:4993", Products: new[] { (Slug: "evolution", Name: catalog.ProgressiveProducts["evolution"].Name), (Slug: "evolution-short", Name: catalog.ProgressiveProducts["evolution-short"].Name) }),
+        (Key: "elife", Photo: "43874.png", Node: "689:4994", Products: new[] { (Slug: "elife", Name: catalog.ProgressiveProducts["elife"].Name) })
+    };
+    var currentSlug = ViewData["ProgressiveVariant"] as string ?? catalog.First.Slug;
+}
+<section class="prg-related @(ViewData["FirstProgressivePage"] is true ? "prg-related--first" : "")" aria-labelledby="prg-related-title">
+    <h2 id="prg-related-title">@T["Otros lentes progresivos"]</h2>
     <div class="prg-related-images">
-        <a href="/lentes" aria-label="Explorar otros lentes progresivos"><img class="prg-related-underlay" src="~/media/figma/f9381.png" alt="" aria-hidden="true" loading="lazy" /><img src="~/media/figma/ca299.png" alt="Hombre con anteojos" loading="lazy" /></a>
-        <a href="/lentes" aria-label="Explorar Precisa en el catálogo"><img class="prg-related-underlay" src="~/media/figma/f9381.png" alt="" aria-hidden="true" loading="lazy" /><img src="~/media/figma/1f46b.png" alt="Hombre con anteojos de marco oscuro" loading="lazy" /><span class="prg-related-overlay"><strong>Precisa</strong><span><img src="~/media/figma/dd7d5.svg" alt="" />Ver más</span></span></a>
-        <a href="/lentes" aria-label="Explorar Evolution en el catálogo"><img class="prg-related-underlay" src="~/media/figma/f9381.png" alt="" aria-hidden="true" loading="lazy" /><img src="~/media/figma/ef547.png" alt="Mujer con anteojos" loading="lazy" /><span class="prg-related-overlay"><strong>Evolution</strong><span><img src="~/media/figma/dd7d5.svg" alt="" />Ver más</span></span></a>
-        <a href="/lentes" aria-label="Explorar eLIFE en el catálogo"><img class="prg-related-underlay" src="~/media/figma/f9381.png" alt="" aria-hidden="true" loading="lazy" /><img src="~/media/figma/43874.png" alt="Hombre usando anteojos" loading="lazy" /><span class="prg-related-overlay"><strong>eLIFE</strong><span><img src="~/media/figma/dd7d5.svg" alt="" />Ver más</span></span></a>
+        @foreach (var group in groups)
+        {
+            <details class="prg-related-card prg-related-card--@group.Key" data-related-card data-figma-node="@group.Node">
+                <summary aria-label="@T["Ver más"]: @string.Join(", ", group.Products.Select(product => product.Name))">
+                    <span class="prg-related-media" aria-hidden="true">
+                        <img class="prg-related-underlay" src="~/media/figma/f9381.png" alt="" loading="lazy" />
+                        <img class="prg-related-photo" src="~/media/figma/@group.Photo" alt="" loading="lazy" />
+                    </span>
+                    <span class="prg-related-hint">@T["Ver más"]</span>
+                </summary>
+                <div class="prg-related-options">
+                    @foreach (var product in group.Products)
+                    {
+                        <a class="prg-related-option" href="/lentes/@product.Slug" aria-current="@(product.Slug == currentSlug ? "page" : null)">
+                            <span class="prg-related-name">@product.Name</span>
+                            <span class="prg-related-cta"><img src="~/media/figma/dd7d5.svg" alt="" loading="lazy" /><span>@T["Ver más"]</span></span>
+                        </a>
+                    }
+                </div>
+            </details>
+        }
     </div>
 </section>
-

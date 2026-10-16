@@ -13,14 +13,16 @@
     'use strict';
 
     function createMediaController(options) {
-        const { video, poster, button, source } = options;
+        const { video, poster, button, source, soundButton } = options;
+        const controls = options.controls === true;
         if (!video || !poster || !button || !source) throw new TypeError('A Home media player requires video, poster, button and source elements.');
 
         let visible = Boolean(options.visible);
         let pageHidden = Boolean(options.pageHidden);
         let reducedMotion = Boolean(options.reducedMotion);
         let manualOptIn = false;
-        let userPaused = false;
+        let manualPaused = false;
+        let muted = true;
         let playing = false;
         let pending = false;
         let sourceAttached = false;
@@ -30,6 +32,8 @@
         const removeListeners = [];
         const playLabel = options.playLabel || 'Reproducir video';
         const pauseLabel = options.pauseLabel || 'Pausar video';
+        const soundLabel = options.soundLabel || 'Activar sonido';
+        const muteLabel = options.muteLabel || 'Silenciar video';
 
         function listen(target, name, handler) {
             if (!target || typeof target.addEventListener !== 'function') return;
@@ -38,11 +42,18 @@
         }
 
         function updateButton() {
-            button.hidden = false;
-            button.textContent = playing ? pauseLabel : playLabel;
+            const label = controls && (playing || pending) ? pauseLabel : playLabel;
+            button.hidden = controls ? !visible || pageHidden || destroyed : playing || pending || (!failed && !reducedMotion);
+            button.textContent = label;
             if (typeof button.setAttribute === 'function') {
-                button.setAttribute('aria-label', playing ? pauseLabel : playLabel);
-                button.setAttribute('aria-pressed', String(playing));
+                button.setAttribute('aria-label', label);
+                if (controls) button.setAttribute('data-media-playing', String(playing || pending));
+            }
+            if (controls && soundButton) {
+                soundButton.hidden = !visible || pageHidden || destroyed;
+                soundButton.textContent = muted ? soundLabel : muteLabel;
+                soundButton.setAttribute('aria-label', muted ? soundLabel : muteLabel);
+                soundButton.setAttribute('data-media-muted', String(muted));
             }
         }
 
@@ -54,7 +65,7 @@
         }
 
         function eligible() {
-            return !destroyed && visible && !pageHidden && !userPaused && (!reducedMotion || manualOptIn) && !failed;
+            return !destroyed && visible && !pageHidden && (!reducedMotion || manualOptIn) && !failed && (!controls || !manualPaused);
         }
 
         function attachSource() {
@@ -79,9 +90,10 @@
         function requestPlay() {
             if (!eligible() || playing || pending) return Promise.resolve(false);
             attachSource();
-            video.muted = true;
+            video.muted = controls ? muted : true;
             video.defaultMuted = true;
             pending = true;
+            updateButton();
             const version = ++requestVersion;
             let result;
             try {
@@ -134,9 +146,10 @@
         }
 
         function onPause() {
-            playing = false;
+            // A queued pause may arrive after a newer World play request.
+            if (controls && video.paused === false) return;
             pending = false;
-            updateButton();
+            showPoster();
         }
 
         function onError() {
@@ -146,13 +159,15 @@
         }
 
         function onToggle() {
-            if (playing || pending) {
-                userPaused = true;
-                manualOptIn = false;
-                pauseAndRestorePoster();
-                return;
-            }
-            userPaused = false;
+            if (controls) {
+                if (!visible || pageHidden || destroyed) return;
+                if (playing || pending) {
+                    manualPaused = true;
+                    pauseAndRestorePoster();
+                    return;
+                }
+                manualPaused = false;
+            } else if (playing || pending || (!failed && !reducedMotion)) return;
             manualOptIn = true;
             failed = false;
             refresh();
@@ -162,7 +177,12 @@
         listen(video, 'pause', onPause);
         listen(video, 'error', onError);
         listen(button, 'click', onToggle);
-        button.hidden = false;
+        if (controls && soundButton) listen(soundButton, 'click', () => {
+            if (!visible || pageHidden || destroyed) return;
+            muted = !muted;
+            video.muted = muted;
+            updateButton();
+        });
         poster.hidden = false;
         video.hidden = true;
         updateButton();
@@ -178,7 +198,7 @@
                 for (const remove of removeListeners.splice(0)) remove();
                 button.hidden = true;
             },
-            getState() { return { visible, pageHidden, reducedMotion, manualOptIn, userPaused, playing, pending, sourceAttached, failed }; }
+            getState() { return { visible, pageHidden, reducedMotion, manualOptIn, playing, pending, sourceAttached, failed, manualPaused, muted }; }
         };
     }
 
@@ -211,8 +231,12 @@
                 poster,
                 button,
                 source,
-                playLabel: button.getAttribute('data-play-label'),
-                pauseLabel: button.getAttribute('data-pause-label'),
+                controls: root.getAttribute('data-home-media-controls') === 'world',
+                soundButton: root.querySelector('[data-home-media-sound]'),
+                playLabel: root.getAttribute('data-home-media-play-label') || button.getAttribute('aria-label'),
+                pauseLabel: root.getAttribute('data-home-media-pause-label'),
+                soundLabel: root.getAttribute('data-home-media-sound-label'),
+                muteLabel: root.getAttribute('data-home-media-mute-label'),
                 pageHidden: Boolean(documentObject.hidden),
                 reducedMotion: Boolean(reduced && reduced.matches)
             });

@@ -1,0 +1,51 @@
+{
+  "name": "First",
+  "slug": "first",
+  "sourceNode": "689:4828",
+  "subtitle": "Sua primeira experiência com lentes progressivas, mais simples e natural.",
+  "description": "Lente progressiva ideal para quem está começando a usar multifocais. Desenvolvida para uma adaptação confortável, com visão nítida e natural em todas as distâncias.",
+  "intro": "A Novar First foi criada para tornar a transição para lentes progressivas mais simples, confortável e natural.",
+  "details": "Seu design prioriza a visão de longe e facilita uma transição suave para as distâncias intermediária e de perto.",
+  "idealFor": "Pessoas entre 40 e 45 anos que estão começando a ter presbiopia",
+  "benefits": [
+    {
+      "label": "Longe",
+      "level": "Alta",
+      "percent": 100
+    },
+    {
+      "label": "Intermediária",
+      "level": "Média",
+      "percent": 50
+    },
+    {
+      "label": "Perto",
+      "level": "Média",
+      "percent": 50
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Psicoptix Technology™",
+      "description": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar."
+    },
+    {
+      "name": "CDT Technology™",
+      "description": "A Continuum Design Technology ajuda a otimizar a superfície da lente para melhorar a definição óptica e os campos visuais, elevando a qualidade da experiência com lentes progressivas."
+    }
+  ],
+  "questions": [
+    {
+      "question": "O que é a Novar First?",
+      "answer": "É uma lente progressiva pensada para quem está começando a usar multifocais e busca uma adaptação confortável."
+    },
+    {
+      "question": "Para quem é indicada?",
+      "answer": "Para quem começa a notar dificuldade para enxergar de perto e precisa de uma solução progressiva para todas as distâncias."
+    },
+    {
+      "question": "O que a diferencia?",
+      "answer": "Seu design prioriza uma experiência simples, natural e fácil de incluir no dia a dia."
+    }
+  ]
+}

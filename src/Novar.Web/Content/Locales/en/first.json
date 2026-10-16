@@ -1,0 +1,51 @@
+{
+  "name": "First",
+  "slug": "first",
+  "sourceNode": "689:4828",
+  "subtitle": "Your first progressive lens experience, made simpler and more natural.",
+  "description": "A progressive lens for people starting to wear multifocals. Designed for comfortable adaptation and clear, natural vision at every distance.",
+  "intro": "Novar First is designed to make the transition to progressive lenses simpler, more comfortable, and more natural.",
+  "details": "Its design prioritizes distance vision and provides a smooth transition to intermediate and near vision.",
+  "idealFor": "People aged 40 to 45 who are beginning to experience presbyopia",
+  "benefits": [
+    {
+      "label": "Distance",
+      "level": "High",
+      "percent": 100
+    },
+    {
+      "label": "Intermediate",
+      "level": "Medium",
+      "percent": 50
+    },
+    {
+      "label": "Near",
+      "level": "Medium",
+      "percent": 50
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Psicoptix Technology™",
+      "description": "An exclusive Novar technology that combines advanced optics and visual neuroscience to create lenses that adapt to how you see the world. The result: more natural, comfortable, clear vision with every glance."
+    },
+    {
+      "name": "CDT Technology™",
+      "description": "Continuum Design Technology helps optimize the lens surface to improve optical definition and visual fields, elevating the progressive-lens experience."
+    }
+  ],
+  "questions": [
+    {
+      "question": "What is Novar First?",
+      "answer": "It is a progressive lens for people who are starting to wear multifocals and want a comfortable adaptation."
+    },
+    {
+      "question": "Who is it recommended for?",
+      "answer": "For people beginning to notice difficulty seeing up close who need a progressive solution for all distances."
+    },
+    {
+      "question": "What makes it different?",
+      "answer": "Its design prioritizes an experience that is simple, natural, and easy to incorporate into daily use."
+    }
+  ]
+}

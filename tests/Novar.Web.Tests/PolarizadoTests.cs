@@ -12,7 +12,7 @@ public sealed class PolarizadoTests(WebApplicationFactory<Program> factory) : IC
     private readonly HttpClient client = factory.CreateClient();
 
     [Fact]
-    public async Task PolarizadoPreservesExactSourceCopyAndStaticSourceGeometry()
+    public async Task PolarizadoPreservesCopyAndOuterGeometryWithInitiallyMutedVideo()
     {
         var detail = Assert.Single(factory.Services.GetRequiredService<SiteContent>().Treatments.Details,
             item => item.Id == "polarizado");
@@ -27,16 +27,35 @@ public sealed class PolarizadoTests(WebApplicationFactory<Program> factory) : IC
         Assert.Contains(detail.Description, panel);
         Assert.All(detail.Benefits, benefit => Assert.Contains(benefit, panel));
         Assert.Equal(3, Regex.Matches(panel, "src=\"/media/figma/7bc95.svg\"").Count);
-        Assert.Contains("width=\"2752\" height=\"1536\"", panel);
-        Assert.Contains("Atleta con gafas de sol", panel);
+        var video = Regex.Match(panel, "<video[^>]*>").Value;
+        Assert.NotEmpty(video);
+        foreach (var attribute in new[] { "muted", "playsinline", "preload=\"none\"", "data-treatment-video" })
+            Assert.Contains(attribute, video);
+        Assert.DoesNotContain(" autoplay", video);
+        Assert.DoesNotContain(" controls", video);
+        Assert.Contains(" loop", video);
+        Assert.Contains("data-treatment-desktop=\"/media/treatments/optimized/polarizado-desktop.mp4\"", panel);
+        Assert.Contains("/js/treatments-media.js", html);
         foreach (var absent in new[] { "3dd09.png", "16fed.png", "b9b6a.svg", "<button", "<input", "type=\"range\"" })
             Assert.DoesNotContain(absent, panel);
         var css = await client.GetStringAsync("/css/treatments.css");
         Assert.Contains(".treatment-polarizado-photo { height: 680px; margin-top: -43px; overflow: hidden; }", css);
-        Assert.Contains("height: 937.696px", css);
-        Assert.Contains("top: -9.24%", css);
-        Assert.Contains("height: 100.24%", css);
+        Assert.Contains(".treatment-polarizado-image-plane { width: 100%; height: 100%; }", css);
+        Assert.Contains(".treatment-polarizado-video { display: block; width: 100%; height: 100%; object-fit: cover; }", css);
+        Assert.Contains(".treatment-polarizado-photo { height: 580px; }", css);
+        Assert.Contains(".treatment-polarizado-photo { height: 380px; margin-top: -24px; }", css);
         Assert.Contains("flex-basis: 300px", css);
+    }
+
+    [Fact]
+    public async Task UserVideoRetainsExactBytesAndStaticMimeType()
+    {
+        var response = await client.GetAsync("/media/treatments/polarizado.mp4");
+        response.EnsureSuccessStatusCode();
+        Assert.Equal("video/mp4", response.Content.Headers.ContentType?.MediaType);
+        var bytes = await response.Content.ReadAsByteArrayAsync();
+        Assert.Equal(13344514, bytes.Length);
+        Assert.Equal("2CDEE14B3F3A1105DABDAADB29A7E89F1FB9C853F011B3E564B1D51234A7CD1F", Convert.ToHexString(SHA256.HashData(bytes)));
     }
 
     [Fact]
@@ -52,7 +71,7 @@ public sealed class PolarizadoTests(WebApplicationFactory<Program> factory) : IC
             Assert.DoesNotContain(" hidden", opening);
             Assert.DoesNotContain("aria-hidden", opening);
         }
-        Assert.Equal("07AABB40D63527D68CF71C894F967241109CF9BD5362C7BAF3FB9398FCC0883E",
+        Assert.Equal("08E6C116A0D2BE8B54F28FE173633514604A5A1E0B4F85CCA3D04E6FFF8D5EA5",
             Convert.ToHexString(SHA256.HashData(await client.GetByteArrayAsync("/js/treatments.js"))));
     }
 
@@ -110,4 +129,3 @@ public sealed class PolarizadoTests(WebApplicationFactory<Program> factory) : IC
         if (path == "/juegos") Assert.Contains("/media/figma/4d514.svg", html);
     }
 }
-

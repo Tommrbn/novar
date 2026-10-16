@@ -118,7 +118,9 @@
         });
         layout = next;
         root.dataset.activeIndex = String(index);
-        if (manual) status.textContent = `${index + 1} de ${cards.length}: ${cards[index].querySelector('p').textContent}`;
+        if (manual) status.textContent = window.NovarText('testimonials.position', '{index} de {total}: {quote}', {
+            index: index + 1, total: cards.length, quote: cards[index].querySelector('p').textContent
+        });
         if (animations.length) {
             const current = generation;
             rotation.setBlocked('animation', true);
@@ -169,7 +171,7 @@
     listen(root.querySelector('[data-testimonial-next]'), 'click', () => move(1));
     listen(toggle, 'click', () => {
         paused = !paused;
-        toggle.textContent = paused ? 'Reanudar experiencias' : 'Pausar experiencias';
+        toggle.textContent = window.NovarText(paused ? 'testimonials.resume' : 'testimonials.pause', paused ? 'Reanudar experiencias' : 'Pausar experiencias');
         toggle.setAttribute('aria-pressed', String(paused));
         rotation.setBlocked('user', paused);
     });

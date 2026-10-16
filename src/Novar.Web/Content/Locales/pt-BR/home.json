@@ -1,0 +1,95 @@
+{
+  "highlights": [
+    {
+      "name": "AI·Lens",
+      "slug": "ai-lens",
+      "image": "2c335.png",
+      "description": "Você já se perguntou se a inteligência artificial poderia ajudar com a presbiopia?",
+      "benefits": [
+        {
+          "label": "Visão para longe",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visão intermediária",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visão de perto",
+          "level": "Alta",
+          "percent": 100
+        }
+      ]
+    },
+    {
+      "name": "MyoFix",
+      "slug": "",
+      "image": "52af8.png",
+      "description": "Seu filho apresenta miopia progressiva?",
+      "benefits": [
+        {
+          "label": "Visão para longe",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visão intermediária",
+          "level": "Média",
+          "percent": 50
+        },
+        {
+          "label": "Visão de perto",
+          "level": "Média",
+          "percent": 50
+        }
+      ]
+    },
+    {
+      "name": "MyoLens",
+      "slug": "myolens",
+      "image": "2eb1f.png",
+      "description": "Você recebeu uma prescrição para óculos de descanso?",
+      "benefits": [
+        {
+          "label": "Visão para longe",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visão intermediária",
+          "level": "Alta",
+          "percent": 100
+        },
+        {
+          "label": "Visão de perto",
+          "level": "Média / Alta",
+          "percent": 70
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "question": "Por que fica mais difícil enxergar de perto com o passar do tempo?",
+      "answer": "Com o passar dos anos, pode ficar mais difícil focar de perto. Esse processo natural é chamado presbiopia, e existem lentes projetadas para recuperar o conforto e a nitidez."
+    },
+    {
+      "question": "Por que enxergo pior à noite ou as luzes me incomodam?",
+      "answer": "Com pouca luz, algumas dificuldades visuais podem ficar mais evidentes. Uma lente adequada pode ajudar a melhorar a nitidez, o contraste e o conforto visual."
+    },
+    {
+      "question": "As lentes podem fazer mais do que corrigir a visão?",
+      "answer": "Sim. Hoje existem lentes projetadas para diferentes necessidades: melhorar o conforto, otimizar a visão em várias distâncias ou atender a necessidades visuais específicas."
+    },
+    {
+      "question": "O que acontece se eu usar lentes sem prescrição ou com grau incorreto?",
+      "answer": "Uma prescrição incorreta pode causar visão embaçada, cansaço ou desconforto. Por isso, é importante ter uma receita atualizada e a orientação de um profissional."
+    },
+    {
+      "question": "É normal que crianças precisem de óculos?",
+      "answer": "Sim. Algumas dificuldades visuais podem surgir na infância. Identificá-las cedo ajuda a encontrar uma solução adequada e a acompanhar o desenvolvimento visual."
+    }
+  ]
+}

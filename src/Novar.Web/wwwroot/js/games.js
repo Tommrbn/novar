@@ -29,8 +29,8 @@
     const codigoInput = document.getElementById('codigo-answer');
 
     if (visualApi && panels.intruso && panels.codigo && intrusoChoices.length === 9 && codigoMatrix && codigoDots.length === 42 && codigoInput) {
-        intrusoGame = visualApi.createIntruso(visualApi.createRuntimeSeed());
-        codigoGame = visualApi.createCodigo(visualApi.DEFAULT_SEED);
+        intrusoGame = visualApi.createIntruso(visualApi.createRuntimeSeed(), window.NovarText);
+        codigoGame = visualApi.createCodigo(visualApi.DEFAULT_SEED, window.NovarText);
         panels.intruso.hidden = false;
         panels.codigo.hidden = true;
         renderVisual('intruso');
@@ -70,11 +70,11 @@
         const resultTitle = panel.querySelector('[data-visual-result-title]');
         const retry = panel.querySelector('[data-visual-retry]');
 
-        roundLabel.textContent = `Ronda ${state.round} de ${state.total}`;
-        scoreLabel.textContent = `Puntaje: ${state.score}`;
+        roundLabel.textContent = window.NovarText('game.round', 'Ronda {round} de {total}', { round: state.round, total: state.total });
+        scoreLabel.textContent = window.NovarText('game.score', 'Puntaje: {score}', { score: state.score });
         playing.hidden = state.complete;
         result.hidden = !state.complete;
-        resultTitle.textContent = state.complete ? `Puntaje final: ${state.score}/${state.total}` : '';
+        resultTitle.textContent = state.complete ? window.NovarText('game.finalScore', 'Puntaje final: {score}/{total}', { score: state.score, total: state.total }) : '';
         retry.disabled = !active(id) || !state.complete;
         next.hidden = !state.checked;
         next.disabled = !canInteract || !state.checked;
@@ -92,8 +92,8 @@
                 dot.classList.toggle('is-lit', state.mask[row]?.[column] === '1');
             });
             codigoMatrix.setAttribute('aria-label', state.checked && state.feedback?.answer
-                ? `Número formado por puntos: ${state.feedback.answer}`
-                : 'Una cifra formada por puntos');
+                ? window.NovarText('game.digitShown', 'Número formado por puntos: {answer}', { answer: state.feedback.answer })
+                : window.NovarText('game.digitImage', 'Una cifra formada por puntos'));
             codigoInput.disabled = !canInteract || state.checked;
             if (document.activeElement !== codigoInput) codigoInput.value = state.draft;
             const check = panel.querySelector('[data-codigo-check]');
@@ -126,13 +126,17 @@
         check.hidden = state.checked;
         next.hidden = !state.checked;
         next.disabled = !active('trivia') || !state.checked;
-        next.textContent = state.index === state.total - 1 ? 'Ver resultado' : 'Siguiente';
-        progress.textContent = `Pregunta ${state.index + 1} de ${state.total}`;
-        score.textContent = state.complete ? `Aciertos: ${state.score}/${state.total}` : '';
+        next.textContent = state.index === state.total - 1 ? window.NovarText('game.viewResult', 'Ver resultado') : window.NovarText('game.next', 'Siguiente');
+        progress.textContent = window.NovarText('game.questionProgress', 'Pregunta {index} de {total}', { index: state.index + 1, total: state.total });
+        score.textContent = state.complete ? window.NovarText('game.correctCount', 'Aciertos: {score}/{total}', { score: state.score, total: state.total }) : '';
         if (state.checked && !state.complete) {
             const correct = triviaQuestions[state.index].querySelectorAll('.trivia-option-text')[state.correctIndex].textContent;
             const letter = String.fromCharCode(65 + state.correctIndex);
-            feedback.textContent = `${state.selected === state.correctIndex ? '¡Correcto!' : 'Respuesta incorrecta.'} Respuesta correcta: ${letter}. ${correct}`;
+            feedback.textContent = window.NovarText('game.answerFeedback', '{result} Respuesta correcta: {letter}. {answer}', {
+                result: window.NovarText(state.selected === state.correctIndex ? 'game.correct' : 'game.incorrect', state.selected === state.correctIndex ? '¡Correcto!' : 'Respuesta incorrecta.'),
+                letter,
+                answer: correct
+            });
         } else feedback.textContent = '';
     }
 
@@ -149,24 +153,41 @@
         if (id !== 'trivia' && triviaPanel) triviaPanel.hidden = true;
         Object.entries(panels).forEach(([name, panel]) => { if (panel) panel.hidden = name !== id; });
         renderAll();
-        if (id === 'trivia' && triviaGame) {
-            const state = triviaGame.getState();
-            moveFocus(state.complete ? document.getElementById('trivia-score') : triviaQuestions[state.index].querySelector('legend'));
-        } else {
-            const game = id === 'intruso' ? intrusoGame : codigoGame;
-            if (!game) return;
-            const state = game.getState();
-            moveFocus(state.complete
-                ? panels[id].querySelector('[data-visual-result-title]')
-                : panels[id].querySelector('.games-arena-heading h2'));
-        }
     }
+
+    function focusSelectedPanel(id) {
+        if (!active(id)) return;
+        const game = id === 'trivia' ? triviaGame : id === 'intruso' ? intrusoGame : codigoGame;
+        if (!game) return;
+        const state = game.getState();
+        const target = id === 'trivia'
+            ? state.complete ? document.getElementById('trivia-score') : triviaQuestions[state.index]?.querySelector('legend')
+            : panels[id].querySelector(state.complete ? '[data-visual-result-title]' : '.games-arena-heading h2');
+        moveFocus(target);
+    }
+
+    const cardGrid = document.querySelector('.games-cards');
+    const selection = window.NovarGamesSelection && cardGrid
+        ? window.NovarGamesSelection.createSelection({
+            grid: cardGrid,
+            cards: cardTriggers.map(trigger => trigger.closest('.game-card')),
+            featuredLabel: cardGrid.dataset.featuredLabel,
+            reducedMotion,
+            onSelect: selectPanel,
+            onSettled: focusSelectedPanel
+        }) : null;
 
     cardTriggers.forEach(trigger => {
         trigger.addEventListener('click', () => {
             if (trigger.disabled) return;
             const id = trigger.dataset.visualGameStart ?? (trigger.hasAttribute('data-trivia-start') ? 'trivia' : null);
-            if (id) selectPanel(id);
+            if (id) {
+                if (selection) selection.select(id);
+                else {
+                    selectPanel(id);
+                    focusSelectedPanel(id);
+                }
+            }
         });
     });
 

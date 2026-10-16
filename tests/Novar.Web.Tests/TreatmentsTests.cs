@@ -11,13 +11,28 @@ public sealed class TreatmentsTests(WebApplicationFactory<Program> factory) : IC
 {
     private readonly HttpClient client = factory.CreateClient();
 
+    [Theory]
+    [InlineData("es")]
+    [InlineData("en")]
+    [InlineData("pt-BR")]
+    public async Task TreatmentTabsHaveNoObsoleteAvailabilityNotice(string culture)
+    {
+        using var localizedClient = factory.CreateClient();
+        localizedClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd(culture);
+        var html = await localizedClient.GetStringAsync("/tratamientos");
+        var tabs = Regex.Match(html, "<nav class=\"treatments-tabs\"[\\s\\S]*?</nav>").Value;
+        Assert.NotEmpty(tabs);
+        Assert.DoesNotContain("treatments-availability", html);
+        Assert.Equal(7, Regex.Matches(tabs, "data-treatment-link=").Count);
+    }
+
     [Fact]
     public async Task TreatmentsRendersSevenStatesWithinTheSharedSourcePage()
     {
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/tratamientos"));
         var content = factory.Services.GetRequiredService<SiteContent>().Treatments;
         Assert.Equal("961:9641", content.SourceNode);
-        Assert.Contains("data-treatments-revision=\"treatments-ilux-v1\"", html);
+        Assert.Contains("data-treatments-revision=\"treatments-performance-v1\"", html);
         Assert.Contains("data-figma-node=\"961:9641\"", html);
         Assert.DoesNotContain("después de aprobar la muestra visual", html);
         Assert.Single(Regex.Matches(html, "<h1(?: |>)"));
@@ -29,7 +44,7 @@ public sealed class TreatmentsTests(WebApplicationFactory<Program> factory) : IC
         Assert.All(content.Details[0].Benefits, benefit => Assert.Contains(benefit, html));
         Assert.Contains("<strong>potenciar tus lentes?</strong>", html);
         Assert.Contains("<strong>tecnologías avanzadas</strong>", html);
-        Assert.DoesNotContain("<input", html);
+        Assert.DoesNotContain("<input", html.WithoutLanguagePreferenceForm());
         Assert.DoesNotContain("type=\"range\"", html);
         Assert.Contains("/js/treatments.js", html);
     }
@@ -48,7 +63,8 @@ public sealed class TreatmentsTests(WebApplicationFactory<Program> factory) : IC
         Assert.Contains("href=\"#antirraya\" data-treatment-link=\"antirraya\"", tabs);
         Assert.DoesNotContain("aria-current", tabs); // Script derives a single current tab from the fragment.
         Assert.DoesNotContain("próximamente", tabs, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("También podés ver Antirreflejo iLUX.", tabs);
+        Assert.DoesNotContain("treatments-availability", tabs);
+        Assert.DoesNotContain("También podés ver Antirreflejo iLUX.", tabs);
         foreach (var tab in content.Tabs)
         {
             Assert.Contains($"href=\"#{tab.Id}\" data-treatment-link=\"{tab.Id}\"", tabs);
@@ -141,7 +157,7 @@ public sealed class TreatmentsTests(WebApplicationFactory<Program> factory) : IC
             Assert.DoesNotContain("treatments-polarizado-v1", other);
             Assert.DoesNotContain("treatments-hidrofobico-v1", other);
             Assert.DoesNotContain("treatments-fotosensible-v1", other);
-            Assert.DoesNotContain("treatments-ilux-v1", other);
+            Assert.DoesNotContain("treatments-performance-v1", other);
             Assert.DoesNotContain("/js/treatments.js", other);
         }
     }
@@ -182,7 +198,13 @@ public sealed class TreatmentsTests(WebApplicationFactory<Program> factory) : IC
         }
         foreach (var (file, width, height) in new[] { ("16fed.png", 2752, 1536), ("74f40.png", 1437, 553), ("f0cf4.png", 1448, 1086), ("3dd09.png", 2752, 1536), ("8af8d.png", 2752, 1536), ("dd2a0.png", 2752, 1536), ("23aae.png", 2752, 1536), ("b6e78.png", 2752, 1536) })
         {
-            Assert.Contains($"/media/figma/{file}", html);
+            var poster = file switch
+            {
+                "16fed.png" => "uv", "f0cf4.png" => "blue-tech", "3dd09.png" => "antirraya",
+                "8af8d.png" => "polarizado", "dd2a0.png" => "hidrofobico", "23aae.png" => "fotosensible",
+                "b6e78.png" => "ilux", _ => null
+            };
+            Assert.Contains(poster is null ? $"/media/figma/{file}" : $"/media/treatments/optimized/{poster}-poster-1280.webp", html);
             var image = await client.GetByteArrayAsync($"/media/figma/{file}");
             Assert.True(image.Length > 1000);
             Assert.Equal((width, height), ReadRasterDimensions(image));
@@ -210,7 +232,7 @@ public sealed class TreatmentsTests(WebApplicationFactory<Program> factory) : IC
         Assert.Contains("type=\"button\" data-pending=\"Sophia\"", html);
         Assert.Contains("Hablar con Sophia: pendiente de integración", html);
         Assert.Contains("no se envían ni almacenan datos y no se generan resultados", html);
-        Assert.DoesNotContain("<form", html);
+        Assert.DoesNotContain("<form", html.WithoutLanguagePreferenceForm());
         var social = Regex.Match(html, "<div class=\"treatments-footer-socials\"[\\s\\S]*?</div>").Value;
         Assert.Equal(new[] { "Instagram", "LinkedIn", "Facebook", "YouTube" },
             Regex.Matches(social, "data-pending=\"([^\"]+)\"").Select(match => match.Groups[1].Value));

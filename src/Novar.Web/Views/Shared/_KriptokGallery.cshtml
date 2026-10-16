@@ -1,0 +1,11 @@
+@model BifocalOccupationalProduct
+<section class="bop-gallery" aria-labelledby="bop-gallery-title" aria-roledescription="@T["carrusel"]" data-product-gallery>
+    <h2 id="bop-gallery-title"><span>@Model.GalleryName<img src="~/media/figma/26db8.svg" alt="®" /></span> @T["es"] <strong>@T["para vos"]</strong></h2>
+    <div class="bop-gallery-images" id="bop-gallery-images" data-gallery-track>
+        @foreach (var file in Model.Gallery)
+        {
+            <div data-gallery-image="@file"><img src="~/media/figma/@file" alt="@T["Persona con anteojos"] @Model.Name" loading="lazy" /></div>
+        }
+    </div>
+    <partial name="_GalleryMotionControl" />
+</section>

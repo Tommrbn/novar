@@ -41,16 +41,16 @@
 .treatments-content[data-active-treatment="antirraya"] .treatments-tabs a,
 .treatments-content[data-active-treatment="antirraya"] .treatments-tabs button { font-size: 16.458px; }
 .treatments-content[data-active-treatment="antirraya"] .treatments-tabs a[aria-selected="true"] { font-weight: 700; }
-#treatments-availability { position: absolute; top: calc(100% + 8px); right: 0; left: 0; margin: 0; color: #6b5a8a; font-size: 10px; line-height: 16px; text-align: center; }
 
 .treatment-detail { margin-top: 34.427px; scroll-margin-top: 24px; }
 .treatment-detail[hidden] { display: none; }
 .treatment-uv-summary { position: relative; z-index: 2; display: grid; grid-template-columns: 440.0px minmax(0, 1fr); width: min(1181.583px, calc(100% - 80px)); min-height: 178px; margin-inline: auto; padding: 48.07px 43.613px 28px 29.122px; border-radius: 33.845px; background: #fbfbfd; box-shadow: 0 3.008px 3.008px rgb(0 0 0 / 25%); }
 .treatment-uv-eyebrow, .treatment-uv-description { margin: 0; font-size: 15px; font-weight: 400; line-height: 18.803px; letter-spacing: -.45px; }
 .treatment-uv-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9px; }
-.treatment-uv-photo { height: min(680px, 47.2222vw); margin-top: max(-43px, -2.9861vw); overflow: hidden; }
+.treatment-uv-photo { position: relative; height: min(680px, 47.2222vw); margin-top: max(-43px, -2.9861vw); overflow: hidden; }
 .treatment-uv-image-plane { position: relative; width: 116.9444%; aspect-ratio: 1684 / 937.695; margin-left: calc((100% - 116.9444%) / 2 - .1389%); }
 .treatment-uv-image { display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; }
+.treatment-uv-image[hidden] { display: none; }
 /* Keep the source SVG's original dimensions; its off-canvas decoration stays outside the responsive crop. */
 .treatment-uv-source-arrows { position: absolute; top: 20.549%; left: calc(2.8032% - 56.401px); display: block; max-width: none; }
 .treatment-uv-benefits { position: relative; z-index: 2; display: flex; width: 750px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(-16px); }
@@ -66,8 +66,8 @@
 .treatment-blue-tech-description { margin-top: -3.01px; white-space: pre-line; }
 .treatment-blue-tech-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30.085px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9025px; }
 .treatment-blue-tech-photo { height: 680px; margin-top: -43px; overflow: hidden; }
-/* Original 1448x1086 PNG fills the source 1399/779 plane; do not stretch/re-encode it. */
-.treatment-blue-tech-image { display: block; width: 1684px; height: 937.707px; max-width: none; margin-left: calc(50% - 844px); object-fit: cover; }
+/* Preserve the photo band; original video fills it without a controls inset. */
+.treatment-blue-tech-image { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
 .treatment-blue-tech-benefits { position: relative; z-index: 2; display: flex; width: 726px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(-4px); }
 .treatment-blue-tech-benefits li { position: relative; flex: 0 0 191px; min-height: 46px; border-radius: 20px; background: #fbfbfd; color: var(--ink); font-size: 14.748px; font-weight: 300; line-height: 20.969px; }
 .treatment-blue-tech-benefits li:nth-child(2) { flex-basis: 248px; margin-left: 39px; }
@@ -86,9 +86,12 @@
 .treatment-antirraya-description { margin-top: -3.01px; }
 .treatment-antirraya-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30.085px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9025px; }
 .treatment-antirraya-photo { height: 719px; margin-top: -82px; overflow: hidden; }
-.treatment-antirraya-image-plane { position: relative; width: 1461px; height: 756px; margin-left: calc(50% - 731px); overflow: hidden; }
-.treatment-antirraya-image-plane::after { position: absolute; inset: 0; border: 1px solid #000; content: ''; pointer-events: none; }
-.treatment-antirraya-image { position: absolute; top: -7.83%; left: 0; display: block; width: 100%; height: 107.86%; max-width: none; }
+.treatment-detail-antirraya .treatment-antirraya-photo { position: relative; }
+.treatment-antirraya-video-plane { position: relative; width: 100%; height: 100%; }
+.treatment-antirraya-video-plane::after { position: absolute; inset: 0; border: 1px solid #000; content: ''; pointer-events: none; }
+.treatment-antirraya-video { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.treatment-antirraya-fallback { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.treatment-antirraya-video[hidden], .treatment-antirraya-fallback[hidden] { display: none; }
 .treatment-antirraya-benefits { position: relative; z-index: 2; display: flex; width: 726px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(-4px); }
 .treatment-antirraya-benefits li { position: relative; flex: 0 0 191px; min-height: 46px; border-radius: 20px; background: #fbfbfd; color: var(--ink); font-size: 14.748px; font-weight: 300; line-height: 20.969px; }
 .treatment-antirraya-benefits li:nth-child(2) { flex-basis: 248px; margin-left: 39px; }
@@ -166,7 +169,6 @@
     .treatments-content[data-active-treatment="blue-tech"] .treatments-tabs button { font-size: 14px; }
     .treatments-tabs a[aria-current] { text-decoration: underline; text-underline-offset: 10px; }
     .treatments-tabs-line, .treatments-tabs-active { clip-path: inset(0 100% 0 0); }
-    #treatments-availability { position: static; margin-top: 8px; }
     .treatment-detail { margin-top: 34px; }
     .treatment-uv-summary { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; width: calc(100% - 48px); padding: 36px 28px; }
     .treatment-uv-benefits { transform: none; }
@@ -201,7 +203,6 @@
     .treatments-tabs a, .treatments-tabs button { font-size: 13px; }
     .treatments-content[data-active-treatment="blue-tech"] .treatments-tabs a,
     .treatments-content[data-active-treatment="blue-tech"] .treatments-tabs button { font-size: 13px; }
-    #treatments-availability { font-size: 11px; line-height: 17px; }
     .treatment-detail { margin-top: 28px; }
     .treatment-uv-summary { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 28px 24px; border-radius: 26px; }
     .treatment-uv-summary h2 { font-size: 28px; line-height: 40px; }
@@ -212,7 +213,6 @@
     .treatment-blue-tech-summary h2 { font-size: 28px; line-height: 40px; }
     .treatment-blue-tech-description { margin-top: 0; font-size: 14px; line-height: 21px; }
     .treatment-blue-tech-photo { height: 380px; margin-top: -24px; }
-    .treatment-blue-tech-image { width: 760px; height: 423.188px; margin-left: calc(50% - 380px); }
     .treatment-blue-tech-benefits { flex-direction: column; align-items: center; gap: 10px; width: calc(100% - 48px); }
     .treatment-blue-tech-benefits li, .treatment-blue-tech-benefits li:nth-child(2), .treatment-blue-tech-benefits li:nth-child(3) { flex-basis: auto; width: min(280px, 100%); margin-left: 0; }
     .treatment-blue-tech-benefits li > span:last-child, .treatment-blue-tech-benefits li:nth-child(2) > span:last-child, .treatment-blue-tech-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }
@@ -222,7 +222,6 @@
     .treatment-antirraya-summary h2 { font-size: 28px; line-height: 40px; }
     .treatment-antirraya-description { margin-top: 0; font-size: 14px; line-height: 21px; }
     .treatment-antirraya-photo { height: 380px; margin-top: -24px; }
-    .treatment-antirraya-image-plane { width: 760px; height: 393.265px; margin-left: calc(50% - 380px); }
     .treatment-antirraya-benefits { flex-direction: column; align-items: center; gap: 10px; width: calc(100% - 48px); }
     .treatment-antirraya-benefits li, .treatment-antirraya-benefits li:nth-child(2), .treatment-antirraya-benefits li:nth-child(3) { flex-basis: auto; width: min(280px, 100%); margin-left: 0; }
     .treatment-antirraya-benefits li > span:last-child, .treatment-antirraya-benefits li:nth-child(2) > span:last-child, .treatment-antirraya-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }
@@ -279,10 +278,10 @@
 .treatment-polarizado-eyebrow, .treatment-polarizado-description { margin: 0; font-size: 15.042px; font-weight: 400; line-height: 18.803px; letter-spacing: -.4513px; }
 .treatment-polarizado-description { margin-top: -3.01px; }
 .treatment-polarizado-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30.085px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9025px; }
-/* The source image overflows its instance; the later background masks it at y1573. */
+/* The user-supplied video fills the existing photo viewport without changing its spacing. */
 .treatment-polarizado-photo { height: 680px; margin-top: -43px; overflow: hidden; }
-.treatment-polarizado-image-plane { position: relative; width: 1684px; height: 937.696px; margin-left: calc(50% - 844px); overflow: hidden; }
-.treatment-polarizado-image { position: absolute; top: -9.24%; left: -.01%; display: block; width: 100%; height: 100.24%; max-width: none; }
+.treatment-polarizado-image-plane { width: 100%; height: 100%; }
+.treatment-polarizado-video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .treatment-polarizado-benefits { position: relative; z-index: 2; display: flex; width: 822px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(44px); filter: drop-shadow(0 4px 4px rgb(0 0 0 / 25%)); }
 .treatment-polarizado-benefits li { position: relative; flex: 0 0 191px; min-height: 46px; border-radius: 20px; background: #fbfbfd; color: var(--ink); font-size: 14.748px; font-weight: 300; line-height: 20.969px; }
 .treatment-polarizado-benefits li:nth-child(2) { flex-basis: 248px; margin-left: 39px; }
@@ -307,7 +306,6 @@
     .treatment-polarizado-summary h2 { font-size: 28px; line-height: 40px; }
     .treatment-polarizado-description { margin-top: 0; font-size: 14px; line-height: 21px; }
     .treatment-polarizado-photo { height: 380px; margin-top: -24px; }
-    .treatment-polarizado-image-plane { width: 760px; height: 423.188px; margin-left: calc(50% - 380px); }
     .treatment-polarizado-benefits { flex-direction: column; align-items: center; gap: 10px; }
     .treatment-polarizado-benefits li, .treatment-polarizado-benefits li:nth-child(2), .treatment-polarizado-benefits li:nth-child(3) { flex-basis: auto; width: min(300px, 100%); padding-bottom: 12px; }
     .treatment-polarizado-benefits li > span:last-child, .treatment-polarizado-benefits li:nth-child(2) > span:last-child, .treatment-polarizado-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }
@@ -328,9 +326,9 @@
 .treatment-hidrofobico-eyebrow, .treatment-hidrofobico-description { margin: 0; font-size: 15.042px; font-weight: 400; line-height: 18.803px; letter-spacing: -.4513px; }
 .treatment-hidrofobico-description { margin-top: -3.01px; }
 .treatment-hidrofobico-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30.085px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9025px; }
-/* Static original photograph: the source plane starts at x-23 and is masked at y1573. */
+/* Native video fills the preserved photograph band; the original image remains its poster. */
 .treatment-hidrofobico-photo { height: 680px; margin-top: -43px; overflow: hidden; }
-.treatment-hidrofobico-image-plane { width: 1684px; height: 937.696px; margin-left: calc(50% - 743px); }
+.treatment-hidrofobico-image-plane { width: 100%; height: 100%; margin-left: 0; }
 .treatment-hidrofobico-image { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
 .treatment-hidrofobico-benefits { position: relative; z-index: 2; display: flex; width: 726px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(-4px); }
 .treatment-hidrofobico-benefits li { position: relative; flex: 0 0 191px; min-height: 46px; border-radius: 20px; background: #fbfbfd; color: var(--ink); font-size: 14.748px; font-weight: 300; line-height: 20.969px; }
@@ -356,7 +354,6 @@
     .treatment-hidrofobico-summary h2 { font-size: 28px; line-height: 40px; }
     .treatment-hidrofobico-description { margin-top: 0; font-size: 14px; line-height: 21px; }
     .treatment-hidrofobico-photo { height: 380px; margin-top: -24px; }
-    .treatment-hidrofobico-image-plane { width: 760px; height: 423.188px; margin-left: calc(50% - 380px); }
     .treatment-hidrofobico-benefits { flex-direction: column; align-items: center; gap: 10px; }
     .treatment-hidrofobico-benefits li, .treatment-hidrofobico-benefits li:nth-child(2), .treatment-hidrofobico-benefits li:nth-child(3) { flex-basis: auto; width: min(280px, 100%); padding-bottom: 12px; }
     .treatment-hidrofobico-benefits li > span:last-child, .treatment-hidrofobico-benefits li:nth-child(2) > span:last-child, .treatment-hidrofobico-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }
@@ -379,8 +376,8 @@
 .treatment-fotosensible-description { margin-top: -3.01px; }
 .treatment-fotosensible-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30.085px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9025px; }
 /* Source starts at y847 behind the summary; the lower opaque layer clips at y1573. */
-.treatment-fotosensible-photo { height: 726px; margin-top: -89px; overflow: hidden; }
-.treatment-fotosensible-image-plane { position: relative; width: 1684px; height: 937.696px; margin-left: calc(50% - 866px); overflow: hidden; }
+.treatment-fotosensible-photo { height: 680px; margin-top: -89px; overflow: hidden; }
+.treatment-fotosensible-image-plane { position: relative; width: 116.944444%; aspect-ratio: 1684 / 937.696; margin-left: -10.138889%; overflow: hidden; }
 .treatment-fotosensible-image { position: absolute; top: -12.48%; left: -16%; display: block; width: 124.65%; height: 124.95%; max-width: none; }
 .treatment-fotosensible-benefits { position: relative; z-index: 2; display: flex; width: 726px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(-4px); filter: drop-shadow(0 4px 4px rgb(0 0 0 / 25%)); }
 .treatment-fotosensible-benefits li { position: relative; flex: 0 0 191px; min-height: 46px; border-radius: 20px; background: #fbfbfd; color: var(--ink); font-size: 14.748px; font-weight: 300; line-height: 20.969px; }
@@ -395,7 +392,6 @@
     .treatments-content[data-active-treatment="fotosensible"] .treatments-tabs a,
     .treatments-content[data-active-treatment="fotosensible"] .treatments-tabs button { font-size: 14px; }
     .treatment-fotosensible-summary { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; width: calc(100% - 48px); padding: 36px 28px; }
-    .treatment-fotosensible-photo { height: 580px; }
     .treatment-fotosensible-benefits { flex-wrap: wrap; justify-content: center; gap: 12px 20px; width: calc(100% - 48px); max-width: 726px; transform: none; }
     .treatment-fotosensible-benefits li:nth-child(2), .treatment-fotosensible-benefits li:nth-child(3) { margin-left: 0; }
 }
@@ -405,8 +401,7 @@
     .treatment-fotosensible-summary { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 28px 24px; border-radius: 26px; }
     .treatment-fotosensible-summary h2 { font-size: 28px; line-height: 40px; }
     .treatment-fotosensible-description { margin-top: 0; font-size: 14px; line-height: 21px; }
-    .treatment-fotosensible-photo { height: 380px; margin-top: -24px; }
-    .treatment-fotosensible-image-plane { width: 760px; height: 423.188px; margin-left: calc(50% - 380px); }
+    .treatment-fotosensible-photo { margin-top: -24px; }
     .treatment-fotosensible-benefits { flex-direction: column; align-items: center; gap: 10px; }
     .treatment-fotosensible-benefits li, .treatment-fotosensible-benefits li:nth-child(2), .treatment-fotosensible-benefits li:nth-child(3) { flex-basis: auto; width: min(280px, 100%); padding-bottom: 12px; }
     .treatment-fotosensible-benefits li > span:last-child, .treatment-fotosensible-benefits li:nth-child(2) > span:last-child, .treatment-fotosensible-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }
@@ -426,10 +421,9 @@
 .treatment-ilux-eyebrow, .treatment-ilux-description { color: #7b7b80; }
 .treatment-ilux-summary h2 strong { font-weight: 600; }
 .treatment-ilux-summary h2 { margin: -2.283px 0 0; color: #000; font-size: 30.085px; font-weight: 400; line-height: 45.127px; letter-spacing: -.9025px; }
-/* Original reflected/clear lens photograph is static; y893 plane is masked at y1573. */
+/* Silent video fills the preserved photo band. */
 .treatment-ilux-photo { height: 680px; margin-top: -43px; overflow: hidden; }
-.treatment-ilux-image-plane { position: relative; width: 1684px; height: 937.696px; margin-left: calc(50% - 844px); overflow: hidden; }
-.treatment-ilux-image { position: absolute; top: -18.69%; left: -10.79%; display: block; width: 121.63%; height: 121.92%; max-width: none; }
+.treatment-ilux-video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .treatment-ilux-benefits { position: relative; z-index: 2; display: flex; width: 726px; margin: -23px auto 0; padding: 0; list-style: none; transform: translateX(-4px); filter: drop-shadow(0 4px 4px rgb(0 0 0 / 25%)); }
 .treatment-ilux-benefits li { position: relative; flex: 0 0 191px; min-height: 46px; border-radius: 20px; background: #fbfbfd; color: var(--ink); font-size: 14.748px; font-weight: 300; line-height: 20.969px; }
 .treatment-ilux-benefits li:nth-child(2) { flex-basis: 248px; margin-left: 39px; }
@@ -454,8 +448,30 @@
     .treatment-ilux-summary h2 { font-size: 28px; line-height: 40px; }
     .treatment-ilux-description { margin-top: 0; font-size: 14px; line-height: 21px; }
     .treatment-ilux-photo { height: 380px; margin-top: -24px; }
-    .treatment-ilux-image-plane { width: 760px; height: 423.188px; margin-left: calc(50% - 380px); }
     .treatment-ilux-benefits { flex-direction: column; align-items: center; gap: 10px; }
     .treatment-ilux-benefits li, .treatment-ilux-benefits li:nth-child(2), .treatment-ilux-benefits li:nth-child(3) { flex-basis: auto; width: min(280px, 100%); padding-bottom: 12px; }
     .treatment-ilux-benefits li > span:last-child, .treatment-ilux-benefits li:nth-child(2) > span:last-child, .treatment-ilux-benefits li:nth-child(3) > span:last-child { width: calc(100% - 40px); margin-left: 40px; }
 }
+
+/* Author hidden poster/video state above display:block treatment rules. */
+[data-treatment-video][hidden], [data-treatment-fallback][hidden] { display: none; }
+
+/* Below desktop, preserve full-bleed bands without forcing a 380px phone crop. */
+@media (max-width: 1199.98px) {
+    [data-treatment-media]:not(.treatment-uv-photo) { height: clamp(220px, 56.25vw, 580px); }
+    .treatment-detail [class$="-summary"] > * { min-width: 0; }
+    .treatment-detail [class$="-description"] { overflow-wrap: break-word; }
+}
+@media (max-width: 767.98px) {
+    .treatments-tabs li, .treatment-detail [class$="-benefits"] li { min-width: 0; }
+    .treatment-detail [class$="-benefits"] li > span:last-child { overflow-wrap: break-word; }
+}
+
+/* A renderable silent player sits behind its authentic pending preview. */
+.treatment-detail [data-treatment-media] { position: relative; }
+.treatment-detail [data-treatment-video] { position: absolute; inset: 0; z-index: 1; }
+.treatment-detail:not(.treatment-detail-fotosensible) [data-treatment-fallback] { position: relative; z-index: 2; }
+.treatment-fotosensible-video { width: 100%; height: 100%; object-fit: cover; }
+.treatment-detail-fotosensible [data-treatment-media] > div { z-index: 2; pointer-events: none; min-height: 100%; }
+
+.treatment-blue-tech-image[data-treatment-video] { object-position: 50% 0%; }

@@ -3,7 +3,7 @@
     <header class="games-arena-heading"><span aria-hidden="true">03</span><h2 id="trivia-title">@Model.Title</h2></header>
     <p id="trivia-disclaimer" class="trivia-disclaimer">@Model.Disclaimer</p>
     <div id="trivia-play">
-        <p id="trivia-progress" class="trivia-progress">Pregunta 1 de @Model.Questions.Length</p>
+        <p id="trivia-progress" class="trivia-progress">@T["Pregunta {index} de {total}"].Replace("{index}", "1").Replace("{total}", Model.Questions.Length.ToString())</p>
         @for (var questionIndex = 0; questionIndex < Model.Questions.Length; questionIndex++)
         {
             var question = Model.Questions[questionIndex];
@@ -24,13 +24,13 @@
         }
         <p id="trivia-feedback" class="trivia-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
         <div class="trivia-actions">
-            <button id="trivia-check" type="button" class="btn btn-novar" disabled>Comprobar</button>
-            <button id="trivia-next" type="button" class="btn btn-novar" hidden>Siguiente</button>
+            <button id="trivia-check" type="button" class="btn btn-novar" disabled>@T["Comprobar"]</button>
+            <button id="trivia-next" type="button" class="btn btn-novar" hidden>@T["Siguiente"]</button>
         </div>
     </div>
     <div id="trivia-result" class="trivia-result" hidden>
         <h3 id="trivia-score" tabindex="-1"></h3>
-        <p>Podés volver a responder las diez preguntas.</p>
-        <button id="trivia-retry" type="button" class="btn btn-novar">Reintentar</button>
+        <p>@T["Podés volver a responder las diez preguntas."]</p>
+        <button id="trivia-retry" type="button" class="btn btn-novar">@T["Reintentar"]</button>
     </div>
 </section>

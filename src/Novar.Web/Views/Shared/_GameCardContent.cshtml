@@ -11,7 +11,7 @@
             }
             else
             {
-                <span class="game-dot @(Model.Id == "codigo" && blueDots.Contains(dot) ? "game-dot-blue" : null) @(Model.Featured && dot == 10 ? "game-dot-intruder" : null)"></span>
+                <span class="game-dot @(Model.Id == "codigo" && blueDots.Contains(dot) ? "game-dot-blue" : null) @(Model.Id == "intruso" && dot == 10 ? "game-dot-intruder" : null)"></span>
             }
         }
     </span>

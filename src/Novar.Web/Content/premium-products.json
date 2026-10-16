@@ -8,7 +8,7 @@
     "feature": { "file": "68e81.png", "sourceNode": "894:241", "alt": "Mujer con lentes AI Lens entre personas desenfocadas", "width": 2752, "height": 1536 },
     "gallery": { "file": "fcfe9.png", "sourceNode": "894:329", "alt": "Mujer con un vestido verde caminando al aire libre", "width": 1549, "height": 1015 },
     "technologyTitle": "Comodidad y visión natural, desde el primer uso.\nEl primer lente progresivo diseñado con inteligencia artificial.",
-    "technologyDescription": "Novar AiLens© es el resultado de la última y más reciente innovación tecnológica global para lograr resultados más allá de lo conocido hasta el momento, optimizando el lente para que pueda ver el mundo sin límites periféricos.  La revolucionaria tecnología AI-GET de inteligencia artificial, exclusiva de Novar©, permite diseñar sus lentes progresivos para obtener calidades ópticas que superan cualquier otra desarrolladas por humanos.",
+    "technologyDescription": "Novar AiLens© es el resultado de la última y más reciente innovación tecnológica global para lograr resultados más allá de lo conocido hasta el momento, optimizando el lente para que pueda ver el mundo sin límites periféricos.\n\nLa revolucionaria tecnología AI-GET de inteligencia artificial, exclusiva de Novar©, permite diseñar sus lentes progresivos para obtener calidades ópticas que superan cualquier otra desarrolladas por humanos.",
     "benefits": [
       { "label": "Visión cómoda\ny natural", "icon": "8c8de.svg", "sourceNode": "977:11322" },
       { "label": "Zona de lectura\nmás confortable", "icon": "71321.svg", "sourceNode": "977:11326" },
@@ -26,8 +26,8 @@
     "galleryCaption": "Disfrutá el mundo\ncon una claridad tan natural,\ncomo si no llevaras lentes.",
     "watermark": "AI LENS",
     "questions": [
-      { "question": "¿Qué es Novar AI·Lens?", "answer": null },
-      { "question": "¿Para quién está recomendado?", "answer": null },
+      { "question": "¿Qué es Novar AI·Lens?", "answer": "Es un lente progresivo diseñado con inteligencia artificial para ofrecer una experiencia visual avanzada." },
+      { "question": "¿Para quién está recomendado?", "answer": "Para usuarios que buscan un progresivo premium, cómodo, fluido y con alta capacidad de adaptación." },
       { "question": "¿Qué lo diferencia?", "answer": "La combinación de Psicoptix y AI-GET, que permite optimizar el diseño y mejorar la experiencia visual en todas las distancias." }
     ],
     "openQuestion": 2
@@ -58,9 +58,9 @@
     "galleryCaption": "Claridad central con\ntecnología inteligente.",
     "watermark": "MYOLENS",
     "questions": [
-      { "question": "¿Qué es MyoLens?", "answer": null },
-      { "question": "¿Para quién está recomendado?", "answer": null },
-      { "question": "¿Qué lo diferencia?", "answer": null },
+      { "question": "¿Qué es MyoLens?", "answer": "Es un lente monofocal diseñado para mejorar la experiencia visual de pacientes miopes." },
+      { "question": "¿Para quién está recomendado?", "answer": "Para usuarios con miopía que buscan corrección central y mayor confort visual." },
+      { "question": "¿Qué lo diferencia?", "answer": "Su desarrollo con inteligencia artificial y su enfoque en la compensación periférica." },
       { "question": "¿Es igual a MyoFix?", "answer": "No. MyoFix está orientado al manejo de miopía progresiva en niños y adolescentes. MyoLens está pensado para brindar mayor confort visual en pacientes miopes." }
     ],
     "openQuestion": 3
@@ -92,10 +92,10 @@
     "galleryCaption": "Precisión visual en cerca,\nintermedio y distancia extendida.",
     "watermark": "AIWORK",
     "questions": [
-      { "question": "¿Qué es AiWork?", "answer": null },
-      { "question": "¿Para quién está recomendado?", "answer": null },
-      { "question": "¿Reemplaza a un progresivo tradicional?", "answer": null },
-      { "question": "¿Qué lo diferencia?", "answer": "Su personalización por distancias de trabajo y su optimización mediante inteligencia artificial." }
+      { "question": "¿Qué es MyoFix?", "answer": "Es un lente diseñado para acompañar el tratamiento de la miopía progresiva en niños y adolescentes." },
+      { "question": "¿Para quién está recomendado?", "answer": "Para niños y adolescentes con miopía progresiva, siempre bajo indicación y seguimiento profesional." },
+      { "question": "¿Reemplaza el seguimiento profesional?", "answer": "No. El seguimiento del profesional de la visión es fundamental para una correcta adaptación y control." },
+      { "question": "¿Qué lo diferencia?", "answer": "Su combinación de corrección central y desenfoque periférico controlado." }
     ],
     "openQuestion": 3
   }

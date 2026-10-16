@@ -1,0 +1,282 @@
+[
+  {
+    "name": "AI Lens",
+    "slug": "ai-lens",
+    "sourceNode": "894:233",
+    "heroCopy": "Inovação de verdade. Além do que conhecemos.\nUm olhar para o futuro.",
+    "hero": {
+      "file": "40da9.png",
+      "sourceNode": "977:10921",
+      "alt": "Mulher usando óculos e olhando pela janela de um carro",
+      "width": 2528,
+      "height": 1896
+    },
+    "feature": {
+      "file": "68e81.png",
+      "sourceNode": "894:241",
+      "alt": "Mulher usando AI Lens entre pessoas desfocadas",
+      "width": 2752,
+      "height": 1536
+    },
+    "gallery": {
+      "file": "fcfe9.png",
+      "sourceNode": "894:329",
+      "alt": "Mulher com vestido verde caminhando ao ar livre",
+      "width": 1549,
+      "height": 1015
+    },
+    "technologyTitle": "Conforto e visão natural desde o primeiro uso.\nA primeira lente progressiva projetada com inteligência artificial.",
+    "technologyDescription": "A Novar AiLens© é resultado da mais recente inovação tecnológica global, criada para ir além do que conhecemos hoje. Ela otimiza a lente para ajudar você a enxergar o mundo com menos limites periféricos.\n\nA tecnologia revolucionária de inteligência artificial AI-GET, exclusiva da Novar©, permite projetar lentes progressivas com qualidades ópticas que superam as desenvolvidas por outros métodos.",
+    "benefits": [
+      {
+        "label": "Visão confortável\ne natural",
+        "icon": "8c8de.svg",
+        "sourceNode": "977:11322"
+      },
+      {
+        "label": "Área de leitura\nmais confortável",
+        "icon": "71321.svg",
+        "sourceNode": "977:11326"
+      },
+      {
+        "label": "Sem efeito de balanço",
+        "icon": "60515.svg",
+        "sourceNode": "977:11328"
+      },
+      {
+        "label": "Sem cansaço visual",
+        "icon": "757b0.svg",
+        "sourceNode": "977:11338"
+      }
+    ],
+    "callouts": [
+      {
+        "slot": "top-left",
+        "text": "Projetadas para oferecer visão fluida em todas as distâncias.",
+        "sourceNode": "894:284"
+      },
+      {
+        "slot": "top-right",
+        "text": "Primeira lente projetada com",
+        "secondaryText": "Inteligência artificial",
+        "sourceNode": "894:285"
+      },
+      {
+        "slot": "bottom-left",
+        "text": "Graças à tecnologia avançada, reduz a sensação de balanço.",
+        "sourceNode": "894:283"
+      },
+      {
+        "slot": "bottom-right",
+        "text": "Ideais para quem passa muito tempo diante de telas.",
+        "sourceNode": "894:282"
+      }
+    ],
+    "technologyName": "Psicoptix Technology™",
+    "technologySummary": "Uma tecnologia exclusiva da Novar que combina óptica avançada e neurociência visual para criar lentes que se adaptam à forma como você enxerga o mundo. O resultado: uma visão mais natural, confortável e nítida a cada olhar.",
+    "galleryCaption": "Aproveite o mundo\ncom uma nitidez tão natural\nque parece não estar usando lentes.",
+    "watermark": "AI LENS",
+    "questions": [
+      {
+        "question": "O que é Novar AI·Lens?",
+        "answer": "É uma lente progressiva projetada com inteligência artificial para oferecer uma experiência visual avançada."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para quem busca uma lente progressiva premium, confortável, fluida e com alta capacidade de adaptação."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "A combinação de Psicoptix e AI-GET otimiza o design e melhora a experiência visual em todas as distâncias."
+      }
+    ],
+    "openQuestion": 2
+  },
+  {
+    "name": "MyoLens",
+    "slug": "myolens",
+    "sourceNode": "977:11066",
+    "heroCopy": "Uma nova geração\nde lentes para pessoas com miopia.",
+    "hero": {
+      "file": "c2edd.png",
+      "sourceNode": "977:11243",
+      "alt": "Dois jovens usando óculos transparentes ao ar livre",
+      "width": 2752,
+      "height": 1536
+    },
+    "feature": {
+      "file": "c69be.png",
+      "sourceNode": "977:11072",
+      "alt": "Close de jovem usando MyoLens",
+      "width": 3277,
+      "height": 4096
+    },
+    "gallery": {
+      "file": "459f9.png",
+      "sourceNode": "977:11097",
+      "alt": "Mulher usando óculos de armação transparente",
+      "width": 2752,
+      "height": 1536
+    },
+    "technologyTitle": "Lente monofocal desenvolvida com inteligência artificial para otimizar a correção da miopia no campo visual central.",
+    "technologyDescription": "A Novar MyoLens foi projetada para pessoas com miopia que buscam visão central nítida e mais conforto. Combina Psicoptix e AI-GET para compensar a hipercorreção periférica e melhorar a percepção visual.",
+    "benefits": [
+      {
+        "label": "Correção central otimizada.",
+        "icon": "8c8de.svg",
+        "sourceNode": "984:11372"
+      },
+      {
+        "label": "Mais conforto periférico.",
+        "icon": "71321.svg",
+        "sourceNode": "984:11376"
+      },
+      {
+        "label": "Design com inteligência artificial.",
+        "icon": "60515.svg",
+        "sourceNode": "984:11378"
+      },
+      {
+        "label": "Experiência visual mais estável.",
+        "icon": "757b0.svg",
+        "sourceNode": "984:11388"
+      }
+    ],
+    "callouts": [
+      {
+        "slot": "top-left",
+        "text": "Lente monofocal para conforto na miopia.",
+        "sourceNode": "977:11092"
+      },
+      {
+        "slot": "top-right",
+        "text": "Mais estabilidade visual para pessoas com miopia",
+        "sourceNode": "977:11093"
+      },
+      {
+        "slot": "bottom-right",
+        "text": "Correção central otimizada e conforto periférico.",
+        "sourceNode": "977:11090"
+      }
+    ],
+    "technologyName": "Psicoptix Technology™ / AI-GET Technology™.",
+    "technologySummary": "AI-GET e Psicoptix atuam no design da lente para otimizar a visão central e compensar efeitos periféricos, proporcionando mais conforto a pessoas com miopia.",
+    "galleryCaption": "Nitidez central com\ntecnologia inteligente.",
+    "watermark": "MYOLENS",
+    "questions": [
+      {
+        "question": "O que é MyoLens?",
+        "answer": "É uma lente monofocal projetada para melhorar a experiência visual de pessoas com miopia."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para pessoas com miopia que buscam correção central e mais conforto visual."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Seu desenvolvimento com inteligência artificial e foco na compensação periférica."
+      },
+      {
+        "question": "É igual à MyoFix?",
+        "answer": "Não. A MyoFix é voltada ao controle da miopia progressiva em crianças e adolescentes. A MyoLens foi pensada para oferecer mais conforto visual a pessoas com miopia."
+      }
+    ],
+    "openQuestion": 3
+  },
+  {
+    "name": "AIWork",
+    "slug": "aiwork",
+    "sourceNode": "988:11447",
+    "heroCopy": "Visão inteligente para trabalhar melhor.",
+    "hero": {
+      "file": "66c80.png",
+      "sourceNode": "988:11448",
+      "alt": "Profissional usando óculos e trabalhando em um notebook",
+      "width": 2752,
+      "height": 1536
+    },
+    "feature": {
+      "file": "3f12a.png",
+      "sourceNode": "988:11481",
+      "alt": "Dois profissionais usando óculos e trabalhando em um escritório",
+      "width": 2752,
+      "height": 1536
+    },
+    "gallery": {
+      "file": "b7de4.png",
+      "sourceNode": "988:11496",
+      "alt": "Profissional usando óculos diante do computador e das telas",
+      "width": 2752,
+      "height": 1536
+    },
+    "technologyTitle": "Lente ocupacional projetada com inteligência artificial para profissionais que precisam de precisão visual em ambientes digitais e multitarefas.",
+    "technologyDescription": "Projetada para o trabalho moderno, combina tecnologia e inteligência artificial para otimizar a experiência diante de telas, documentos e tarefas de precisão. Mais do que uma lente ocupacional tradicional, a AIWORK adapta a visão para distâncias intermediárias e próximas, favorecendo conforto, concentração e desempenho visual para profissionais que buscam produtividade em ambientes de trabalho digitais.",
+    "benefits": [
+      {
+        "label": "Menos cansaço visual.",
+        "icon": "8c8de.svg",
+        "sourceNode": "988:11567"
+      },
+      {
+        "label": "Conforto ao usar telas.",
+        "icon": "71321.svg",
+        "sourceNode": "988:11571"
+      },
+      {
+        "label": "Design com inteligência artificial.",
+        "icon": "60515.svg",
+        "sourceNode": "988:11573"
+      },
+      {
+        "label": "Precisão no trabalho.",
+        "icon": "757b0.svg",
+        "sourceNode": "988:11583"
+      }
+    ],
+    "callouts": [
+      {
+        "slot": "top-left",
+        "text": "Seus algoritmos adaptam o design às distâncias de trabalho e às necessidades visuais de cada pessoa, ajudando a reduzir o cansaço ocular.",
+        "sourceNode": "988:11650"
+      },
+      {
+        "slot": "top-right",
+        "text": "Mais conforto nas distâncias da sua jornada de trabalho.",
+        "sourceNode": "988:11492"
+      },
+      {
+        "slot": "bottom-left",
+        "text": "Projetada para escritórios, estudos, telas, reuniões e rotinas multitarefas.",
+        "sourceNode": "988:11491"
+      },
+      {
+        "slot": "bottom-right",
+        "text": "Desempenho otimizado para visão próxima, intermediária e estendida.",
+        "sourceNode": "988:11490"
+      }
+    ],
+    "technologyName": "AI-GET Technology™.",
+    "technologySummary": "A AI-GET otimiza o design conforme as necessidades visuais e distâncias de trabalho de cada pessoa, melhorando a precisão, o conforto e a fluidez.",
+    "galleryCaption": "Precisão visual para perto,\nintermediário e distância estendida.",
+    "watermark": "AIWORK",
+    "questions": [
+      {
+        "question": "O que é MyoFix?",
+        "answer": "É uma lente projetada para acompanhar o tratamento da miopia progressiva em crianças e adolescentes."
+      },
+      {
+        "question": "Para quem é indicada?",
+        "answer": "Para crianças e adolescentes com miopia progressiva, sempre sob indicação e acompanhamento profissional."
+      },
+      {
+        "question": "Substitui o acompanhamento profissional?",
+        "answer": "Não. O acompanhamento de um profissional da visão é fundamental para a adaptação e o controle adequados."
+      },
+      {
+        "question": "O que a diferencia?",
+        "answer": "Sua combinação de correção central e desfoco periférico controlado."
+      }
+    ],
+    "openQuestion": 3
+  }
+]

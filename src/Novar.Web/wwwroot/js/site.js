@@ -1,12 +1,13 @@
 (() => {
     'use strict';
+    const translate = window.NovarText;
     const modalElement = document.getElementById('pending-modal');
     const modal = new bootstrap.Modal(modalElement);
     let returnFocus;
 
     function showPending(feature, trigger) {
         returnFocus = trigger;
-        document.getElementById('pending-feature').textContent = feature;
+        document.getElementById('pending-feature').textContent = translate(`feature:${feature}`, feature);
         modal.show();
     }
 
@@ -29,6 +30,24 @@
         if (event.key === 'Escape' && nav.classList.contains('show')) {
             bootstrap.Collapse.getInstance(nav)?.hide();
             document.querySelector('.navbar-toggler').focus();
+        }
+    });
+
+    const languageForm = document.querySelector('.language-form');
+    const languageSelect = languageForm?.querySelector('[data-language-picker]');
+    const preserveLanguageReturnHash = () => {
+        const returnField = languageForm.querySelector('[data-language-return-url]');
+        if (returnField && window.location.hash && !returnField.value.includes('#')) {
+            returnField.value += window.location.hash;
+        }
+    };
+    languageForm?.addEventListener('submit', preserveLanguageReturnHash);
+    languageSelect?.addEventListener('change', () => {
+        if (typeof languageForm.requestSubmit === 'function') {
+            languageForm.requestSubmit();
+        } else {
+            preserveLanguageReturnHash();
+            languageForm.submit();
         }
     });
 })();

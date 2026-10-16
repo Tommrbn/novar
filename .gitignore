@@ -8,3 +8,19 @@ node_modules/
 TestResults/
 *.user
 *.suo
+
+# Local secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+!.env.sample
+**/appsettings.Local.json
+**/appsettings.*.Local.json
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Local logs and process files
+*.log
+*.pid

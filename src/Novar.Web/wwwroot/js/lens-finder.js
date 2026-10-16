@@ -4,12 +4,16 @@
     if (typeof module === 'object' && module.exports) module.exports = api;
     else {
         const element = root.document.querySelector('[data-lens-finder-revision="lens-finder-routing-v1"]');
-        if (element) api.initFinder(element, root.NovarLensFinderRules);
+        if (element) api.initFinder(element, root.NovarLensFinderRules, root.NovarText);
     }
 })(typeof globalThis === 'object' ? globalThis : this, function () {
     'use strict';
 
-    function initFinder(root, rules) {
+    function initFinder(root, rules, translate = (key, fallback, values = {}) => {
+        let text = fallback;
+        for (const [name, value] of Object.entries(values)) text = text.replaceAll(`{${name}}`, String(value));
+        return text;
+    }) {
         if (!rules || root.dataset.finderReady) return false;
         const find = id => root.querySelector(`#lens-finder-${id}`);
         const data = find('data');
@@ -51,8 +55,8 @@
             compact.disabled = !allowed;
             if (!allowed) compact.checked = false;
             help.textContent = current && current !== 'unsure'
-                ? 'Podés elegir una o más preferencias. Combinarlas busca una coincidencia entre todas; también podés ver la familia sin elegir ninguna.'
-                : 'Elegí un tipo de lente para ver sus preferencias, o usá No sé para explorar todas las opciones.';
+                ? translate('finder.preferenceHelp', 'Podés elegir una o más preferencias. Combinarlas busca una coincidencia entre todas; también podés ver la familia sin elegir ninguna.')
+                : translate('finder.preferencePrompt', 'Elegí un tipo de lente para ver sus preferencias, o usá No sé para explorar todas las opciones.');
         }
 
         function ageValue() {
@@ -76,11 +80,11 @@
             reason.textContent = product.reason;
             const link = doc.createElement('a');
             link.href = product.href;
-            link.textContent = `Conocé ${product.name}`;
+            link.textContent = translate('finder.productLink', 'Conocé {name}', { name: product.name });
             item.append(title, reason);
             if (product.slug === 'first' && ageValue !== null && ageValue >= 40 && ageValue <= 45) {
                 const context = doc.createElement('p');
-                context.textContent = 'La ficha de First menciona personas de 40 a 45 años que comienzan con la presbicia. Es contexto del producto, no una indicación por tu edad.';
+                context.textContent = translate('finder.firstAgeContext', 'La ficha de First menciona personas de 40 a 45 años que comienzan con la presbicia. Es contexto del producto, no una indicación por tu edad.');
                 item.append(context);
             }
             item.append(link);
@@ -91,22 +95,22 @@
             clearResults();
             const ageInput = ageValue();
             if (!ageInput.valid) {
-                status.textContent = 'La edad es opcional. Dejala vacía o ingresá un número entero mayor o igual a cero.';
+                status.textContent = translate('finder.ageError', 'La edad es opcional. Dejala vacía o ingresá un número entero mayor o igual a cero.');
                 age.setAttribute('aria-invalid', 'true');
                 return;
             }
             if (!need()) return;
             const result = rules.match(config, { need: need(), preferences: selected(), compact: compact.checked });
             if (result.kind === 'unmatched' || result.kind === 'invalid-config') {
-                status.textContent = 'No encontramos una coincidencia exacta para esa combinación. Cambiá las preferencias o explorá todas las fichas de abajo; no asignamos un lente por descarte.';
+                status.textContent = translate('finder.noExactMatch', 'No encontramos una coincidencia exacta para esa combinación. Cambiá las preferencias o explorá todas las fichas de abajo; no asignamos un lente por descarte.');
                 return;
             }
             list.replaceChildren(...result.products.map(product => render(product, ageInput.value)));
             results.hidden = false;
-            const context = result.kind === 'browse' ? 'Mostramos todo el catálogo, sin asignar una recomendación.'
-                : result.kind === 'family' ? 'Son alternativas del tipo que elegiste, no una selección clínica.'
-                    : 'Estas fichas describen las características que seleccionaste, no una indicación personal.';
-            status.textContent = `${result.products.length} opciones para explorar. ${context}`;
+            const context = result.kind === 'browse' ? translate('finder.browseContext', 'Mostramos todo el catálogo, sin asignar una recomendación.')
+                : result.kind === 'family' ? translate('finder.familyContext', 'Son alternativas del tipo que elegiste, no una selección clínica.')
+                    : translate('finder.matchContext', 'Estas fichas describen las características que seleccionaste, no una indicación personal.');
+            status.textContent = translate('finder.resultCount', '{count} opciones para explorar. {context}', { count: result.products.length, context });
         }
 
         root.addEventListener('change', function () {

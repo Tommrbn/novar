@@ -120,7 +120,7 @@ test('Runtime seed uses local crypto with a bounded non-crypto fallback; app use
     assert.equal(createRuntimeSeed({ getRandomValues() { throw new Error('unavailable'); } }, () => 0.25), 0x40000000);
 
     const gamesSource = fs.readFileSync(path.join(__dirname, '../../src/Novar.Web/wwwroot/js/games.js'), 'utf8');
-    assert.match(gamesSource, /createIntruso\(visualApi\.createRuntimeSeed\(\)\)/);
+    assert.match(gamesSource, /createIntruso\(visualApi\.createRuntimeSeed\(\),\s*window\.NovarText\)/);
     assert.match(gamesSource, /intrusoGame\?\.restart\(visualApi\.createRuntimeSeed\(\)\)/);
     assert.match(gamesSource, /else codigoGame\?\.restart\(\)/, 'Código retry remains unchanged');
 });

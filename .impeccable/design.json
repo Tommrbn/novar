@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T11:23:37.1420504-03:00",
+  "title": "Design System: WEB-VISION-NOVAR",
+  "extensions": {
+    "colorMeta": {
+      "button-ink": { "role": "primary", "displayName": "Button ink" },
+      "violet-accent": { "role": "primary", "displayName": "Violet accent" },
+      "body-dark": { "role": "neutral", "displayName": "Body dark" },
+      "muted-text": { "role": "neutral", "displayName": "Muted text" },
+      "lavender-text": { "role": "neutral", "displayName": "Lavender text" },
+      "paper": { "role": "neutral", "displayName": "Paper" },
+      "near-white": { "role": "neutral", "displayName": "Near-white" },
+      "white": { "role": "neutral", "displayName": "White" },
+      "black": { "role": "neutral", "displayName": "Black" },
+      "alternate-dark": { "role": "neutral", "displayName": "Alternate dark" },
+      "supporting-text": { "role": "neutral", "displayName": "Supporting text" }
+    },
+    "typographyMeta": {
+      "home-display": { "displayName": "Home display", "purpose": "Figma-verified: Home hero 889:1405 only." },
+      "section-heading": { "displayName": "Section heading", "purpose": "Figma-verified: Light headings 889:1454 and 964:1020." },
+      "product-intro": { "displayName": "Product intro", "purpose": "Figma-verified: Regular introduction 689:4843 and 964:1928." },
+      "navigation-default": { "displayName": "Navigation default", "purpose": "Figma-verified: navigation 961:6983 and CTA 1126:233." },
+      "faq-question": { "displayName": "FAQ question", "purpose": "Figma-verified: 961:5932." },
+      "faq-answer": { "displayName": "FAQ answer", "purpose": "Figma-verified: 961:5937." },
+      "footer-label": { "displayName": "Product footer label", "purpose": "Figma-verified: uppercase 964:1836; Home has another size." }
+    },
+    "shadows": [
+      { "name": "header-edge", "value": "0 1px 0 rgba(0,0,0,0.04)", "purpose": "Figma-verified: first header shadow 961:7030 / 964:1741; combine with header-lift." },
+      { "name": "header-lift", "value": "0 8px 32px rgba(0,0,0,0.10)", "purpose": "Figma-verified: second header shadow 961:7030 / 964:1741; combine with header-edge." },
+      { "name": "product-benefit-lift", "value": "0 12px 36px rgba(31,2,60,0.0941)", "purpose": "Figma-verified: benefit 964:2470." },
+      { "name": "product-local-shadow", "value": "0 3.0005px 3.0005px rgba(0,0,0,0.25)", "purpose": "Figma-verified: shadow only from 1030:607; not a CSS equivalent for its GLASS effect." }
+    ]
+  },
+  "components": [],
+  "narrative": {
+    "northStar": "unresolved; no user-approved creative metaphor was supplied.",
+    "overview": "Use the selected current Figma page as visual authority. This is extraction, not redesign or proof that every designed screen is implemented. Frontmatter records observed values with contextual role names, not application CSS variables or universal scales.",
+    "keyCharacteristics": [
+      "Floating light capsule navigation recurs across desktop compositions.",
+      "Pale image-led surfaces coexist with distinctly dark Premium pages.",
+      "Poppins spans light editorial headings and bold product/hero emphasis.",
+      "Purple actions, text, translucent washes and rounded containers recur without making every purple interchangeable."
+    ],
+    "rules": [
+      { "name": "The Distinct Darks Rule", "body": "Preserve separate dark fills and styled text runs; visual similarity does not authorize token merging.", "section": "colors" },
+      { "name": "The Text Runs Rule", "body": "Inspect styled segments before assigning color/weight from a parent text node.", "section": "typography" }
+    ],
+    "dos": [
+      "Do start from the selected current-page frame and visible content, then compare its family implementation.",
+      "Do preserve mixed runs, distinct dark colors, authentic assets, Spanish copy and contextual composition.",
+      "Do label code-only behavior and unresolved decisions explicitly.",
+      "Do use contextual tokens without inventing universal type/spacing/radius scales.",
+      "Do retain source inconsistencies until correction is authorized.",
+      "Do treat mobile layout and interactive states as separate requirements needing evidence."
+    ],
+    "donts": [
+      "Don't promote archives, similar names or current CSS into current-page authority.",
+      "Don't invent FAQ answers, routes, testimonials, email fields or interaction semantics from static variants.",
+      "Don't normalize every family into Home, Premium or a generic template.",
+      "Don't fabricate ramps, metaphors, variables, GLASS-to-CSS equivalents or motion.",
+      "Don't claim browser/mobile/accessibility/functional validation from structural document checks.",
+      "Don't treat extraction as permission to edit code, Figma, assets, configuration or publish anything."
+    ]
+  }
+}
