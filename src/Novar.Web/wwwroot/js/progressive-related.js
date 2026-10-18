@@ -14,7 +14,9 @@
         card.addEventListener('pointerleave', event => {
             if (event.pointerType !== 'mouse') return;
             hovering = false;
-            if (!card.contains(document.activeElement)) card.open = false;
+            // Mouse-click focus must not leave the photo blurred after hover ends.
+            // Keyboard focus keeps the choices available until the user tabs away.
+            if (!card.querySelector(':focus-visible')) card.open = false;
         });
         card.addEventListener('focusout', event => {
             if (!hovering && !card.contains(event.relatedTarget)) card.open = false;

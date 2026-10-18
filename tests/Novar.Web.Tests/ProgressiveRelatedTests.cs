@@ -49,16 +49,17 @@ public sealed class ProgressiveRelatedTests(WebApplicationFactory<Program> facto
     }
 
     [Fact]
-    public async Task HoverMotionRevealsTheVeilWithoutMovingOrResizingTheOriginalPhotos()
+    public async Task HoverBlursOnlyThePhotosWithoutTintingMovingOrResizingThem()
     {
         var css = await client.GetStringAsync("/css/progressive-products.css");
-        Assert.Contains("prg-related-aperture 420ms cubic-bezier(.16, 1, .3, 1)", css);
-        Assert.Contains("from { clip-path: inset(50% 0); opacity: 0; }", css);
+        Assert.DoesNotContain("prg-related-aperture", css);
+        Assert.DoesNotContain(".prg-related-options::before", css);
         Assert.Contains("prg-related-focus 240ms ease-out 80ms", css);
         Assert.Contains("animation-delay: 120ms", css);
         Assert.Contains("transition: filter 180ms ease-out", css);
         Assert.Contains("filter: blur(2.5px)", css);
-        Assert.Contains("background: rgb(31 2 60 / 66%)", css);
+        Assert.DoesNotContain("background: rgb(31 2 60 / 66%)", css);
+        Assert.Contains(".prg-related-card[open] summary .prg-related-hint { display: none; }", css);
         var related = css[css.IndexOf(".prg-related {")..css.IndexOf(".prg-footer {")];
         Assert.DoesNotContain("transform:", related);
         Assert.DoesNotContain("transition: all", related);

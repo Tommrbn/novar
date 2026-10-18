@@ -1,7 +1,22 @@
 (function (root) {
     'use strict';
 
-    const ROUND_COUNT = 5;
+    const ROUND_COUNT = 3;
+    const LEVEL_COUNT = 5;
+    const intrusoLevels = Object.freeze([
+        { columns: 3, hueDelta: 36, lightnessDelta: 12 },
+        { columns: 3, hueDelta: 25, lightnessDelta: 8 },
+        { columns: 4, hueDelta: 18, lightnessDelta: 6 },
+        { columns: 4, hueDelta: 12, lightnessDelta: 4 },
+        { columns: 5, hueDelta: 7, lightnessDelta: 2 }
+    ].map(Object.freeze));
+    const codigoLevels = Object.freeze([
+        { digits: 1, noise: 0 },
+        { digits: 1, noise: .15 },
+        { digits: 2, noise: .15 },
+        { digits: 2, noise: .3 },
+        { digits: 3, noise: .4 }
+    ].map(Object.freeze));
     const DEFAULT_SEED = 0x6d2b79f5;
     const glyphs = Object.freeze([
         ['0111110', '1100011', '1100011', '1100011', '1100011', '0111110'],
@@ -45,8 +60,8 @@
         return fallback === 0 ? DEFAULT_SEED : fallback;
     }
 
-    function shuffledPositions(random) {
-        const positions = Array.from({ length: 9 }, (_, index) => index);
+    function shuffledPositions(random, count) {
+        const positions = Array.from({ length: count }, (_, index) => index);
         for (let index = positions.length - 1; index > 0; index--) {
             const range = index + 1;
             const limit = Math.floor(0x100000000 / range) * range;
@@ -58,28 +73,29 @@
         return positions;
     }
 
-    function makePalette(random, round) {
+    function makePalette(random, settings) {
         const hue = 244 + Math.floor(random() * 22);
         const saturation = 55 + Math.floor(random() * 12);
         const lightness = 45 + Math.floor(random() * 8);
-        const delta = 25 - (round - 1) * 3;
         return [
             `hsl(${hue} ${saturation}% ${lightness}%)`,
-            `hsl(${hue + delta} ${saturation}% ${lightness}%)`
+            `hsl(${hue + settings.hueDelta} ${saturation}% ${lightness + settings.lightnessDelta}%)`
         ];
     }
 
-    function createIntruso(seed = DEFAULT_SEED, translate = (key, fallback) => fallback) {
+    function createIntrusoAttempt(seed, translate, level) {
+        const settings = intrusoLevels[level - 1];
+        const choiceCount = settings.columns ** 2;
         let attemptSeed = normalizeSeed(seed);
         function makeRounds(currentSeed) {
             const random = randomFrom(currentSeed);
-            const positions = shuffledPositions(random);
+            const positions = shuffledPositions(random, choiceCount);
             return Array.from({ length: ROUND_COUNT }, (_, index) => {
                 const correctIndex = positions[index];
-                const palette = makePalette(random, index + 1);
+                const palette = makePalette(random, settings);
                 const baseFirst = random() < 0.5;
                 return Object.freeze({
-                    colors: Object.freeze(Array.from({ length: 9 }, (_, choice) =>
+                    colors: Object.freeze(Array.from({ length: choiceCount }, (_, choice) =>
                         choice === correctIndex ? palette[baseFirst ? 1 : 0] : palette[baseFirst ? 0 : 1]))
                 });
             });
@@ -99,12 +115,13 @@
         function getState() {
             return Object.freeze({
                 index, round: index + 1, total: ROUND_COUNT, score, checked, complete,
+                columns: settings.columns,
                 colors: complete ? Object.freeze([]) : rounds[index].colors,
                 feedback: feedback && Object.freeze({ ...feedback })
             });
         }
         function choose(choice) {
-            if (complete || checked || !Number.isInteger(choice) || choice < 0 || choice >= 9) return false;
+            if (complete || checked || !Number.isInteger(choice) || choice < 0 || choice >= choiceCount) return false;
             const colors = rounds[index].colors;
             const correctColor = colors.find((color, colorIndex) => colors.indexOf(color) === colorIndex && colors.lastIndexOf(color) === colorIndex);
             const correct = colors[choice] === correctColor;
@@ -128,13 +145,14 @@
         return Object.freeze({ getState, choose, next, restart });
     }
 
-    function createCodigo(seed = DEFAULT_SEED, translate = (key, fallback, values = {}) => {
-        let text = fallback;
-        for (const [name, value] of Object.entries(values)) text = text.replaceAll(`{${name}}`, String(value));
-        return text;
-    }) {
+    function createCodigoAttempt(seed, translate, level) {
+        const settings = codigoLevels[level - 1];
         const random = randomFrom(normalizeSeed(seed) ^ 0x9e3779b9);
-        const answers = Array.from({ length: ROUND_COUNT }, () => Math.floor(random() * 10));
+        const answers = Array.from({ length: ROUND_COUNT }, () => Array.from({ length: settings.digits }, () => Math.floor(random() * 10)).join(''));
+        const masks = answers.map(answer => Object.freeze(Array.from({ length: 6 }, (_, row) => [...answer].map(digit => glyphs[Number(digit)][row]).join('0'))));
+        // Distractors never erase a signal dot or fill the separator between digits.
+        const noise = masks.map(mask => Object.freeze(mask.join('').split('').map((dot, index) =>
+            dot === '0' && (index % mask[0].length) % 8 !== 7 && random() < settings.noise)));
         let index, score, checked, complete, feedback, draft;
 
         function restart() {
@@ -148,7 +166,9 @@
         function getState() {
             return Object.freeze({
                 index, round: index + 1, total: ROUND_COUNT, score, checked, complete, draft,
-                mask: complete ? Object.freeze([]) : glyphs[answers[index]],
+                digits: settings.digits, columns: settings.digits * 8 - 1,
+                mask: complete ? Object.freeze([]) : masks[index],
+                noise: complete ? Object.freeze([]) : noise[index],
                 feedback: feedback && Object.freeze({ ...feedback })
             });
         }
@@ -164,11 +184,13 @@
         function check(value = draft) {
             if (checked || complete || typeof value !== 'string') return false;
             draft = value;
-            if (value.length !== 1 || value.charCodeAt(0) < 48 || value.charCodeAt(0) > 57) {
-                feedback = { kind: 'invalid', message: translate('game.codeInvalid', 'Ingresá una sola cifra del 0 al 9.') };
+            if (value.length !== settings.digits || !/^[0-9]+$/.test(value)) {
+                feedback = { kind: 'invalid', message: settings.digits === 1
+                    ? translate('game.codeInvalid', 'Ingresá una sola cifra del 0 al 9.')
+                    : translate('game.codeInvalidMany', 'Ingresá exactamente {count} cifras, incluidos los ceros iniciales.', { count: settings.digits }) };
                 return false;
             }
-            const correct = Number(value) === answers[index];
+            const correct = value === answers[index];
             checked = true;
             score += correct ? 1 : 0;
             feedback = {
@@ -193,7 +215,54 @@
         return Object.freeze({ getState, setDraft, clearError, check, next, restart });
     }
 
-    const api = Object.freeze({ ROUND_COUNT, DEFAULT_SEED, createRuntimeSeed, createIntruso, createCodigo });
+    function defaultTranslate(key, fallback, values = {}) {
+        return Object.entries(values).reduce((text, [name, value]) => text.replaceAll(`{${name}}`, String(value)), fallback);
+    }
+
+    // Each level keeps its own attempt, draft and best result for this page visit.
+    // Selecting another difficulty or game never discards progress or writes user data.
+    function createLevels(factory, seed, translate) {
+        const baseSeed = normalizeSeed(seed);
+        let level = 1;
+        const attempts = new Map();
+        const best = new Map();
+        const current = () => {
+            if (!attempts.has(level)) attempts.set(level, factory(normalizeSeed(baseSeed ^ Math.imul(level - 1, 0x9e3779b9)), translate, level));
+            return attempts.get(level);
+        };
+        function selectLevel(value) {
+            if (!Number.isInteger(value) || value < 1 || value > LEVEL_COUNT || value === level) return false;
+            level = value;
+            current();
+            return true;
+        }
+        function getState() {
+            return Object.freeze({ ...current().getState(), level, levelCount: LEVEL_COUNT,
+                progress: Object.freeze(Array.from({ length: LEVEL_COUNT }, (_, index) => Object.freeze({
+                    level: index + 1, complete: best.has(index + 1), bestScore: best.get(index + 1) ?? null
+                }))) });
+        }
+        const forward = method => (...args) => current()[method](...args);
+        return Object.freeze({
+            getState, selectLevel,
+            ...(factory === createIntrusoAttempt ? { choose: forward('choose') }
+                : { setDraft: forward('setDraft'), clearError: forward('clearError'), check: forward('check') }),
+            next() {
+                if (!current().next()) return false;
+                const state = current().getState();
+                if (state.complete) best.set(level, Math.max(best.get(level) ?? 0, state.score));
+                return true;
+            },
+            nextLevel() { return current().getState().complete && selectLevel(level + 1); },
+            restart(nextSeed) {
+                if (nextSeed === undefined) current().restart();
+                else attempts.set(level, factory(normalizeSeed(nextSeed), translate, level));
+            }
+        });
+    }
+    const createIntruso = (seed = DEFAULT_SEED, translate = defaultTranslate) => createLevels(createIntrusoAttempt, seed, translate);
+    const createCodigo = (seed = DEFAULT_SEED, translate = defaultTranslate) => createLevels(createCodigoAttempt, seed, translate);
+    const api = Object.freeze({ ROUND_COUNT, LEVEL_COUNT, DEFAULT_SEED, intrusoLevels, codigoLevels, createRuntimeSeed, createIntruso, createCodigo });
     if (typeof module === 'object' && module.exports) module.exports = api;
     else root.NovarVisualGames = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

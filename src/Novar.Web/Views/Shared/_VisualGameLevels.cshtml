@@ -1,0 +1,19 @@
+@{
+    var names = new[] { "Fácil", "Moderado", "Intermedio", "Avanzado", "Experto" };
+}
+<div class="visual-levels">
+    <p class="visual-level-title" data-visual-level-title>@T["Nivel 1 de 5 · Fácil"]</p>
+    <fieldset class="visual-level-picker">
+        <legend>@T["Elegí la dificultad"]</legend>
+        <div class="visual-level-buttons">
+            @for (var level = 1; level <= 5; level++)
+            {
+                <button type="button" class="visual-level-button" data-visual-level="@level" aria-pressed="@(level == 1 ? "true" : "false")" aria-label="@T["Nivel {level}: {name}"].Replace("{level}", level.ToString()).Replace("{name}", T[names[level - 1]])" disabled>
+                    <span>@level</span><small data-level-score hidden></small>
+                </button>
+            }
+        </div>
+    </fieldset>
+    <p class="visual-level-description" data-visual-level-description></p>
+    <p class="visual-level-help">@T["Tres rondas por nivel, sin reloj. El avance se conserva hasta recargar o cerrar la página."]</p>
+</div>

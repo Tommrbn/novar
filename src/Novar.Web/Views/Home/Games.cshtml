@@ -16,13 +16,13 @@
                 <h2 class="visually-hidden">@card.Title</h2>
                 @if (card.Id == "codigo")
                 {
-                    <button type="button" class="game-card-trigger" data-game-card="codigo" data-visual-game-start="codigo" aria-controls="codigo-panel" aria-pressed="false" aria-label="@T["CÓDIGO VISUAL: jugar cinco rondas"]" disabled>
+                    <button type="button" class="game-card-trigger" data-game-card="codigo" data-visual-game-start="codigo" aria-controls="codigo-panel" aria-pressed="false" aria-label="@T["CÓDIGO VISUAL: explorar cinco niveles"]" disabled>
                         <partial name="_GameCardContent" model="card" />
                     </button>
                 }
                 else if (card.Id == "intruso")
                 {
-                    <button type="button" class="game-card-trigger" data-game-card="intruso" data-visual-game-start="intruso" aria-controls="intruso-preview" aria-pressed="true" aria-label="@T["INTRUSO CROMÁTICO: jugar cinco rondas"]" disabled>
+                    <button type="button" class="game-card-trigger" data-game-card="intruso" data-visual-game-start="intruso" aria-controls="intruso-preview" aria-pressed="true" aria-label="@T["INTRUSO CROMÁTICO: explorar cinco niveles"]" disabled>
                         <partial name="_GameCardContent" model="card" />
                     </button>
                 }

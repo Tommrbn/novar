@@ -40,8 +40,8 @@
     },
     {
       "number": "02",
-      "title": "Play five rounds",
-      "description": "Answer at your own pace and pay attention to the details."
+      "title": "Choose your level",
+      "description": "Intruder and Code have five levels, with three rounds per level and no timer."
     },
     {
       "number": "03",
@@ -50,9 +50,9 @@
     }
   ],
   "previewTitle": "Color Intruder",
-  "roundLabel": "Round 1 of 5",
+  "roundLabel": "Round 1 of 3",
   "scoreLabel": "Score: 0",
-  "previewInstruction": "Find the different color among the 9 squares",
+  "previewInstruction": "Choose the circle with a different color.",
   "demoNotice": "Recreational challenge. The score does not evaluate your vision.",
   "trivia": {
     "title": "Trivia",

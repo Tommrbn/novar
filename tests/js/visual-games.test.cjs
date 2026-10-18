@@ -54,14 +54,14 @@ function runCode(seed, mode) {
     return game.getState();
 }
 
-test('Intruso creates five repeatable nine-choice rounds with one visual odd color', () => {
+test('Intruso creates three repeatable nine-choice rounds with one visual odd color', () => {
     const first = createIntruso(12345);
     const second = createIntruso(12345);
-    assert.equal(ROUND_COUNT, 5);
+    assert.equal(ROUND_COUNT, 3);
     for (let round = 1; round <= ROUND_COUNT; round++) {
         const state = first.getState();
         assert.equal(state.round, round);
-        assert.equal(state.total, 5);
+        assert.equal(state.total, 3);
         assert.equal(state.colors.length, 9);
         assert.equal(new Set(state.colors).size, 2);
         assert.ok(state.colors.filter(color => state.colors.indexOf(color) === state.colors.lastIndexOf(color)).length === 1);
@@ -81,7 +81,7 @@ test('Intruso creates five repeatable nine-choice rounds with one visual odd col
         assert.equal(second.next(), true);
     }
     assert.equal(first.getState().complete, true);
-    assert.equal(first.getState().score, 5);
+    assert.equal(first.getState().score, 3);
     assert.equal(first.choose(0), false);
     first.restart();
     assert.deepEqual(first.getState().colors, createIntruso(12345).getState().colors);
@@ -89,7 +89,7 @@ test('Intruso creates five repeatable nine-choice rounds with one visual odd col
     assert.equal(first.getState().round, 1);
 });
 
-test('Intruso uses five distinct seeded positions and a new seed regenerates the attempt', () => {
+test('Intruso uses three distinct seeded positions and a new seed regenerates the attempt', () => {
     const observed = new Set();
     for (let seed = 1; seed <= 300; seed++) {
         const positions = intrusoPositions(createIntruso(seed));
@@ -122,7 +122,7 @@ test('Runtime seed uses local crypto with a bounded non-crypto fallback; app use
     const gamesSource = fs.readFileSync(path.join(__dirname, '../../src/Novar.Web/wwwroot/js/games.js'), 'utf8');
     assert.match(gamesSource, /createIntruso\(visualApi\.createRuntimeSeed\(\),\s*window\.NovarText\)/);
     assert.match(gamesSource, /intrusoGame\?\.restart\(visualApi\.createRuntimeSeed\(\)\)/);
-    assert.match(gamesSource, /else codigoGame\?\.restart\(\)/, 'Código retry remains unchanged');
+    assert.match(gamesSource, /else codigoGame\?\.restart\(visualApi\.createRuntimeSeed\(\)\)/, 'Código retry creates fresh patterns');
 });
 
 test('Intruso awards no point for a wrong choice and guards next until choice', () => {
@@ -212,14 +212,14 @@ test('Código preserves a valid draft, clears invalid status, and guards state i
     assert.equal(game.getState().feedback, null);
 });
 
-test('Código scores all-correct, all-wrong, and mixed five-round attempts', () => {
-    assert.equal(runCode(1201, 'all').score, 5);
+test('Código scores all-correct, all-wrong, and mixed three-round attempts', () => {
+    assert.equal(runCode(1201, 'all').score, 3);
     assert.equal(runCode(1201, 'none').score, 0);
-    assert.equal(runCode(1201, 'mixed').score, 3);
+    assert.equal(runCode(1201, 'mixed').score, 2);
 });
 
-test('Intruso scores all-correct, all-wrong, and mixed five-round attempts', () => {
-    for (const [mode, expected] of [['all', 5], ['none', 0], ['mixed', 3]]) {
+test('Intruso scores all-correct, all-wrong, and mixed three-round attempts', () => {
+    for (const [mode, expected] of [['all', 3], ['none', 0], ['mixed', 2]]) {
         const game = createIntruso(1202);
         let score = 0;
         for (let round = 1; round <= ROUND_COUNT; round++) {

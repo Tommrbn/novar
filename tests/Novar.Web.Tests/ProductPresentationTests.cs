@@ -53,6 +53,45 @@ public sealed class ProductPresentationTests(WebApplicationFactory<Program> fact
     }
 
     [Fact]
+    public async Task TechnologyCardsFrostTheirBackdropWithoutBlurringTheirOwnContent()
+    {
+        var css = await client.GetStringAsync("/css/product-presentation.css");
+        var glass = css[..css.IndexOf("/* Decorative product lettering")];
+        Assert.Contains(":is(.prg-technology-card, .mono-technology-card, .bop-technology-card)", glass);
+        Assert.Contains("background: #f3f2f5", glass);
+        Assert.Contains("@supports ((backdrop-filter:", glass);
+        Assert.Contains("background: rgb(246 245 247 / 90%)", glass);
+        Assert.Contains("-webkit-backdrop-filter: blur(28px)", glass);
+        Assert.Contains("backdrop-filter: blur(28px)", glass);
+        Assert.DoesNotMatch(@"(?<!backdrop-)filter:\s*blur", glass);
+
+        var slugs = Content.ProgressiveProducts.Keys.Concat(Content.MonofocalProducts.Keys)
+            .Concat(Content.BifocalOccupationalProducts.Keys).Append("first");
+        foreach (var slug in slugs)
+        {
+            var html = await client.GetStringAsync($"/lentes/{slug}");
+            Assert.Matches("class=\"(?:prg|mono|bop)-technology-card\"", html);
+            Assert.Contains("/css/product-presentation.css", html);
+        }
+    }
+
+    [Fact]
+    public async Task RelatedPortraitsKeepTheirColorsAndBlurOnlyForHoverOrKeyboardFocus()
+    {
+        var css = await client.GetStringAsync("/css/product-presentation.css");
+        var related = css[css.IndexOf("/* Existing portrait links")..];
+        Assert.DoesNotContain("::before", related);
+        Assert.DoesNotContain("rgb(31 2 60 / 66%)", related);
+        Assert.Contains("@media (hover: hover) and (pointer: fine)", related);
+        Assert.Contains(":hover > img { filter: blur(2.5px); }", related);
+        Assert.Contains(":focus-visible > img { filter: blur(2.5px); }", related);
+        Assert.Contains("background: #1f023c", related); // Only the CTA, not a photo veil.
+        var touch = related[related.IndexOf("@media (hover: none)")..related.IndexOf("@media (prefers-reduced-motion")];
+        Assert.DoesNotContain("filter:", touch);
+        Assert.Contains("opacity: 1", touch); // Direct touch links remain discoverable.
+    }
+
+    [Fact]
     public async Task MobileHeroReservesTheFullPortraitHeightBeforeTheLogotype()
     {
         var css = await client.GetStringAsync("/css/product-presentation.css");

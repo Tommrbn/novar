@@ -40,8 +40,8 @@
     },
     {
       "number": "02",
-      "title": "Jogue cinco rodadas",
-      "description": "Responda no seu ritmo e preste atenção aos detalhes."
+      "title": "Escolha seu nível",
+      "description": "Intruso e Código têm cinco níveis, com três rodadas por nível e sem cronômetro."
     },
     {
       "number": "03",
@@ -50,9 +50,9 @@
     }
   ],
   "previewTitle": "Intruso Cromático",
-  "roundLabel": "Rodada 1 de 5",
+  "roundLabel": "Rodada 1 de 3",
   "scoreLabel": "Pontuação: 0",
-  "previewInstruction": "Encontre a cor diferente entre os 9 quadrados",
+  "previewInstruction": "Escolha o círculo de cor diferente.",
   "demoNotice": "Desafio recreativo. A pontuação não avalia sua visão.",
   "trivia": {
     "title": "Trivia",

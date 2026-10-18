@@ -1,4 +1,17 @@
 /* Shared product conventions requested in the October review. Home is excluded. */
+
+/* Frost only the backdrop: decorative lettering must not compete with card copy.
+   An opaque fallback preserves legibility when backdrop-filter is unavailable. */
+:is(.prg-technology-card, .mono-technology-card, .bop-technology-card) {
+    background: #f3f2f5;
+}
+@supports ((backdrop-filter: blur(28px)) or (-webkit-backdrop-filter: blur(28px))) {
+    :is(.prg-technology-card, .mono-technology-card, .bop-technology-card) {
+        background: rgb(246 245 247 / 90%);
+        -webkit-backdrop-filter: blur(28px);
+        backdrop-filter: blur(28px);
+    }
+}
 /* Decorative product lettering — Figma coordinates are relative to a centered 1440px frame.
    Keep the first text line aligned with the technology cards, not the browser's right edge.
    The extra half-em padding preserves ink outside Figma's deliberately tight line boxes. */
@@ -237,15 +250,13 @@
     isolation: isolate;
 }
 #main .bop-related--office .bop-related-images > a[data-related-cta] > img { height: 100%; }
-#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: rgb(31 2 60 / 66%);
-    opacity: 0;
-    transition: opacity 220ms ease-out;
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > img {
+    transition: filter 220ms ease-out;
 }
+@media (hover: hover) and (pointer: fine) {
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:hover > img { filter: blur(2.5px); }
+}
+#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:focus-visible > img { filter: blur(2.5px); }
 #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > span {
     position: absolute;
     z-index: 2;
@@ -258,6 +269,7 @@
     line-height: 1.2;
     font-weight: 600;
     text-align: center;
+    text-shadow: 0 1px 4px rgb(0 0 0 / 85%);
     opacity: 0;
     transition: opacity 220ms ease-out;
 }
@@ -271,18 +283,17 @@
     padding: 10px 24px;
     border: 1px solid #fff;
     border-radius: 999px;
+    background: #1f023c;
     color: #fff;
     font-size: 16px;
     white-space: nowrap;
     opacity: 0;
     transition: opacity 220ms ease-out;
 }
-#main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:is(:hover, :focus-visible)::before,
 #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:is(:hover, :focus-visible)::after,
 #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:is(:hover, :focus-visible) > span { opacity: 1; }
 #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]:focus-visible { outline: 3px solid #fff; outline-offset: -5px; }
 @media (hover: none), (pointer: coarse) {
-    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::before,
     #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::after,
     #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > span { opacity: 1; }
 }
@@ -308,7 +319,7 @@
         filter: none !important;
         opacity: 1 !important;
     }
-    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::before,
+    #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > img,
     #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta]::after,
     #main :is(.mono-related-images, .bop-related-images) > a[data-related-cta] > span { transition: none; }
 }

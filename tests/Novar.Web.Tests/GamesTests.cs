@@ -63,7 +63,7 @@ public sealed class GamesTests(WebApplicationFactory<Program> factory) : IClassF
         var html = WebUtility.HtmlDecode(await client.GetStringAsync("/juegos"));
         Assert.Contains("data-visual-games-revision=\"visual-games-v1\"", html);
         Assert.Contains("<a class=\"nav-link\" href=\"/#warranty-title\">Garantía</a>", html);
-        Assert.Contains("Ronda 1 de 5", html);
+        Assert.Contains("Ronda 1 de 3", html);
         Assert.Contains("Puntaje: 0", html);
         Assert.Equal(9, Regex.Matches(html, "data-intruso-choice").Count);
         Assert.Equal(42, Regex.Matches(html, "data-codigo-dot").Count);
@@ -97,7 +97,7 @@ public sealed class GamesTests(WebApplicationFactory<Program> factory) : IClassF
         foreach (var forbidden in new[] { "fetch(", "localStorage", "sessionStorage", "Math.random", "setInterval", "innerHTML" })
             Assert.DoesNotContain(forbidden, js);
         var state = await client.GetStringAsync("/js/visual-games-state.js");
-        Assert.Contains("ROUND_COUNT = 5", state);
+        Assert.Contains("ROUND_COUNT = 3", state);
         Assert.Contains("createIntruso", state);
         Assert.Contains("createCodigo", state);
         var css = await client.GetStringAsync("/css/games.css");
@@ -108,6 +108,37 @@ public sealed class GamesTests(WebApplicationFactory<Program> factory) : IClassF
         Assert.Contains("[data-visual-game-panel=\"intruso\"] [data-visual-feedback] { text-align: center; }", css);
         Assert.Contains("[data-visual-game-panel=\"intruso\"] [data-visual-next] { display: block; width: fit-content; margin: 4px auto 0; }", css);
         Assert.Equal(HttpStatusCode.MethodNotAllowed, (await client.PostAsync("/juegos", new StringContent(""))).StatusCode);
+    }
+
+    [Theory]
+    [InlineData("es", "Nivel 1 de 5 · Fácil", "Siguiente nivel", "Repetir nivel")]
+    [InlineData("en", "Level 1 of 5 · Easy", "Next level", "Replay level")]
+    [InlineData("pt-BR", "Nível 1 de 5 · Fácil", "Próximo nível", "Repetir nível")]
+    public async Task FiveLevelsAreLocalizedAndOnlyBelongToTheTwoVisualGames(string culture, string title, string next, string retry)
+    {
+        using var localizedClient = factory.CreateClient();
+        localizedClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd(culture);
+        var html = WebUtility.HtmlDecode(await localizedClient.GetStringAsync("/juegos"));
+        Assert.Equal(10, Regex.Matches(html, "data-visual-level=\"").Count);
+        Assert.Equal(2, Regex.Matches(html, "class=\"visual-level-picker\"").Count);
+        Assert.Equal(2, Regex.Matches(html, "data-visual-next-level").Count);
+        Assert.Contains(title, html);
+        Assert.Contains(next, html);
+        Assert.Contains(retry, html);
+        var trivia = Regex.Match(html, "<section[^>]*id=\"trivia-panel\"[\\s\\S]*?</section>").Value;
+        Assert.NotEmpty(trivia);
+        Assert.DoesNotContain("data-visual-level", trivia);
+        Assert.DoesNotContain("data-visual-next-level", trivia);
+        Assert.Equal(10, Regex.Matches(trivia, "data-trivia-question").Count);
+        var state = await localizedClient.GetStringAsync("/js/visual-games-state.js");
+        Assert.Contains("LEVEL_COUNT = 5", state);
+        Assert.Contains("ROUND_COUNT = 3", state);
+        Assert.Contains("selectLevel", state);
+        Assert.Contains("bestScore", state);
+        var css = await localizedClient.GetStringAsync("/css/games.css");
+        Assert.Contains("var(--intruso-columns, 3)", css);
+        Assert.Contains("var(--code-columns)", css);
+        Assert.Contains(".games-content:has(.games-visual-panel:not([hidden])) { padding-bottom: 120px; }", css);
     }
 
     [Fact]

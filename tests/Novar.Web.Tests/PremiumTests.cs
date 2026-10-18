@@ -13,6 +13,23 @@ public sealed class PremiumTests(WebApplicationFactory<Program> factory) : IClas
 {
     private readonly HttpClient client = factory.CreateClient();
 
+    [Fact]
+    public async Task AiLensAndMyoLensTechnologyHaveResponsiveTypeAndFlowingBenefits()
+    {
+        var css = await client.GetStringAsync("/css/premium.css");
+        const string scope = ":is(.premium-product--ai-lens, .premium-product--myolens)";
+        Assert.Contains(scope + " .premium-technology-inner { padding-left: min(25%, 360px); }", css);
+        Assert.Contains(scope + " .premium-technology h2 { font-size: clamp(24px, 2.083333vw, 30px); line-height: 1.2; }", css);
+        Assert.Contains(scope + " .premium-technology-description { line-height: 1.5; }", css);
+        Assert.Contains(".premium-product--myolens .premium-benefits { position: static; margin-top: 56px; }", css);
+        Assert.Contains(scope + " .premium-benefits { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }", css);
+        var mobile = css[css.IndexOf("@media (max-width: 767.98px)")..];
+        Assert.Contains(scope + " .premium-technology-inner { padding-inline: 24px; }", mobile);
+        Assert.Contains(scope + " .premium-technology h2 { font-size: 22px; line-height: 29px; }", mobile);
+        Assert.Contains(scope + " .premium-technology-eyebrow { margin-bottom: 22px; }", mobile);
+        Assert.Contains(scope + " .premium-technology-description { line-height: 24px; }", mobile);
+    }
+
     [Theory]
     [InlineData("es", "La revolucionaria tecnología AI-GET")]
     [InlineData("en", "Novar©’s exclusive, revolutionary AI-GET")]

@@ -67,7 +67,7 @@
 .games-preview-meta { display: flex; justify-content: space-between; margin-top: 32px; }
 .games-preview-meta p { margin: 0; font-size: 12px; font-weight: 400; line-height: 16px; }
 .games-preview-instruction { margin: 16px 0 0; font-size: 14px; font-weight: 400; line-height: 20px; text-align: center; }
-.games-preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: min(320px, 100%); aspect-ratio: 1; margin: 20px auto 0; }
+.games-preview-grid { display: grid; grid-template-columns: repeat(var(--intruso-columns, 3), minmax(0, 1fr)); gap: 8px; width: min(320px, 100%); aspect-ratio: 1; margin: 20px auto 0; }
 .games-color { min-width: 44px; min-height: 44px; padding: 0; border: 3px solid transparent; border-radius: 50%; background: #3019e1; }
 .games-color-different { background: #5342d7; }
 .games-demo-notice { position: absolute; top: calc(100% + 24px); right: 0; left: 0; margin: 0; color: #6b5a8a; font-size: 12px; line-height: 20px; text-align: center; }
@@ -164,6 +164,12 @@
 /* Interactive game panels keep their state locally and never score vision. */
 .games-trivia, .games-codigo { min-height: 548px; padding: 48px; border: 1px solid rgb(31 2 60 / 45%); background: #f0eff1; box-shadow: 0 3px 4px rgb(0 0 0 / 12%); }
 .games-visual-panel { height: auto; min-height: 548px; }
+.games-visual-panel .games-arena-backdrop img { left: -4.151px; width: calc(100% + 8.302px); height: calc(100% + 8px); }
+.games-codigo > .games-arena-content { padding: 0; }
+/* Taller level panels must reserve space for the out-of-flow disclaimer. */
+@media (min-width: 1200px) {
+    .games-content:has(.games-visual-panel:not([hidden])) { padding-bottom: 120px; }
+}
 .games-trivia[hidden], .games-trivia [hidden], .games-visual-panel[hidden], .games-visual-panel [hidden] { display: none !important; }
 .games-visual-panel:focus { outline: 3px solid #9564d1; outline-offset: 5px; }
 .games-visual-panel button:focus-visible, .games-visual-panel input:focus-visible { outline: 3px solid #9564d1; outline-offset: 3px; }
@@ -173,6 +179,17 @@
 .games-visual-panel[data-visual-game-panel="intruso"] [data-visual-feedback] { text-align: center; }
 .games-visual-panel[data-visual-game-panel="intruso"] [data-visual-next] { display: block; width: fit-content; margin: 4px auto 0; }
 .visual-game-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.visual-levels { margin-top: 28px; }
+.visual-level-title { margin: 0 0 16px; font-size: 18px; font-weight: 500; line-height: 26px; }
+.visual-level-picker { min-width: 0; margin: 0; padding: 0; border: 0; }
+.visual-level-picker legend { float: none; margin: 0 0 10px; font-size: 14px; line-height: 22px; }
+.visual-level-buttons { display: flex; gap: 8px; }
+.visual-level-button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: 52px; min-width: 44px; min-height: 52px; padding: 6px 8px; border: 1px solid #7b5ea7; border-radius: 8px; background: transparent; color: var(--ink); font-size: 18px; line-height: 24px; font-variant-numeric: tabular-nums; }
+.visual-level-button[aria-pressed="true"] { border-color: var(--violet); background: var(--violet); color: #fff; }
+.visual-level-button small { font-size: 12px; line-height: 16px; }
+.visual-level-description { margin: 16px 0 8px; font-size: 16px; line-height: 24px; }
+.visual-level-help { max-width: 60ch; margin: 0; color: #655775; font-size: 14px; line-height: 22px; }
+.visual-game-retry { min-height: 44px; padding: 10px 20px; border: 1px solid #7b5ea7; border-radius: 999px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 500; }
 .visual-game-next { margin-top: 4px; }
 .visual-game-result { padding-top: 24px; }
 .visual-game-result h3 { margin: 0 0 12px; font-size: 28px; font-weight: 500; line-height: 36px; }
@@ -180,6 +197,10 @@
 .codigo-dot-matrix { box-sizing: border-box; display: grid; grid-template-columns: repeat(7, 20.426px); grid-template-rows: repeat(6, 20.426px); justify-content: center; align-content: center; gap: clamp(4px, 1.16vw, 16.7118px); width: min(354.661px, 100%); height: 259.961px; margin: 22px auto; padding: 12px; overflow: hidden; border: .928px solid rgb(255 255 255 / 6%); border-radius: 14.855px; background: #0d0d0d; box-shadow: 0 3.714px 22.282px rgb(0 0 0 / 20%); }
 .codigo-dot { display: block; width: 20.426px; height: 20.426px; border-radius: 50%; background: #83abe9; }
 .codigo-dot.is-lit { background: #0065ff; box-shadow: 0 0 4px rgb(99 157 245 / 53%); }
+.codigo-dot.is-noise { background: #467fd4; }
+.codigo-dot.is-separator { visibility: hidden; }
+.codigo-dot-matrix:is([data-code-digits="2"], [data-code-digits="3"]) { grid-template-columns: repeat(var(--code-columns), minmax(0, 20.426px)); grid-template-rows: repeat(6, auto); gap: 4px; width: min(640px, 100%); height: auto; min-height: 160px; }
+.codigo-dot-matrix:is([data-code-digits="2"], [data-code-digits="3"]) .codigo-dot { width: 100%; height: auto; aspect-ratio: 1; }
 .codigo-answer-label { display: block; width: min(320px, 100%); margin: 0 auto 8px; font-size: 14px; font-weight: 500; }
 .codigo-answer { display: block; width: min(320px, 100%); min-height: 48px; margin-inline: auto; padding: 10px 12px; border: 1px solid rgb(123 94 167 / 55%); border-radius: 8px; background: #fff; color: var(--ink); font-size: 18px; }
 .trivia-disclaimer { margin: 12px 0 24px; font-size: 12px; line-height: 20px; }
@@ -201,9 +222,13 @@
 .trivia-no-script { width: min(976px, calc(100% - 48px)); margin: 72px auto 0; font-size: 14px; text-align: center; }
 @media (max-width: 767.98px) {
     .games-trivia, .games-codigo { min-height: 0; padding: 28px 20px; }
-    .games-visual-panel { min-height: 0; }
+    .games-visual-panel { width: calc(100% - 32px); min-height: 0; }
+    .games-codigo .games-demo-notice { margin-top: 24px; }
     .trivia-options { grid-template-columns: minmax(0, 1fr); }
     .trivia-question legend { font-size: 18px; line-height: 27px; }
     .trivia-option { padding: 12px; }
     .trivia-result h3 { font-size: 28px; line-height: 36px; }
+}
+@media (max-width: 399.98px) {
+    .games-codigo { padding-inline: 16px; }
 }

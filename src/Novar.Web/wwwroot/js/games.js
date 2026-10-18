@@ -23,14 +23,15 @@
     let codigoGame = null;
     let triviaGame = null;
     let triviaQuestions = [];
-    const intrusoChoices = [...document.querySelectorAll('[data-intruso-choice]')];
+    const intrusoGrid = document.querySelector('[data-intruso-grid]');
+    let intrusoChoices = [...document.querySelectorAll('[data-intruso-choice]')];
     const codigoMatrix = document.querySelector('[data-codigo-matrix]');
-    const codigoDots = [...document.querySelectorAll('[data-codigo-dot]')];
+    let codigoDots = [...document.querySelectorAll('[data-codigo-dot]')];
     const codigoInput = document.getElementById('codigo-answer');
 
-    if (visualApi && panels.intruso && panels.codigo && intrusoChoices.length === 9 && codigoMatrix && codigoDots.length === 42 && codigoInput) {
+    if (visualApi && panels.intruso?.querySelector('[data-visual-level]') && panels.codigo?.querySelector('[data-visual-level]') && intrusoChoices.length === 9 && codigoMatrix && codigoDots.length === 42 && codigoInput) {
         intrusoGame = visualApi.createIntruso(visualApi.createRuntimeSeed(), window.NovarText);
-        codigoGame = visualApi.createCodigo(visualApi.DEFAULT_SEED, window.NovarText);
+        codigoGame = visualApi.createCodigo(visualApi.createRuntimeSeed(), window.NovarText);
         panels.intruso.hidden = false;
         panels.codigo.hidden = true;
         renderVisual('intruso');
@@ -69,31 +70,88 @@
         const next = panel.querySelector('[data-visual-next]');
         const resultTitle = panel.querySelector('[data-visual-result-title]');
         const retry = panel.querySelector('[data-visual-retry]');
+        const nextLevel = panel.querySelector('[data-visual-next-level]');
+        const names = ['Fácil', 'Moderado', 'Intermedio', 'Avanzado', 'Experto'];
+        const levelName = window.NovarText(`game.levelName${state.level}`, names[state.level - 1]);
+        panel.dataset.level = state.level;
+        panel.querySelector('[data-visual-level-title]').textContent = window.NovarText('game.levelTitle', 'Nivel {level} de {total} · {name}', { level: state.level, total: state.levelCount, name: levelName });
+        panel.querySelector('[data-visual-level-description]').textContent = window.NovarText(`game.${id}Level${state.level}`, (id === 'intruso' ? [
+            '9 círculos. Una diferencia de color clara.', '9 círculos. Tonos más cercanos.', '16 círculos. Más opciones y una diferencia menor.', '16 círculos. El cambio de tono es sutil.', '25 círculos. Buscá una diferencia muy sutil.'
+        ] : ['Una cifra, sin puntos distractores.', 'Una cifra entre algunos puntos distractores.', 'Dos cifras, leídas de izquierda a derecha.', 'Dos cifras con más puntos distractores.', 'Tres cifras y la mayor cantidad de distractores.'])[state.level - 1]);
+        panel.querySelectorAll('[data-visual-level]').forEach(button => {
+            const level = Number(button.dataset.visualLevel);
+            const progress = state.progress[level - 1];
+            const name = window.NovarText(`game.levelName${level}`, names[level - 1]);
+            button.disabled = !active(id);
+            button.setAttribute('aria-pressed', String(level === state.level));
+            button.setAttribute('aria-label', window.NovarText('game.levelChoice', 'Nivel {level}: {name}', { level, name })
+                + (progress.complete ? '. ' + window.NovarText('game.levelBest', 'Completado. Mejor puntaje: {score}/{total}', { score: progress.bestScore, total: state.total }) : ''));
+            const badge = button.querySelector('[data-level-score]');
+            badge.hidden = !progress.complete;
+            badge.textContent = progress.complete ? `${progress.bestScore}/${state.total}` : '';
+        });
 
         roundLabel.textContent = window.NovarText('game.round', 'Ronda {round} de {total}', { round: state.round, total: state.total });
         scoreLabel.textContent = window.NovarText('game.score', 'Puntaje: {score}', { score: state.score });
         playing.hidden = state.complete;
         result.hidden = !state.complete;
-        resultTitle.textContent = state.complete ? window.NovarText('game.finalScore', 'Puntaje final: {score}/{total}', { score: state.score, total: state.total }) : '';
+        resultTitle.textContent = state.complete ? window.NovarText('game.levelResult', 'Nivel {level}: {score}/{total} aciertos', { level: state.level, score: state.score, total: state.total }) : '';
+        const completed = state.progress.filter(item => item.complete).length;
+        panel.querySelector('[data-visual-completion]').textContent = completed === state.levelCount
+            ? window.NovarText('game.allLevelsDone', 'Completaste los cinco niveles. Podés repetir cualquiera con nuevos patrones.')
+            : window.NovarText('game.levelProgress', 'Completaste {count} de {total} niveles.', { count: completed, total: state.levelCount });
+        nextLevel.hidden = !state.complete || state.level === state.levelCount;
+        nextLevel.disabled = !active(id) || !state.complete || state.level === state.levelCount;
         retry.disabled = !active(id) || !state.complete;
         next.hidden = !state.checked;
         next.disabled = !canInteract || !state.checked;
+        next.textContent = state.round === state.total ? window.NovarText('game.viewResult', 'Ver resultado') : window.NovarText('game.next', 'Siguiente');
         feedback.textContent = state.feedback?.message ?? '';
 
         if (id === 'intruso') {
+            if (!state.complete && intrusoChoices.length !== state.colors.length) {
+                intrusoChoices = state.colors.map(() => {
+                    const button = document.createElement('button');
+                    button.type = 'button'; button.className = 'games-color'; button.dataset.intrusoChoice = '';
+                    return button;
+                });
+                intrusoGrid.replaceChildren(...intrusoChoices);
+            }
+            intrusoGrid.style.setProperty('--intruso-columns', state.columns);
+            intrusoGrid.setAttribute('aria-label', window.NovarText('game.colorGrid', '{count} colores. Elegí uno por ronda.', { count: state.columns ** 2 }));
             intrusoChoices.forEach((button, index) => {
+                button.dataset.choiceIndex = index;
+                button.setAttribute('aria-label', window.NovarText('game.colorOption', 'Opción {number}', { number: index + 1 }));
                 button.style.backgroundColor = state.colors[index] ?? '';
                 button.disabled = !canInteract || state.checked;
             });
         } else {
+            if (!state.complete && codigoDots.length !== state.mask.length * state.columns) {
+                codigoDots = Array.from({ length: state.mask.length * state.columns }, () => {
+                    const dot = document.createElement('span');
+                    dot.className = 'codigo-dot'; dot.dataset.codigoDot = ''; dot.setAttribute('aria-hidden', 'true');
+                    return dot;
+                });
+                codigoMatrix.replaceChildren(...codigoDots);
+            }
+            codigoMatrix.dataset.codeDigits = state.digits;
+            codigoMatrix.style.setProperty('--code-columns', state.columns);
+            codigoInput.maxLength = state.digits;
+            codigoInput.pattern = `[0-9]{${state.digits}}`;
+            codigoInput.setAttribute('aria-invalid', String(state.feedback?.kind === 'invalid'));
+            panel.querySelector('[data-codigo-instruction]').textContent = state.digits === 1
+                ? window.NovarText('game.codePromptOne', '¿Qué número forman estos puntos?')
+                : window.NovarText('game.codePromptMany', 'Leé las {count} cifras de izquierda a derecha. Incluí los ceros iniciales.', { count: state.digits });
             codigoDots.forEach((dot, index) => {
-                const row = Math.floor(index / 7);
-                const column = index % 7;
+                const row = Math.floor(index / state.columns);
+                const column = index % state.columns;
                 dot.classList.toggle('is-lit', state.mask[row]?.[column] === '1');
+                dot.classList.toggle('is-noise', state.noise[index] === true);
+                dot.classList.toggle('is-separator', column % 8 === 7);
             });
             codigoMatrix.setAttribute('aria-label', state.checked && state.feedback?.answer
                 ? window.NovarText('game.digitShown', 'Número formado por puntos: {answer}', { answer: state.feedback.answer })
-                : window.NovarText('game.digitImage', 'Una cifra formada por puntos'));
+                : window.NovarText('game.codeImage', '{count} cifras formadas por puntos', { count: state.digits }));
             codigoInput.disabled = !canInteract || state.checked;
             if (document.activeElement !== codigoInput) codigoInput.value = state.draft;
             const check = panel.querySelector('[data-codigo-check]');
@@ -191,16 +249,33 @@
         });
     });
 
-    intrusoChoices.forEach((button, index) => button.addEventListener('click', () => {
-        if (!active('intruso') || !intrusoGame?.choose(index)) return;
+    intrusoGrid?.addEventListener('click', event => {
+        const button = event.target.closest('[data-intruso-choice]');
+        if (!button || !intrusoGrid.contains(button) || !active('intruso') || !intrusoGame?.choose(Number(button.dataset.choiceIndex))) return;
         renderVisual('intruso');
         moveFocus(panels.intruso.querySelector('[data-visual-next]'), false);
-    }));
+    });
 
     document.querySelectorAll('[data-visual-game-panel]').forEach(panel => {
         const id = panel.dataset.visualGamePanel;
         const next = panel.querySelector('[data-visual-next]');
         const retry = panel.querySelector('[data-visual-retry]');
+        panel.querySelectorAll('[data-visual-level]').forEach(button => button.addEventListener('click', () => {
+            if (!active(id)) return;
+            const game = id === 'intruso' ? intrusoGame : codigoGame;
+            if (!game?.selectLevel(Number(button.dataset.visualLevel))) return;
+            if (id === 'codigo') codigoInput.value = game.getState().draft;
+            renderVisual(id);
+        }));
+        panel.querySelector('[data-visual-next-level]')?.addEventListener('click', () => {
+            if (!active(id)) return;
+            const game = id === 'intruso' ? intrusoGame : codigoGame;
+            if (!game?.nextLevel()) return;
+            if (id === 'codigo') codigoInput.value = game.getState().draft;
+            renderVisual(id);
+            const state = game.getState();
+            moveFocus(state.complete ? panel.querySelector('[data-visual-result-title]') : id === 'codigo' ? codigoInput : intrusoChoices[0]);
+        });
         next.addEventListener('click', () => {
             if (!active(id)) return;
             const game = id === 'intruso' ? intrusoGame : codigoGame;
@@ -214,7 +289,7 @@
         retry.addEventListener('click', () => {
             if (!active(id)) return;
             if (id === 'intruso') intrusoGame?.restart(visualApi.createRuntimeSeed());
-            else codigoGame?.restart();
+            else codigoGame?.restart(visualApi.createRuntimeSeed());
             if (id === 'codigo') codigoInput.value = '';
             renderVisual(id);
             moveFocus(id === 'codigo' ? codigoInput : intrusoChoices[0]);

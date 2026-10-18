@@ -111,22 +111,16 @@
 .prg-related-card[open] .prg-related-media { filter: blur(2.5px); transition-duration: 360ms; transition-timing-function: cubic-bezier(.16, 1, .3, 1); }
 .prg-related-options { position: absolute; inset: 0; z-index: 1; isolation: isolate; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 12px; pointer-events: none; }
 .prg-related-card[open] > .prg-related-options { display: flex; }
-/* An optical aperture opens the violet veil, without scaling or moving either photo layer. */
-.prg-related-options::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgb(31 2 60 / 66%); }
-.prg-related-card[open] > .prg-related-options::before { animation: prg-related-aperture 420ms cubic-bezier(.16, 1, .3, 1) both; }
+/* Only the photo blurs; the original colors and purple action buttons remain intact. */
 .prg-related-card[open] .prg-related-option { animation: prg-related-focus 240ms ease-out 80ms both; }
 .prg-related-card[open] .prg-related-option:nth-child(2) { animation-delay: 120ms; }
-@keyframes prg-related-aperture {
-    from { clip-path: inset(50% 0); opacity: 0; }
-    to { clip-path: inset(0); opacity: 1; }
-}
 @keyframes prg-related-focus {
     from { opacity: 0; filter: blur(3px); }
     to { opacity: 1; filter: blur(0); }
 }
 .prg-related-option { display: flex; max-width: 100%; flex-direction: column; align-items: center; gap: 8px; padding: 4px 8px; color: #fff; text-align: center; text-decoration: none; pointer-events: auto; }
 .prg-related-option:hover { color: #fff; }
-.prg-related-name { font-size: clamp(24px, 2.78vw, 40px); line-height: 1; font-weight: 600; overflow-wrap: anywhere; }
+.prg-related-name { font-size: clamp(24px, 2.78vw, 40px); line-height: 1; font-weight: 600; overflow-wrap: anywhere; text-shadow: 0 1px 4px rgb(0 0 0 / 85%); }
 .prg-related-card--precisa .prg-related-name, .prg-related-card--evolution .prg-related-name { font-size: clamp(20px, 1.8vw, 26px); line-height: 1.15; }
 .prg-related-cta { position: relative; display: grid; place-items: center; width: 123.319px; height: 42px; }
 .prg-related-cta > img { position: absolute; display: block; max-width: none; }
@@ -135,7 +129,7 @@
 .prg-related-card summary:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
 .prg-related-option:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 .prg-related-card summary:focus-visible .prg-related-hint { display: block; }
-.prg-related-card[open] .prg-related-hint { display: none; }
+.prg-related-card[open] summary .prg-related-hint { display: none; }
 @media (hover: none), (pointer: coarse) {
     .prg-related-hint { display: block; }
 }
@@ -244,7 +238,6 @@
 @media (prefers-reduced-motion: reduce) {
     .prg-related-media { transition: none; }
     .prg-related-card[open] .prg-related-media { transition-duration: 0s; }
-    .prg-related-card[open] > .prg-related-options::before,
     .prg-related-card[open] .prg-related-option { animation: none; }
 }
 

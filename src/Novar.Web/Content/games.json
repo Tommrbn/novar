@@ -13,13 +13,13 @@
   "howTitle": "Desafíos para jugar con tu atención",
   "steps": [
     { "number": "01", "title": "Elegí un juego", "description": "Seleccioná el tipo de desafío visual que querés explorar." },
-    { "number": "02", "title": "Jugá cinco rondas", "description": "Respondé a tu ritmo y prestá atención a los detalles." },
+    { "number": "02", "title": "Elegí tu nivel", "description": "Intruso y Código tienen cinco niveles, con tres rondas por nivel y sin reloj." },
     { "number": "03", "title": "Conocé tu puntaje", "description": "Es un resultado recreativo: no evalúa tu visión." }
   ],
   "previewTitle": "Intruso Cromático",
-  "roundLabel": "Ronda 1 de 5",
+  "roundLabel": "Ronda 1 de 3",
   "scoreLabel": "Puntaje: 0",
-  "previewInstruction": "Encontrá el color diferente entre los 9 cuadros",
+  "previewInstruction": "Elegí el círculo de color diferente.",
   "demoNotice": "Desafío recreativo. El puntaje no evalúa tu visión.",
   "trivia": {
     "title": "Trivia",

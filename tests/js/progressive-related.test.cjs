@@ -15,11 +15,12 @@ class Events extends EventTarget {
 function setup({ fine = true } = {}) {
     const document = new Events();
     const card = new Events();
-    const summary = { focus() { document.activeElement = summary; } };
-    const link = {};
+    const summary = { focusVisible: false, focus() { document.activeElement = summary; } };
+    const link = { focusVisible: false };
     card.open = false;
     card.contains = target => target === summary || target === link || target === card;
-    card.querySelector = () => summary;
+    card.querySelector = selector => selector === 'summary' ? summary
+        : (card.contains(document.activeElement) && document.activeElement.focusVisible ? document.activeElement : null);
     document.querySelectorAll = () => [card];
     const script = 'src/Novar.Web/wwwroot/js/progressive-related.js';
     vm.runInNewContext(fs.existsSync(script) ? fs.readFileSync(script, 'utf8') : '', {
@@ -45,13 +46,22 @@ test('touch does not synthesize hover; native disclosure controls the tap', () =
     assert.equal(card.open, true);
 });
 
-test('leaving with a focused link keeps choices usable until focus exits', () => {
+test('leaving with a keyboard-focused link keeps choices usable until focus exits', () => {
     const { card, document, link } = setup();
     card.emit('pointerenter', { pointerType: 'mouse' });
     document.activeElement = link;
+    link.focusVisible = true;
     card.emit('pointerleave', { pointerType: 'mouse' });
     assert.equal(card.open, true);
     card.emit('focusout', { relatedTarget: {} });
+    assert.equal(card.open, false);
+});
+
+test('mouse-click focus does not keep a photo blurred after the cursor leaves', () => {
+    const { card, document, summary } = setup();
+    card.emit('pointerenter', { pointerType: 'mouse' });
+    document.activeElement = summary;
+    card.emit('pointerleave', { pointerType: 'mouse' });
     assert.equal(card.open, false);
 });
 

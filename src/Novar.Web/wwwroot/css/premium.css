@@ -50,6 +50,11 @@
 .premium-product--aiwork .premium-technology-eyebrow { top: 66.75px; }
 .premium-product--aiwork .premium-technology h2 { max-width: 880px; line-height: 35px; }
 .premium-product--aiwork .premium-technology-description { margin-top: 36px !important; }
+/* Keep the Figma text widths at 1440px without narrowing the column on wider screens.
+   These two long introductions need a gentler responsive scale and room between lines. */
+:is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology-inner { padding-left: min(25%, 360px); }
+:is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology h2 { font-size: clamp(24px, 2.083333vw, 30px); line-height: 1.2; }
+:is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology-description { line-height: 1.5; }
 .premium-benefits { position: absolute; left: 25%; right: 7%; top: 342px; display: grid; grid-template-columns: 252.75px 246.75px 229.5px minmax(0, 1fr); margin: 0; padding: 0; list-style: none; }
 .premium-benefits li { min-width: 0; }
 .premium-benefit-icon { display: flex; align-items: flex-start; height: 47px; padding-left: 4px; }
@@ -144,6 +149,8 @@
 
 @media (min-width: 1200px) {
     .premium-product--ai-lens .premium-benefits { position: static; margin-top: 24px; }
+    .premium-product--myolens .premium-benefits { position: static; margin-top: 56px; }
+    :is(.premium-product--ai-lens, .premium-product--myolens) .premium-benefits { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 }
 
 @media (max-width: 1199.98px) {
@@ -153,6 +160,7 @@
     .premium-page .navbar .nav-link { min-height: 44px; }
     .premium-page .language { margin: 10px 12px 6px; width: fit-content; }
     .premium-technology-inner { padding: 70px 40px 60px 23%; }
+    :is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology-inner { padding-left: 23%; }
     .premium-technology-eyebrow { left: 24px; top: 72px; }
     .premium-product--aiwork .premium-technology-eyebrow { top: 56px; }
     .premium-technology h2 { font-size: 26px; line-height: 30px; }
@@ -180,10 +188,14 @@
     .premium-brand-pill { top: 507px; }
     .premium-hero-copy, .premium-product--ai-lens .premium-hero-copy, .premium-product--aiwork .premium-hero-copy { top: 574px; font-size: 23px; line-height: 28px; }
     .premium-technology-inner, .premium-product--aiwork .premium-technology-inner { padding: 48px 24px; }
+    :is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology-inner { padding-inline: 24px; }
     .premium-technology-eyebrow, .premium-product--aiwork .premium-technology-eyebrow { position: static; width: auto; text-align: left; margin-bottom: 22px; }
     .premium-technology h2, .premium-product--aiwork .premium-technology h2 { font-size: 25px; line-height: 31px; white-space: normal; }
+    :is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology h2 { font-size: 22px; line-height: 29px; }
+    :is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology-eyebrow { margin-bottom: 22px; }
     .premium-technology-description, .premium-product--aiwork .premium-technology-description { margin-top: 24px !important; font-weight: 400; line-height: 24px; }
     .premium-product--aiwork .premium-technology-description { font-weight: 400; }
+    :is(.premium-product--ai-lens, .premium-product--myolens) .premium-technology-description { line-height: 24px; }
     .premium-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 24px; margin-top: 38px; }
     .premium-benefits li > span:last-child { max-width: 165px; font-size: 14px; line-height: 18px; }
     .premium-feature { height: auto; }
